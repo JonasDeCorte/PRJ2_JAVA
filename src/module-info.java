@@ -7,6 +7,6 @@ module projecten2 {
 	exports gui;
 	exports main;
 	exports domein;
-	exports repository;
+	exports persistentie;
 	exports testen;
 }

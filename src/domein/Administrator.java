@@ -20,11 +20,11 @@ public class Administrator extends Werknemer {
 	}
 	
 	public Klant haalKlantOp(int klantnummmer) {
-		return null;
+		throw new IllegalArgumentException();
 	}
 	
 	public Werknemer voegWerknemerToe() {
-		return null;
+		throw new IllegalArgumentException();
 	}
 	
 	public void wijzigWerknemer() {
@@ -36,6 +36,6 @@ public class Administrator extends Werknemer {
 	}
 	
 	public Werknemer haalWerknemerOp(int werknemer) {
-		return null;
+		throw new IllegalArgumentException();
 	}
 }

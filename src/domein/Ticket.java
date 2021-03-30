@@ -14,16 +14,14 @@ public class Ticket {
 	private Bijlage oplossing;
 	private List<Bijlage> bijlages;
 	private Technieker toegewezenTechnieker;
-	private Klant klant;
+	private SupportManager supportManager;
 	private Contract contract;
 	private TicketType ticketType;
 	private Rapport rapport;
 	private TicketStatus ticketStatus;
-	//SupportManager?
-	private List<Gebruiker> gebruikers;
 	
 	public Ticket(int ticketnummer, String titel, String omschrijving,
-			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType, Klant klant) {
+			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType) {
 		setTicketnummer(ticketnummer);
 		setTitel(titel);
 		datumAangemaakt = LocalDateTime.now();
@@ -32,7 +30,6 @@ public class Ticket {
 		setBijlages(bijlages);
 		setContract(contract);
 		setTicketType(ticketType);
-		setKlant(klant);
 		ticketStatus = ticketStatus.AANGEMAAKT;
 	}
 
@@ -128,20 +125,13 @@ public class Ticket {
 		this.ticketStatus = ticketStatus;
 	}
 
-	public List<Gebruiker> getGebruikers() {
-		return gebruikers;
+		
+	public SupportManager getSupportManager() {
+		return supportManager;
 	}
 
-	private void setGebruikers(List<Gebruiker> gebruikers) {
-		this.gebruikers = gebruikers;
-	}
-
-	public Klant getKlant() {
-		return klant;
-	}
-
-	private void setKlant(Klant klant) {
-		this.klant = klant;
+	private void setSupportManager(SupportManager supportManager) {
+		this.supportManager = supportManager;
 	}
 
 	public Rapport getRapport() {
@@ -150,7 +140,5 @@ public class Ticket {
 
 	private void setRapport(Rapport rapport) {
 		this.rapport = rapport;
-	}
-	
-	
+	}	
 }
