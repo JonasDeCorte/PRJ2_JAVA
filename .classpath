@@ -6,17 +6,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/MyLibrary/Ontwerpen II/byte-buddy-1.10.14.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Ontwerpen II/mockito-core-3.5.10.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Ontwerpen II/mockito-junit-jupiter-3.5.10.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Ontwerpen II/objenesis-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/eclipselink-2.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/jakarta.persistence.source_2.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/jakarta.persistence_2.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/mysql-connector-java-8.0.22.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/org.eclipse.persistence.jpa.modelgen.source_2.7.5.v20191016-ea124dd158.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/org.eclipse.persistence.jpa.modelgen_2.7.5.v20191016-ea124dd158.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/org.eclipse.persistence.jpars.source_2.7.5.v20191016-ea124dd158.jar"/>
-	<classpathentry kind="lib" path="C:/MyLibrary/Programmeren III JAR/org.eclipse.persistence.jpars_2.7.5.v20191016-ea124dd158.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
