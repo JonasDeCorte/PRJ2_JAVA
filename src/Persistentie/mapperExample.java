@@ -1,6 +1,36 @@
 package Persistentie;
+import domein.TicketType;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class mapperExample {
+	
+	  public List<TicketType> geefTicketTypes() {
+		  List<TicketType> types = new ArrayList<TicketType>();
+		  try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
+				 
+				  PreparedStatement query = conn.prepareStatement("SELECT * FROM Projecten2.dbo.TicketType"); 
+				 
+				  ResultSet rs = query.executeQuery()) {
+			  while (rs.next()) {
+				  int ticketTypeId = rs.getInt("id");
+				  String naam = rs.getString("Naam");
+	              String omschrijving = rs.getString("Omschrijving");                        
+	            	  types.add(new TicketType(ticketTypeId,naam,omschrijving));
+			  
+			   }
+			  System.out.println("connection");
+	       	  } catch (SQLException ex) {
+	       		  throw new RuntimeException(ex);
+	       	  }
+		  return types;
+	  }
 	/*
 	//Variabelen
 	 private static final String INSERT_SPELER = "INSERT INTO ID222177_g34.speler (gebruikersnaam, wachtwoord, administrator, naam, voornaam)"
@@ -25,32 +55,7 @@ public class mapperExample {
 	        }
 	   }
 	 
-	 //Geeft speler terug uit db
-	  public Speler geefSpeler(String gebruikersnaam) {
-	       	Speler speler = null;
-	        try (Connection conn = DriverManager.getConnection(Connectie.JDBC_URL);
-	                PreparedStatement query = conn.prepareStatement("SELECT * FROM ID222177_g34.speler WHERE gebruikersnaam = ?")) 
-	        {
-	            query.setString(1, gebruikersnaam);
-	            try (ResultSet rs = query.executeQuery()) 
-	            {
-	                if (rs.next()) {
-	                    String username = rs.getString("gebruikersnaam");
-	                    String wachtwoord = rs.getString("wachtwoord");
-	                    String admin = rs.getString("administrator");
-	                    
-	                    if(admin.equalsIgnoreCase("true")) {
-	                    	speler = new Speler(username, wachtwoord,true);	
-	                    }else {
-	                    	speler = new Speler(username, wachtwoord,false);	
-	                    }
-	                }
-	            }
-	        }catch (SQLException ex ) {
-	            throw new RuntimeException(ex);
-	        }
-	        return speler;
-	  }
+	 /
 
 	  public List<Speler> geefSpelers() {
 		  List<Speler> spelers = new ArrayList<>();

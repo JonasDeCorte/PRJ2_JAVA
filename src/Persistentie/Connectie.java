@@ -1,8 +1,10 @@
 package Persistentie;
 
 public class Connectie {
+
 	
-    public static final String JDBC_URL = "jdbc:sqlserver://MSI\\jonas;databaseName=JavaG18;integratedSecurity=true";
+    public static final String JDBC_URL = "jdbc:sqlserver://localhost;databaseName=Projecten2;user=test;password=test";
+    	
     
 
 }
