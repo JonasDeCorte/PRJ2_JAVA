@@ -2,6 +2,9 @@ package domein;
 
 import java.util.List;
 
+import domein.enumerations.TICKETAANMAAKMETHODE;
+import domein.enumerations.TICKETAANMAAKTIJD;
+
 public class ContractType {
 	private int contractTypeId;
 	private String naam;
@@ -11,20 +14,19 @@ public class ContractType {
 	private double prijs;
 	
 	private List<Contract> contracten;
-	private List<ManierTicketAanmaken> manierTicketAanmaken;
-	private MogelijkeTijdstippenAanmaken mogelijkeTijdsstippenAanmaken;
-	
-	
-	protected ContractType(int contractTypeId, String naam, int maximaleAfhandelTijd, int minimaleDoorloopTijd, 
-			double prijs, List<ManierTicketAanmaken> manierTicketAanmaken, MogelijkeTijdstippenAanmaken mogelijkeTijdsstippenAanmaken) {
+	private List<TICKETAANMAAKMETHODE> ticketAanmaakMethode;
+	private TICKETAANMAAKTIJD ticketAanmaakTijd;
+		
+	public ContractType(int contractTypeId, String naam, int maximaleAfhandelTijd, int minimaleDoorloopTijd, 
+			double prijs, List<TICKETAANMAAKMETHODE> ticketAanmaakMethode, TICKETAANMAAKTIJD ticketAanmaakTijd) {
 		setContractTypeId(contractTypeId);
 		setNaam(naam);
 		status = true;
 		setMaximaleAfhandelTijd(maximaleAfhandelTijd);
 		setMinimaleDoorloopTijd(minimaleDoorloopTijd);
 		setPrijs(prijs);
-		setManierTicketAanmaken(manierTicketAanmaken);
-		setMogelijkeTijdsstippenAanmaken(mogelijkeTijdsstippenAanmaken);
+		setTicketAanmaakMethode(ticketAanmaakMethode);
+		setTicketAanmaakTijd(ticketAanmaakTijd);
 	}
 	
 	public int getContractTypeId() {
@@ -82,20 +84,20 @@ public class ContractType {
 	private void setContracten(List<Contract> contracten) {
 		this.contracten = contracten;
 	}
-	
-	public List<ManierTicketAanmaken> getManierTicketAanmaken() {
-		return manierTicketAanmaken;
+
+	public List<TICKETAANMAAKMETHODE> getTicketAanmaakMethode() {
+		return ticketAanmaakMethode;
 	}
-	
-	private void setManierTicketAanmaken(List<ManierTicketAanmaken> manierTicketAanmaken) {
-		this.manierTicketAanmaken = manierTicketAanmaken;
+
+	private void setTicketAanmaakMethode(List<TICKETAANMAAKMETHODE> ticketAanmaakMethode) {
+		this.ticketAanmaakMethode = ticketAanmaakMethode;
 	}
-	
-	public MogelijkeTijdstippenAanmaken getMogelijkeTijdsstippenAanmaken() {
-		return mogelijkeTijdsstippenAanmaken;
+
+	public TICKETAANMAAKTIJD getTicketAanmaakTijd() {
+		return ticketAanmaakTijd;
 	}
-	
-	private void setMogelijkeTijdsstippenAanmaken(MogelijkeTijdstippenAanmaken mogelijkeTijdsstippenAanmaken) {
-		this.mogelijkeTijdsstippenAanmaken = mogelijkeTijdsstippenAanmaken;
-	}	
+
+	private void setTicketAanmaakTijd(TICKETAANMAAKTIJD ticketAanmaakTijd) {
+		this.ticketAanmaakTijd = ticketAanmaakTijd;
+	}
 }

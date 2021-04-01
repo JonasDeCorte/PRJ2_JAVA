@@ -3,13 +3,15 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import domein.enumerations.CONTRACTSTATUS;
+
 public class Contract {
 	private int contractnummer;
 	private int doorlooptijd;
 	private LocalDateTime startdatum;
 	private LocalDateTime einddatum;
 	
-	private ContractStatus contractstatus;
+	private CONTRACTSTATUS contractstatus;
 	private ContractType contracttype;
 	private Klant klant;
 	private List<Ticket> tickets;
@@ -22,7 +24,7 @@ public class Contract {
 		setEinddatum(einddatum);		
 		setContracttype(contracttype);
 		setKlant(klant);
-		contractstatus = ContractStatus.IN_BEHANDELING;
+		contractstatus = CONTRACTSTATUS.IN_BEHANDELING;
 	}
 
 	public int getContractnummer() {
@@ -57,11 +59,11 @@ public class Contract {
 		this.einddatum = einddatum;
 	}
 
-	public ContractStatus getContractstatus() {
+	public CONTRACTSTATUS getContractstatus() {
 		return contractstatus;
 	}
 
-	private void setContractstatus(ContractStatus contractstatus) {
+	private void setContractstatus(CONTRACTSTATUS contractstatus) {
 		this.contractstatus = contractstatus;
 	}
 

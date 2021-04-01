@@ -7,7 +7,7 @@ module projecten2 {
 	exports gui;
 	exports main;
 	exports domein;
-	exports Persistentie;
+	exports persistentie;
 	exports testen;
 	requires java.sql;
 }

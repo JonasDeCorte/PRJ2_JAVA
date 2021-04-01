@@ -1,6 +1,6 @@
-package domein;
+package domein.enumerations;
 
-public enum TicketStatus {
+public enum TICKETSTATUS {
 	AANGEMAAKT,
 	IN_BEHANDELING,
 	AFGEHANDELD,

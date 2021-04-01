@@ -3,6 +3,8 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import domein.enumerations.GEBRUIKERSTATUS;
+
 public abstract class Gebruiker {
 	private String gebruikersnaam;
 	private String wachtwoord;
@@ -10,10 +12,10 @@ public abstract class Gebruiker {
 	private String naam;
 	private String emailadres;
 	private LocalDateTime registratiedatum;
-	private boolean status;
 	
 	private List<AanmeldPoging> aanmeldPogingen;
 	private List<Ticket> tickets;
+	private GEBRUIKERSTATUS gebruikerStatus;
 		
 	public Gebruiker(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {
 		setGebruikersnaam(gebruikersnaam);
@@ -22,7 +24,7 @@ public abstract class Gebruiker {
 		setNaam(naam);
 		setEmailadres(emailadres);
 		registratiedatum = LocalDateTime.now();
-		status = true;
+		setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);
 	}
 	
 	public String getGebruikersnaam() {
@@ -68,13 +70,13 @@ public abstract class Gebruiker {
 	public LocalDateTime getRegistratiedatum() {
 		return registratiedatum;
 	}
-	
-	public boolean isStatus() {
-		return status;
+		
+	public GEBRUIKERSTATUS getGebruikerStatus() {
+		return gebruikerStatus;
 	}
-	
-	private void setStatus(boolean status) {
-		this.status = status;
+
+	private void setGebruikerStatus(GEBRUIKERSTATUS gebruikerStatus) {
+		this.gebruikerStatus = gebruikerStatus;
 	}
 
 	@Override

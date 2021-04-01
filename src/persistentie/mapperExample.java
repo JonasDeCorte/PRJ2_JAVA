@@ -1,4 +1,4 @@
-package Persistentie;
+package persistentie;
 import domein.TicketType;
 import java.sql.Connection;
 import java.sql.DriverManager;

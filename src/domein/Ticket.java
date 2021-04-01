@@ -3,6 +3,8 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import domein.enumerations.TICKETSTATUS;
+
 public class Ticket {
 	private int ticketnummer;
 	private String titel;
@@ -16,7 +18,7 @@ public class Ticket {
 	private Contract contract;
 	private TicketType ticketType;
 	private Rapport rapport;
-	private TicketStatus ticketStatus;
+	private TICKETSTATUS ticketStatus;
 	
 	public Ticket(int ticketnummer, String titel, String omschrijving,
 			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType) {
@@ -106,11 +108,11 @@ public class Ticket {
 		this.ticketType = ticketType;
 	}
 
-	public TicketStatus getTicketStatus() {
+	public TICKETSTATUS getTicketStatus() {
 		return ticketStatus;
 	}
 
-	private void setTicketStatus(TicketStatus ticketStatus) {
+	private void setTicketStatus(TICKETSTATUS ticketStatus) {
 		this.ticketStatus = ticketStatus;
 	}
 

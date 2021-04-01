@@ -3,22 +3,19 @@ package domein;
 import java.util.List;
 
 public class Bedrijf {
+	private int bedrijfId;
 	private String bedrijfsnaam;
 	private String[] telefoonnummers;
-	private String land;
-	private String gemeente;
-	private String straat;
+	private Adres adres;
+	
 	private List<Klant> klanten;
-		
-	public Bedrijf(String bedrijfsnaam, String[] telefoonnummers, String land, String gemeente, String straat, Klant klant) {
+			
+	public Bedrijf(String bedrijfsnaam, String[] telefoonnummers, Adres adres) {
 		setBedrijfsnaam(bedrijfsnaam);
 		setTelefoonnummers(telefoonnummers);
-		setLand(land);
-		setGemeente(gemeente);
-		setStraat(straat);
-		klanten.add(klant);
+		setAdres(adres);
 	}
-	
+
 	public String getBedrijfsnaam() {
 		return bedrijfsnaam;
 	}
@@ -35,31 +32,19 @@ public class Bedrijf {
 		this.telefoonnummers = telefoonnummers;
 	}
 	
-	public String getLand() {
-		return land;
-	}
-	
-	private void setLand(String land) {
-		this.land = land;
-	}
-	
-	public String getGemeente() {
-		return gemeente;
-	}
-	
-	private void setGemeente(String gemeente) {
-		this.gemeente = gemeente;
-	}
-	
-	public String getStraat() {
-		return straat;
-	}
-	
-	private void setStraat(String straat) {
-		this.straat = straat;
-	}
-
 	public List<Klant> getKlanten() {
 		return klanten;
 	}
+	
+	private void setKlanten(List<Klant> klanten) {
+		this.klanten = klanten;
+	}
+
+	public Adres getAdres() {
+		return adres;
+	}
+
+	private void setAdres(Adres adres) {
+		this.adres = adres;
+	}	
 }
