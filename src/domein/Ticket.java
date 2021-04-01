@@ -12,9 +12,7 @@ public class Ticket {
 	private String opmerkingen;
 	
 	private Bijlage oplossing;
-	private List<Bijlage> bijlages;
-	private Technieker toegewezenTechnieker;
-	private SupportManager supportManager;
+	private List<Bijlage> bijlages;	
 	private Contract contract;
 	private TicketType ticketType;
 	private Rapport rapport;
@@ -92,15 +90,6 @@ public class Ticket {
 	private void setBijlages(List<Bijlage> bijlages) {
 		this.bijlages = bijlages;
 	}
-
-	public Technieker getToegewezenTechnieker() {
-		return toegewezenTechnieker;
-	}
-
-	private void setToegewezenTechnieker(Technieker toegewezenTechnieker) {
-		this.toegewezenTechnieker = toegewezenTechnieker;
-	}
-
 	public Contract getContract() {
 		return contract;
 	}
@@ -123,15 +112,6 @@ public class Ticket {
 
 	private void setTicketStatus(TicketStatus ticketStatus) {
 		this.ticketStatus = ticketStatus;
-	}
-
-		
-	public SupportManager getSupportManager() {
-		return supportManager;
-	}
-
-	private void setSupportManager(SupportManager supportManager) {
-		this.supportManager = supportManager;
 	}
 
 	public Rapport getRapport() {

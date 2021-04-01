@@ -6,7 +6,7 @@ public abstract class Werknemer extends Gebruiker{
 	private String land;
 	private String gemeente;
 	private String straat;
-	
+	// enum functie
 	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres,
 			int personeelsnummer, String land, String gemeente, String straat) {
 		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
