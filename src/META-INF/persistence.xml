@@ -3,13 +3,25 @@
   <persistence-unit name="Actemium" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!-- Te mappen klassen (voorbeeld hieronder) -->
-	<!--<class>domein.Klant</class>  -->   
+	<!--<class>domein.Klant</class>  -->  
+	<class>domain.Werknemer</class>
+    <class>domain.Klant</class>
+	<class>domain.AanmeldPoging</class>
+    <class>domain.Adres</class>
+    <class>domain.Bedrijf</class>
+    <class>domain.Contract</class>
+    <class>domain.ContractType</class>    
+    <class>domain.Rapport</class>
+    <class>domain.Ticket</class>
+    <class>domain.TicketType</class> 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/actemium?serverTimezone=UTC"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=Projecten2"/>
+      <property name="javax.persistence.jdbc.user" value="test"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="test"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>
+<!-- public static final String JDBC_URL = "jdbc:sqlserver://localhost;databaseName=Projecten2;user=test;password=test";
+     -->
