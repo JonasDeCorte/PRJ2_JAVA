@@ -10,4 +10,8 @@ module projecten2 {
 	exports persistentie;
 	exports testen;
 	requires java.sql;
+	requires java.persistence;
+	requires java.instrument;
+	
+	
 }
