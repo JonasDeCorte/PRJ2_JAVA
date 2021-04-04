@@ -4,14 +4,15 @@ package domein;
 import java.time.LocalDateTime;
 
 public class AanmeldPoging {
+	private int aanmeldPogingId;
 	private LocalDateTime tijdstipPoging;
 	private boolean isGelukt;	
-	private Gebruiker gebruiker;
+	private String gebruikersNaam;
 	
-	public AanmeldPoging(boolean isGelukt, Gebruiker gebruiker) {
+	public AanmeldPoging(boolean isGelukt, String gebruikersNaam) {
 		this.tijdstipPoging = LocalDateTime.now();
 		setGelukt(isGelukt);
-		setGebruiker(gebruiker);
+		setGebruikersNaam(gebruikersNaam);
 	}
 
 	public LocalDateTime getTijdstipPoging() {
@@ -27,11 +28,13 @@ public class AanmeldPoging {
 		this.isGelukt = isGelukt;
 	}
 
-	public Gebruiker getGebruiker() {
-		return gebruiker;
+	public String getGebruikersNaam() {
+		return gebruikersNaam;
 	}
 
-	private void setGebruiker(Gebruiker gebruiker) {
-		this.gebruiker = gebruiker;
-	}	
+	public void setGebruikersNaam(String gebruikersNaam) {
+		this.gebruikersNaam = gebruikersNaam;
+	}
+
+	
 }

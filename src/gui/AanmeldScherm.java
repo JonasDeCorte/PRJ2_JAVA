@@ -2,28 +2,18 @@ package gui;
 
 import java.io.IOException;
 
-import javax.persistence.EntityNotFoundException;
-
-import domain.DCLoginUser;
 import domein.controllers.AanmeldController;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AanmeldScherm extends VBox {
-
+/*
 	private AanmeldController dc;
 
 	@FXML
@@ -33,7 +23,7 @@ public class AanmeldScherm extends VBox {
 	
 	
 	public AanmeldScherm(AanmeldController dc) {
-		this.dcLoginUser = new DCLoginUser();
+		this.dc = new AanmeldController();
 		
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginUserView.fxml"));
@@ -56,6 +46,6 @@ public class AanmeldScherm extends VBox {
 	public void btnCancelOnAction(ActionEvent event) {
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 	}
-	
+	*/
 
 }

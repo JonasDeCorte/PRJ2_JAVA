@@ -2,6 +2,6 @@ package domein.enumerations;
 
 public enum GEBRUIKERSTATUS {
 	ACTIEF,
-	GEBLOKKERD,
+	GEBLOKKEERD,
 	NIET_ACTIEF
 }

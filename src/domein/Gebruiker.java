@@ -31,7 +31,7 @@ public abstract class Gebruiker {
 		return gebruikersnaam;
 	}
 
-	private void setGebruikersnaam(String gebruikersnaam) {
+	public void setGebruikersnaam(String gebruikersnaam) {
 		this.gebruikersnaam = gebruikersnaam;
 	}
 	
@@ -39,7 +39,7 @@ public abstract class Gebruiker {
 		return wachtwoord;
 	}
 	
-	private void setWachtwoord(String wachtwoord) {
+	public void setWachtwoord(String wachtwoord) {
 		this.wachtwoord = wachtwoord;
 	}
 	

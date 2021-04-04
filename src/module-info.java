@@ -12,6 +12,10 @@ module projecten2 {
 	requires java.sql;
 	requires java.persistence;
 	requires java.instrument;
+	requires javafx.controls;
+	requires javafx.fxml;
+	requires javafx.graphics;
+	requires javafx.base;
 	
 	
 }
