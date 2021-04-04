@@ -1,10 +1,22 @@
 package domein;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+
+
+@Embeddable
+
 public class Adres {
+	@Column(nullable = false)
 	private String land;
+	@Column(nullable = false)
 	private String gemeente;
+	@Column(nullable = false)
 	private String postcode;
+	@Column(nullable = false)
 	private String straat;
+	@Column(nullable = false)
 	private int huisnummer;
 	private String busnummer;
 		

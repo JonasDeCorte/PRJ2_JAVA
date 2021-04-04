@@ -3,7 +3,16 @@ package domein;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+
 public class AanmeldPoging {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int aanmeldPogingId;
 	private LocalDateTime tijdstipPoging;
 	private boolean isGelukt;	

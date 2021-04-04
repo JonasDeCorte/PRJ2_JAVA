@@ -2,18 +2,29 @@ package domein;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import domein.enumerations.TICKETAANMAAKMETHODE;
 import domein.enumerations.TICKETAANMAAKTIJD;
-
+@Entity
 public class ContractType {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int contractTypeId;
 	private String naam;
 	private boolean status;
 	private int maximaleAfhandelTijd;
 	private int minimaleDoorloopTijd;
 	private double prijs;
-	
+	@OneToMany(mappedBy = "contracttype", cascade = CascadeType.PERSIST)
 	private List<Contract> contracten;
+	@ElementCollection
 	private List<TICKETAANMAAKMETHODE> ticketAanmaakMethode;
 	private TICKETAANMAAKTIJD ticketAanmaakTijd;
 		

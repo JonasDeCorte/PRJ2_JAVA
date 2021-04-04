@@ -3,20 +3,34 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import domein.enumerations.TICKETSTATUS;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import domein.enumerations.TICKETSTATUS;
+@Entity
 public class Ticket {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketnummer;
 	private String titel;
 	private LocalDateTime datumAangemaakt;
 	private LocalDateTime datumAfgesloten;
 	private String omschrijving;
 	private String opmerkingen;
-	
+	@OneToOne(mappedBy = "ticket")
 	private Bijlage oplossing;
+	@OneToMany(mappedBy = "ticket")
 	private List<Bijlage> bijlages;	
+	@ManyToOne
 	private Contract contract;
+	@ManyToOne
 	private TicketType ticketType;
+	@OneToOne
 	private Rapport rapport;
 	private TICKETSTATUS ticketStatus;
 	

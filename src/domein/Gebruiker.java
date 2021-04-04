@@ -3,9 +3,17 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import domein.enumerations.GEBRUIKERSTATUS;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import domein.enumerations.GEBRUIKERSTATUS;
+@Entity
 public abstract class Gebruiker {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int gebruikersId;
 	private String gebruikersnaam;
 	private String wachtwoord;
 	private String voornaam;
@@ -13,8 +21,8 @@ public abstract class Gebruiker {
 	private String emailadres;
 	private LocalDateTime registratiedatum;
 	
-	private List<AanmeldPoging> aanmeldPogingen;
-	private List<Ticket> tickets;
+	
+	// private List<Ticket> tickets;
 	private GEBRUIKERSTATUS gebruikerStatus;
 		
 	public Gebruiker(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {

@@ -1,7 +1,12 @@
 package domein;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+
+@Entity
 public abstract class Werknemer extends Gebruiker{
 	private int personeelsnummer;
+	@Embedded
 	private Adres adres;
 	public String wachtwoord;
 

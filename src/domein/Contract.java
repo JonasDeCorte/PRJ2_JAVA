@@ -3,17 +3,30 @@ package domein;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import domein.enumerations.CONTRACTSTATUS;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import domein.enumerations.CONTRACTSTATUS;
+@Entity
 public class Contract {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int contractnummer;
 	private int doorlooptijd;
 	private LocalDateTime startdatum;
 	private LocalDateTime einddatum;
 	
 	private CONTRACTSTATUS contractstatus;
+	@ManyToOne
 	private ContractType contracttype;
+	@ManyToOne
 	private Klant klant;
+	@OneToMany(mappedBy = "contract", cascade = CascadeType.PERSIST)
 	private List<Ticket> tickets;
 	
 	public Contract(int contractnummer, int doorlooptijd, LocalDateTime startdatum, LocalDateTime einddatum, 
