@@ -3,6 +3,7 @@ package domein;
 public abstract class Werknemer extends Gebruiker{
 	private int personeelsnummer;
 	private Adres adres;
+	public String wachtwoord;
 
 	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres,
 			int personeelsnummer, Adres adres) {
@@ -25,5 +26,9 @@ public abstract class Werknemer extends Gebruiker{
 
 	private void setAdres(Adres adres) {
 		this.adres = adres;
+	}
+	
+	public String getWachtwoord() {
+		return wachtwoord;
 	}
 }

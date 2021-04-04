@@ -9,4 +9,7 @@ public interface GenericDao<T> {
     public void delete(T object);
     public void insert(T object);
     public <U> boolean exists(U id);
+    void startTransaction();
+    void commitTransaction();
 }
+

@@ -18,6 +18,7 @@ public class AanmeldPoging {
 		return tijdstipPoging;
 	}
 
+
 	public boolean isGelukt() {
 		return isGelukt;
 	}

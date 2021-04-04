@@ -6,7 +6,7 @@ import java.util.List;
 import domein.enumerations.GEBRUIKERSTATUS;
 
 public abstract class Gebruiker {
-	private String gebruikersnaam;
+	public String gebruikersnaam;
 	private String wachtwoord;
 	private String voornaam;
 	private String naam;
