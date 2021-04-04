@@ -49,7 +49,6 @@ public class AanmeldController {
 			aanmeldPogingDao.insert(new AanmeldPoging(gefaald, werknemer));
 			
 			aanmeldPogingDao.commitTransaction();
-			throw new IllegalArgumentException("Foutief wachtwoord");
 			
 			if (aanmeldPogingDao.geefAantalGefaaldeAanmeldPogingen(
 					gebruikersnaam) >= 10) {
@@ -60,11 +59,13 @@ public class AanmeldController {
 			throw new IllegalArgumentException(
 					"Je account is geblokkeerd, je hebt te vaak het foute wachtwoord opgegeven.");
 			}
+			throw new IllegalArgumentException("Foutief wachtwoord");
+
 			}
 			
 		}
 	
 		
 	}
-}
+
 

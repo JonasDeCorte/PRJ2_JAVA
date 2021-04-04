@@ -19,10 +19,10 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
         em.close();
         emf.close();
     }
-    public static void startTransaction() {
+    public void startTransaction() {
         em.getTransaction().begin();
     }
-    public static void commitTransaction() {
+    public void commitTransaction() {
         em.getTransaction().commit();
     }
     public static void rollbackTransaction() {
