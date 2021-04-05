@@ -14,9 +14,4 @@ public class AanmeldpogingDaoJpa extends GenericDaoJpa<AanmeldPoging> implements
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
-
-	
-
 }

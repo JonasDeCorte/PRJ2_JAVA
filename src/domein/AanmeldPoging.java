@@ -44,6 +44,4 @@ public class AanmeldPoging {
 	public void setGebruikersNaam(String gebruikersNaam) {
 		this.gebruikersNaam = gebruikersNaam;
 	}
-
-	
 }

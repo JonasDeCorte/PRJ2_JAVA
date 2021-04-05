@@ -4,8 +4,6 @@ import domein.Werknemer;
 import domein.dao.WerknemerDao;
 import domein.enumerations.GEBRUIKERSTATUS;
 
-
-
 public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements WerknemerDao {
 
 	public WerknemerDaoJpa() {
@@ -26,9 +24,6 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 
 	@Override
 	public void blokkeerWerknemer(String gebruikersnaam) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
+		// TODO Auto-generated method stub		
+	}	
 }

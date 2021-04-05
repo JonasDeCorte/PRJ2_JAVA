@@ -66,16 +66,12 @@ public class AanmeldController {
 			}
 			throw new IllegalArgumentException("Foutief wachtwoord of gebruikersnaam");
 
-			}
-		
-		
+			}		
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(gelukt, gebruikersnaam));
 		aanmeldPogingDao.commitTransaction();
 		this.aangemeldeWerknemer = werknemer;
-		}
-	
-		
+		}	
 	}
 
 

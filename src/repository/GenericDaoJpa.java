@@ -6,12 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-
-
-
-
-
-
 public class GenericDaoJpa<T> implements GenericDao<T> {
     private static final String PU_NAME = "Projecten2";
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU_NAME);
@@ -21,16 +15,20 @@ public class GenericDaoJpa<T> implements GenericDao<T> {
     public GenericDaoJpa(Class<T> type) {
         this.type = type;
     }
+    
     public static void closePersistency() {
         em.close();
         emf.close();
     }
+    
     public void startTransaction() {
         em.getTransaction().begin();
     }
+    
     public void commitTransaction() {
         em.getTransaction().commit();
     }
+    
     public static void rollbackTransaction() {
         em.getTransaction().rollback();
     }

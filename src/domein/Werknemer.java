@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 public abstract class Werknemer extends Gebruiker{
+	
 	private int personeelsnummer;
 	@Embedded
 	private Adres adres;

@@ -3,10 +3,7 @@ package domein;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-
-
 @Embeddable
-
 public class Adres {
 	@Column(nullable = false)
 	private String land;

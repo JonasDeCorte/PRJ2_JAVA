@@ -43,8 +43,5 @@ public class Bijlage {
 	
 	private void setTicket(Ticket ticket) {
 		this.ticket = ticket;
-	}
-	
-	
-	
+	}	
 }
