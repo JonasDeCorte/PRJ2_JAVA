@@ -1,5 +1,6 @@
 package domein;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,10 +14,14 @@ import javax.persistence.OneToMany;
 
 import domein.enumerations.CONTRACTSTATUS;
 @Entity
-public class Contract {
+public class Contract implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int contractnummer;
+	
+	private String titel;
 	private int doorlooptijd;
 	private LocalDateTime startdatum;
 	private LocalDateTime einddatum;
@@ -29,9 +34,13 @@ public class Contract {
 	@OneToMany(mappedBy = "contract", cascade = CascadeType.PERSIST)
 	private List<Ticket> tickets;
 	
-	public Contract(int contractnummer, int doorlooptijd, LocalDateTime startdatum, LocalDateTime einddatum, 
+	public Contract() {
+		contractstatus = CONTRACTSTATUS.IN_BEHANDELING;
+	}
+
+	public Contract(String titel, int doorlooptijd, LocalDateTime startdatum, LocalDateTime einddatum, 
 			ContractType contracttype, Klant klant) {
-		setContractnummer(contractnummer);
+		setTitel(titel);
 		setDoorlooptijd(doorlooptijd);
 		setStartdatum(startdatum);
 		setEinddatum(einddatum);		
@@ -46,6 +55,14 @@ public class Contract {
 
 	private void setContractnummer(int contractnummer) {
 		this.contractnummer = contractnummer;
+	}
+
+	public String getTitel() {
+		return titel;
+	}
+
+	public void setTitel(String titel) {
+		this.titel = titel;
 	}
 
 	public int getDoorlooptijd() {
@@ -94,5 +111,30 @@ public class Contract {
 
 	private void setKlant(Klant klant) {
 		this.klant = klant;
-	}	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((titel == null) ? 0 : titel.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contract other = (Contract) obj;
+		if (titel == null) {
+			if (other.titel != null)
+				return false;
+		} else if (!titel.equals(other.titel))
+			return false;
+		return true;
+	}
 }

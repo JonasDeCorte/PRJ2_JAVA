@@ -1,5 +1,6 @@
 package domein;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 
 import domein.enumerations.GEBRUIKERSTATUS;
 @Entity
-public abstract class Gebruiker {
+public abstract class Gebruiker implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int gebruikersId;
@@ -20,11 +23,15 @@ public abstract class Gebruiker {
 	private String naam;
 	private String emailadres;
 	private LocalDateTime registratiedatum;
-	
-	
+		
 	// private List<Ticket> tickets;
 	private GEBRUIKERSTATUS gebruikerStatus;
 		
+	public Gebruiker() {
+		registratiedatum = LocalDateTime.now();
+		setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);
+	}
+
 	public Gebruiker(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {
 		setGebruikersnaam(gebruikersnaam);
 		setWachtwoord(wachtwoord);

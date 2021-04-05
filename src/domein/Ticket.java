@@ -1,5 +1,6 @@
 package domein;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import javax.persistence.OneToOne;
 
 import domein.enumerations.TICKETSTATUS;
 @Entity
-public class Ticket {
+public class Ticket implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketnummer;
@@ -34,6 +37,11 @@ public class Ticket {
 	private Rapport rapport;
 	private TICKETSTATUS ticketStatus;
 	
+	public Ticket() {
+		datumAangemaakt = LocalDateTime.now();
+		ticketStatus = ticketStatus.AANGEMAAKT;
+	}
+
 	public Ticket(int ticketnummer, String titel, String omschrijving,
 			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType) {
 		setTicketnummer(ticketnummer);
@@ -136,5 +144,30 @@ public class Ticket {
 
 	private void setRapport(Rapport rapport) {
 		this.rapport = rapport;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((titel == null) ? 0 : titel.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ticket other = (Ticket) obj;
+		if (titel == null) {
+			if (other.titel != null)
+				return false;
+		} else if (!titel.equals(other.titel))
+			return false;
+		return true;
 	}	
 }

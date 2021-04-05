@@ -1,29 +1,41 @@
 package domein;
 
+import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import domein.enumerations.WERKNEMERROL;
 
 @Entity
-public abstract class Werknemer extends Gebruiker{
-	
+public class Werknemer extends Gebruiker implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	private int personeelsnummer;
+	
 	@Embedded
 	private Adres adres;
-	public String wachtwoord;
-
-	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres,
-			int personeelsnummer, Adres adres) {
+	
+	private String[] telefoonnummers;
+	private WERKNEMERROL rol;
+	
+	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {
 		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
-		setPersoneelsnummer(personeelsnummer);
+	}
+
+	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, String[] telefoonnummers, WERKNEMERROL werknemerRol , Adres adres) {
+		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
+		setTelefoonnummers(telefoonnummers);
+		setRol(werknemerRol);
 		setAdres(adres);
 	}
 	
 	public int getPersoneelsnummer() {
 		return personeelsnummer;
-	}
-
-	private void setPersoneelsnummer(int personeelsnummer) {
-		this.personeelsnummer = personeelsnummer;
 	}
 
 	public Adres getAdres() {
@@ -34,7 +46,41 @@ public abstract class Werknemer extends Gebruiker{
 		this.adres = adres;
 	}
 	
-	public String getWachtwoord() {
-		return wachtwoord;
+	public String[] getTelefoonnummers() {
+		return telefoonnummers;
+	}
+
+	public void setTelefoonnummers(String[] telefoonnummers) {
+		this.telefoonnummers = telefoonnummers;
+	}
+
+	public WERKNEMERROL getRol() {
+		return rol;
+	}
+
+	public void setRol(WERKNEMERROL rol) {
+		this.rol = rol;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + personeelsnummer;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Werknemer other = (Werknemer) obj;
+		if (personeelsnummer != other.personeelsnummer)
+			return false;
+		return true;
 	}
 }
