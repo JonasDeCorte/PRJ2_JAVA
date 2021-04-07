@@ -1,9 +1,4 @@
 module projecten2 {
-	//requires javafx.base;
-	//requires javafx.controls;
-	//requires javafx.fxml;
-	//requires javafx.graphics;
-	
 	exports gui;
 	exports main;
 	exports domein;
@@ -17,5 +12,7 @@ module projecten2 {
 	requires javafx.graphics;
 	requires javafx.base;
 	
+	opens gui to javafx.graphics, javafx.fxml;
+	opens main to javafx.graphics, javafx.fxml;
 	
 }
