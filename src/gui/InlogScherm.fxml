@@ -30,16 +30,16 @@
         </rowConstraints>
          <children>
             <Button  fx:id="btnLogin" mnemonicParsing="false" onAction="#login" text="Inloggen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <Label text="Welkom">
+            <Label fx:id="lblWelkom" text="Welkom">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
             <Label GridPane.rowIndex="1" />
-            <Label text="Wachtwoord:" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <Label fx:id="lblWachtwoord" text="Wachtwoord:" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
             <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtfGebruikersNaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Gebruikersnaam:" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <TextField fx:id="txtfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam:" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             <ComboBox fx:id="talenCombo" prefHeight="26.0" prefWidth="132.0" promptText="Kies Taal" GridPane.rowIndex="3" />
             <ImageView fitHeight="19.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
