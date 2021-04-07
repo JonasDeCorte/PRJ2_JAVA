@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class InlogSchermController extends AnchorPane{
-	//private AanmeldController adc;
+	private AanmeldController adc;
 	
 	@FXML
     private ResourceBundle resources;
@@ -35,8 +35,8 @@ public class InlogSchermController extends AnchorPane{
 	 @FXML 
 	  private ComboBox<String> talenCombo; 
 
-	public InlogSchermController(/*AanmeldController aanmeldController*/) {
-    //this.adc = aanmeldController;
+	public InlogSchermController(AanmeldController aanmeldController) {
+    this.adc = aanmeldController;
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("InlogScherm.fxml"));
 	loader.setRoot(this);
     loader.setController(this);
@@ -59,11 +59,11 @@ public class InlogSchermController extends AnchorPane{
             return;
         }
         
-        //adc.aanmelden(txtfGebruikersNaam.getText(), pwfWachtwoord.getText());
+        adc.aanmelden(txtfGebruikersNaam.getText(), pwfWachtwoord.getText());
         
        txtfGebruikersNaam.clear();
         pwfWachtwoord.clear();
-    	//Pane pane = FXMLLoader.load(getClass().getResource("HoofdMenuView.fxml"));
+    	Pane pane = FXMLLoader.load(getClass().getResource("HoofdMenuView.fxml"));
     }
 	@FXML
 	public void initialize() {

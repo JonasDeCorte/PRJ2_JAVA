@@ -6,10 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 
+
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

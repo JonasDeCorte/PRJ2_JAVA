@@ -7,6 +7,7 @@ module projecten2 {
 	requires java.sql;
 	requires java.persistence;
 	requires java.instrument;
+	requires mockito.junit.jupiter;
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires javafx.graphics;

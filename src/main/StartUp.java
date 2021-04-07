@@ -15,7 +15,7 @@ public class StartUp extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		InlogSchermController root = new InlogSchermController(/*new AanmeldController()*/);
+		InlogSchermController root = new InlogSchermController(new AanmeldController());
 		Scene scene = new Scene(root);
 		stage.setTitle("Welkom!");
 		stage.setScene(scene);

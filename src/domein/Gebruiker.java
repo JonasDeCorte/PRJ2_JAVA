@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import domein.enumerations.GEBRUIKERSTATUS;
-@Entity
+@MappedSuperclass
 public abstract class Gebruiker implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
