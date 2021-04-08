@@ -19,7 +19,6 @@ import domein.enumerations.WERKNEMERROL;
 public class Werknemer extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private int personeelsnummer;
 	
 	@Embedded
@@ -28,8 +27,8 @@ public class Werknemer extends Gebruiker implements Serializable{
 	private String[] telefoonnummers;
 	private WERKNEMERROL rol;
 	
-	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {
-		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
+	public Werknemer() {
+		super();
 	}
 
 	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, String[] telefoonnummers, WERKNEMERROL werknemerRol , Adres adres) {

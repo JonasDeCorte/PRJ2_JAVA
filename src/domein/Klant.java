@@ -17,14 +17,13 @@ import javax.persistence.OneToMany;
 public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
 	private int klantnummer;
 	private Bedrijf bedrijfsgegevens;
 	@OneToMany(mappedBy = "klant", cascade = CascadeType.PERSIST)
 	private List<Contract> contracten;
-		
-	public Klant(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {
-		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
+			
+	public Klant() {
+		super();
 	}
 
 	public Klant(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, 

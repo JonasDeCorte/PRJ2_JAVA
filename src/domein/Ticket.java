@@ -25,9 +25,9 @@ public class Ticket implements Serializable {
 	private LocalDateTime datumAfgesloten;
 	private String omschrijving;
 	private String opmerkingen;
-	@OneToOne(mappedBy = "ticket")
+	/*@OneToOne(mappedBy = "ticket")*/
 	private Bijlage oplossing;
-	@OneToMany(mappedBy = "ticket")
+	/*@OneToMany(mappedBy = "ticket")*/
 	private List<Bijlage> bijlages;	
 	@ManyToOne
 	private Contract contract;

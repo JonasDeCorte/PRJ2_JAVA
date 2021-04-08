@@ -17,6 +17,10 @@ public class Adres {
 	private int huisnummer;
 	private String busnummer;
 		
+	public Adres() {
+		super();
+	}
+
 	public Adres(String land, String gemeente, String postcode, String straat, int huisnummer, String busnummer) {
 		setLand(land);
 		setGemeente(gemeente);
