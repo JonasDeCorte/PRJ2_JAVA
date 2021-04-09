@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-  <persistence-unit name="my-persistence-unit" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="JPA_details" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-	<class>domain.Werknemer</class>
-    <class>domain.Klant</class>
-	<class>domain.AanmeldPoging</class>
-    <class>domain.Adres</class>
-    <class>domain.Bedrijf</class>
-    <class>domain.Contract</class>
-    <class>domain.ContractType</class>    
-    <class>domain.Rapport</class>
-    <class>domain.Ticket</class>
-    <class>domain.TicketType</class> 
+	<class>domein.Werknemer</class>
+    <class>domein.Klant</class>
+	<class>domein.AanmeldPoging</class>
+    <class>domein.Adres</class>
+    <class>domein.Bedrijf</class>
+    <class>domein.Contract</class>
+    <class>domein.ContractType</class>    
+    <class>domein.Rapport</class>
+    <class>domein.Ticket</class>
+    <class>domein.TicketType</class> 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=Projecten2"/>
       <property name="javax.persistence.jdbc.user" value="test"/>
@@ -20,6 +20,4 @@
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
-</persistence>
-<!-- public static final String JDBC_URL = "jdbc:sqlserver://localhost;databaseName=Projecten2;user=test;password=test";
-     -->
+</persistence>	

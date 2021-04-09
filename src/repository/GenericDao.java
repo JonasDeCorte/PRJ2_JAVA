@@ -12,4 +12,3 @@ public interface GenericDao<T> {
     void startTransaction();
     void commitTransaction();
 }
-

@@ -6,14 +6,14 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import repository.DataInitializer;
 import resourcebundle.Taal;
 
 public class StartUp extends Application{
     public static void main(String... args) {
     	 Taal.instellenTaal(0);
-    	 //new DataInitializer().initializeData();
     	 Application.launch(StartUp.class, args);
+    	 // Test data
+    	 repository.TestJPA.main(args);
     }
 
 

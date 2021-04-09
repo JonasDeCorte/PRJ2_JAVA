@@ -3,9 +3,9 @@ package repository;
 import domein.AanmeldPoging;
 import domein.dao.AanmeldPogingDao;
 
-public class AanmeldpogingDaoJpa extends GenericDaoJpa<AanmeldPoging> implements AanmeldPogingDao {
+public class AanmeldPogingDaoJpa extends GenericDaoJpa<AanmeldPoging> implements AanmeldPogingDao {
 
-	public AanmeldpogingDaoJpa() {
+	public AanmeldPogingDaoJpa() {
 		super(AanmeldPoging.class);
 	}
 

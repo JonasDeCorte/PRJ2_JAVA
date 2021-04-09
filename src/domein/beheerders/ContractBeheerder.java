@@ -3,6 +3,7 @@ package domein.beheerders;
 import domein.ContractType;
 
 public class ContractBeheerder {
+	
 	public ContractType haalContractTypeOp() {
 		throw new IllegalArgumentException();
 	}

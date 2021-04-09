@@ -1,19 +1,14 @@
-module projecten2 {
-	exports gui;
-	exports main;
-	exports domein;
-	exports persistentie;
-	exports testen;
-	requires java.sql;
+open module projecten2 {
+	requires javafx.base;
+	requires javafx.controls;
+	requires javafx.graphics;
+	requires javafx.fxml;
+	
+	
 	requires java.persistence;
 	requires java.instrument;
+	requires java.sql;
+	requires org.junit.jupiter.api;
 	requires mockito.junit.jupiter;
-	requires javafx.controls;
-	requires javafx.fxml;
-	requires javafx.graphics;
-	requires javafx.base;
-	
-	opens gui to javafx.graphics, javafx.fxml;
-	opens main to javafx.graphics, javafx.fxml;
-	
+	requires org.mockito;
 }
