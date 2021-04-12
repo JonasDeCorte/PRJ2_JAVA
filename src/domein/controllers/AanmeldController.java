@@ -5,7 +5,8 @@ import domein.dao.AanmeldPogingDao;
 import domein.dao.WerknemerDao;
 import domein.AanmeldPoging;
 import domein.enumerations.GEBRUIKERSTATUS;
-import repository.AanmeldpogingDaoJpa;
+import repository.AanmeldPogingDaoJpa;
+import repository.GenericDaoJpa;
 import repository.WerknemerDaoJpa;
 
 
@@ -15,13 +16,13 @@ public class AanmeldController {
 	private AanmeldPogingDao aanmeldPogingDao;
 	private WerknemerDao werknemerDao;
 	
-	private AanmeldController(WerknemerDao werknemerDao, AanmeldPogingDao aanmeldpogingDao) {
+	private AanmeldController(WerknemerDao werknemerDao, AanmeldPogingDao aanmeldPogingDao) {
 		this.werknemerDao = werknemerDao;
-		this.aanmeldPogingDao = aanmeldpogingDao;
+		this.aanmeldPogingDao = aanmeldPogingDao;
 	}
 
 	public AanmeldController() {
-		this(new WerknemerDaoJpa(), new AanmeldpogingDaoJpa());
+		this(new WerknemerDaoJpa(), new AanmeldPogingDaoJpa());
 	}
 
 
@@ -30,6 +31,7 @@ public class AanmeldController {
 		Werknemer werknemer = null;
 		boolean gefaald = false;
 		boolean gelukt = true;
+		
 		try {
 			gebruikerStatus = werknemerDao.bestaatWerkemer(gebruikersnaam);
 		}catch (Exception e) {
@@ -49,10 +51,6 @@ public class AanmeldController {
 		}catch (Exception e) {
 			
 			aanmeldPogingDao.startTransaction();
-			/* moet volgens mij niet aangezien je de gebruikersnaam gebruikt 
-			werknemer.setGebruikersnaam(gebruikersnaam);
-			werknemer.setWachtwoord(wachtwoord);
-			*/
 			aanmeldPogingDao.insert(new AanmeldPoging(gefaald, gebruikersnaam));
 			
 			aanmeldPogingDao.commitTransaction();
@@ -70,8 +68,7 @@ public class AanmeldController {
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(gelukt, gebruikersnaam));
 		aanmeldPogingDao.commitTransaction();
+		
 		this.aangemeldeWerknemer = werknemer;
 		}	
 	}
-
-
