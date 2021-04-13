@@ -68,7 +68,6 @@ public class AanmeldController {
 		aanmeldPogingDao.commitTransaction();	
 		this.aangemeldeWerknemer = werknemer;
 		
-		if(aangemeldeWerknemer.getRol().equals(WERKNEMERROL.ADMINISTRATOR))
-			System.out.printf("Dashboard voor %s", aangemeldeWerknemer.getRol());
-		}
+		
 	}
+}
