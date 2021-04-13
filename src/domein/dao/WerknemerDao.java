@@ -14,4 +14,6 @@ public interface WerknemerDao extends GenericDao<Werknemer>  {
 	void blokkeerWerknemer(String gebruikersnaam);
 	
 	boolean bestaatGebruikersnaam(String gebruikersnaam);
+
+	GEBRUIKERSTATUS bestaatWerkemer(String gebruikersnaam);
 }
