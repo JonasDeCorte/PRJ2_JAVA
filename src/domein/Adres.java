@@ -15,13 +15,13 @@ public class Adres {
 	private String straat;
 	@Column(nullable = false)
 	private int huisnummer;
-	private String busnummer;
+	private int busnummer;
 		
 	public Adres() {
 		super();
 	}
 
-	public Adres(String land, String gemeente, String postcode, String straat, int huisnummer, String busnummer) {
+	public Adres(String land, String gemeente, String postcode, String straat, int huisnummer, int busnummer) {
 		setLand(land);
 		setGemeente(gemeente);
 		setPostcode(postcode);
@@ -70,11 +70,12 @@ public class Adres {
 		this.huisnummer = huisnummer;
 	}
 	
-	public String getBusnummer() {
+	public int getBusnummer() {
 		return busnummer;
 	}
 	
-	private void setBusnummer(String busnummer) {
+	private void setBusnummer(int busnummer) {
 		this.busnummer = busnummer;
 	}	
 }
+ 
