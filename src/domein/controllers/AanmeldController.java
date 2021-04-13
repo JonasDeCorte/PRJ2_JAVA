@@ -71,4 +71,19 @@ public class AanmeldController {
 		
 		
 	}
+	
+		public Werknemer getwerknemerAangemeld() {
+		return werknemerAangemeld;
+	}
+	
+	public void afmelden() {
+		this.werknemerAangemeld = null;
+	}
+	
+	
+	
+	
+}
+ 
+
 }
