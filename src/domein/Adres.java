@@ -78,4 +78,3 @@ public class Adres {
 		this.busnummer = busnummer;
 	}	
 }
- 

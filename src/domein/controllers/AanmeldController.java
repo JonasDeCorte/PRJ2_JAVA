@@ -67,23 +67,16 @@ public class AanmeldController {
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(true, gebruikersnaam));
 		aanmeldPogingDao.commitTransaction();	
-		this.aangemeldeWerknemer = werknemer;
+		this.setAangemeldeWerknemer(werknemer);
 		
 		
 	}
-	
-		public Werknemer getwerknemerAangemeld() {
-		return werknemerAangemeld;
-	}
-	
-	public void afmelden() {
-		this.werknemerAangemeld = null;
-	}
-	
-	
-	
-	
-}
- 
 
+	public Werknemer getAangemeldeWerknemer() {
+		return aangemeldeWerknemer;
+	}
+
+	public void setAangemeldeWerknemer(Werknemer aangemeldeWerknemer) {
+		this.aangemeldeWerknemer = aangemeldeWerknemer;
+	}
 }
