@@ -22,7 +22,7 @@ public class Taal {
 				break;
 			}
 			default:
-				throw new IllegalArgumentException();
+				locale = new Locale("Nederlands");
 		}
 		labels = ResourceBundle.getBundle("resourcebundle.LanguageBundle", locale);
 	}
