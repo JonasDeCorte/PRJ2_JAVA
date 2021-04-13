@@ -6,9 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name = "AanmeldPoging.geefLaatste5PogingenVoorInloggen", query = "SELECT a FROM AanmeldPoging a WHERE a.gebruikersNaam = :gebruikersNaam ORDER BY a.tijdstipPoging DESC") })
 public class AanmeldPoging{
 	
 	@Id
@@ -18,12 +21,11 @@ public class AanmeldPoging{
 	private boolean isGelukt;	
 	private String gebruikersNaam;
 	
-	public AanmeldPoging() {
-		this.tijdstipPoging = LocalDateTime.now();
+	protected AanmeldPoging() {
 	}
 
 	public AanmeldPoging(boolean isGelukt, String gebruikersNaam) {
-		this.tijdstipPoging = LocalDateTime.now();
+		setTijdstipPoging(LocalDateTime.now());
 		setGelukt(isGelukt);
 		setGebruikersNaam(gebruikersNaam);
 	}
@@ -32,6 +34,14 @@ public class AanmeldPoging{
 		return tijdstipPoging;
 	}
 
+
+	public void setTijdstipPoging(LocalDateTime tijdstipPoging) {
+		if (tijdstipPoging != null) {
+			this.tijdstipPoging = tijdstipPoging;
+		} else {
+			throw new IllegalArgumentException("tijdstipPoging kan niet null zijn.");
+		}
+	}
 
 	public boolean isGelukt() {
 		return isGelukt;
@@ -46,7 +56,11 @@ public class AanmeldPoging{
 	}
 
 	public void setGebruikersNaam(String gebruikersNaam) {
-		this.gebruikersNaam = gebruikersNaam;
+		if (gebruikersNaam != null && !gebruikersNaam.isBlank() && !gebruikersNaam.isEmpty()) {
+			this.gebruikersNaam = gebruikersNaam;
+		} else {
+			throw new IllegalArgumentException("GebruikersNaam kan niet leeg zijn.");
+		}
 	}
 
 	@Override

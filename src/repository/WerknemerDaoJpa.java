@@ -27,7 +27,7 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 	@Override
 	public void blokkeerWerknemer(String gebruikersnaam) {
 		try {
-			em.createNamedQuery("Werknemer.updateStatus", Werknemer.class).setParameter("gebruikersnaam", gebruikersnaam)
+			em.createNamedQuery("Werknemer.updateStatusGeblokkeerdeGebruiker", Werknemer.class).setParameter("gebruikersnaam", gebruikersnaam)
 				.setParameter("gebruikerStatus", GEBRUIKERSTATUS.GEBLOKKEERD).executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

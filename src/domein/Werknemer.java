@@ -16,12 +16,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import domein.enumerations.WERKNEMERROL;
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({
 	@NamedQuery(name = "Werknemer.bestaatGebruikersnaam", query = "SELECT COUNT(w) FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam"),
-	@NamedQuery(name = "Werknemer.updateStatus", query = "UPDATE Werknemer SET gebruikerStatus = :gebruikerStatus WHERE gebruikersnaam = :gebruikersnaam"),
+	@NamedQuery(name = "Werknemer.updateStatusGeblokkeerdeGebruiker", query = "UPDATE Werknemer SET gebruikerStatus = :gebruikerStatus WHERE gebruikersnaam = :gebruikersnaam"),
 	@NamedQuery(name = "Werknemer.geefWerknemer", query = "SELECT w FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam AND w.wachtwoord = :wachtwoord"),
 	@NamedQuery(name = "Werknemer.geefGebruikerStatus", query = "SELECT w.gebruikerStatus FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam")
 })

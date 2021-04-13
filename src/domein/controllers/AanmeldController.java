@@ -45,11 +45,12 @@ public class AanmeldController {
 	
 		try {
 			werknemer = werknemerDao.geefWerknemer(gebruikersnaam, wachtwoord);
+			System.out.println(werknemer.getGebruikersnaam());
+			System.out.println(werknemer.getGebruikerStatus());
 		}catch (Exception e) {
 			
 			aanmeldPogingDao.startTransaction();
 			aanmeldPogingDao.insert(new AanmeldPoging(false, gebruikersnaam));
-			
 			aanmeldPogingDao.commitTransaction();
 			
 			if (aanmeldPogingDao.geefAantalGefaaldeAanmeldPogingen(gebruikersnaam) >= MAXIMUM_POGINGEN) {						
