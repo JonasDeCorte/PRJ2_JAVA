@@ -5,6 +5,7 @@ import domein.dao.AanmeldPogingDao;
 import domein.dao.WerknemerDao;
 import domein.AanmeldPoging;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.WERKNEMERROL;
 import repository.AanmeldPogingDaoJpa;
 import repository.WerknemerDaoJpa;
 
@@ -29,7 +30,7 @@ public class AanmeldController {
 		GEBRUIKERSTATUS gebruikerStatus ;
 		
 		try {
-			gebruikerStatus = werknemerDao.bestaatWerkemer(gebruikersnaam);
+			gebruikerStatus = werknemerDao.geefGebruikerStatus(gebruikersnaam);
 		} catch (Exception e) {
 				throw new IllegalArgumentException("Gebruikersnaam bestaat niet.");
 		}
@@ -51,11 +52,11 @@ public class AanmeldController {
 			
 			aanmeldPogingDao.commitTransaction();
 			
-			if (aanmeldPogingDao.geefAantalGefaaldeAanmeldPogingen(gebruikersnaam) >= 10) {						
-			werknemerDao.startTransaction();
-			werknemerDao.blokkeerWerknemer(gebruikersnaam);
-			werknemerDao.commitTransaction();
-			throw new IllegalArgumentException(
+			if (aanmeldPogingDao.geefAantalGefaaldeAanmeldPogingen(gebruikersnaam) >= MAXIMUM_POGINGEN) {						
+				werknemerDao.startTransaction();
+				werknemerDao.blokkeerWerknemer(gebruikersnaam);
+				werknemerDao.commitTransaction();
+				throw new IllegalArgumentException(
 					"Je account is geblokkeerd, je hebt te vaak het foute wachtwoord opgegeven.");
 			}
 			throw new IllegalArgumentException("Foutief wachtwoord of gebruikersnaam");
@@ -64,9 +65,10 @@ public class AanmeldController {
 		
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(true, gebruikersnaam));
-		aanmeldPogingDao.commitTransaction();
-		
+		aanmeldPogingDao.commitTransaction();	
 		this.aangemeldeWerknemer = werknemer;
 		
-		}	
+		if(aangemeldeWerknemer.getRol().equals(WERKNEMERROL.ADMINISTRATOR))
+			System.out.printf("Dashboard voor %s", aangemeldeWerknemer.getRol());
+		}
 	}

@@ -19,13 +19,24 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 				.getSingleResult();
 	}
 	@Override
-	public GEBRUIKERSTATUS bestaatWerkemer(String gebruikersnaam) {
-		return em.createNamedQuery("Werknemer.geefStatus", GEBRUIKERSTATUS.class)
+	public GEBRUIKERSTATUS geefGebruikerStatus(String gebruikersnaam) {
+		return em.createNamedQuery("Werknemer.geefGebruikerStatus", GEBRUIKERSTATUS.class)
 				.setParameter("gebruikersnaam", gebruikersnaam).getSingleResult();
 	}
 
 	@Override
 	public void blokkeerWerknemer(String gebruikersnaam) {
-		// TODO Auto-generated method stub		
+		try {
+			em.createNamedQuery("Werknemer.updateStatus", Werknemer.class).setParameter("gebruikersnaam", gebruikersnaam)
+				.setParameter("gebruikerStatus", GEBRUIKERSTATUS.GEBLOKKEERD).executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean bestaatGebruikersnaam(String gebruikersnaam) {
+		return em.createNamedQuery("Werknemer.bestaatGebruikersnaam", Long.class)
+				.setParameter("gebruikersnaam", gebruikersnaam).getSingleResult() == 1;
 	}	
 }
