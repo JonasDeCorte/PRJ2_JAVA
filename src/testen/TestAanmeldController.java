@@ -9,8 +9,8 @@ import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.WERKNEMERROL;
 
 import java.util.Arrays;
-import java.util.List;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -33,16 +33,11 @@ public class TestAanmeldController {
 	
 	private void aanmeldenJuistWachtwoordTrainen(String wachtwoord, String gebruikersnaam, GEBRUIKERSTATUS status, int aantalGefaaldeAanmeldPogingen) 
 	{
-	
-		werknemer = new Werknemer("EddyWally", "passwoord1" , "eddy" , "wally" , "eddy.wally@hotmail.com", Arrays.asList("+32472485968", "+32472457912"), WERKNEMERROL.ADMINISTRATOR, new Adres("BelgiÃ«", "Loppem" ,"8200" , "Guido Gezellelaan", 22, 2));
+		werknemer = new Werknemer("EddyWally", "passwoord1" , "eddy" , "wally" , "eddy.wally@hotmail.com", Arrays.asList("+32472485968", "+32472457912"), WERKNEMERROL.ADMINISTRATOR, new Adres("België«", "Loppem" ,"8200" , "Guido Gezellelaan", 22, ""));
 
-		Mockito.when(werknemerDao.bestaatWerkemer(gebruikersnaam)).thenReturn(status);
+		Mockito.when(werknemerDao.geefGebruikerStatus(gebruikersnaam)).thenReturn(status);
 		
-		Mockito.lenient().when(werknemerDao.geefWerknemer(gebruikersnaam, wachtwoord)).thenReturn(werknemer);
-		
+		Mockito.lenient().when(werknemerDao.geefWerknemer(gebruikersnaam, wachtwoord)).thenReturn(werknemer);	
 		Mockito.lenient().when(aanmeldpogingDao.geefAantalGefaaldeAanmeldPogingen(gebruikersnaam)).thenReturn(aantalGefaaldeAanmeldPogingen);
 	}
 }
-
-// 
-
