@@ -61,7 +61,10 @@ public class ContractType implements Serializable {
 	}
 	
 	private void setNaam(String naam) {
-		this.naam = naam;
+		if (naam == null || naam.isBlank()) {
+			throw new IllegalArgumentException("contracttype mag niet leeg zijn.");
+		}
+			this.naam = naam;	
 	}
 	
 	public boolean isStatus() {
@@ -109,6 +112,9 @@ public class ContractType implements Serializable {
 	}
 
 	private void setTicketAanmaakMethode(List<TICKETAANMAAKMETHODE> ticketAanmaakMethode) {
+		if (ticketAanmaakMethode == null) {
+			throw new IllegalArgumentException("ticket moet een aanmaak methode hebben");
+		}			
 		this.ticketAanmaakMethode = ticketAanmaakMethode;
 	}
 
@@ -117,6 +123,8 @@ public class ContractType implements Serializable {
 	}
 
 	private void setTicketAanmaakTijd(TICKETAANMAAKTIJD ticketAanmaakTijd) {
+		if (ticketAanmaakTijd == null)
+			throw new IllegalArgumentException("ticket moet een aanmaaktijd hebben.");
 		this.ticketAanmaakTijd = ticketAanmaakTijd;
 	}
 
