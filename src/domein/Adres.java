@@ -3,6 +3,7 @@ package domein;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+
 @Embeddable
 public class Adres {
 	@Column(nullable = false)
@@ -16,7 +17,7 @@ public class Adres {
 	@Column(nullable = false)
 	private int huisnummer;
 	private String busnummer;
-		
+
 	public Adres() {
 		super();
 	}
@@ -33,48 +34,75 @@ public class Adres {
 	public String getLand() {
 		return land;
 	}
-	
+
 	private void setLand(String land) {
-		this.land = land;
+		if (land != null) {
+			this.land = land;
+		} else {
+			throw new IllegalArgumentException("Land mag niet leeg zijn.");
+		}
+
 	}
-	
+
 	public String getGemeente() {
 		return gemeente;
 	}
-	
+
 	private void setGemeente(String gemeente) {
-		this.gemeente = gemeente;
+		if (gemeente != null && !gemeente.isBlank() && !gemeente.isEmpty()) {
+			this.gemeente = gemeente;
+		} else {
+			throw new IllegalArgumentException("Gemeente kan niet leeg zijn.");
+		}
 	}
-	
+
 	public String getPostcode() {
 		return postcode;
 	}
-	
+
 	private void setPostcode(String postcode) {
-		this.postcode = postcode;
+		if (postcode != null && !postcode.isBlank() && !postcode.isEmpty()) {
+			this.postcode = postcode;
+		} else {
+			throw new IllegalArgumentException("ongeldige postcode.");
+		}
 	}
-	
+
 	public String getStraat() {
 		return straat;
 	}
-	
+
 	private void setStraat(String straat) {
-		this.straat = straat;
+		if (straat != null && !straat.isBlank() && !straat.isEmpty()) {
+			this.straat = straat;
+		} else {
+			throw new IllegalArgumentException("straat kan niet leeg zijn.");
+		}
 	}
-	
+
 	public int getHuisnummer() {
 		return huisnummer;
 	}
-	
+
 	private void setHuisnummer(int huisnummer) {
-		this.huisnummer = huisnummer;
+		if (huisnummer >= 1 && huisnummer <= 1000) {
+			this.huisnummer = huisnummer;
+		} else {
+			throw new IllegalArgumentException("ongeldig huisnummer.");
+		}
 	}
-	
+
 	public String getBusnummer() {
 		return busnummer;
 	}
-	
+
 	private void setBusnummer(String busnummer) {
-		this.busnummer = busnummer;
-	}	
+		if (busnummer == null) {
+			this.busnummer = null;
+		} else if (!busnummer.matches("[a-zA-Z0-9]*")) {
+			throw new IllegalArgumentException("busnummer moet een aplhanumeric karakter zijn.");
+		} else {
+			this.busnummer = busnummer;
+		}
+	}
 }
