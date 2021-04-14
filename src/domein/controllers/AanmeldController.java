@@ -72,4 +72,9 @@ public class AanmeldController {
 	public void setAangemeldeWerknemer(Werknemer aangemeldeWerknemer) {
 		this.aangemeldeWerknemer = aangemeldeWerknemer;
 	}
+	public void afmelden() {
+		this.aangemeldeWerknemer = null;
+	}
+
+	
 }
