@@ -21,6 +21,8 @@ import resourcebundle.Taal;
 
 public class InlogSchermController extends AnchorPane{
 	private AanmeldController adc;
+	@FXML
+    private AnchorPane loginPane;
 	
 	@FXML
     private ResourceBundle resources;
@@ -80,7 +82,26 @@ public class InlogSchermController extends AnchorPane{
         
        txtfGebruikersnaam.clear();
         pwfWachtwoord.clear();
-    	Pane pane = FXMLLoader.load(getClass().getResource("HoofdMenuView.fxml"));
+        Pane pane;
+        switch(adc.getAangemeldeWerknemer().getRol()) {
+        case ADMINISTRATOR : 
+        	 pane = FXMLLoader.load(getClass().getResource("HoofdMenuAdministrator.fxml"));
+        	 loginPane.getChildren().setAll(pane);
+        	break;
+        
+    	case SUPPORTMANAGER : 
+    		 pane = FXMLLoader.load(getClass().getResource("HoofdMenuSupportManager.fxml"));
+    		 loginPane.getChildren().setAll(pane);
+    		break;
+    	
+		case TECHNIEKER : 
+			 pane = FXMLLoader.load(getClass().getResource("HoofdMenuTechnieker.fxml"));
+			 loginPane.getChildren().setAll(pane);
+			break;
+		}
+	
+    	
+    	
     }
 	
 	@FXML
