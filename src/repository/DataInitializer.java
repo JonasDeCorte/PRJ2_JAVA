@@ -9,10 +9,11 @@ import domein.enumerations.WERKNEMERROL;
 public class DataInitializer {
 	private WerknemerDaoJpa werknemerDao = new WerknemerDaoJpa();
 	private KlantDaoJpa klantDao = new KlantDaoJpa();
+	private BedrijfDaoJpa bedrijfDao = new BedrijfDaoJpa();
 	
 	public void initializeData() {
 		initializeWerknemers();
-		//initializeKlanten();
+		initializeKlantenEnBedrijven();
 		initializeContractTypes();
 		initializeContracten();
 		initializeTicketTypes();
@@ -35,16 +36,19 @@ public class DataInitializer {
 		werknemerDao.commitTransaction();
 	}
 	
-	private void initializeKlanten() {
-		klantDao.startTransaction();
-		
+	private void initializeKlantenEnBedrijven() {
+
+		bedrijfDao.startTransaction();
 		Bedrijf BEEGO = new Bedrijf("BEEGO", Arrays.asList("+32 567 85 44 23"), new Adres("België", "Gent", "9000", "Koestraat", 47, "8"));
 		Bedrijf Microsoft = new Bedrijf("Microsoft", Arrays.asList("+33 895 58 65 10"), new Adres("Frankrijk", "Parijs", "75008", "Rue Chambiges", 85, "3C"));
+		bedrijfDao.insert(BEEGO);
+		bedrijfDao.insert(Microsoft);
+		bedrijfDao.commitTransaction();
 		
+		klantDao.startTransaction();	
 		klantDao.insert(new Klant("Klant1", "Klant1123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", BEEGO));
 		klantDao.insert(new Klant("Klant2", "Klant2123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", BEEGO));	
-		klantDao.insert(new Klant("Klant3", "Klant3123", "Juliette", "Debois", "Juliette.Debois@Microsoft.com", Microsoft));
-		
+		klantDao.insert(new Klant("Klant3", "Klant3123", "Juliette", "Debois", "Juliette.Debois@Microsoft.com", Microsoft));		
 		klantDao.commitTransaction();		
 	}
 	

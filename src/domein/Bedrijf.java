@@ -24,10 +24,9 @@ public class Bedrijf implements Serializable {
 	@Embedded
 	private Adres adres;
 	
-	/*
 	@OneToMany(mappedBy = "Bedrijf", cascade = CascadeType.PERSIST)
 	public List<Klant> klanten;
-	*/
+
 	
 	public Bedrijf() {
 
@@ -54,7 +53,7 @@ public class Bedrijf implements Serializable {
 	private void setTelefoonnummers(List<String> telefoonnummers) {
 		this.telefoonnummers = telefoonnummers;
 	}
-	/*
+
 	public List<Klant> getKlanten() {
 		return klanten;
 	}
@@ -62,7 +61,7 @@ public class Bedrijf implements Serializable {
 	private void setKlanten(List<Klant> klanten) {
 		this.klanten = klanten;
 	}
-	*/
+
 
 	public Adres getAdres() {
 		return adres;
