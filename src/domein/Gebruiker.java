@@ -28,8 +28,8 @@ public abstract class Gebruiker implements Serializable {
 	private GEBRUIKERSTATUS gebruikerStatus;
 		
 	public Gebruiker() {
-		registratiedatum = LocalDateTime.now();
-		setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);
+//		registratiedatum = LocalDateTime.now();
+//		setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);
 	}
 
 	public Gebruiker(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres) {

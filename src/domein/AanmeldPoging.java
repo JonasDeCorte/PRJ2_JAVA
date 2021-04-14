@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "AanmeldPoging.geefLaatste5PogingenVoorInloggen", query = "SELECT a FROM AanmeldPoging a WHERE a.gebruikersNaam = :gebruikersNaam ORDER BY a.tijdstipPoging DESC") })
+	@NamedQuery(name = "AanmeldPoging.geefLaatste5PogingenVoorInloggen", query = "SELECT a FROM AanmeldPoging a WHERE a.gebruikersNaam = :gebruikersnaam ORDER BY a.tijdstipPoging DESC") })
 public class AanmeldPoging{
 	
 	@Id
