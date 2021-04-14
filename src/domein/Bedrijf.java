@@ -3,10 +3,15 @@ package domein;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
+@Entity
 public class Bedrijf implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -14,16 +19,21 @@ public class Bedrijf implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bedrijfId;
 	private String bedrijfsnaam;
-	private String[] telefoonnummers;
+	@ElementCollection
+	private List<String> telefoonnummers;
+	@Embedded
 	private Adres adres;
 	
-	private List<Klant> klanten;
-		
+	/*
+	@OneToMany(mappedBy = "Bedrijf", cascade = CascadeType.PERSIST)
+	public List<Klant> klanten;
+	*/
+	
 	public Bedrijf() {
 
 	}
-
-	public Bedrijf(String bedrijfsnaam, String[] telefoonnummers, Adres adres) {
+	
+	public Bedrijf(String bedrijfsnaam, List<String> telefoonnummers, Adres adres) {
 		setBedrijfsnaam(bedrijfsnaam);
 		setTelefoonnummers(telefoonnummers);
 		setAdres(adres);
@@ -37,14 +47,14 @@ public class Bedrijf implements Serializable {
 		this.bedrijfsnaam = bedrijfsnaam;
 	}
 	
-	public String[] getTelefoonnummers() {
+	public List<String> getTelefoonnummers() {
 		return telefoonnummers;
 	}
 	
-	private void setTelefoonnummers(String[] telefoonnummers) {
+	private void setTelefoonnummers(List<String> telefoonnummers) {
 		this.telefoonnummers = telefoonnummers;
 	}
-	
+	/*
 	public List<Klant> getKlanten() {
 		return klanten;
 	}
@@ -52,6 +62,7 @@ public class Bedrijf implements Serializable {
 	private void setKlanten(List<Klant> klanten) {
 		this.klanten = klanten;
 	}
+	*/
 
 	public Adres getAdres() {
 		return adres;

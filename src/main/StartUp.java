@@ -1,4 +1,3 @@
-// test
 package main;
 
 import domein.controllers.AanmeldController;
@@ -17,7 +16,6 @@ public class StartUp extends Application{
     	 //DataInitializer dataInit = new DataInitializer();
     	 //dataInit.initializeData();
     }
-
 
 	@Override
 	public void start(Stage stage) throws Exception {

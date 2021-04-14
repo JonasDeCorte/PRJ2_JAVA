@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -18,7 +19,8 @@ public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int klantnummer;
-	private Bedrijf bedrijfsgegevens;
+	@ManyToOne
+	private Bedrijf bedrijf;
 	@OneToMany(mappedBy = "klant", cascade = CascadeType.PERSIST)
 	private List<Contract> contracten;
 			
@@ -27,21 +29,21 @@ public class Klant extends Gebruiker implements Serializable{
 	}
 
 	public Klant(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, 
-			Bedrijf bedrijfsgegevens) {
+			Bedrijf bedrijf) {
 		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
-		setBedrijfsgegevens(bedrijfsgegevens);
+		setBedrijf(bedrijf);
 	}
 			
 	public int getKlantnummer() {
 		return klantnummer;
 	}
 
-	public Bedrijf getBedrijfsgegevens() {
-		return bedrijfsgegevens;
+	public Bedrijf getBedrijf() {
+		return bedrijf;
 	}
 
-	private void setBedrijfsgegevens(Bedrijf bedrijfsgegevens) {
-		this.bedrijfsgegevens = bedrijfsgegevens;
+	private void setBedrijf(Bedrijf bedrijf) {
+		this.bedrijf = bedrijf;
 	}
 
 	@Override
