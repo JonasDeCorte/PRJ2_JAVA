@@ -68,7 +68,11 @@ public class Ticket implements Serializable {
 	}
 
 	private void setTitel(String titel) {
-		this.titel = titel;
+		if (titel != null && !titel.isBlank() && !titel.isEmpty()) {
+			this.titel = titel;
+		} else {
+			throw new IllegalArgumentException("Titel mag niet leeg zijn.");
+		}
 	}
 
 	public LocalDateTime getDatumAangemaakt() {
@@ -88,7 +92,11 @@ public class Ticket implements Serializable {
 	}
 
 	private void setOmschrijving(String omschrijving) {
-		this.omschrijving = omschrijving;
+		if (omschrijving != null && !omschrijving.isBlank() && !omschrijving.isEmpty()) {
+			this.omschrijving = omschrijving;
+		} else {
+			throw new IllegalArgumentException("omschrijving mag niet leeg zijn.");
+		}
 	}
 
 	public String getOpmerkingen() {
@@ -96,7 +104,11 @@ public class Ticket implements Serializable {
 	}
 
 	private void setOpmerkingen(String opmerkingen) {
-		this.opmerkingen = opmerkingen;
+		if (opmerkingen != null && !opmerkingen.isBlank() && !opmerkingen.isEmpty()) {
+			this.opmerkingen = opmerkingen;
+		} else {
+			throw new IllegalArgumentException("opmerkingen mag niet leeg zijn.");
+		}
 	}
 
 	public Bijlage getOplossing() {
@@ -127,7 +139,11 @@ public class Ticket implements Serializable {
 	}
 
 	private void setTicketType(TicketType ticketType) {
-		this.ticketType = ticketType;
+		if (ticketType != null) {
+			this.ticketType = ticketType;
+		} else {
+			throw new IllegalArgumentException("ticketType mag niet leeg zijn.");
+		}
 	}
 
 	public TICKETSTATUS getTicketStatus() {
