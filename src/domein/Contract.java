@@ -78,7 +78,11 @@ public class Contract implements Serializable{
 	}
 
 	private void setStartdatum(LocalDateTime startdatum) {
-		this.startdatum = startdatum;
+		if (startdatum != null) {
+			this.startdatum = startdatum;
+		} else {
+			throw new IllegalArgumentException("startdatum kan niet leeg zijn.");
+		}
 	}
 
 	public LocalDateTime getEinddatum() {
@@ -86,7 +90,14 @@ public class Contract implements Serializable{
 	}
 
 	private void setEinddatum(LocalDateTime einddatum) {
-		this.einddatum = einddatum;
+		if (einddatum != null) {
+			if (einddatum.isBefore(startdatum.plusYears(1))) {
+				throw new IllegalArgumentException("De looptijd moet minimum 1 jaar zijn en de eindDatum mag ook niet kleiner zijn dan de startdatum.");
+			}
+			this.einddatum = einddatum;
+		} else {
+			throw new IllegalArgumentException("einddatum mag niet leeg zijn.");
+		}
 	}
 
 	public CONTRACTSTATUS getContractstatus() {
@@ -94,7 +105,11 @@ public class Contract implements Serializable{
 	}
 
 	private void setContractstatus(CONTRACTSTATUS contractstatus) {
-		this.contractstatus = contractstatus;
+		if (contractstatus != null) {
+			this.contractstatus = contractstatus;
+		} else {
+			throw new IllegalArgumentException("Contractstatus moet ingevuld zijn.");
+		}
 	}
 
 	public ContractType getContracttype() {
@@ -102,15 +117,24 @@ public class Contract implements Serializable{
 	}
 
 	private void setContracttype(ContractType contracttype) {
-		this.contracttype = contracttype;
+		if (contracttype != null) {
+			this.contracttype = contracttype;
+		} else {
+			throw new IllegalArgumentException("een contract moet een type hebben!");
+		}
 	}
+	
 
 	public Klant getKlant() {
 		return klant;
 	}
 
 	private void setKlant(Klant klant) {
-		this.klant = klant;
+		if (klant != null) {
+			this.klant = klant;
+		} else {
+			throw new IllegalArgumentException("klant kan niet leeg zijn.");
+		}
 	}
 
 	@Override
