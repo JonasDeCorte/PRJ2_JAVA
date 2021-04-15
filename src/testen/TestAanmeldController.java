@@ -50,7 +50,7 @@ public class TestAanmeldController {
 	
 	private void aanmeldenMetCorrectWachtwoordTrainen(String wachtwoord, String gebruikersnaam, GEBRUIKERSTATUS status, int aantalGefaaldeAanmeldPogingen) 
 	{
-		werknemer = new Werknemer("EddyWally", "passwoord1" , "eddy" , "wally" , "eddy.wally@hotmail.com", Arrays.asList("+32472485968", "+32472457912"), WERKNEMERROL.ADMINISTRATOR, new Adres("België«", "Loppem" ,"8200" , "Guido Gezellelaan", 22, ""));
+		werknemer = new Werknemer("EddyWally", "passwoord1" , "eddy" , "wally" , "eddy.wally@hotmail.com", 4, Arrays.asList("+32472485968", "+32472457912"), WERKNEMERROL.ADMINISTRATOR, new Adres("België«", "Loppem" ,"8200" , "Guido Gezellelaan", 22, ""));
 
 		Mockito.when(werknemerDao.geefGebruikerStatus(gebruikersnaam)).thenReturn(status);
 		

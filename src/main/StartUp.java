@@ -13,8 +13,8 @@ public class StartUp extends Application{
     public static void main(String... args) {
     	 Taal.instellenTaal(0);
     	 Application.launch(StartUp.class, args);
-    	 //DataInitializer dataInit = new DataInitializer();
-    	 //dataInit.initializeData();
+    	 DataInitializer dataInit = new DataInitializer();
+    	 dataInit.initializeData();
     }
 
 	@Override
@@ -30,5 +30,4 @@ public class StartUp extends Application{
         });
         stage.show();
 	}
-    
 }

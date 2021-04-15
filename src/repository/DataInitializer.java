@@ -1,4 +1,3 @@
-// test
 package repository;
 
 import java.util.Arrays;
@@ -24,13 +23,13 @@ public class DataInitializer {
 	private void initializeWerknemers() {
 		werknemerDao.startTransaction();
 	
-		werknemerDao.insert(new Werknemer("Administrator", "Administrator123", "Kees", "Schoens", "Kees.Schoens@Actemium.be",
+		werknemerDao.insert(new Werknemer("Administrator", "Administrator123", "Kees", "Schoens", "Kees.Schoens@Actemium.be", 1001,
 				Arrays.asList("+32 456 25 67 85", "+32 458 95 62 36"), WERKNEMERROL.ADMINISTRATOR, new Adres("België", "Brussel","1000","Stationsstraat", 45, "")));
 
-		werknemerDao.insert(new Werknemer("Technieker", "Technieker123", "Bert", "Weens", "Bert.Weens@Actemium.be",
+		werknemerDao.insert(new Werknemer("Technieker", "Technieker123", "Bert", "Weens", "Bert.Weens@Actemium.be", 1002,
 				Arrays.asList("+32 558 67 42 33"), WERKNEMERROL.TECHNIEKER, new Adres("België", "Gent", "9000", "Moerkerksesteenweg", 7, "2")));
 		
-		werknemerDao.insert(new Werknemer("SupportManager", "SupportManager123","Sophie", "Vermeersch", "Sophie.Vermeersch@Actemium.be",
+		werknemerDao.insert(new Werknemer("SupportManager", "SupportManager123","Sophie", "Vermeersch", "Sophie.Vermeersch@Actemium.be", 1003,
 				Arrays.asList("+32 895 32 44 85"), WERKNEMERROL.SUPPORTMANAGER, new Adres("België", "Brugge", "8000", "Brugsestraat", 48, "3")));
 		
 		werknemerDao.commitTransaction();
@@ -46,9 +45,9 @@ public class DataInitializer {
 		bedrijfDao.commitTransaction();
 		
 		klantDao.startTransaction();	
-		klantDao.insert(new Klant("Klant1", "Klant1123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", BEEGO));
-		klantDao.insert(new Klant("Klant2", "Klant2123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", BEEGO));	
-		klantDao.insert(new Klant("Klant3", "Klant3123", "Juliette", "Debois", "Juliette.Debois@Microsoft.com", Microsoft));		
+		klantDao.insert(new Klant("Klant1", "Klant1123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", 1001, BEEGO));
+		klantDao.insert(new Klant("Klant2", "Klant2123", "Joeri", "Kools", "Joeri.Kools@BEEGO.com", 1002, BEEGO));	
+		klantDao.insert(new Klant("Klant3", "Klant3123", "Juliette", "Debois", "Juliette.Debois@Microsoft.com", 1003, Microsoft));		
 		klantDao.commitTransaction();		
 	}
 	

@@ -1,4 +1,3 @@
-// test
 package domein;
 
 import java.io.Serializable;
@@ -7,14 +6,12 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import domein.enumerations.WERKNEMERROL;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({
@@ -23,6 +20,7 @@ import domein.enumerations.WERKNEMERROL;
 	@NamedQuery(name = "Werknemer.geefWerknemer", query = "SELECT w FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam AND w.wachtwoord = :wachtwoord"),
 	@NamedQuery(name = "Werknemer.geefGebruikerStatus", query = "SELECT w.gebruikerStatus FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam")
 })
+
 public class Werknemer extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -40,8 +38,9 @@ public class Werknemer extends Gebruiker implements Serializable{
 		super();
 	}
 
-	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, List<String> telefoonnummers, WERKNEMERROL werknemerRol , Adres adres) {
+	public Werknemer(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, int personeelsnummer,  List<String> telefoonnummers, WERKNEMERROL werknemerRol , Adres adres) {
 		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
+		setPersoneelsnummer(personeelsnummer);
 		setTelefoonnummers(telefoonnummers);
 		setRol(werknemerRol);
 		setAdres(adres);
@@ -80,6 +79,10 @@ public class Werknemer extends Gebruiker implements Serializable{
 		} else {
 			throw new IllegalArgumentException("Ongeldige werknemerrol toegekend.");
 		}
+	}
+	
+	public void setPersoneelsnummer(int personeelsnummer) {
+		this.personeelsnummer = personeelsnummer;
 	}
 
 	@Override

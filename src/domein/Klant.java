@@ -5,12 +5,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 
 
 @Entity
@@ -28,9 +26,10 @@ public class Klant extends Gebruiker implements Serializable{
 		super();
 	}
 
-	public Klant(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, 
+	public Klant(String gebruikersnaam, String wachtwoord, String voornaam, String naam, String emailadres, int klantnummer,
 			Bedrijf bedrijf) {
 		super(gebruikersnaam, wachtwoord, voornaam, naam, emailadres);
+		setKlantnummer(klantnummer);
 		setBedrijf(bedrijf);
 	}
 			
@@ -44,6 +43,10 @@ public class Klant extends Gebruiker implements Serializable{
 
 	private void setBedrijf(Bedrijf bedrijf) {
 		this.bedrijf = bedrijf;
+	}
+
+	public void setKlantnummer(int klantnummer) {
+		this.klantnummer = klantnummer;
 	}
 
 	@Override
