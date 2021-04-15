@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import domein.dao.GenericDao;
+
 public class GenericDaoJpa<T> implements GenericDao<T> {
     private static final String PU_NAME = "JPA_details";
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PU_NAME);

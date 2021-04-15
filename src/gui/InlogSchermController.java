@@ -8,6 +8,7 @@ import domein.controllers.AanmeldController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
 public class InlogSchermController extends AnchorPane{
@@ -82,24 +85,38 @@ public class InlogSchermController extends AnchorPane{
         
        txtfGebruikersnaam.clear();
         pwfWachtwoord.clear();
-        Pane pane;
+        Stage stage = (Stage) this.getScene().getWindow();
+        Scene scene = null;
+        //Via rol word er geselecteerd welk scherm moet openen
+        //Aanmeldcontroller voorlopig meegegeven indien gebruiker moet opgehaald worden
         switch(adc.getAangemeldeWerknemer().getRol()) {
         case ADMINISTRATOR : 
-        	 pane = FXMLLoader.load(getClass().getResource("HoofdMenuAdministrator.fxml"));
-        	 loginPane.getChildren().setAll(pane);
+        	stage.setTitle("HoofdMenuAdministrator");
+        	HoofdMenuAdministratorController root1 = new HoofdMenuAdministratorController(new AanmeldController());
+    		scene = new Scene(root1);
         	break;
         
     	case SUPPORTMANAGER : 
-    		 pane = FXMLLoader.load(getClass().getResource("HoofdMenuSupportManager.fxml"));
-    		 loginPane.getChildren().setAll(pane);
+    		stage.setTitle("HoofdMenuSupportManager");
+    		HoofdMenuSupportManagerController root2 = new HoofdMenuSupportManagerController(new AanmeldController());
+    		scene = new Scene(root2);
     		break;
     	
 		case TECHNIEKER : 
-			 pane = FXMLLoader.load(getClass().getResource("HoofdMenuTechnieker.fxml"));
-			 loginPane.getChildren().setAll(pane);
+			stage.setTitle("HoofdTechnieker");
+			HoofdMenuTechniekerController root3 = new HoofdMenuTechniekerController(new AanmeldController());
+    		scene = new Scene(root3);
 			break;
 		}
 	
+    		
+    		stage.setScene(scene);
+    		
+    		stage.setOnShown((WindowEvent t) -> {
+                stage.setMinWidth(stage.getWidth());
+                stage.setMinHeight(stage.getHeight());
+            });
+            stage.show();
     	
     	
     }

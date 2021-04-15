@@ -3,8 +3,6 @@ package domein.dao;
 import domein.Werknemer;
 import domein.enumerations.GEBRUIKERSTATUS;
 
-import repository.GenericDao;
-
 public interface WerknemerDao extends GenericDao<Werknemer>  {
 
 	Werknemer geefWerknemer(String gebruikersnaam, String wachtwoord);
