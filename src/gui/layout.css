@@ -1,0 +1,16 @@
+#buttonright{
+	-fx-background-color: #4591c6;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff;
+}
+#buttonleft{
+	-fx-background-color: #cad50c;
+	-fx-font-weight: bold;
+	-fx-text-fill: #fff;
+}
+.sidebar{
+	-fx-background-color: #9cfdb2;
+}
+.navbar{
+	-fx-background-color: #9ba5d3;
+}
