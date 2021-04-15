@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -110,10 +111,10 @@ public class TestAanmeldController {
 
 		aanmeldenMetFoutWachtwoordTrainen(wachtwoord, gebruikersnaam, status, aantalGefaaldeAanmeldPogingen);
 
-		// Act + Assert
+		
 		Assertions.assertThrows(EntityNotFoundException.class, () -> aanmeldController.aanmelden(gebruikersnaam, wachtwoord));
 
-		// Assert
+		
 		Mockito.verify(werknemerDao).geefWerknemer(gebruikersnaam, wachtwoord);
 		
 		Mockito.verify(werknemerDao).geefGebruikerStatus(gebruikersnaam);
@@ -133,10 +134,10 @@ public class TestAanmeldController {
 		
 		aanmeldenJuistWachtwoordTrainen(wachtwoord, gebruikersnaam,  status, aantalGefaaldeAanmeldPogingen);
 
-		// Act + Assert
+		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> aanmeldController.aanmelden(gebruikersnaam, wachtwoord));
 
-		// Assert
+		
 		Mockito.verify(werknemerDao).geefGebruikerStatus(gebruikersnaam);
 	}
 
@@ -158,11 +159,11 @@ public class TestAanmeldController {
 		
 		aanmeldenMetCorrectWachtwoordTrainen(wachtwoord, gebruikersnaam,  status, aantalGefaaldeAanmeldPogingen);
 
-		// Act
+	
 		
 		aanmeldController.aanmelden(gebruikersnaam, wachtwoord);
 
-		// Assert
+		
 		Assertions.assertEquals(werknemer, aanmeldController.getAangemeldeWerknemer());
 
 		Mockito.verify(werknemerDao).geefGebruikerStatus(gebruikersnaam);
@@ -188,10 +189,10 @@ public class TestAanmeldController {
 
 		aanmeldenMetCorrectWachtwoordTrainen(wachtwoord, gebruikersnaam, status, aantalGefaaldeAanmeldPogingen);
 
-		// Act + Assert
+		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> aanmeldController.aanmelden(gebruikersnaam, wachtwoord));
 
-		// Assert
+		
 		Mockito.verify(werknemerDao).blokkeerWerknemer(gebruikersnaam);
 
 		Mockito.verify(werknemerDao).bestaatGebruikersnaam(gebruikersnaam);
@@ -217,12 +218,12 @@ public class TestAanmeldController {
 
 		aanmeldenMetFoutWachtwoordTrainen(wachtwoord, gebruikersnaam,  status, aantalGefaaldeAanmeldPogingen);
 
-		// Act + Assert
+		
 		Assertions.assertThrows(EntityNotFoundException.class, () -> aanmeldController.aanmelden(gebruikersnaam, wachtwoord));
 
 		Assertions.assertEquals(GEBRUIKERSTATUS.ACTIEF, werknemer.getGebruikerStatus());
 		
-		// Assert
+		
 		Mockito.verify(werknemerDao).blokkeerWerknemer(gebruikersnaam);
 
 		Mockito.verify(werknemerDao).geefGebruikerStatus(gebruikersnaam);
@@ -256,10 +257,10 @@ public class TestAanmeldController {
 
 		aanmeldenMetCorrectWachtwoordTrainen(wachtwoord, gebruikersnaam,  status, aantalGefaaldeAanmeldPogingen);
 
-		// Act
+		
 		aanmeldController.aanmelden(gebruikersnaam, wachtwoord);
 
-		// Assert
+		
 		
 		Mockito.verify(aanmeldpogingDao);
 		
