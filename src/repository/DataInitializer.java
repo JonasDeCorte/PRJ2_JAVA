@@ -22,7 +22,6 @@ public class DataInitializer {
 
 	private void initializeWerknemers() {
 		werknemerDao.startTransaction();
-	
 		werknemerDao.insert(new Werknemer("Administrator", "Administrator123", "Kees", "Schoens", "Kees.Schoens@Actemium.be", 1001,
 				Arrays.asList("+32 456 25 67 85", "+32 458 95 62 36"), WERKNEMERROL.ADMINISTRATOR, new Adres("België", "Brussel","1000","Stationsstraat", 45, "")));
 
@@ -31,7 +30,6 @@ public class DataInitializer {
 		
 		werknemerDao.insert(new Werknemer("SupportManager", "SupportManager123","Sophie", "Vermeersch", "Sophie.Vermeersch@Actemium.be", 1003,
 				Arrays.asList("+32 895 32 44 85"), WERKNEMERROL.SUPPORTMANAGER, new Adres("België", "Brugge", "8000", "Brugsestraat", 48, "3")));
-		
 		werknemerDao.commitTransaction();
 	}
 	

@@ -23,7 +23,7 @@ public class StartUp extends Application{
 		Scene scene = new Scene(root);
 		stage.setTitle("Actemium");
 		stage.setScene(scene);
-		
+		 
 		stage.setOnShown((WindowEvent t) -> {
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());

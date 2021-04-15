@@ -25,7 +25,6 @@ public class Werknemer extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int personeelsnummer;
-	
 	@Embedded
 	private Adres adres;
 	
