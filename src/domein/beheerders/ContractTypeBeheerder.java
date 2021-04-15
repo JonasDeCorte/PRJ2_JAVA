@@ -1,5 +1,16 @@
 package domein.beheerders;
 
-public class ContractTypeBeheerder {
+import domein.dao.ContractTypeDao;
+import repository.ContractTypeDaoJpa;
 
+public class ContractTypeBeheerder {
+	private ContractTypeDao contractTypeDao;
+	
+	private ContractTypeBeheerder(ContractTypeDao contractTypeDao) {
+		this.contractTypeDao = contractTypeDao;
+	}
+
+	public ContractTypeBeheerder() {
+		this(new ContractTypeDaoJpa());
+	}
 }

@@ -1,4 +1,4 @@
-package repository;
+package domein.dao;
 
 import java.util.List;
 
