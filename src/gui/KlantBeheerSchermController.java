@@ -9,16 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import resourcebundle.Taal;
 
-public class HoofdMenuAdministratorController extends AnchorPane {
+public class KlantBeheerSchermController extends AnchorPane{
 	private AanmeldController adc;
-	public HoofdMenuAdministratorController(AanmeldController aanmeldController) {
+	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("HoofdMenuAdministrator.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
 	    
@@ -48,6 +46,20 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("WerknemerBeheren");
 		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+		stage.setOnShown((WindowEvent t) -> {
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        });
+        stage.show();
+    }
+	@FXML
+    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
+		Stage stage = (Stage) this.getScene().getWindow();
+		stage.setTitle("HoofdMenuAdministrator");
+		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		

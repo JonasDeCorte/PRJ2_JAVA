@@ -9,8 +9,15 @@
 	-fx-text-fill: #fff;
 }
 .sidebar{
-	-fx-background-color: #9cfdb2;
+	-fx-background-color: #e2f1df;
 }
 .navbar{
 	-fx-background-color: #9ba5d3;
+}
+.klantgegevens{
+	-fx-border-color: #000000;
+	-fx-padding:5px;
+}
+#title{
+	-fx-font-weight:bold;
 }
