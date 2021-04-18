@@ -37,8 +37,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Button btnTicketType;
 	@FXML private Button btnRapport;
 	@FXML private Label lblContractBeheer;
-	@FXML private Button lblContract;
-	@FXML private Button lblContractType;
+	@FXML private Button btnContract;
+	@FXML private Button btnContractType;
 	@FXML private Label lblTaalWijzigen;
 	@FXML private ComboBox<String> cboTaalWijzigen;
 	
