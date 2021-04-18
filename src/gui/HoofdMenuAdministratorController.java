@@ -8,14 +8,39 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import resourcebundle.Taal;
 
 public class HoofdMenuAdministratorController extends AnchorPane {
 	private AanmeldController adc;
+	
+	// Header (bovenaan)
+	@FXML private Button btnUitloggen;
+	@FXML private Label lblTitel;
+	@FXML private Label lblBegroeting;
+	
+	// Navigatie (links)
+	@FXML private Button btnHoofdmenu;
+	@FXML private Label lblGebruikerBeheer;
+	@FXML private Button btnWerknemerBeheer;
+	@FXML private Button btnKlantBeheer;
+	@FXML private Label lblTicketBeheer;
+	@FXML private Button btnTicket;
+	@FXML private Button btnTicketType;
+	@FXML private Button btnRapport;
+	@FXML private Label lblContractBeheer;
+	@FXML private Button btnContract;
+	@FXML private Button btnContractType;
+	@FXML private Label lblTaalWijzigen;
+	@FXML private ComboBox<String> cboTaalWijzigen;
+	
+	// Statistieken en grafieken (midden)
+	// TODO
+	
 	public HoofdMenuAdministratorController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HoofdMenuAdministrator.fxml"));
@@ -29,6 +54,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 	    }
 		
 	}
+	
 	@FXML
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
@@ -43,6 +69,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
         });
         stage.show();
     }
+	
 	@FXML
     void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();

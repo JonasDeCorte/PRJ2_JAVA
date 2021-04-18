@@ -30,13 +30,13 @@
                </HBox.margin>
             </ImageView>
             <AmbientLight color="CHARTREUSE" lightOn="true" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="355.0" text="Dashboard">
+            <Label fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="355.0" text="Dashboard">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag SupportManager" />
-            <Button id="buttonright" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
+            <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag SupportManager" />
+            <Button fx:id="btnUitloggen" id="buttonright" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
                <HBox.margin>
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>
@@ -45,63 +45,63 @@
       </HBox>
       <VBox layoutY="66.0" prefHeight="542.0" prefWidth="142.0" styleClass="sidebar" stylesheets="@layout.css" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Dashboard">
+            <Button fx:id="btnHoofdmenu" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Dashboard">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Gebruiker beheer">
+            <Label fx:id="lblGebruikerBeheer" text="Gebruiker beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
+            <Button fx:id="btnWerknemerBeheer" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
+            <Button fx:id="btnKlantBeheer" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Ticket beheer">
+            <Label fx:id="lblTicketBeheer" text="Ticket beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
+            <Button fx:id="btnTicket" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
+            <Button fx:id="btnTicketType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
+            <Button fx:id="btnRapport" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Contract beheer">
+            <Label fx:id="lblContractBeheer" text="Contract beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
+            <Button fx:id="btnContract" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
+            <Button fx:id="btnContractType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
             <PointLight color="CHARTREUSE" lightOn="true" />
-            <Label text="Taal wijzigen">
+            <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
                <VBox.margin>
                   <Insets bottom="10.0" top="100.0" />
                </VBox.margin>
@@ -109,7 +109,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <ComboBox prefHeight="26.0" prefWidth="116.0" promptText="Nederlands">
+            <ComboBox fx:id="cboTaalWijzigen" prefHeight="26.0" prefWidth="116.0" promptText="Nederlands">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
