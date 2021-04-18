@@ -14,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -83,7 +84,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Label lblStraat;
 	@FXML private TextField txfStraat;
 	@FXML private Label lblTelefoonnummers;
-	@FXML private TextField txfTelefoonnummers;
+	@FXML private TextArea txaTelefoonnummers;
 	@FXML private Label lblHuisnr;
 	@FXML private TextField txfHuisnr;
 	@FXML private Label lblBusnr;

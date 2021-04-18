@@ -181,7 +181,7 @@
                   <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="5" />
                   <Pane GridPane.columnSpan="2" GridPane.rowIndex="6">
                      <children>
-                        <TextArea layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
+                        <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
                      </children>
                   </Pane>
                   <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
