@@ -35,13 +35,13 @@
                </HBox.margin>
             </ImageView>
             <AmbientLight color="CHARTREUSE" lightOn="true" />
-            <Label id="title" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="355.0" stylesheets="@layout.css" text="Klant beheer">
+            <Label fx:id="lblTitel" id="title" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="355.0" stylesheets="@layout.css" text="Klant beheer">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag Administrator" />
-            <Button id="buttonright" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
+            <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag Administrator" />
+            <Button fx:id="btnUitloggen" id="buttonright" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
                <HBox.margin>
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>
@@ -50,63 +50,63 @@
       </HBox>
       <VBox layoutY="66.0" prefHeight="621.0" prefWidth="142.0" styleClass="sidebar" stylesheets="@layout.css" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button id="buttonleft" mnemonicParsing="false" onAction="#Hoofdmenu"  prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Dashboard">
+            <Button fx:id="btnHoofdmenu" id="buttonleft" mnemonicParsing="false" onAction="#Hoofdmenu"  prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Dashboard">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Gebruiker beheer">
+            <Label fx:id="lblGebruikerBeheer" text="Gebruiker beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" onAction="#KlantBeheren" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
+            <Button fx:id="btnWerknemerBeheer" id="buttonleft" mnemonicParsing="false" onAction="#KlantBeheren" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" onAction="#WerknemerBeheren"  prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
+            <Button fx:id="btnKlantBeheer" id="buttonleft" mnemonicParsing="false" onAction="#WerknemerBeheren"  prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Ticket beheer">
+            <Label fx:id="lblTicketBeheer" text="Ticket beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
+            <Button fx:id="btnTicket" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
+            <Button fx:id="btnTicketType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
+            <Button fx:id="btnRapport" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Contract beheer">
+            <Label fx:id="lblContractBeheer" text="Contract beheer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
+            <Button fx:id="btnContract" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
+            <Button fx:id="btnContractType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
             <PointLight color="CHARTREUSE" lightOn="true" />
-            <Label text="Taal wijzigen">
+            <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
                <VBox.margin>
                   <Insets bottom="10.0" top="100.0" />
                </VBox.margin>
@@ -114,7 +114,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <ComboBox prefHeight="26.0" prefWidth="116.0" promptText="Nederlands">
+            <ComboBox fx:id="cboTaalWijzigen" prefHeight="26.0" prefWidth="116.0" promptText="Nederlands">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
@@ -125,23 +125,23 @@
          <children>
             <Pane prefHeight="598.0" prefWidth="505.0">
                <children>
-                  <Label layoutX="13.0" layoutY="14.0" text="Filters" />
-                  <CheckBox layoutX="45.0" layoutY="54.0" mnemonicParsing="false" text="Actieve klanten" />
-                  <CheckBox layoutX="165.0" layoutY="54.0" mnemonicParsing="false" text="Inactieve klanten" />
-                  <CheckBox layoutX="292.0" layoutY="54.0" mnemonicParsing="false" text="Geblokkeerde klanten" />
-                  <TextField layoutX="45.0" layoutY="10.0" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
-                  <TextField layoutX="176.0" layoutY="10.0" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
-                  <TextField layoutX="276.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
-                  <TextField layoutX="361.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Bedrijf" />
-                  <Button id="buttonright" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
+                  <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
+                  <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" text="Actieve klanten" />
+                  <CheckBox fx:id="chkInactieveKlanten" layoutX="165.0" layoutY="54.0" mnemonicParsing="false" text="Inactieve klanten" />
+                  <CheckBox fx:id="chkGeblokkeerdeKlanten" layoutX="292.0" layoutY="54.0" mnemonicParsing="false" text="Geblokkeerde klanten" />
+                  <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
+                  <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
+                  <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
+                  <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Bedrijf" />
+                  <Button fx:id="btnClearFilters" id="buttonright" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
                   <TableView layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="467.0">
                     <columns>
-                      <TableColumn prefWidth="55.20001220703125" text="KlantNr" />
-                      <TableColumn prefWidth="110.40000915527344" text="Gebruikersnaam" />
-                        <TableColumn prefWidth="81.60003662109375" text="Voornaam" />
-                        <TableColumn prefWidth="83.199951171875" text="Naam" />
-                        <TableColumn text="Bedrijf" />
-                        <TableColumn prefWidth="56.0" text="Status" />
+                      <TableColumn fx:id="tbcKlantsnr" prefWidth="55.20001220703125" text="KlantNr" />
+                      <TableColumn fx:id="tbcGebruikersnaam" prefWidth="110.40000915527344" text="Gebruikersnaam" />
+                        <TableColumn fx:id="tbcVoornaam" prefWidth="81.60003662109375" text="Voornaam" />
+                        <TableColumn fx:id="tbcNaam" prefWidth="83.199951171875" text="Naam" />
+                        <TableColumn fx:id="tbcBedrijf" text="Bedrijf" />
+                        <TableColumn fx:id="tbcStatus" prefWidth="56.0" text="Status" />
                     </columns>
                   </TableView>
                </children>
@@ -168,36 +168,36 @@
                   <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="71.99997558593753" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label id="title" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Klantgegevens" GridPane.columnSpan="2" />
-                  <Label text="Gebruikersnaam" GridPane.rowIndex="1" />
-                  <Label text="Voornaam" GridPane.rowIndex="2" />
-                  <Label text="Naam" GridPane.rowIndex="3" />
-                  <Label text="E-mail" GridPane.rowIndex="4" />
-                  <Label text="Status" GridPane.rowIndex="5" />
-                  <Label id="title" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Bedrijfsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-                  <Label text="Bedrijfsnaam" GridPane.rowIndex="7" />
-                  <Label text="Land" GridPane.rowIndex="8" />
-                  <Label text="Gemeente" GridPane.rowIndex="9" />
-                  <Label text="Straat" GridPane.rowIndex="10" />
-                  <Label prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="12" />
+                  <Label fx:id="lblKlantgegevens" id="title" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Klantgegevens" GridPane.columnSpan="2" />
+                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="1" />
+                  <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="2" />
+                  <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="3" />
+                  <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="4" />
+                  <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="5" />
+                  <Label fx:id="lblBedrijfsgegevens" id="title" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Bedrijfsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                  <Label fx:id="lblBedrijfsnaam" text="Bedrijfsnaam" GridPane.rowIndex="7" />
+                  <Label fx:id="lblLand" text="Land" GridPane.rowIndex="8" />
+                  <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="9" />
+                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="10" />
+                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="12" />
                   <Pane GridPane.columnSpan="2" GridPane.rowIndex="13">
                      <children>
-                        <TextArea layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
+                        <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
                      </children>
                   </Pane>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <HBox GridPane.rowIndex="11">
                      <children>
-                        <Label text="Huisnr" />
-                        <TextField prefHeight="26.0" prefWidth="57.0">
+                        <Label fx:id="lblHuisnr" text="Huisnr" />
+                        <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="57.0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -206,8 +206,8 @@
                   </HBox>
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="11">
                      <children>
-                        <Label text="Busnr" />
-                        <TextField prefHeight="26.0" prefWidth="65.0">
+                        <Label fx:id="lblBusnr" text="Busnr" />
+                        <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -218,12 +218,12 @@
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
+      <Button fx:id="btnKlantWijzigen" id="buttonright" layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button id="buttonright" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
+      <Button fx:id="btnKlantToevoegen" id="buttonright" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
          <font>
             <Font size="11.0" />
          </font>
