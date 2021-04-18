@@ -2,7 +2,6 @@ package gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 import domein.controllers.AanmeldController;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,29 +22,16 @@ import resourcebundle.Taal;
 
 public class InlogSchermController extends AnchorPane{
 	private AanmeldController adc;
-	@FXML
-    private AnchorPane loginPane;
-	
-	@FXML
-    private ResourceBundle resources;
-	@FXML
-    private TextField txtfGebruikersnaam;
-	@FXML
-    private PasswordField pwfWachtwoord;
-	@FXML
-    private Text txtActiontarget;
-	@FXML
-	private Label lblWelkom;
-	@FXML
-	private Label lblGebruikersnaam;
-	@FXML
-	private Label lblWachtwoord;
-	
-	@FXML
-    private Button btnLogin;
-	
-	 @FXML 
-	private ComboBox<String> talenCombo; 
+	@FXML private AnchorPane loginPane;
+		
+	@FXML private Label lblGebruikersnaam;
+	@FXML private TextField txtfGebruikersnaam;
+	@FXML private Label lblWachtwoord;
+	@FXML private PasswordField pwfWachtwoord;
+	@FXML private Text txtActiontarget;
+	@FXML private Label lblWelkom;	
+	@FXML private Button btnLogin;
+	@FXML private ComboBox<String> talenCombo; 
 
 	public InlogSchermController(AanmeldController aanmeldController) {
     this.adc = aanmeldController;
@@ -108,8 +93,7 @@ public class InlogSchermController extends AnchorPane{
     		scene = new Scene(root3);
 			break;
 		}
-	
-    		
+	   		
     		stage.setScene(scene);
     		
     		stage.setOnShown((WindowEvent t) -> {
@@ -117,8 +101,6 @@ public class InlogSchermController extends AnchorPane{
                 stage.setMinHeight(stage.getHeight());
             });
             stage.show();
-    	
-    	
     }
 	
 	@FXML
