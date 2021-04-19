@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -64,8 +65,12 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	
 	// Werknemer detail paneel (rechts)
 	@FXML private Label lblPersonneelsgegevens;
+	@FXML private Label lblPersoneelsnr;
+	@FXML private TextField txfPersoneelsnr;
 	@FXML private Label lblGebruikersnaam;
 	@FXML private TextField txfGebruikersnaam;
+	@FXML private Label lblWachtwoord;
+	@FXML private PasswordField pwfWachtwoord;
 	@FXML private Label lblVoornaam;
 	@FXML private TextField txfVoornaam;
 	@FXML private Label lblNaam;

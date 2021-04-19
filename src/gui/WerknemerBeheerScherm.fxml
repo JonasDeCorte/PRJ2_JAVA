@@ -172,7 +172,9 @@
               </rowConstraints>
                <children>
                   <Label id="title" fx:id="lblPersoneelsgegegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" />
-                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="1" />
+                  <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="1" />
+                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="2" />
+                  <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="3" />
                   <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="4" />
                   <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="5" />
                   <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="6" />
@@ -187,7 +189,9 @@
                         <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
                      </children>
                   </Pane>
-                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -216,11 +220,7 @@
                      </children>
                   </HBox>
                   <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="9" />
-                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" promptText="Administrator" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <Label text="Personeelsnr" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Wachtwoord" GridPane.rowIndex="3" />
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" promptText="Administrator" GridPane.columnIndex="1" GridPane.rowIndex="9" />                  
                </children>
             </GridPane>
          </children>
