@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import domein.controllers.AanmeldController;
+import domein.controllers.GebruikerController;
 import domein.enumerations.WERKNEMERROL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.stage.WindowEvent;
 
 public class WerknemerBeheerSchermController extends AnchorPane{
 	private AanmeldController adc;
+	private GebruikerController gebruikerController;
 	
 	// Header (bovenaan)
 	@FXML private Button btnUitloggen;
@@ -86,6 +88,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private TextField txfLand;
 	@FXML private Label lblGemeente;
 	@FXML private TextField txfGemeente;
+	@FXML private Label lblPostcode;
+	@FXML private TextField txfPostcode;
 	@FXML private Label lblStraat;
 	@FXML private TextField txfStraat;
 	@FXML private Label lblTelefoonnummers;
@@ -109,8 +113,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-		
 	}
+	
 	@FXML
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
@@ -125,6 +129,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         });
         stage.show();
     }
+	
 	@FXML
     void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
@@ -139,6 +144,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         });
         stage.show();
     }
+	
 	@FXML
     void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();

@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="688.0" prefWidth="917.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="688.0" prefWidth="917.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="917.0" styleClass="navbar" stylesheets="@layout.css">
          <children>
@@ -153,21 +153,22 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="49.4" minHeight="10.0" prefHeight="42.20000305175781" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="35.799996948242196" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="35.799996948242196" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.4" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.39999999999999" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="37.20000610351563" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="46.79999389648438" minHeight="10.0" prefHeight="33.999972534179705" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="39.60002746582032" minHeight="10.0" prefHeight="29.199981689453125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="37.20001831054688" minHeight="10.0" prefHeight="37.20001831054688" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="33.59998168945313" minHeight="10.0" prefHeight="24.79999389648438" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="52.0000061035156" minHeight="10.0" prefHeight="22.799993896484352" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="60.5999816894531" minHeight="10.0" prefHeight="44.400006103515636" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="57.19998779296873" minHeight="10.0" prefHeight="42.39998779296877" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="51.60001220703123" minHeight="10.0" prefHeight="27.600012207031227" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="55.39999999999998" minHeight="10.0" prefHeight="29.199987792968727" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="37.60002441406249" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="46.79999389648438" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="39.60002746582032" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="37.20001831054688" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="23.599981689453102" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="39.60002746582032" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0000061035156" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="60.5999816894531" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.19998779296873" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="51.60001220703123" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="55.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="25.599951171874977" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="71.99997558593753" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -183,9 +184,10 @@
                   <Label fx:id="lblBedrijfsnaam" text="Bedrijfsnaam" GridPane.rowIndex="9" />
                   <Label fx:id="lblLand" text="Land" GridPane.rowIndex="10" />
                   <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="11" />
-                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="12" />
-                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="14" />
-                  <Pane GridPane.columnSpan="2" GridPane.rowIndex="15">
+                  <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="12" />
+                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="13" />
+                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="15" />
+                  <Pane GridPane.columnSpan="2" GridPane.rowIndex="16">
                      <children>
                         <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
                      </children>
@@ -199,9 +201,10 @@
                   <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="12" />  
+                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <HBox GridPane.rowIndex="13">
+                  <HBox GridPane.rowIndex="14">
                      <children>
                         <Label fx:id="lblHuisnr" text="Huisnr" />
                         <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="57.0">
@@ -211,7 +214,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="13">
+                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="14">
                      <children>
                         <Label fx:id="lblBusnr" text="Busnr" />
                         <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
@@ -220,7 +223,7 @@
                            </HBox.margin>
                         </TextField>
                      </children>
-                  </HBox>                  
+                  </HBox>                
                </children>
             </GridPane>
          </children>

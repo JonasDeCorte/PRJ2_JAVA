@@ -85,6 +85,8 @@ public class KlantBeheerSchermController extends AnchorPane{
 	@FXML private TextField txfLand;
 	@FXML private Label lblGemeente;
 	@FXML private TextField txfGemeente;
+	@FXML private Label lblPostcode;
+	@FXML private TextField txfPostcode;
 	@FXML private Label lblStraat;
 	@FXML private TextField txfStraat;
 	@FXML private Label lblTelefoonnummers;
