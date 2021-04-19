@@ -9,4 +9,11 @@ public class KlantDaoJpa extends GenericDaoJpa<Klant> implements KlantDao {
 		super(Klant.class);
 	}
 
+	@Override
+	public boolean bestaatKlant(String gebruikersnaam) {
+		// TODO Auto-generated method stub
+		return em.createNamedQuery("Klant.bestaatKlant", Long.class).setParameter("gebruikersnaam", gebruikersnaam)
+				.getSingleResult() == 1;
+	}
+
 }
