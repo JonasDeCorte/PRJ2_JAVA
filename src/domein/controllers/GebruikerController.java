@@ -11,11 +11,11 @@ import javafx.collections.ObservableList;
 
 public class GebruikerController {
 	private KlantBeheerder klantBeheerder;
-private WerknemerBeheerder werknemerBeheerder;
+	private WerknemerBeheerder werknemerBeheerder;
 	
-	public GebruikerController(KlantBeheerder klantBeheerder, WerknemerBeheerder werknemerBeheerder) {
-		this.klantBeheerder = klantBeheerder;
-		this.werknemerBeheerder = werknemerBeheerder;
+	public GebruikerController() {
+		this.klantBeheerder = new KlantBeheerder();
+		this.werknemerBeheerder = new WerknemerBeheerder();
 	}
 	public boolean bestaatKlant(String gebruikersNaam) {
 		return klantBeheerder.bestaatKlant(gebruikersNaam);

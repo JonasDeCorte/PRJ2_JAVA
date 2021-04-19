@@ -3,13 +3,15 @@ package domein.beheerders;
 import domein.Werknemer;
 import domein.dao.AanmeldPogingDao;
 import domein.dao.WerknemerDao;
+import repository.AanmeldPogingDaoJpa;
+import repository.WerknemerDaoJpa;
 
 public class WerknemerBeheerder {
 	private WerknemerDao werknemerDao;
 	private AanmeldPogingDao aanmeldPogingDao;
 	
 	public WerknemerBeheerder() {
-
+		this(new WerknemerDaoJpa(), new AanmeldPogingDaoJpa());
 	}
 
 	public WerknemerBeheerder(WerknemerDao werknemerDao, AanmeldPogingDao aanmeldPogingDao) {

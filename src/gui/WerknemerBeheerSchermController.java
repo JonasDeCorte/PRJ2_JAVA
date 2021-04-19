@@ -2,7 +2,10 @@ package gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
+import domein.Adres;
+import domein.Werknemer;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
 import domein.enumerations.WERKNEMERROL;
@@ -104,6 +107,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	
 	public WerknemerBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
+		this.gebruikerController = new GebruikerController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemerBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -113,6 +117,19 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
+	    
+	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
+	    cboFunctie.setOnMouseClicked(e -> {
+	    	cboFunctie.getValue();
+	    });
+	}
+	
+	@FXML
+	public void voegWerknemerToe(ActionEvent event) {
+		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+		Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), txfNaam.getText(), 
+				txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList("+32 567 85 44 23"), cboFunctie.getValue(), adres);
+		gebruikerController.voegWerknemerToe(werknemer);
 	}
 	
 	@FXML
