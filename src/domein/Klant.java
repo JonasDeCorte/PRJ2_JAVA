@@ -8,15 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@NamedQueries({ @NamedQuery(name = "Klant.findAll", query = "SELECT k FROM Klant k"),
-	@NamedQuery(name = "Klant.geefKlant", query = "SELECT k FROM Klant k WHERE k.gebruikersnaam = :gebruikersnaam"),
-	@NamedQuery(name = "Klant.bestaatKlant", query = "SELECT COUNT(k) FROM Klant k WHERE k.gebruikersnaam = :gebruikersnaam") })
 public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
