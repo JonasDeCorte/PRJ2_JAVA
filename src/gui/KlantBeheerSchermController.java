@@ -9,6 +9,7 @@ import domein.Bedrijf;
 import domein.Klant;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
+import domein.enumerations.GEBRUIKERSTATUS;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -128,18 +129,19 @@ public class KlantBeheerSchermController extends AnchorPane{
 	}
 	
 	@FXML
-	void voegKlantToe(ActionEvent event) {
-		if(klantDetailsControleren()) {	
-		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
-				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
-		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
-				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
-		gebruikerController.voegKlantToe(klant);	
-		klantDetailsLeegmaken();
-		klantTabelInvullen();
-		}
-	}
+    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
+		Stage stage = (Stage) this.getScene().getWindow();
+		stage.setTitle("HoofdMenuAdministrator");
+		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+		stage.setOnShown((WindowEvent t) -> {
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        });
+        stage.show();
+    }
 	
 	@FXML
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
@@ -172,19 +174,23 @@ public class KlantBeheerSchermController extends AnchorPane{
     }
 	
 	@FXML
-    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle("HoofdMenuAdministrator");
-		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
+	void voegKlantToe(ActionEvent event) {
+		if(klantDetailsControleren()) {	
+		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
+				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
+		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
 		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
+		if(chkStatus == null) {
+			klant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
+		}
+		
+		gebruikerController.voegKlantToe(klant);	
+		klantDetailsLeegmaken();
+		klantTabelInvullen();
+		}
+	}
 	
 	private void initializeGUIComponenten() {		
 		
