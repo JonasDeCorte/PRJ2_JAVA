@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Taal;
 
 public class HoofdMenuAdministratorController extends AnchorPane {
 	private AanmeldController adc;
@@ -52,7 +53,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-		
+	    initializeGUIComponenten();
 	}
 	
 	@FXML
@@ -84,4 +85,16 @@ public class HoofdMenuAdministratorController extends AnchorPane {
         });
         stage.show();
     }
+	
+	private void initializeGUIComponenten() {		
+		
+		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
+		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
+	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
+	    		initializeGUIComponenten();
+	    	}
+	    });
+	}
 }

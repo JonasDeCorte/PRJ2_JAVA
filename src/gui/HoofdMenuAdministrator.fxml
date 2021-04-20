@@ -65,45 +65,10 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="lblTicketBeheer" text="Ticket beheer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button fx:id="btnTicket" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnTicketType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnRapport" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Label fx:id="lblContractBeheer" text="Contract beheer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button fx:id="btnContract" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="btnContractType" id="buttonleft" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
             <PointLight color="CHARTREUSE" lightOn="true" />
             <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
                <VBox.margin>
-                  <Insets bottom="10.0" top="100.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
                <padding>
                   <Insets left="10.0" />

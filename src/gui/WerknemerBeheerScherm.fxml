@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="688.0" prefWidth="962.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="688.0" prefWidth="962.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="962.0" styleClass="navbar" stylesheets="@layout.css">
          <children>
@@ -71,45 +71,10 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="lblTicketBeheer" text="Ticket beheer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button id="buttonleft" fx:id="btnTicket" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Ticket">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button id="buttonleft" fx:id="btnTicketType" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="TicketType">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button id="buttonleft" fx:id="btnRapport" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="buttonleft" text="Rapport">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Label fx:id="lblContractBeheer" text="Contract beheer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button id="buttonleft" fx:id="btnContract" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" styleClass="buttonleft" text="Contract">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button id="buttonleft" fx:id="btnContractType" mnemonicParsing="false" prefHeight="26.0" prefWidth="112.0" styleClass="buttonleft" text="Contracttype">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
             <PointLight color="CHARTREUSE" lightOn="true" />
             <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
                <VBox.margin>
-                  <Insets bottom="10.0" top="100.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
                <padding>
                   <Insets left="10.0" />
@@ -228,12 +193,12 @@
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
+      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="695.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button id="buttonright" fx:id="btnWerknemerToevoegen" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" onAction="#voegWerknemerToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Werknemer Toevoegen">
+      <Button id="buttonright" fx:id="btnWerknemerToevoegen" layoutX="823.0" layoutY="649.0" mnemonicParsing="false" onAction="#voegWerknemerToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Werknemer Toevoegen">
          <font>
             <Font size="11.0" />
          </font>
