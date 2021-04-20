@@ -9,6 +9,8 @@ import domein.Werknemer;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
 import domein.enumerations.WERKNEMERROL;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +21,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -62,12 +66,13 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Button btnClearFilters;
 	
 	// Werknemers tabel (midden)
-	@FXML private TableColumn tbcPersoneelsnr;
-	@FXML private TableColumn tbcGebruikersnaam;
-	@FXML private TableColumn tbcVoornaam;
-	@FXML private TableColumn tbcNaam;
-	@FXML private TableColumn tbcFunctie;
-	@FXML private TableColumn tbcStatus;
+	@FXML private TableView<Werknemer> tblWerknemers;
+	@FXML private TableColumn<Werknemer,Integer> tbcPersoneelsnr;
+	@FXML private TableColumn<Werknemer,String> tbcGebruikersnaam;
+	@FXML private TableColumn<Werknemer,String> tbcVoornaam;
+	@FXML private TableColumn<Werknemer,String> tbcNaam;
+	@FXML private TableColumn<Werknemer,String> tbcFunctie;
+	@FXML private TableColumn<Werknemer,String> tbcStatus;
 	
 	// Werknemer detail paneel (rechts)
 	@FXML private Label lblPersonneelsgegevens;
@@ -119,6 +124,20 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();
+	    
+	    tbcPersoneelsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getPersoneelsnummer()).asObject());
+	    
+	    tbcGebruikersnaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikersnaam()));
+
+        tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
+        
+        tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
+        
+        tbcFunctie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRol().toString()));
+        
+        tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
+        
+        tblWerknemers.setItems(gebruikerController.getAllWerknemer());
 	}
 	
 	@FXML

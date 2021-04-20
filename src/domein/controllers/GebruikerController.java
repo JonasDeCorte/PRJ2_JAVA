@@ -37,6 +37,10 @@ public class GebruikerController {
 	public ObservableList<Klant> getAllKlanten() {
 		return klantBeheerder.haalKlantenOp();
 	}
+	
+	public ObservableList<Werknemer> getAllWerknemer() {
+		return werknemerBeheerder.haalWerknemersOp();
+	}
 	public void voegWerknemerToe (Werknemer werknemer) {
 		werknemerBeheerder.voegWerknemerToe(werknemer);
 	}

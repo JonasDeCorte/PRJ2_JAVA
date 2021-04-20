@@ -23,9 +23,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="688.0" prefWidth="917.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="688.0" prefWidth="962.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="917.0" styleClass="navbar" stylesheets="@layout.css">
+      <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="962.0" styleClass="navbar" stylesheets="@layout.css">
          <children>
             <ImageView fitHeight="31.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -122,9 +122,9 @@
             </ComboBox>
          </children>
       </VBox>
-      <HBox layoutX="142.0" layoutY="66.0" prefHeight="570.0" prefWidth="770.0">
+      <HBox layoutX="142.0" layoutY="66.0" prefHeight="570.0" prefWidth="814.0">
          <children>
-            <Pane prefHeight="598.0" prefWidth="505.0">
+            <Pane prefHeight="570.0" prefWidth="558.0">
                <children>
                   <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
                   <CheckBox fx:id="chkActieveWerknemers" layoutX="33.0" layoutY="54.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="142.0" text="Actieve werknemers" />
@@ -135,14 +135,14 @@
                   <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
                   <TextField fx:id="txfFilterFunctie" layoutX="361.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Functie" />
                   <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
-                  <TableView layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="467.0">
+                  <TableView fx:id="tblWerknemers" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="531.0">
                     <columns>
                       <TableColumn fx:id="tbcPersoneelsnr" prefWidth="82.40005493164062" text="Personeelsnr" />
                       <TableColumn fx:id="tbcGebruikersnaam" prefWidth="98.40008544921875" text="Gebruikersnaam" />
                         <TableColumn fx:id="tbcVoornaam" prefWidth="68.7999267578125" text="Voornaam" />
                         <TableColumn fx:id="tbcNaam" prefWidth="83.199951171875" text="Naam" />
-                        <TableColumn fx:id="tbcFunctie" text="Functie" />
-                        <TableColumn fx:id="tbcStatus" prefWidth="56.0" text="Status" />
+                        <TableColumn fx:id="tbcFunctie" prefWidth="114.4000244140625" text="Functie" />
+                        <TableColumn fx:id="tbcStatus" prefWidth="81.5999755859375" text="Status" />
                     </columns>
                   </TableView>
                </children>
