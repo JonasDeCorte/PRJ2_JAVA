@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Optional;
 
 import domein.Adres;
 import domein.Bedrijf;
@@ -18,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -30,7 +32,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import repository.BedrijfDaoJpa;
 import resourcebundle.Taal;
 
 public class KlantBeheerSchermController extends AnchorPane{
@@ -174,6 +175,32 @@ public class KlantBeheerSchermController extends AnchorPane{
     }
 	
 	@FXML
+	void uitloggen(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Uitloggen bevestigen");
+		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK) {
+			Stage stage = (Stage) this.getScene().getWindow();
+			stage.setTitle("Actemium");
+			InlogSchermController root = new InlogSchermController(adc);
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			
+			stage.setOnShown((WindowEvent t) -> {
+	            stage.setMinWidth(stage.getWidth());
+	            stage.setMinHeight(stage.getHeight());
+	        });
+	        stage.show();
+		}
+		if (result.get() == ButtonType.CANCEL) {
+			alert.close();
+		}	
+	}
+	
+	@FXML
 	void voegKlantToe(ActionEvent event) {
 		if(klantDetailsControleren()) {	
 		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
@@ -219,20 +246,20 @@ public class KlantBeheerSchermController extends AnchorPane{
 	}
 	
 	private void klantDetailsLeegmaken() {
-		txfKlantnr.setText("");
-		txfGebruikersnaam.setText("");
-		pwfWachtwoord.setText("");
-		txfVoornaam.setText("");
-		txfNaam.setText("");
-		txfEmail.setText("");
-		txfBedrijfsnaam.setText("");
-		txfLand.setText("");
-		txfGemeente.setText("");
-		txfPostcode.setText("");
-		txfStraat.setText("");
-		txfHuisnr.setText("");
-		txfBusnr.setText("");	
-		txaTelefoonnummers.setText("");
+		txfKlantnr.clear();
+		txfGebruikersnaam.clear();
+		pwfWachtwoord.clear();
+		txfVoornaam.clear();
+		txfNaam.clear();
+		txfEmail.clear();
+		txfBedrijfsnaam.clear();
+		txfLand.clear();
+		txfGemeente.clear();
+		txfPostcode.clear();
+		txfStraat.clear();
+		txfHuisnr.clear();
+		txfBusnr.clear();	
+		txaTelefoonnummers.clear();
 	}
 	
 	private boolean klantDetailsControleren() {

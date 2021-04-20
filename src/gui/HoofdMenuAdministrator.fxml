@@ -36,7 +36,7 @@
                </font>
             </Label>
             <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag Administrator" />
-            <Button fx:id="btnUitloggen" id="buttonright" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
+            <Button fx:id="btnUitloggen" id="buttonright" onAction="#uitloggen" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
                <HBox.margin>
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>

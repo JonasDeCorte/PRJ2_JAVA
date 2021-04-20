@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import domein.Adres;
@@ -22,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -177,6 +179,32 @@ public class WerknemerBeheerSchermController extends AnchorPane{
     }
 	
 	@FXML
+	void uitloggen(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Uitloggen bevestigen");
+		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK) {
+			Stage stage = (Stage) this.getScene().getWindow();
+			stage.setTitle("Actemium");
+			InlogSchermController root = new InlogSchermController(adc);
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			
+			stage.setOnShown((WindowEvent t) -> {
+	            stage.setMinWidth(stage.getWidth());
+	            stage.setMinHeight(stage.getHeight());
+	        });
+	        stage.show();
+		}
+		if (result.get() == ButtonType.CANCEL) {
+			alert.close();
+		}	
+	}
+	
+	@FXML
 	void voegWerknemerToe(ActionEvent event) {	
 		if(werknemerDetailsControleren()) {
 			Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
@@ -229,19 +257,19 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	}
 	
 	private void werknemerDetailsLeegmaken() {
-		txfPersoneelsnr.setText("");
-		txfGebruikersnaam.setText("");
-		pwfWachtwoord.setText("");
-		txfVoornaam.setText("");
-		txfNaam.setText("");
-		txfEmail.setText("");
-		txaTelefoonnummers.setText("");
-		txfLand.setText("");
-		txfGemeente.setText("");
-		txfPostcode.setText("");
-		txfStraat.setText("");
-		txfHuisnr.setText("");
-		txfBusnr.setText("");
+		txfPersoneelsnr.clear();
+		txfGebruikersnaam.clear();
+		pwfWachtwoord.clear();
+		txfVoornaam.clear();
+		txfNaam.clear();
+		txfEmail.clear();
+		txaTelefoonnummers.clear();
+		txfLand.clear();
+		txfGemeente.clear();
+		txfPostcode.clear();
+		txfStraat.clear();
+		txfHuisnr.clear();
+		txfBusnr.clear();
 		cboFunctie.getSelectionModel().select(1);
 	}
 	

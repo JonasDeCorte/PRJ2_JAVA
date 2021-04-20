@@ -1,14 +1,22 @@
 package gui;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import domein.controllers.AanmeldController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class HoofdMenuTechniekerController extends AnchorPane {
 	private AanmeldController adc;
@@ -48,6 +56,32 @@ public class HoofdMenuTechniekerController extends AnchorPane {
 	        throw new RuntimeException(ex);
 	    }
 		
+	}
+	
+	@FXML
+	void uitloggen(ActionEvent event) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Uitloggen bevestigen");
+		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if (result.get() == ButtonType.OK) {
+			Stage stage = (Stage) this.getScene().getWindow();
+			stage.setTitle("Actemium");
+			InlogSchermController root = new InlogSchermController(adc);
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			
+			stage.setOnShown((WindowEvent t) -> {
+	            stage.setMinWidth(stage.getWidth());
+	            stage.setMinHeight(stage.getHeight());
+	        });
+	        stage.show();
+		}
+		if (result.get() == ButtonType.CANCEL) {
+			alert.close();
+		}	
 	}
 
 }
