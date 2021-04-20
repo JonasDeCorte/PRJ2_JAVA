@@ -114,7 +114,7 @@ public abstract class Gebruiker implements Serializable {
 		return gebruikerStatus;
 	}
 
-	private void setGebruikerStatus(GEBRUIKERSTATUS gebruikerStatus) {
+	public void setGebruikerStatus(GEBRUIKERSTATUS gebruikerStatus) {
 		this.gebruikerStatus = gebruikerStatus;
 	}
 
