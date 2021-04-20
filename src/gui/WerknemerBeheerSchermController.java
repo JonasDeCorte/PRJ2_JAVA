@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Taal;
 
 public class WerknemerBeheerSchermController extends AnchorPane{
 	private AanmeldController adc;
@@ -117,19 +118,19 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-	    
-	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
-	    cboFunctie.setOnMouseClicked(e -> {
-	    	cboFunctie.getValue();
-	    });
+	    initializeGUIComponenten();
 	}
 	
 	@FXML
-	public void voegWerknemerToe(ActionEvent event) {
-		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-		Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), txfNaam.getText(), 
-				txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList("+32 567 85 44 23"), cboFunctie.getValue(), adres);
+	void voegWerknemerToe(ActionEvent event) {		
+		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
+				Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+		Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList(txaTelefoonnummers.getText()),
+				cboFunctie.getValue(), adres);
+			
 		gebruikerController.voegWerknemerToe(werknemer);
+		werknemerDetailsLeegmaken();	
 	}
 	
 	@FXML
@@ -176,4 +177,41 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         });
         stage.show();
     }
+	
+	private void initializeGUIComponenten() {		
+		
+		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
+		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
+	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
+	    		initializeGUIComponenten();
+	    	}
+	    });
+	    
+	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
+	    cboFunctie.setOnMouseClicked(e -> {
+	    	cboFunctie.getValue();
+	    });
+	    cboFunctie.getSelectionModel().select(1);
+
+	}
+	
+	private void werknemerDetailsLeegmaken() {
+		txfPersoneelsnr.setText("");
+		txfGebruikersnaam.setText("");
+		pwfWachtwoord.setText("");
+		txfVoornaam.setText("");
+		txfNaam.setText("");
+		txfEmail.setText("");
+		txaTelefoonnummers.setText("");
+		txfLand.setText("");
+		txfGemeente.setText("");
+		txfPostcode.setText("");
+		txfStraat.setText("");
+		txfHuisnr.setText("");
+		txfBusnr.setText("");
+		cboFunctie.getSelectionModel().select(1);
+	}
+	
 }

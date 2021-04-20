@@ -44,13 +44,6 @@ public class InlogSchermController extends AnchorPane{
     } catch (IOException ex) {
         throw new RuntimeException(ex);
     }	
-    
-    talenCombo.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
-    	if(nieuweTaal != null) {
-    		Taal.instellenTaal(talenCombo.getSelectionModel().getSelectedIndex());
-    		initialize();
-    	}
-    });
 	}
 	
 	@FXML
@@ -104,7 +97,13 @@ public class InlogSchermController extends AnchorPane{
     }
 	
 	@FXML
-	public void initialize() {
+	public void initialize() {		
+	    talenCombo.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(talenCombo.getSelectionModel().getSelectedIndex());
+	    		initialize();
+	    	}
+	    });
 		lblWelkom.setText(Taal.geefTekst("welkom"));
 		lblGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
 		lblWachtwoord.setText(Taal.geefTekst("wachtwoord"));

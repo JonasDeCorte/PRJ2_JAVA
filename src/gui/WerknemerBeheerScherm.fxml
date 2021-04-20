@@ -201,7 +201,7 @@
                   <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="14" />      
                   <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                  <CheckBox fx:id="ckbStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <CheckBox fx:id="ckbStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <HBox GridPane.rowIndex="16">
                      <children>
                         <Label fx:id="lblHuisnr" text="Huisnr" />
@@ -223,17 +223,17 @@
                      </children>
                   </HBox>
                   <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="9" />
-                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" promptText="Administrator" GridPane.columnIndex="1" GridPane.rowIndex="9" />        
+                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />        
                </children>
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" fx:id="btnWerknemerWijzigen"  layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
+      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button id="buttonright" fx:id="btnWerknemerToevoegen" onAction="#voegWerknemerToe" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Werknemer Toevoegen">
+      <Button id="buttonright" fx:id="btnWerknemerToevoegen" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" onAction="#voegWerknemerToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Werknemer Toevoegen">
          <font>
             <Font size="11.0" />
          </font>

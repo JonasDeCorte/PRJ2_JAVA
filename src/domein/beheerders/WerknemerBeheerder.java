@@ -40,7 +40,7 @@ public class WerknemerBeheerder {
 		werknemerDao.startTransaction();
 		werknemerDao.insert(werknemer);
 		werknemerDao.commitTransaction();
-		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
+		//filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
 	}
 	
 	public void wijzigWerknemer(Werknemer werknemer) {
