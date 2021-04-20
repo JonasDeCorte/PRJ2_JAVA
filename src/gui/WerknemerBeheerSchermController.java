@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -272,5 +273,32 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 			alert.showAndWait();
 			return false;
 		}
-	}	
+		
+
+	}
+	//	Filters
+		@FXML
+	    private void filterGebruiker(KeyEvent event) {
+			filteren();
+}	
+		@FXML
+	    private void filterVoornaam(KeyEvent event) {
+			filteren();
+}	
+		@FXML
+	    private void filterNaam(KeyEvent event) {
+			filteren();
+}	
+		@FXML
+	    private void filterFunctie(KeyEvent event) {
+	        filteren();
+}	
+		private void filteren() {
+			String gebruikersnaam = txfFilterGebruikersnaam.getText();
+	        String naam = txfFilterNaam.getText();
+	        String voornaam = txfFilterVoornaam.getText();
+	        String functie = txfFilterFunctie.getText();
+	        
+	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie);
+		}
 }

@@ -1,5 +1,6 @@
 package domein.controllers;
 
+import java.util.List;
 import java.util.Set;
 
 import domein.Klant;
@@ -7,6 +8,7 @@ import domein.Werknemer;
 import domein.beheerders.KlantBeheerder;
 import domein.beheerders.WerknemerBeheerder;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.WERKNEMERROL;
 import javafx.collections.ObservableList;
 
 public class GebruikerController {
@@ -32,6 +34,10 @@ public class GebruikerController {
 	public void pasFilterAanKlant(int klantnummer, String gebruikersnaam, String bedrijfsnaam,Set<GEBRUIKERSTATUS> status)
 	{
 		klantBeheerder.pasFilterAan(klantnummer, gebruikersnaam, bedrijfsnaam, status);
+	}
+	public void pasFilterAanWerknemer(String gebruikersnaam, String naam,String voornaam,String functie)
+	{
+		werknemerBeheerder.pasFilterAan(gebruikersnaam, naam, voornaam, functie);
 	}
 
 	public ObservableList<Klant> getAllKlanten() {

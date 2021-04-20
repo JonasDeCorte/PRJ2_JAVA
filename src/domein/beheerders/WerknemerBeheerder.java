@@ -65,13 +65,9 @@ public class WerknemerBeheerder {
 		}
 		return FXCollections.unmodifiableObservableList(filteredWerknemerLijst);
 	}
-	public void pasFilterAan(int personeelsNummer, String gebruikersnaam, String naam, String voornaam,	List<GEBRUIKERSTATUS> gebruikerStatus, List<WERKNEMERROL> werknemerRol) 
+	public void pasFilterAan(String gebruikersnaam, String naam, String voornaam, String werknemerFunctie) 
 		{
 		List<Predicate<Werknemer>> werknemerFilters = new ArrayList<>();
-
-		if (personeelsNummer >= 0) {
-			werknemerFilters.add(werknemer -> Integer.toString(werknemer.getPersoneelsnummer()).startsWith(Integer.toString(personeelsNummer)));
-		}
 
 		if (gebruikersnaam != null && !gebruikersnaam.isBlank()) {
 			werknemerFilters.add(werknemer -> werknemer.getGebruikersnaam().toLowerCase().contains(gebruikersnaam.toLowerCase()));		
@@ -85,12 +81,12 @@ public class WerknemerBeheerder {
 			werknemerFilters.add(werknemer -> werknemer.getVoornaam().toLowerCase().contains(voornaam.toLowerCase()));
 		}
 
-		if (gebruikerStatus != null && (gebruikerStatus.size() > 0 || gebruikerStatus.size() >= GEBRUIKERSTATUS.values().length)) {
+		/*if (gebruikerStatus != null && (gebruikerStatus.size() > 0 || gebruikerStatus.size() >= GEBRUIKERSTATUS.values().length)) {
 			werknemerFilters.add(werknemer -> gebruikerStatus.contains(werknemer.getGebruikerStatus()));
-		}
+		} Kan nog handig zijn later			*/
 
-		if (werknemerRol != null && (werknemerRol.size() > 0 || werknemerRol.size() >= WERKNEMERROL.values().length)) {
-			werknemerFilters.add(werknemer -> werknemerRol.contains(werknemer.getRol()));
+		if (werknemerFunctie != null && !werknemerFunctie.isBlank()) {
+			werknemerFilters.add(werknemer ->  werknemer.getRol().toString().toLowerCase().contains(werknemerFunctie.toLowerCase()));
 		}
 
 		Predicate<Werknemer> werknemerFilter = werknemerFilters.stream().reduce(Predicate::and).orElse(x -> true);
