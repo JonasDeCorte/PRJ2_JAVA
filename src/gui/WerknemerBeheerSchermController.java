@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -24,7 +26,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -124,32 +125,27 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();
-	    
 	    tbcPersoneelsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getPersoneelsnummer()).asObject());
-	    
 	    tbcGebruikersnaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikersnaam()));
-
         tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
-        
         tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
-        
         tbcFunctie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRol().toString()));
-        
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
-        
         tblWerknemers.setItems(gebruikerController.getAllWerknemer());
 	}
 	
 	@FXML
-	void voegWerknemerToe(ActionEvent event) {		
-		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
-				Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-		Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
-				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList(txaTelefoonnummers.getText()),
-				cboFunctie.getValue(), adres);
-			
-		gebruikerController.voegWerknemerToe(werknemer);
-		werknemerDetailsLeegmaken();	
+	void voegWerknemerToe(ActionEvent event) {	
+		if(werknemerDetailsControleren()) {
+			Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
+					Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+			Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+					txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList(txaTelefoonnummers.getText()),
+					cboFunctie.getValue(), adres);
+				
+			gebruikerController.voegWerknemerToe(werknemer);
+			werknemerDetailsLeegmaken();	
+		} 
 	}
 	
 	@FXML
@@ -170,7 +166,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML
     void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle("WerknemerBeheren");
+		stage.setTitle(Taal.geefTekst("werknemerbeheer"));
 		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
@@ -198,6 +194,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
     }
 	
 	private void initializeGUIComponenten() {		
+		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
 		
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
@@ -233,4 +231,46 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		cboFunctie.getSelectionModel().select(1);
 	}
 	
+	private boolean werknemerDetailsControleren() {
+		String opsommingFoutmelding = "Volgende fouten zijn opgetreden: \n";
+		String foutMelding = opsommingFoutmelding;
+		
+		if(txfPersoneelsnr.getText().isBlank()) 
+			foutMelding += "- Het personeelsnummer is verplicht in te vullen\n";
+		if(txfGebruikersnaam.getText().length() < 4) 
+			foutMelding += "- De gebruikersnaam moet minstens 4 karakters lang zijn\n";
+		if(txfVoornaam.getText().isBlank()) 
+			foutMelding += "- De voornaam is verplicht in te vullen\n";
+		if(txfNaam.getText().isBlank())
+			foutMelding += "- De naam is verplicht in te vullen\n";
+		if(pwfWachtwoord.getText().isBlank())
+			foutMelding += "- Het wachtwoord is verplicht in te vullen\n";
+		if(txfEmail.getText().isBlank())
+			foutMelding += "- Het emailadres is verplicht in te vullen\n";
+		if(!txfEmail.getText().matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
+			foutMelding += "- Het emailadres is ongeldig\n";
+		if(txaTelefoonnummers.getText().isBlank()) 
+			foutMelding += "- Het telefoonnummer is verplicht in te vullen\n";
+		if(txfLand.getText().isBlank())
+			foutMelding += "- Het land is verplicht in te vullen\n";
+		if(txfGemeente.getText().isBlank())
+			foutMelding += "- De gemeente is verplicht in te vullen\n";
+		if(txfPostcode.getText().isBlank())
+			foutMelding += "- De postcode is verplicht in te vullen\n";
+		if(txfStraat.getText().isBlank())
+			foutMelding += "- De straat is verplicht in te vullen\n";
+		if(txfHuisnr.getText().isBlank())
+			foutMelding += "- Het huisnummer is verplicht in te vullen\n";
+		
+		if(foutMelding.equals(opsommingFoutmelding)) {
+			return true;
+		} else {
+			Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle("Ongeldige invoergegevens");
+			alert.setHeaderText("Fout bij het aanmaken van een nieuwe werknemer");
+			alert.setContentText(foutMelding);
+			alert.showAndWait();
+			return false;
+		}
+	}	
 }
