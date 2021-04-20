@@ -44,7 +44,7 @@ public class KlantBeheerder {
 		klantDao.startTransaction();
 		klantDao.insert(klant);
 		klantDao.commitTransaction();
-		filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
+		//filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
 
 	}
 

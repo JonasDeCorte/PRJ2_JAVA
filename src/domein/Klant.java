@@ -21,7 +21,7 @@ public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private int klantnummer;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Bedrijf bedrijf;
 	@OneToMany(mappedBy = "klant", cascade = CascadeType.PERSIST)
 	private List<Contract> contracten;
