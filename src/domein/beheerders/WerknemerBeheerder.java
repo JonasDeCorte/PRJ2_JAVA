@@ -65,7 +65,7 @@ public class WerknemerBeheerder {
 		}
 		return FXCollections.unmodifiableObservableList(filteredWerknemerLijst);
 	}
-	public void pasFilterAan(String gebruikersnaam, String naam, String voornaam, String werknemerFunctie) 
+	public void pasFilterAan(String gebruikersnaam, String naam, String voornaam, String werknemerFunctie, Set<GEBRUIKERSTATUS> status) 
 		{
 		List<Predicate<Werknemer>> werknemerFilters = new ArrayList<>();
 
@@ -81,9 +81,9 @@ public class WerknemerBeheerder {
 			werknemerFilters.add(werknemer -> werknemer.getVoornaam().toLowerCase().contains(voornaam.toLowerCase()));
 		}
 
-		/*if (gebruikerStatus != null && (gebruikerStatus.size() > 0 || gebruikerStatus.size() >= GEBRUIKERSTATUS.values().length)) {
-			werknemerFilters.add(werknemer -> gebruikerStatus.contains(werknemer.getGebruikerStatus()));
-		} Kan nog handig zijn later			*/
+		if (status != null && (status.size() > 0 || status.size() >= GEBRUIKERSTATUS.values().length)) {
+			werknemerFilters.add(werknemer -> status.contains(werknemer.getGebruikerStatus()));
+		} 
 
 		if (werknemerFunctie != null && !werknemerFunctie.isBlank()) {
 			werknemerFilters.add(werknemer ->  werknemer.getRol().toString().toLowerCase().contains(werknemerFunctie.toLowerCase()));

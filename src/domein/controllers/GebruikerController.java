@@ -35,9 +35,9 @@ public class GebruikerController {
 	{
 		klantBeheerder.pasFilterAan(klantnummer, gebruikersnaam, bedrijfsnaam, status);
 	}
-	public void pasFilterAanWerknemer(String gebruikersnaam, String naam,String voornaam,String functie)
+	public void pasFilterAanWerknemer(String gebruikersnaam, String naam,String voornaam,String functie,Set<GEBRUIKERSTATUS> status)
 	{
-		werknemerBeheerder.pasFilterAan(gebruikersnaam, naam, voornaam, functie);
+		werknemerBeheerder.pasFilterAan(gebruikersnaam, naam, voornaam, functie,status);
 	}
 
 	public ObservableList<Klant> getAllKlanten() {

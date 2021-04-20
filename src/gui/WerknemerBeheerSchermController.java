@@ -3,11 +3,14 @@ package gui;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import domein.Adres;
 import domein.Werknemer;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
+import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.WERKNEMERROL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -280,25 +283,56 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		@FXML
 	    private void filterGebruiker(KeyEvent event) {
 			filteren();
-}	
+		}	
 		@FXML
 	    private void filterVoornaam(KeyEvent event) {
 			filteren();
-}	
+		}	
 		@FXML
 	    private void filterNaam(KeyEvent event) {
 			filteren();
-}	
+		}	
 		@FXML
 	    private void filterFunctie(KeyEvent event) {
 	        filteren();
-}	
+		}
+		@FXML
+	    private void clear(ActionEvent actionEvent) {
+			txfFilterGebruikersnaam.clear();
+			txfFilterNaam.clear();
+			txfFilterVoornaam.clear();
+			txfFilterFunctie.clear();
+			filteren();
+			
+		}
+		@FXML
+	    private void toonActieve(ActionEvent actionEvent) {
+			filteren();
+			
+		}
+		@FXML
+	    private void toonInactieve(ActionEvent actionEvent) {
+			filteren();
+		}
+		@FXML
+	    private void toonGeblokkeerde(ActionEvent actionEvent) {
+			filteren();
+		}
 		private void filteren() {
 			String gebruikersnaam = txfFilterGebruikersnaam.getText();
 	        String naam = txfFilterNaam.getText();
 	        String voornaam = txfFilterVoornaam.getText();
 	        String functie = txfFilterFunctie.getText();
+	        Set<GEBRUIKERSTATUS> status = new HashSet<>();;
+	        if(chkActieveWerknemers.isSelected())
+	        	status.add(GEBRUIKERSTATUS.ACTIEF);
+	        if(chkInactieveWerknemers.isSelected())
+	        	status.add(GEBRUIKERSTATUS.NIET_ACTIEF);
+	        if(chkGeblokkeerdeWerknemers.isSelected())
+	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
 	        
-	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie);
+	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie,status);
 		}
+		
+		
 }
