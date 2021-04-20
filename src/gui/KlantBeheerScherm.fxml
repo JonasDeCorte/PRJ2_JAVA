@@ -203,11 +203,11 @@
                   <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="12" />  
                   <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <HBox GridPane.rowIndex="14">
                      <children>
                         <Label fx:id="lblHuisnr" text="Huisnr" />
-                        <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="57.0">
+                        <TextField fx:id="txfHuisnr" prefHeight="26.0" prefWidth="57.0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -233,7 +233,7 @@
             <Font size="11.0" />
          </font>
       </Button>
-      <Button id="buttonright" fx:id="btnKlantToevoegen" layoutX="765.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
+      <Button id="buttonright" fx:id="btnKlantToevoegen" layoutX="765.0" layoutY="649.0" mnemonicParsing="false"  onAction="#voegKlantToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
          <font>
             <Font size="11.0" />
          </font>

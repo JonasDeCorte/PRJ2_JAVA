@@ -2,8 +2,15 @@ package gui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 
+import domein.Adres;
+import domein.Bedrijf;
+import domein.Klant;
 import domein.controllers.AanmeldController;
+import domein.controllers.GebruikerController;
+import domein.dao.BedrijfDao;
+import domein.enumerations.WERKNEMERROL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +26,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import repository.BedrijfDaoJpa;
+import resourcebundle.Taal;
 
 public class KlantBeheerSchermController extends AnchorPane{
 	private AanmeldController adc;
+	private GebruikerController gebruikerController;
 	
 	// Header (bovenaan)
 	@FXML private Button btnUitloggen;
@@ -101,6 +111,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 	
 	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
+		this.gebruikerController = new GebruikerController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -110,7 +121,17 @@ public class KlantBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-		
+	    initializeGUIComponenten();	
+	}
+	
+	@FXML
+	void voegKlantToe(ActionEvent event) {
+		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
+				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
+		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
+		gebruikerController.voegKlantToe(klant);		
 	}
 	
 	@FXML
@@ -157,4 +178,16 @@ public class KlantBeheerSchermController extends AnchorPane{
         });
         stage.show();
     }
+	
+	private void initializeGUIComponenten() {		
+		
+		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
+		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
+	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
+	    		initializeGUIComponenten();
+	    	}
+	    });
+	}
 }
