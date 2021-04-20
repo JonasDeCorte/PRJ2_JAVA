@@ -148,7 +148,7 @@ public class TestAanmeldController {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> aanmeldController.aanmelden(gebruikersnaam, wachtwoord));
 	
 		Mockito.verify(werknemerDao).blokkeerWerknemer(gebruikersnaam);
-		Mockito.verify(werknemerDao).bestaatGebruikersnaam(gebruikersnaam);	
+		Mockito.verify(werknemerDao).bestaatWerknemer(gebruikersnaam);	
 		Mockito.verify(aanmeldpogingDao).geefAantalGefaaldeAanmeldPogingen(gebruikersnaam);
 	}
 

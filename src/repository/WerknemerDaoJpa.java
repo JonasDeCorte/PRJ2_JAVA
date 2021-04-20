@@ -35,8 +35,8 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 	}
 
 	@Override
-	public boolean bestaatGebruikersnaam(String gebruikersnaam) {
-		return em.createNamedQuery("Werknemer.bestaatGebruikersnaam", Long.class)
+	public boolean bestaatWerknemer(String gebruikersnaam) {
+		return em.createNamedQuery("Werknemer.bestaatWerknemer", Long.class)
 				.setParameter("gebruikersnaam", gebruikersnaam).getSingleResult() == 1;
 	}
 }
