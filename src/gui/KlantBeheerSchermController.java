@@ -9,14 +9,13 @@ import domein.Bedrijf;
 import domein.Klant;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
-import domein.dao.BedrijfDao;
-import domein.enumerations.WERKNEMERROL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -26,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -115,7 +115,6 @@ public class KlantBeheerSchermController extends AnchorPane{
 	
 	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
-		this.gebruikerController = new GebruikerController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -126,23 +125,20 @@ public class KlantBeheerSchermController extends AnchorPane{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();	
-	    tbcKlantsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getKlantnummer()).asObject());
-	    tbcGebruikersnaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikersnaam()));
-        tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
-        tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
-        tbcBedrijf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBedrijf().getBedrijfsnaam()));
-        tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
-        tblKlanten.setItems(gebruikerController.getAllKlanten());
 	}
 	
 	@FXML
 	void voegKlantToe(ActionEvent event) {
+		if(klantDetailsControleren()) {	
 		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
 				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
 		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
 		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
 				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
-		gebruikerController.voegKlantToe(klant);		
+		gebruikerController.voegKlantToe(klant);	
+		klantDetailsLeegmaken();
+		klantTabelInvullen();
+		}
 	}
 	
 	@FXML
@@ -200,5 +196,81 @@ public class KlantBeheerSchermController extends AnchorPane{
 	    		initializeGUIComponenten();
 	    	}
 	    });
+	    
+	    klantTabelInvullen();
+
 	}
+	
+	private void klantTabelInvullen() {
+		this.gebruikerController = new GebruikerController();
+	    tbcKlantsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getKlantnummer()).asObject());
+	    tbcGebruikersnaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikersnaam()));
+        tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
+        tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
+        tbcBedrijf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBedrijf().getBedrijfsnaam()));
+        tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
+        tblKlanten.setItems(gebruikerController.getAllKlanten());    
+	}
+	
+	private void klantDetailsLeegmaken() {
+		txfKlantnr.setText("");
+		txfGebruikersnaam.setText("");
+		pwfWachtwoord.setText("");
+		txfVoornaam.setText("");
+		txfNaam.setText("");
+		txfEmail.setText("");
+		txfBedrijfsnaam.setText("");
+		txfLand.setText("");
+		txfGemeente.setText("");
+		txfPostcode.setText("");
+		txfStraat.setText("");
+		txfHuisnr.setText("");
+		txfBusnr.setText("");	
+		txaTelefoonnummers.setText("");
+	}
+	
+	private boolean klantDetailsControleren() {
+		String opsommingFoutmelding = "Volgende fouten zijn opgetreden: \n";
+		String foutMelding = opsommingFoutmelding;
+		
+		if(txfKlantnr.getText().isBlank()) 
+			foutMelding += "- Het klantnummer is verplicht in te vullen\n";
+		if(txfGebruikersnaam.getText().length() < 4) 
+			foutMelding += "- De gebruikersnaam moet minstens 4 karakters lang zijn\n";
+		if(txfVoornaam.getText().isBlank()) 
+			foutMelding += "- De voornaam is verplicht in te vullen\n";
+		if(txfNaam.getText().isBlank())
+			foutMelding += "- De naam is verplicht in te vullen\n";
+		if(pwfWachtwoord.getText().isBlank())
+			foutMelding += "- Het wachtwoord is verplicht in te vullen\n";
+		if(txfEmail.getText().isBlank())
+			foutMelding += "- Het emailadres is verplicht in te vullen\n";
+		if(!txfEmail.getText().matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
+			foutMelding += "- Het emailadres is ongeldig\n";
+		if(txfBedrijfsnaam.getText().isBlank())
+			foutMelding += "- De bedrijfsnaam is verplicht in te vullen\n";
+		if(txfLand.getText().isBlank())
+			foutMelding += "- Het land is verplicht in te vullen\n";
+		if(txfGemeente.getText().isBlank())
+			foutMelding += "- De gemeente is verplicht in te vullen\n";
+		if(txfPostcode.getText().isBlank())
+			foutMelding += "- De postcode is verplicht in te vullen\n";
+		if(txfStraat.getText().isBlank())
+			foutMelding += "- De straat is verplicht in te vullen\n";
+		if(txfHuisnr.getText().isBlank())
+			foutMelding += "- Het huisnummer is verplicht in te vullen\n";
+		if(txaTelefoonnummers.getText().isBlank()) 
+			foutMelding += "- Het telefoonnummer is verplicht in te vullen\n";
+		
+		if(foutMelding.equals(opsommingFoutmelding)) {
+			return true;
+		} else {
+			Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle("Ongeldige invoergegevens");
+			alert.setHeaderText("Fout bij het aanmaken van een nieuwe klant");
+			alert.setContentText(foutMelding);
+			alert.showAndWait();
+			return false;
+		}
+	}	
 }
