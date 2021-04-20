@@ -23,9 +23,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="688.0" prefWidth="917.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="688.0" prefWidth="1017.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="917.0" styleClass="navbar" stylesheets="@layout.css">
+      <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="1017.0" styleClass="navbar" stylesheets="@layout.css">
          <children>
             <ImageView fitHeight="31.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -122,9 +122,9 @@
             </ComboBox>
          </children>
       </VBox>
-      <HBox layoutX="142.0" layoutY="66.0" prefHeight="570.0" prefWidth="770.0">
+      <HBox layoutX="142.0" layoutY="66.0" prefHeight="570.0" prefWidth="874.0">
          <children>
-            <Pane prefHeight="598.0" prefWidth="505.0">
+            <Pane prefHeight="570.0" prefWidth="589.0">
                <children>
                   <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
                   <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" text="Actieve klanten" />
@@ -135,14 +135,14 @@
                   <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
                   <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Bedrijf" />
                   <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
-                  <TableView layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="467.0">
+                  <TableView fx:id="tblKlanten" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="553.0">
                     <columns>
                       <TableColumn fx:id="tbcKlantsnr" prefWidth="55.20001220703125" text="KlantNr" />
                       <TableColumn fx:id="tbcGebruikersnaam" prefWidth="110.40000915527344" text="Gebruikersnaam" />
                         <TableColumn fx:id="tbcVoornaam" prefWidth="81.60003662109375" text="Voornaam" />
                         <TableColumn fx:id="tbcNaam" prefWidth="83.199951171875" text="Naam" />
-                        <TableColumn fx:id="tbcBedrijf" text="Bedrijf" />
-                        <TableColumn fx:id="tbcStatus" prefWidth="56.0" text="Status" />
+                        <TableColumn fx:id="tbcBedrijf" prefWidth="126.4000244140625" text="Bedrijf" />
+                        <TableColumn fx:id="tbcStatus" prefWidth="91.99993896484375" text="Status" />
                     </columns>
                   </TableView>
                </children>
@@ -228,12 +228,12 @@
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" fx:id="btnKlantWijzigen" layoutX="627.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
+      <Button id="buttonright" fx:id="btnKlantWijzigen" layoutX="729.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
          <font>
             <Font size="11.0" />
          </font>
       </Button>
-      <Button id="buttonright" fx:id="btnKlantToevoegen" layoutX="765.0" layoutY="649.0" mnemonicParsing="false"  onAction="#voegKlantToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
+      <Button id="buttonright" fx:id="btnKlantToevoegen" layoutX="865.0" layoutY="649.0" mnemonicParsing="false" onAction="#voegKlantToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Klant Toevoegen">
          <font>
             <Font size="11.0" />
          </font>
