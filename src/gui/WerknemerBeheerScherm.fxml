@@ -137,7 +137,7 @@
                   <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label id="title" fx:id="lblPersoneelsgegegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" />
+                  <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" />
                   <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="1" />
                   <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="2" />
                   <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="3" />
@@ -166,7 +166,7 @@
                   <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="14" />      
                   <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                  <CheckBox fx:id="ckbStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <HBox GridPane.rowIndex="16">
                      <children>
                         <Label fx:id="lblHuisnr" text="Huisnr" />

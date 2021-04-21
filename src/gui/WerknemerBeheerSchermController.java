@@ -51,13 +51,6 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Label lblGebruikerBeheer;
 	@FXML private Button btnWerknemerBeheer;
 	@FXML private Button btnKlantBeheer;
-	@FXML private Label lblTicketBeheer;
-	@FXML private Button btnTicket;
-	@FXML private Button btnTicketType;
-	@FXML private Button btnRapport;
-	@FXML private Label lblContractBeheer;
-	@FXML private Button btnContract;
-	@FXML private Button btnContractType;
 	@FXML private Label lblTaalWijzigen;
 	@FXML private ComboBox<String> cboTaalWijzigen;
 	
@@ -82,7 +75,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private TableColumn<Werknemer,String> tbcStatus;
 	
 	// Werknemer detail paneel (rechts)
-	@FXML private Label lblPersonneelsgegevens;
+	@FXML private Label lblPersoneelsgegevens;
 	@FXML private Label lblPersoneelsnr;
 	@FXML private TextField txfPersoneelsnr;
 	@FXML private Label lblGebruikersnaam;
@@ -130,6 +123,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
+	    cboFunctie.getItems().addAll(WERKNEMERROL.values()); 
 	    initializeGUIComponenten();
 	}
 	
@@ -226,7 +220,13 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
 		
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
+		btnKlantBeheer.setText(Taal.geefTekst("klant"));
+		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
 	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
@@ -235,14 +235,51 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    		initializeGUIComponenten();
 	    	}
 	    });
+		
+		lblFilters.setText(Taal.geefTekst("filters"));
+		chkActieveWerknemers.setText(Taal.geefTekst("actieveWerknemers"));
+		chkInactieveWerknemers.setText(Taal.geefTekst("inactieveWerknemers"));
+		chkGeblokkeerdeWerknemers.setText(Taal.geefTekst("geblokkeerdeWerknemers"));
+		txfFilterGebruikersnaam.setPromptText(Taal.geefTekst("gebruikersnaam"));
+		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
+		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
+		txfFilterFunctie.setPromptText(Taal.geefTekst("functie"));
+		
+		tbcPersoneelsnr.setText(Taal.geefTekst("personeelsnr"));
+		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
+		tbcVoornaam.setText(Taal.geefTekst("voornaam"));
+		tbcNaam.setText(Taal.geefTekst("naam"));
+		tbcFunctie.setText(Taal.geefTekst("functie"));
+		tbcStatus.setText(Taal.geefTekst("status"));
+		werknemerTabelInvullen();
+	   
 	    
-	    werknemerTabelInvullen();
-	    
-	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
 	    cboFunctie.setOnMouseClicked(e -> {
 	    	cboFunctie.getValue();
 	    });
 	    cboFunctie.getSelectionModel().select(1);   
+	    
+	    lblPersoneelsgegevens.setText(Taal.geefTekst("personeelsgegevens"));
+	    lblPersoneelsnr.setText(Taal.geefTekst("personeelsnummer"));
+	    lblGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
+	    lblWachtwoord.setText(Taal.geefTekst("wachtwoord"));
+	    lblVoornaam.setText(Taal.geefTekst("voornaam"));
+	    lblNaam.setText(Taal.geefTekst("naam"));
+	    lblEmail.setText(Taal.geefTekst("e-mail"));
+	    lblStatus.setText(Taal.geefTekst("status"));
+	    chkStatus.setText(Taal.geefTekst("actief"));
+	    lblFunctie.setText(Taal.geefTekst("functie"));
+	    lblTelefoonnummers.setText(Taal.geefTekst("telefoonnummers"));
+	    lblAdresgegevens.setText(Taal.geefTekst("adresGegevens"));
+	    lblLand.setText(Taal.geefTekst("land"));
+	    lblGemeente.setText(Taal.geefTekst("gemeente"));
+	    lblPostcode.setText(Taal.geefTekst("postcode"));
+	    lblStraat.setText(Taal.geefTekst("straat"));
+	    lblHuisnr.setText(Taal.geefTekst("huisnr"));
+	    lblBusnr.setText(Taal.geefTekst("busnr"));
+	    
+	    btnWerknemerToevoegen.setText(Taal.geefTekst("werknemerToevoegen"));
+	    btnWerknemerWijzigen.setText(Taal.geefTekst("werknemerWijzigen"));
 	}
 	
 	private void werknemerTabelInvullen() {
