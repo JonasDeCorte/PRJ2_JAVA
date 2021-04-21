@@ -71,7 +71,7 @@ public abstract class Gebruiker implements Serializable {
 		return voornaam;
 	}
 
-	private void setVoornaam(String voornaam) {
+	public void setVoornaam(String voornaam) {
 		if (voornaam != null && !voornaam.isBlank() && !voornaam.isEmpty()) {
 			this.voornaam = voornaam;
 		} else {
@@ -83,7 +83,7 @@ public abstract class Gebruiker implements Serializable {
 		return naam;
 	}
 
-	private void setNaam(String naam) {
+	public void setNaam(String naam) {
 		if (naam != null && !naam.isBlank() && !naam.isEmpty()) {
 			this.naam = naam;
 		} else {
@@ -95,7 +95,7 @@ public abstract class Gebruiker implements Serializable {
 		return emailadres;
 	}
 
-	private void setEmailadres(String emailadres) {
+	public void setEmailadres(String emailadres) {
 		if (emailadres == null || emailadres.isBlank() || emailadres.isEmpty()) {
 			throw new IllegalArgumentException("emailadres mag niet leeg zijn.");
 		} else if (!emailadres.matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")) {			

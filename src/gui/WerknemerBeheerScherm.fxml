@@ -195,7 +195,7 @@
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="695.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
+      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="695.0" layoutY="649.0" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
          <font>
             <Font size="11.0" />
          </font>

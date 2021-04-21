@@ -117,7 +117,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		
 	@FXML private Button btnWerknemerWijzigen;
 	@FXML private Button btnWerknemerToevoegen;
-	
+	private Werknemer geselecteerdeWerknemer;
 	public WerknemerBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemerBeheerScherm.fxml"));
@@ -133,10 +133,38 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    
 	    tblWerknemers.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeKlant, NieuweKlant) -> {
-        	werknemerDetailsInvullen(NieuweKlant);
+        	if(NieuweKlant != null) {
+        		geselecteerdeWerknemer = NieuweKlant;
+        		werknemerDetailsInvullen(NieuweKlant);
+        	}   	
         });
 	}
-	
+    @FXML
+    
+    void WijzigWerknemer(ActionEvent event) {
+    	if(werknemerDetailsControleren()) {
+    		updateWerknemerAttributen();
+    		gebruikerController.wijzigWerknemer(geselecteerdeWerknemer);
+    		werknemerDetailsLeegmaken();
+    		werknemerTabelInvullen();
+    	}
+    }
+	private void updateWerknemerAttributen() {
+		geselecteerdeWerknemer.setPersoneelsnummer(Integer.parseInt(txfPersoneelsnr.getText()));
+		geselecteerdeWerknemer.setGebruikersnaam(txfGebruikersnaam.getText());
+		geselecteerdeWerknemer.setWachtwoord(pwfWachtwoord.getText());
+		geselecteerdeWerknemer.setVoornaam(txfVoornaam.getText());
+		geselecteerdeWerknemer.setNaam(txfNaam.getText());
+		geselecteerdeWerknemer.setEmailadres(txfEmail.getText());
+		geselecteerdeWerknemer.setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
+		geselecteerdeWerknemer.setRol(cboFunctie.getValue());
+		if(chkStatus.isSelected()) {
+		geselecteerdeWerknemer.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
+		}else {
+			geselecteerdeWerknemer.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
+		}
+		geselecteerdeWerknemer.setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
+	}
 	@FXML
 	void voegWerknemerToe(ActionEvent event) {	
 		if(werknemerDetailsControleren()) {
@@ -298,6 +326,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         tbcFunctie.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRol().toString()));
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
         tblWerknemers.setItems(gebruikerController.getAllWerknemer());
+        tblWerknemers.refresh();
         werknemerTabelFilteren();
 	}
 	
@@ -318,12 +347,13 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		cboFunctie.getSelectionModel().select(1);
 	}
 	private void werknemerDetailsInvullen(Werknemer werknemer) {
+		werknemerDetailsLeegmaken();
 		txfPersoneelsnr.setText(Integer.toString(werknemer.getPersoneelsnummer()));
         txfGebruikersnaam.setText(werknemer.getGebruikersnaam());
         pwfWachtwoord.setText(werknemer.getWachtwoord());
         txfVoornaam.setText(werknemer.getVoornaam());
         txfNaam.setText(werknemer.getNaam());
-        txfEmail.setText(werknemer.getNaam());
+        txfEmail.setText(werknemer.getEmailadres());
         werknemer.getTelefoonnummers().stream()
         .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
         cboFunctie.setValue(werknemer.getRol());
@@ -333,7 +363,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         txfGemeente.setText(werknemer.getAdres().getGemeente());
         txfPostcode.setText(werknemer.getAdres().getPostcode());
         txfStraat.setText(werknemer.getAdres().getStraat());
-        txfHuisnr.setText(werknemer.getAdres().getLand());
+        txfHuisnr.setText(String.valueOf(werknemer.getAdres().getHuisnummer()));
         txfBusnr.setText(werknemer.getAdres().getBusnummer());
         btnWerknemerToevoegen.setDisable(true);
 	}

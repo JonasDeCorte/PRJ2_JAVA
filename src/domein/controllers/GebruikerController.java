@@ -50,4 +50,7 @@ public class GebruikerController {
 	public void voegWerknemerToe (Werknemer werknemer) {
 		werknemerBeheerder.voegWerknemerToe(werknemer);
 	}
+	public void wijzigWerknemer(Werknemer werknemer) {
+		werknemerBeheerder.wijzigWerknemer(werknemer);
+	}
 }

@@ -52,7 +52,7 @@ public class Werknemer extends Gebruiker implements Serializable{
 	public Adres getAdres() {
 		return adres;
 	}
-	private void setAdres(Adres adres) {
+	public void setAdres(Adres adres) {
 		if (adres != null) {
 			this.adres = adres;
 		} else {
