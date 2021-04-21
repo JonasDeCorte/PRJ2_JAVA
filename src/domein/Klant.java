@@ -43,10 +43,19 @@ public class Klant extends Gebruiker implements Serializable{
 		return bedrijf;
 	}
 	private void setBedrijf(Bedrijf bedrijf) {
-		this.bedrijf = bedrijf;
+		if(bedrijf != null) {
+			this.bedrijf = bedrijf;
+		}else {
+			throw new IllegalArgumentException("Er moet een bedrijf worden opgegeven.");
+		}
+		
 	}
 	public void setKlantnummer(int klantnummer) {
+		if(klantnummer > 0 ) {
 		this.klantnummer = klantnummer;
+	}else {
+		throw new IllegalArgumentException("Er moet een klantnummer worden opgegeven.");
+	}
 	}
 	@Override
 	public int hashCode() {

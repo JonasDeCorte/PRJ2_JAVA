@@ -131,7 +131,12 @@ public class Ticket implements Serializable {
 	}
 
 	private void setContract(Contract contract) {
-		this.contract = contract;
+		if(contract != null) {
+			this.contract = contract;
+		}else {
+			throw new IllegalArgumentException("Er moet een contract worden opgegeven.");
+		}
+		
 	}
 
 	public TicketType getTicketType() {
@@ -151,7 +156,11 @@ public class Ticket implements Serializable {
 	}
 
 	private void setTicketStatus(TICKETSTATUS ticketStatus) {
+		if(ticketStatus != null) {
 		this.ticketStatus = ticketStatus;
+	}else {
+		throw new IllegalArgumentException("Er moet een status worden opgegeven.");
+	}
 	}
 
 	public Rapport getRapport() {
