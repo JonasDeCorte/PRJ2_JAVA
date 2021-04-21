@@ -117,7 +117,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 		
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
-	
+	private Klant geselecteerdeKlant;
 	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
@@ -130,7 +130,25 @@ public class KlantBeheerSchermController extends AnchorPane{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();	
+	    tblKlanten.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudeKlant, NieuweKlant) -> {
+        	if(NieuweKlant != null) {
+        		geselecteerdeKlant = NieuweKlant;
+        		klantDetailsInvullen(NieuweKlant);
+        	}   	
+        });
 	}
+	
+	
+	   @FXML
+	    void KlantWijzigen(ActionEvent event) {
+		   if(klantDetailsControleren()) {
+	    		updateKlantAttributen();
+	    		gebruikerController.wijzigKlant(geselecteerdeKlant);
+	    		klantDetailsLeegmaken();
+	    		klantTabelInvullen();
+	    	}
+	    }
 	
 	@FXML
     void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
@@ -221,7 +239,43 @@ public class KlantBeheerSchermController extends AnchorPane{
 		klantTabelInvullen();
 		}
 	}
-	
+	private void klantDetailsInvullen(Klant klant) {
+		klantDetailsLeegmaken();
+		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
+        txfGebruikersnaam.setText(klant.getGebruikersnaam());
+        pwfWachtwoord.setText(klant.getWachtwoord());
+        txfVoornaam.setText(klant.getVoornaam());
+        txfNaam.setText(klant.getNaam());
+        txfEmail.setText(klant.getEmailadres());
+        txfBedrijfsnaam.setText(klant.getBedrijf().getBedrijfsnaam());       
+        if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
+        	chkStatus.setSelected(true);
+        txfLand.setText(klant.getBedrijf().getAdres().getLand());
+        txfGemeente.setText(klant.getBedrijf().getAdres().getGemeente());
+        txfPostcode.setText(klant.getBedrijf().getAdres().getPostcode());
+        txfStraat.setText(klant.getBedrijf().getAdres().getStraat());
+        txfHuisnr.setText(String.valueOf(klant.getBedrijf().getAdres().getHuisnummer()));
+        txfBusnr.setText(klant.getBedrijf().getAdres().getBusnummer());  
+        klant.getBedrijf().getTelefoonnummers().stream()
+        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
+        btnKlantToevoegen.setDisable(true);
+	}
+private void updateKlantAttributen() {
+	geselecteerdeKlant.setKlantnummer(Integer.parseInt(txfKlantnr.getText()));
+	geselecteerdeKlant.setGebruikersnaam(txfGebruikersnaam.getText());
+	geselecteerdeKlant.setWachtwoord(pwfWachtwoord.getText());
+	geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
+	geselecteerdeKlant.setNaam(txfNaam.getText());
+	geselecteerdeKlant.setEmailadres(txfEmail.getText());
+	geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
+	if(chkStatus.isSelected()) {
+	geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
+	}else {
+		geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
+	}
+	geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
+}
+
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		lblTitel.setText(Taal.geefTekst("klantBeheer"));
@@ -254,6 +308,7 @@ public class KlantBeheerSchermController extends AnchorPane{
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
         tblKlanten.setItems(gebruikerController.getAllKlanten());   
         klantTabelFilteren();
+        tblKlanten.refresh();
 	}
 	
 	private void klantDetailsLeegmaken() {

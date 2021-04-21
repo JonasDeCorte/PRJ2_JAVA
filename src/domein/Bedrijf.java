@@ -50,7 +50,7 @@ public class Bedrijf implements Serializable {
 		return telefoonnummers;
 	}
 	
-	private void setTelefoonnummers(List<String> telefoonnummers) {
+	public void setTelefoonnummers(List<String> telefoonnummers) {
 		this.telefoonnummers = telefoonnummers;
 	}
 
@@ -67,8 +67,13 @@ public class Bedrijf implements Serializable {
 		return adres;
 	}
 
-	private void setAdres(Adres adres) {
-		this.adres = adres;
+	public void setAdres(Adres adres) {
+		if(adres != null) {
+			this.adres = adres;
+		}else {
+			throw new IllegalArgumentException("Er moet een adres worden opgegeven.");
+		}
+		
 	}
 
 	@Override

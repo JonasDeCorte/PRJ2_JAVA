@@ -193,7 +193,7 @@
             </GridPane>
          </children>
       </HBox>
-      <Button id="buttonright" fx:id="btnKlantWijzigen" layoutX="729.0" layoutY="649.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
+      <Button id="buttonright" fx:id="btnKlantWijzigen" layoutX="729.0" layoutY="649.0" mnemonicParsing="false" onAction="#KlantWijzigen" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Klant Wijzigen">
          <font>
             <Font size="11.0" />
          </font>
