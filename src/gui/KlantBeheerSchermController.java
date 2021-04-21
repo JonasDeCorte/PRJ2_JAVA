@@ -119,6 +119,8 @@ public class KlantBeheerSchermController extends AnchorPane{
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
 	private Klant geselecteerdeKlant;
+	
+	// Constructor
 	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
@@ -140,17 +142,7 @@ public class KlantBeheerSchermController extends AnchorPane{
         });
 	}
 	
-	
-	@FXML
-	void KlantWijzigen(ActionEvent event) {
-		   if(klantDetailsControleren()) {
-	    		updateKlantAttributen();
-	    		gebruikerController.wijzigKlant(geselecteerdeKlant);
-	    		klantTabelInvullen();
-	    		klantDetailsLeegmaken();
-	    	}
-	    }
-	
+	// Navigatie buttons (links)
 	@FXML
     void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
@@ -196,6 +188,7 @@ public class KlantBeheerSchermController extends AnchorPane{
         stage.show();
     }
 	
+	// Uitlog button (rechts bovenaan)
 	@FXML
 	void uitloggen(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -222,61 +215,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 		}	
 	}
 	
-	@FXML
-	void voegKlantToe(ActionEvent event) {
-		if(klantDetailsControleren()) {	
-		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
-				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
-		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
-				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
-		
-		if(chkStatus == null) {
-			klant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
-		}
-		
-		gebruikerController.voegKlantToe(klant);	
-		klantDetailsLeegmaken();
-		klantTabelInvullen();
-		}
-	}
-	private void klantDetailsInvullen(Klant klant) {
-		klantDetailsLeegmaken();
-		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
-        txfGebruikersnaam.setText(klant.getGebruikersnaam());
-        pwfWachtwoord.setText(klant.getWachtwoord());
-        txfVoornaam.setText(klant.getVoornaam());
-        txfNaam.setText(klant.getNaam());
-        txfEmail.setText(klant.getEmailadres());
-        txfBedrijfsnaam.setText(klant.getBedrijf().getBedrijfsnaam());       
-        if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
-        	chkStatus.setSelected(true);
-        txfLand.setText(klant.getBedrijf().getAdres().getLand());
-        txfGemeente.setText(klant.getBedrijf().getAdres().getGemeente());
-        txfPostcode.setText(klant.getBedrijf().getAdres().getPostcode());
-        txfStraat.setText(klant.getBedrijf().getAdres().getStraat());
-        txfHuisnr.setText(String.valueOf(klant.getBedrijf().getAdres().getHuisnummer()));
-        txfBusnr.setText(klant.getBedrijf().getAdres().getBusnummer());  
-        klant.getBedrijf().getTelefoonnummers().stream()
-        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
-        btnKlantToevoegen.setDisable(true);
-	}
-private void updateKlantAttributen() {
-	geselecteerdeKlant.setKlantnummer(Integer.parseInt(txfKlantnr.getText()));
-	geselecteerdeKlant.setGebruikersnaam(txfGebruikersnaam.getText());
-	geselecteerdeKlant.setWachtwoord(pwfWachtwoord.getText());
-	geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
-	geselecteerdeKlant.setNaam(txfNaam.getText());
-	geselecteerdeKlant.setEmailadres(txfEmail.getText());
-	geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
-	if(chkStatus.isSelected()) {
-	geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
-	}else {
-		geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
-	}
-	geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
-}
-
+	// Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		lblTitel.setText(Taal.geefTekst("klantBeheer"));
@@ -336,6 +275,75 @@ private void updateKlantAttributen() {
 	    btnKlantWijzigen.setText(Taal.geefTekst("klantWijzigen"));
 	}
 	
+	// Hoofd functionaliteiten (onderaan rechts)
+	@FXML
+	void voegKlantToe(ActionEvent event) {
+		if(klantDetailsControleren()) {	
+		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
+				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
+		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
+		
+		if(chkStatus == null) {
+			klant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
+		}
+		
+		gebruikerController.voegKlantToe(klant);	
+		klantDetailsLeegmaken();
+		klantTabelInvullen();
+		}
+	}
+	
+	@FXML
+	void KlantWijzigen(ActionEvent event) {
+		if(klantDetailsControleren()) {
+			updateKlantAttributen();
+			gebruikerController.wijzigKlant(geselecteerdeKlant);
+			klantTabelInvullen();
+	    	klantDetailsLeegmaken();
+	    }
+	}
+
+	// Hulp methodes
+	private void klantDetailsInvullen(Klant klant) {
+		klantDetailsLeegmaken();
+		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
+        txfGebruikersnaam.setText(klant.getGebruikersnaam());
+        pwfWachtwoord.setText(klant.getWachtwoord());
+        txfVoornaam.setText(klant.getVoornaam());
+        txfNaam.setText(klant.getNaam());
+        txfEmail.setText(klant.getEmailadres());
+        txfBedrijfsnaam.setText(klant.getBedrijf().getBedrijfsnaam());       
+        if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
+        	chkStatus.setSelected(true);
+        txfLand.setText(klant.getBedrijf().getAdres().getLand());
+        txfGemeente.setText(klant.getBedrijf().getAdres().getGemeente());
+        txfPostcode.setText(klant.getBedrijf().getAdres().getPostcode());
+        txfStraat.setText(klant.getBedrijf().getAdres().getStraat());
+        txfHuisnr.setText(String.valueOf(klant.getBedrijf().getAdres().getHuisnummer()));
+        txfBusnr.setText(klant.getBedrijf().getAdres().getBusnummer());  
+        klant.getBedrijf().getTelefoonnummers().stream()
+        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
+        btnKlantToevoegen.setDisable(true);
+	}
+	
+	private void updateKlantAttributen() {
+		geselecteerdeKlant.setKlantnummer(Integer.parseInt(txfKlantnr.getText()));
+		geselecteerdeKlant.setGebruikersnaam(txfGebruikersnaam.getText());
+		geselecteerdeKlant.setWachtwoord(pwfWachtwoord.getText());
+		geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
+		geselecteerdeKlant.setNaam(txfNaam.getText());
+		geselecteerdeKlant.setEmailadres(txfEmail.getText());
+		geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
+		if(chkStatus.isSelected()) {
+			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
+		} else {
+			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
+		}
+		geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
+	}
+	
 	private void klantTabelInvullen() {
 		this.gebruikerController = new GebruikerController();
 	    tbcKlantsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getKlantnummer()).asObject());
@@ -346,6 +354,7 @@ private void updateKlantAttributen() {
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
         tblKlanten.setItems(gebruikerController.getAllKlanten());   
         klantTabelFilteren();
+        klantDetailsLeegmaken();
         tblKlanten.refresh();
 	}
 	
