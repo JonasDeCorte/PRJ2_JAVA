@@ -289,7 +289,6 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		tbcFunctie.setText(Taal.geefTekst("functie"));
 		tbcStatus.setText(Taal.geefTekst("status"));
 		werknemerTabelInvullen();
-	    werknemerTabelFilteren();
 		
 	    lblPersoneelsgegevens.setText(Taal.geefTekst("personeelsgegevens"));
 	    lblPersoneelsnr.setText(Taal.geefTekst("personeelsnummer"));
@@ -373,7 +372,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	}
 		
 	private boolean werknemerDetailsControleren() {
-		String opsommingFoutmelding = Taal.geefTekst("opsommingFoutmeldingWerknemer");
+		String opsommingFoutmelding = Taal.geefTekst("opsommingFoutmelding");
 		String foutMelding = opsommingFoutmelding;
 		
 		if(txfPersoneelsnr.getText().isBlank()) 
@@ -408,7 +407,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		} else {
 			Alert alert = new Alert (AlertType.INFORMATION);
 			alert.setTitle(Taal.geefTekst("foutmeldingTitel"));
-			alert.setHeaderText(Taal.geefTekst("foutmeldingHeader"));
+			alert.setHeaderText(Taal.geefTekst("foutmeldingHeaderWerknemer"));
 			alert.setContentText(foutMelding);
 			alert.showAndWait();
 			return false;
