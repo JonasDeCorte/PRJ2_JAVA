@@ -51,6 +51,13 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Label lblGebruikerBeheer;
 	@FXML private Button btnWerknemerBeheer;
 	@FXML private Button btnKlantBeheer;
+	@FXML private Label lblTicketBeheer;
+	@FXML private Button btnTicket;
+	@FXML private Button btnTicketType;
+	@FXML private Button btnRapport;
+	@FXML private Label lblContractBeheer;
+	@FXML private Button btnContract;
+	@FXML private Button btnContractType;
 	@FXML private Label lblTaalWijzigen;
 	@FXML private ComboBox<String> cboTaalWijzigen;
 	
@@ -75,7 +82,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private TableColumn<Werknemer,String> tbcStatus;
 	
 	// Werknemer detail paneel (rechts)
-	@FXML private Label lblPersoneelsgegevens;
+	@FXML private Label lblPersonneelsgegevens;
 	@FXML private Label lblPersoneelsnr;
 	@FXML private TextField txfPersoneelsnr;
 	@FXML private Label lblGebruikersnaam;
@@ -123,24 +130,22 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-	    cboFunctie.getItems().addAll(WERKNEMERROL.values()); 
 	    initializeGUIComponenten();
 	}
 	
 	@FXML
-    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle("HoofdMenuAdministrator");
-		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
+	void voegWerknemerToe(ActionEvent event) {	
+		if(werknemerDetailsControleren()) {
+			Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
+					Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
+			Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
+					txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList(txaTelefoonnummers.getText()),
+					cboFunctie.getValue(), adres);
+				
+			gebruikerController.voegWerknemerToe(werknemer);
+			werknemerDetailsLeegmaken();	
+		} 
+	}
 	
 	@FXML
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
@@ -148,21 +153,6 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		stage.setTitle("KlantBeheren");
 		KlantBeheerSchermController root1 = new KlantBeheerSchermController(adc);
 		Scene scene = new Scene(root1);
-		stage.setScene(scene);
-		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
-	
-	@FXML
-    void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle(Taal.geefTekst("werknemerbeheer"));
-		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
-		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		
 		stage.setOnShown((WindowEvent t) -> {
@@ -199,34 +189,39 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	}
 	
 	@FXML
-	void voegWerknemerToe(ActionEvent event) {	
-		if(werknemerDetailsControleren()) {
-			Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(), 
-					Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-			Werknemer werknemer = new Werknemer(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
-					txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfPersoneelsnr.getText()),  Arrays.asList(txaTelefoonnummers.getText()),
-					cboFunctie.getValue(), adres);
-			
-			if(chkStatus == null) {
-				werknemer.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
-			}
-			
-			gebruikerController.voegWerknemerToe(werknemer);
-			werknemerDetailsLeegmaken();	
-			werknemerTabelInvullen();
-		} 
-	}
+    void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
+		Stage stage = (Stage) this.getScene().getWindow();
+		stage.setTitle(Taal.geefTekst("werknemerbeheer"));
+		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+		stage.setOnShown((WindowEvent t) -> {
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        });
+        stage.show();
+    }
+	
+	@FXML
+    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
+		Stage stage = (Stage) this.getScene().getWindow();
+		stage.setTitle("HoofdMenuAdministrator");
+		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		
+		stage.setOnShown((WindowEvent t) -> {
+            stage.setMinWidth(stage.getWidth());
+            stage.setMinHeight(stage.getHeight());
+        });
+        stage.show();
+    }
 	
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
-		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
-		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
 		
-		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
-		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
-		btnKlantBeheer.setText(Taal.geefTekst("klant"));
-		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
 	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
@@ -235,56 +230,19 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    		initializeGUIComponenten();
 	    	}
 	    });
-		
-		lblFilters.setText(Taal.geefTekst("filters"));
-		chkActieveWerknemers.setText(Taal.geefTekst("actieveWerknemers"));
-		chkInactieveWerknemers.setText(Taal.geefTekst("inactieveWerknemers"));
-		chkGeblokkeerdeWerknemers.setText(Taal.geefTekst("geblokkeerdeWerknemers"));
-		txfFilterGebruikersnaam.setPromptText(Taal.geefTekst("gebruikersnaam"));
-		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
-		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
-		txfFilterFunctie.setPromptText(Taal.geefTekst("functie"));
-		
-		tbcPersoneelsnr.setText(Taal.geefTekst("personeelsnr"));
-		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
-		tbcVoornaam.setText(Taal.geefTekst("voornaam"));
-		tbcNaam.setText(Taal.geefTekst("naam"));
-		tbcFunctie.setText(Taal.geefTekst("functie"));
-		tbcStatus.setText(Taal.geefTekst("status"));
-		werknemerTabelInvullen();
-	   
 	    
+	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
 	    cboFunctie.setOnMouseClicked(e -> {
 	    	cboFunctie.getValue();
 	    });
-	    cboFunctie.getSelectionModel().select(1);   
+	    cboFunctie.getSelectionModel().select(1);
 	    
-	    lblPersoneelsgegevens.setText(Taal.geefTekst("personeelsgegevens"));
-	    lblPersoneelsnr.setText(Taal.geefTekst("personeelsnummer"));
-	    lblGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
-	    lblWachtwoord.setText(Taal.geefTekst("wachtwoord"));
-	    lblVoornaam.setText(Taal.geefTekst("voornaam"));
-	    lblNaam.setText(Taal.geefTekst("naam"));
-	    lblEmail.setText(Taal.geefTekst("e-mail"));
-	    lblStatus.setText(Taal.geefTekst("status"));
-	    chkStatus.setText(Taal.geefTekst("actief"));
-	    lblFunctie.setText(Taal.geefTekst("functie"));
-	    lblTelefoonnummers.setText(Taal.geefTekst("telefoonnummers"));
-	    lblAdresgegevens.setText(Taal.geefTekst("adresGegevens"));
-	    lblLand.setText(Taal.geefTekst("land"));
-	    lblGemeente.setText(Taal.geefTekst("gemeente"));
-	    lblPostcode.setText(Taal.geefTekst("postcode"));
-	    lblStraat.setText(Taal.geefTekst("straat"));
-	    lblHuisnr.setText(Taal.geefTekst("huisnr"));
-	    lblBusnr.setText(Taal.geefTekst("busnr"));
-	    
-	    btnWerknemerToevoegen.setText(Taal.geefTekst("werknemerToevoegen"));
-	    btnWerknemerWijzigen.setText(Taal.geefTekst("werknemerWijzigen"));
+	    werknemerTabelInvullen();
+	    filteren();
+
 	}
-	
 	private void werknemerTabelInvullen() {
-		this.gebruikerController = new GebruikerController();
-	    tbcPersoneelsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getPersoneelsnummer()).asObject());
+		tbcPersoneelsnr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getPersoneelsnummer()).asObject());
 	    tbcGebruikersnaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikersnaam()));
         tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
         tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
@@ -294,19 +252,19 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	}
 	
 	private void werknemerDetailsLeegmaken() {
-		txfPersoneelsnr.clear();
-		txfGebruikersnaam.clear();
-		pwfWachtwoord.clear();
-		txfVoornaam.clear();
-		txfNaam.clear();
-		txfEmail.clear();
-		txaTelefoonnummers.clear();
-		txfLand.clear();
-		txfGemeente.clear();
-		txfPostcode.clear();
-		txfStraat.clear();
-		txfHuisnr.clear();
-		txfBusnr.clear();
+		txfPersoneelsnr.setText("");
+		txfGebruikersnaam.setText("");
+		pwfWachtwoord.setText("");
+		txfVoornaam.setText("");
+		txfNaam.setText("");
+		txfEmail.setText("");
+		txaTelefoonnummers.setText("");
+		txfLand.setText("");
+		txfGemeente.setText("");
+		txfPostcode.setText("");
+		txfStraat.setText("");
+		txfHuisnr.setText("");
+		txfBusnr.setText("");
 		cboFunctie.getSelectionModel().select(1);
 	}
 	
@@ -382,7 +340,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		}
 		@FXML
 	    private void toonActieve(ActionEvent actionEvent) {
-			filteren();			
+			filteren();
+			
 		}
 		@FXML
 	    private void toonInactieve(ActionEvent actionEvent) {
@@ -392,7 +351,6 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    private void toonGeblokkeerde(ActionEvent actionEvent) {
 			filteren();
 		}
-		
 		private void filteren() {
 			String gebruikersnaam = txfFilterGebruikersnaam.getText();
 	        String naam = txfFilterNaam.getText();
@@ -407,5 +365,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
 	        
 	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie,status);
-		}	
+		}
+		
+		
 }

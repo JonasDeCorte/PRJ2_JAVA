@@ -59,7 +59,7 @@ public class DataInitializer {
 		klantDao.insert(new Klant("Klant2", "Klant2123", "Seppe", "Meens", "Seppe.Meens@BEEGO.com", 1002, BEEGO));	
 		klantDao.insert(new Klant("Klant3", "Klant3123", "Juliette", "Debois", "Juliette.Debois@Microsoft.com", 1003, Microsoft));	
 		
-		Klant Céline = new Klant("Klant4", "Klant4123", "Céline", "Klavers", "Céline.Klavers@Microsoft.com", 1004, Microsoft);
+		Klant Céline = new Klant("Klant4", "Klant4123", "Céline", "Klavers", "Celine.Klavers@Microsoft.com", 1004, Microsoft);
 		Céline.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
 		klantDao.insert(Céline);
 		

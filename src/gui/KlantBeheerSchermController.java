@@ -3,7 +3,9 @@ package gui;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import domein.Adres;
 import domein.Bedrijf;
@@ -29,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -231,7 +234,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 	    });
 	    
 	    klantTabelInvullen();
-
+	    filteren();
 	}
 	
 	private void klantTabelInvullen() {
@@ -305,5 +308,59 @@ public class KlantBeheerSchermController extends AnchorPane{
 			alert.showAndWait();
 			return false;
 		}
-	}	
+	}
+		//	Filters
+		@FXML
+	    private void filterGebruiker(KeyEvent event) {
+			filteren();
+		}	
+		@FXML
+	    private void filterVoornaam(KeyEvent event) {
+			filteren();
+		}	
+		@FXML
+	    private void filterNaam(KeyEvent event) {
+			filteren();
+		}	
+		@FXML
+	    private void filterBedrijf(KeyEvent event) {
+	        filteren();
+		}
+		@FXML
+	    private void clear(ActionEvent actionEvent) {
+			txfFilterGebruikersnaam.clear();
+			txfFilterNaam.clear();
+			txfFilterVoornaam.clear();
+			txfFilterBedrijf.clear();
+			filteren();
+			
+		}
+		@FXML
+	    private void toonActieve(ActionEvent actionEvent) {
+			filteren();			
+		}
+		@FXML
+	    private void toonInactieve(ActionEvent actionEvent) {
+			filteren();
+		}
+		@FXML
+	    private void toonGeblokkeerde(ActionEvent actionEvent) {
+			filteren();
+		}
+		
+		private void filteren() {
+			String gebruikersnaam = txfFilterGebruikersnaam.getText();
+	        String naam = txfFilterNaam.getText();
+	        String voornaam = txfFilterVoornaam.getText();
+	        String bedrijf = txfFilterBedrijf.getText();
+	        Set<GEBRUIKERSTATUS> status = new HashSet<>();;
+	        if(chkActieveKlanten.isSelected())
+	        	status.add(GEBRUIKERSTATUS.ACTIEF);
+	        if(chkInactieveKlanten.isSelected())
+	        	status.add(GEBRUIKERSTATUS.NIET_ACTIEF);
+	        if(chkGeblokkeerdeKlanten.isSelected())
+	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
+	        
+	        gebruikerController.pasFilterAanKlant(gebruikersnaam, naam, voornaam, bedrijf,status);
+		}	
 }

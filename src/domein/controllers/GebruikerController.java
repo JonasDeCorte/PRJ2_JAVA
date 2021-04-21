@@ -31,9 +31,9 @@ public class GebruikerController {
 		klantBeheerder.wijzigKlant(klant);
 	}
 
-	public void pasFilterAanKlant(int klantnummer, String gebruikersnaam, String bedrijfsnaam,Set<GEBRUIKERSTATUS> status)
+	public void pasFilterAanKlant( String gebruikersnaam, String naam,String voornaam, String bedrijfsnaam,Set<GEBRUIKERSTATUS> status)
 	{
-		klantBeheerder.pasFilterAan(klantnummer, gebruikersnaam, bedrijfsnaam, status);
+		klantBeheerder.pasFilterAan( gebruikersnaam,naam,voornaam, bedrijfsnaam, status);
 	}
 	public void pasFilterAanWerknemer(String gebruikersnaam, String naam,String voornaam,String functie,Set<GEBRUIKERSTATUS> status)
 	{

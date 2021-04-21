@@ -61,26 +61,30 @@ public class KlantBeheerder {
 		filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
 
 	}
-	public void pasFilterAan(int klantnummer, String gebruikersnaam, String bedrijfsnaam,
-			Set<GEBRUIKERSTATUS> gebruikerStatus) {
+	public void pasFilterAan(String gebruikersnaam,String naam,String voornaam, String bedrijfsnaam,Set<GEBRUIKERSTATUS> status) {
 		// houdt de filters bij
 		List<Predicate<Klant>> filtersLijst = new ArrayList<>();
 
-		if (klantnummer >= 0) {
-			filtersLijst.add(klant -> Integer.toString(klant.getKlantnummer()).startsWith(Integer.toString(klantnummer)));
-		}
 
 		if (gebruikersnaam != null && !gebruikersnaam.isBlank()) {
-			filtersLijst.add(klant -> klant.getGebruikersnaam().toLowerCase().contains(gebruikersnaam.toLowerCase()));
+			filtersLijst.add(klant -> klant.getGebruikersnaam().toLowerCase().contains(gebruikersnaam.toLowerCase()));		
 		}
 
+		if (naam != null && !naam.isBlank()) {
+			filtersLijst.add(klant -> klant.getNaam().toLowerCase().contains(naam.toLowerCase()));
+		}
+
+		if (voornaam != null && !voornaam.isBlank()) {
+			filtersLijst.add(klant -> klant.getVoornaam().toLowerCase().contains(voornaam.toLowerCase()));
+		}
+		
 		if (bedrijfsnaam != null && !bedrijfsnaam.isBlank()) {
-			filtersLijst.add(klant -> klant.getBedrijf().getBedrijfsnaam().toLowerCase().contains(bedrijfsnaam.toLowerCase()));
+			filtersLijst.add(klant ->  klant.getBedrijf().getBedrijfsnaam().toLowerCase().contains(bedrijfsnaam.toLowerCase()));
 		}
 
-		if (gebruikerStatus != null && (gebruikerStatus.size() > 0 || gebruikerStatus.size() >= GEBRUIKERSTATUS.values().length)) {
-			filtersLijst.add(klant -> gebruikerStatus.contains(klant.getGebruikerStatus()));
-		}
+		if (status != null && (status.size() > 0 || status.size() >= GEBRUIKERSTATUS.values().length)) {
+			filtersLijst.add(klant -> status.contains(klant.getGebruikerStatus()));
+		} 
 		// filter wordt toegekend aan een predikaat 
 		/*
 		 * If you have a Collection<Predicate<T>> filters you can always create a single predicate out of it using the process called reduction:

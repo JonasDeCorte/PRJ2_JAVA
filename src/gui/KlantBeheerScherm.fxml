@@ -42,7 +42,7 @@
                </font>
             </Label>
             <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="207.0" text="Goeiemiddag Administrator" />
-            <Button id="buttonright" fx:id="btnUitloggen" onAction="#uitloggen" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
+            <Button id="buttonright" fx:id="btnUitloggen" alignment="CENTER" mnemonicParsing="false" onAction="#uitloggen" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
                <HBox.margin>
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>
@@ -92,14 +92,14 @@
             <Pane prefHeight="570.0" prefWidth="589.0">
                <children>
                   <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-                  <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" text="Actieve klanten" />
-                  <CheckBox fx:id="chkInactieveKlanten" layoutX="165.0" layoutY="54.0" mnemonicParsing="false" text="Inactieve klanten" />
-                  <CheckBox fx:id="chkGeblokkeerdeKlanten" layoutX="292.0" layoutY="54.0" mnemonicParsing="false" text="Geblokkeerde klanten" />
-                  <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
-                  <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
-                  <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
-                  <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" prefHeight="25.0" prefWidth="78.0" promptText="Bedrijf" />
-                  <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
+                  <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" text="Actieve klanten" />
+                  <CheckBox fx:id="chkInactieveKlanten" layoutX="165.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonInactieve" text="Inactieve klanten" />
+                  <CheckBox fx:id="chkGeblokkeerdeKlanten" layoutX="292.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeblokkeerde" text="Geblokkeerde klanten" />
+                  <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
+                  <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
+                  <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
+                  <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterBedrijf" prefHeight="25.0" prefWidth="78.0" promptText="Bedrijf" />
+                  <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
                   <TableView fx:id="tblKlanten" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="553.0">
                     <columns>
                       <TableColumn fx:id="tbcKlantsnr" prefWidth="55.20001220703125" text="KlantNr" />
