@@ -118,6 +118,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML private Button btnWerknemerWijzigen;
 	@FXML private Button btnWerknemerToevoegen;
 	private Werknemer geselecteerdeWerknemer;
+	
 	public WerknemerBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("WerknemerBeheerScherm.fxml"));
@@ -139,16 +140,17 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         	}   	
         });
 	}
-    @FXML
-    
+	
+    @FXML    
     void WijzigWerknemer(ActionEvent event) {
     	if(werknemerDetailsControleren()) {
     		updateWerknemerAttributen();
     		gebruikerController.wijzigWerknemer(geselecteerdeWerknemer);
-    		werknemerDetailsLeegmaken();
     		werknemerTabelInvullen();
+    		werknemerDetailsLeegmaken();
     	}
     }
+    
 	private void updateWerknemerAttributen() {
 		geselecteerdeWerknemer.setPersoneelsnummer(Integer.parseInt(txfPersoneelsnr.getText()));
 		geselecteerdeWerknemer.setGebruikersnaam(txfGebruikersnaam.getText());
@@ -165,6 +167,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		}
 		geselecteerdeWerknemer.setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
 	}
+	
 	@FXML
 	void voegWerknemerToe(ActionEvent event) {	
 		if(werknemerDetailsControleren()) {
@@ -198,8 +201,8 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	@FXML
 	void uitloggen(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Uitloggen bevestigen");
-		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		alert.setTitle(Taal.geefTekst("uitloggenTitel"));
+		alert.setHeaderText(Taal.geefTekst("uitloggenHeader"));
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		
@@ -346,6 +349,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		txfBusnr.clear();
 		cboFunctie.getSelectionModel().select(1);
 	}
+	
 	private void werknemerDetailsInvullen(Werknemer werknemer) {
 		werknemerDetailsLeegmaken();
 		txfPersoneelsnr.setText(Integer.toString(werknemer.getPersoneelsnummer()));
@@ -367,52 +371,50 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         txfBusnr.setText(werknemer.getAdres().getBusnummer());
         btnWerknemerToevoegen.setDisable(true);
 	}
-	
-	
+		
 	private boolean werknemerDetailsControleren() {
-		String opsommingFoutmelding = "Volgende fouten zijn opgetreden: \n";
+		String opsommingFoutmelding = Taal.geefTekst("opsommingFoutmeldingWerknemer");
 		String foutMelding = opsommingFoutmelding;
 		
 		if(txfPersoneelsnr.getText().isBlank()) 
-			foutMelding += "- Het personeelsnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtPersoneelsnummer");
 		if(txfGebruikersnaam.getText().length() < 4) 
-			foutMelding += "- De gebruikersnaam moet minstens 4 karakters lang zijn\n";
+			foutMelding += Taal.geefTekst("teKortGebruikersnaam");
 		if(txfVoornaam.getText().isBlank()) 
-			foutMelding += "- De voornaam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtVoornaam");
 		if(txfNaam.getText().isBlank())
-			foutMelding += "- De naam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtNaam");
 		if(pwfWachtwoord.getText().isBlank())
-			foutMelding += "- Het wachtwoord is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtWachtwoord");
 		if(txfEmail.getText().isBlank())
-			foutMelding += "- Het emailadres is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtEmail");
 		if(!txfEmail.getText().matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
-			foutMelding += "- Het emailadres is ongeldig\n";
+			foutMelding += Taal.geefTekst("ongeldigEmail");
 		if(txaTelefoonnummers.getText().isBlank()) 
-			foutMelding += "- Het telefoonnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
 		if(txfLand.getText().isBlank())
-			foutMelding += "- Het land is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtLand");
 		if(txfGemeente.getText().isBlank())
-			foutMelding += "- De gemeente is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtGemeente");
 		if(txfPostcode.getText().isBlank())
-			foutMelding += "- De postcode is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtPostcode");
 		if(txfStraat.getText().isBlank())
-			foutMelding += "- De straat is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtStraat");
 		if(txfHuisnr.getText().isBlank())
-			foutMelding += "- Het huisnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtHuisnr");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
 			Alert alert = new Alert (AlertType.INFORMATION);
-			alert.setTitle("Ongeldige invoergegevens");
-			alert.setHeaderText("Fout bij het aanmaken van een nieuwe werknemer");
+			alert.setTitle(Taal.geefTekst("foutmeldingTitel"));
+			alert.setHeaderText(Taal.geefTekst("foutmeldingHeader"));
 			alert.setContentText(foutMelding);
 			alert.showAndWait();
 			return false;
 		}
-		
-
 	}
+	
 	@FXML
     private void clearPersoneelsGegevens(ActionEvent actionEvent) {
 		werknemerDetailsLeegmaken();
@@ -472,7 +474,5 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
 	        
 	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie,status);
-		}
-		
-		
+		}	
 }

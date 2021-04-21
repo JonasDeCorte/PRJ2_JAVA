@@ -62,8 +62,8 @@ public class HoofdMenuSupportManagerController extends AnchorPane{
 	@FXML
 	void uitloggen(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Uitloggen bevestigen");
-		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		alert.setTitle(Taal.geefTekst("uitloggenTitel"));
+		alert.setHeaderText(Taal.geefTekst("uitloggenHeader"));
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		

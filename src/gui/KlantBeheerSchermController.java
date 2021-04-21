@@ -140,13 +140,13 @@ public class KlantBeheerSchermController extends AnchorPane{
 	}
 	
 	
-	   @FXML
-	    void KlantWijzigen(ActionEvent event) {
+	@FXML
+	void KlantWijzigen(ActionEvent event) {
 		   if(klantDetailsControleren()) {
 	    		updateKlantAttributen();
 	    		gebruikerController.wijzigKlant(geselecteerdeKlant);
-	    		klantDetailsLeegmaken();
 	    		klantTabelInvullen();
+	    		klantDetailsLeegmaken();
 	    	}
 	    }
 	
