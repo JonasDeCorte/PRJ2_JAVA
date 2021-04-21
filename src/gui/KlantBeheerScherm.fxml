@@ -61,12 +61,12 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button id="buttonleft" fx:id="btnWerknemerBeheer" mnemonicParsing="false" onAction="#KlantBeheren" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
+            <Button id="buttonleft" fx:id="btnKlantBeheer" mnemonicParsing="false" onAction="#KlantBeheren" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button id="buttonleft" fx:id="btnKlantBeheer" mnemonicParsing="false" onAction="#WerknemerBeheren" prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
+            <Button id="buttonleft" fx:id="btnWerknemerBeheer" mnemonicParsing="false" onAction="#WerknemerBeheren" prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>

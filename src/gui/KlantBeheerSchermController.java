@@ -223,7 +223,15 @@ public class KlantBeheerSchermController extends AnchorPane{
 	}
 	
 	private void initializeGUIComponenten() {		
+		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		lblTitel.setText(Taal.geefTekst("klantBeheer"));
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
+		btnKlantBeheer.setText(Taal.geefTekst("klant"));
+		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));	
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
 	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
@@ -234,7 +242,6 @@ public class KlantBeheerSchermController extends AnchorPane{
 	    });
 	    
 	    klantTabelInvullen();
-	    filteren();
 	}
 	
 	private void klantTabelInvullen() {
@@ -245,7 +252,8 @@ public class KlantBeheerSchermController extends AnchorPane{
         tbcVoornaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVoornaam()));
         tbcBedrijf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBedrijf().getBedrijfsnaam()));
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
-        tblKlanten.setItems(gebruikerController.getAllKlanten());    
+        tblKlanten.setItems(gebruikerController.getAllKlanten());   
+        klantTabelFilteren();
 	}
 	
 	private void klantDetailsLeegmaken() {
@@ -312,19 +320,19 @@ public class KlantBeheerSchermController extends AnchorPane{
 		//	Filters
 		@FXML
 	    private void filterGebruiker(KeyEvent event) {
-			filteren();
+			klantTabelFilteren();
 		}	
 		@FXML
 	    private void filterVoornaam(KeyEvent event) {
-			filteren();
+			klantTabelFilteren();
 		}	
 		@FXML
 	    private void filterNaam(KeyEvent event) {
-			filteren();
+			klantTabelFilteren();
 		}	
 		@FXML
 	    private void filterBedrijf(KeyEvent event) {
-	        filteren();
+			klantTabelFilteren();
 		}
 		@FXML
 	    private void clear(ActionEvent actionEvent) {
@@ -332,28 +340,28 @@ public class KlantBeheerSchermController extends AnchorPane{
 			txfFilterNaam.clear();
 			txfFilterVoornaam.clear();
 			txfFilterBedrijf.clear();
-			filteren();
+			klantTabelFilteren();
 			
 		}
 		@FXML
 	    private void toonActieve(ActionEvent actionEvent) {
-			filteren();			
+			klantTabelFilteren();			
 		}
 		@FXML
 	    private void toonInactieve(ActionEvent actionEvent) {
-			filteren();
+			klantTabelFilteren();
 		}
 		@FXML
 	    private void toonGeblokkeerde(ActionEvent actionEvent) {
-			filteren();
+			klantTabelFilteren();
 		}
 		
-		private void filteren() {
+		private void klantTabelFilteren() {
 			String gebruikersnaam = txfFilterGebruikersnaam.getText();
 	        String naam = txfFilterNaam.getText();
 	        String voornaam = txfFilterVoornaam.getText();
 	        String bedrijf = txfFilterBedrijf.getText();
-	        Set<GEBRUIKERSTATUS> status = new HashSet<>();;
+	        Set<GEBRUIKERSTATUS> status = new HashSet<>();
 	        if(chkActieveKlanten.isSelected())
 	        	status.add(GEBRUIKERSTATUS.ACTIEF);
 	        if(chkInactieveKlanten.isSelected())

@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Taal;
 
 public class HoofdMenuSupportManagerController extends AnchorPane{
 	private AanmeldController adc;
@@ -55,7 +56,7 @@ public class HoofdMenuSupportManagerController extends AnchorPane{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-		
+		initializeGUIComponenten();
 	}
 	
 	@FXML
@@ -83,4 +84,31 @@ public class HoofdMenuSupportManagerController extends AnchorPane{
 			alert.close();
 		}	
 	}
+	
+	private void initializeGUIComponenten() {		
+		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		lblTitel.setText(Taal.geefTekst("hoofdmenu"));
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("supportManager"));
+		
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		lblTicketBeheer.setText(Taal.geefTekst("ticketBeheer"));
+		btnTicket.setText(Taal.geefTekst("ticket"));
+		btnTicketType.setText(Taal.geefTekst("ticketType"));
+		btnRapport.setText(Taal.geefTekst("rapport"));
+		lblContractBeheer.setText(Taal.geefTekst("contractBeheer"));
+		btnContract.setText(Taal.geefTekst("contract"));
+		btnContractType.setText(Taal.geefTekst("contractType"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
+		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
+		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
+	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
+	    		initializeGUIComponenten();
+	    	}
+	    });
+	}
+	
 }

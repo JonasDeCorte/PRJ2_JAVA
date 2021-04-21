@@ -117,7 +117,15 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 	}
 	
 	private void initializeGUIComponenten() {		
+		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		lblTitel.setText(Taal.geefTekst("hoofdmenu"));
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
+		btnKlantBeheer.setText(Taal.geefTekst("klant"));
+		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
 	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
