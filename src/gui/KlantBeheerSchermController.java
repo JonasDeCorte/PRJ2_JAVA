@@ -302,6 +302,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 			gebruikerController.wijzigKlant(geselecteerdeKlant);
 			klantTabelInvullen();
 	    	klantDetailsLeegmaken();
+	    	btnKlantToevoegen.setDisable(false);
 	    }
 	}
 
@@ -373,6 +374,11 @@ public class KlantBeheerSchermController extends AnchorPane{
 		txfHuisnr.clear();
 		txfBusnr.clear();	
 		txaTelefoonnummers.clear();
+	}
+	@FXML
+    private void clearKlantgegevens(ActionEvent actionEvent) {
+		klantDetailsLeegmaken();
+		btnKlantToevoegen.setDisable(false);
 	}
 	
 	private boolean klantDetailsControleren() {
