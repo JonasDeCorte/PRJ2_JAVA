@@ -130,6 +130,11 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();
+	    
+	    tblWerknemers.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudeKlant, NieuweKlant) -> {
+        	werknemerDetailsInvullen(NieuweKlant);
+        });
 	}
 	
 	@FXML
@@ -312,6 +317,27 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		txfBusnr.clear();
 		cboFunctie.getSelectionModel().select(1);
 	}
+	private void werknemerDetailsInvullen(Werknemer werknemer) {
+		txfPersoneelsnr.setText(Integer.toString(werknemer.getPersoneelsnummer()));
+        txfGebruikersnaam.setText(werknemer.getGebruikersnaam());
+        pwfWachtwoord.setText(werknemer.getWachtwoord());
+        txfVoornaam.setText(werknemer.getVoornaam());
+        txfNaam.setText(werknemer.getNaam());
+        txfEmail.setText(werknemer.getNaam());
+        werknemer.getTelefoonnummers().stream()
+        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
+        cboFunctie.setValue(werknemer.getRol());
+        if(werknemer.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
+        	chkStatus.setSelected(true);
+        txfLand.setText(werknemer.getAdres().getLand());
+        txfGemeente.setText(werknemer.getAdres().getGemeente());
+        txfPostcode.setText(werknemer.getAdres().getPostcode());
+        txfStraat.setText(werknemer.getAdres().getStraat());
+        txfHuisnr.setText(werknemer.getAdres().getLand());
+        txfBusnr.setText(werknemer.getAdres().getBusnummer());
+        btnWerknemerToevoegen.setDisable(true);
+	}
+	
 	
 	private boolean werknemerDetailsControleren() {
 		String opsommingFoutmelding = "Volgende fouten zijn opgetreden: \n";
@@ -356,6 +382,11 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		}
 		
 
+	}
+	@FXML
+    private void clearPersoneelsGegevens(ActionEvent actionEvent) {
+		werknemerDetailsLeegmaken();
+		btnWerknemerToevoegen.setDisable(false);
 	}
 	
 	//	Filters

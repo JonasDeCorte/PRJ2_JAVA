@@ -42,7 +42,7 @@
                </font>
             </Label>
             <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="172.0" text="Goeiemiddag Administrator" />
-            <Button id="buttonright" fx:id="btnUitloggen" onAction="#uitloggen" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
+            <Button id="buttonright" fx:id="btnUitloggen" alignment="CENTER" mnemonicParsing="false" onAction="#uitloggen" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
                <HBox.margin>
                   <Insets right="10.0" top="15.0" />
                </HBox.margin>
@@ -118,12 +118,13 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="34.599996948242186" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+                <RowConstraints maxHeight="34.599996948242186" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="36.400000000000006" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="35.800018310546875" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="35.800018310546875" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="46.999981689453136" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="31.000012207031233" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="108.79998779296872" minHeight="10.0" prefHeight="63.80001220703127" vgrow="SOMETIMES" />
@@ -137,37 +138,37 @@
                   <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" />
-                  <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="1" />
-                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="2" />
-                  <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="3" />
-                  <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="4" />
-                  <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="5" />
-                  <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="6" />
-                  <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="10" />
-                  <Label id="title" fx:id="lblAdresgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Adresgegevens" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-                  <Label fx:id="lblLand" text="Land" GridPane.rowIndex="12" />
-                  <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="13" />
-                  <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="14" />    
-                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="15" />
-                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="7" />
-                  <Pane prefHeight="35.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                  <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="2" />
+                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="3" />
+                  <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="4" />
+                  <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="5" />
+                  <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="6" />
+                  <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="7" />
+                  <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="11" />
+                  <Label id="title" fx:id="lblAdresgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Adresgegevens" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+                  <Label fx:id="lblLand" text="Land" GridPane.rowIndex="13" />
+                  <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="14" />
+                  <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="15" />    
+                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="16" />
+                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="8" />
+                  <Pane prefHeight="35.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
                      <children>
                         <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="50.0" prefWidth="225.0" />
                      </children>
                   </Pane>
-                  <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="14" />      
-                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="15" />
-                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <HBox GridPane.rowIndex="16">
+                  <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="15" />      
+                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <HBox GridPane.rowIndex="17">
                      <children>
                         <Label fx:id="lblHuisnr" text="Huisnr" />
                         <TextField fx:id="txfHuisnr" prefHeight="26.0" prefWidth="57.0">
@@ -177,7 +178,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="16">
+                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="17">
                      <children>
                         <Label fx:id="lblBusnr" text="Busnr" />
                         <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
@@ -187,8 +188,9 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="9" />
-                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />        
+                  <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
+                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Clear" GridPane.rowIndex="1" />        
                </children>
             </GridPane>
          </children>
