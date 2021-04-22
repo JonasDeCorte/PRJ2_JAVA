@@ -39,7 +39,7 @@ import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
 public class KlantBeheerSchermController extends AnchorPane{
-	private AanmeldController adc;
+	
 	private GebruikerController gebruikerController;
 	
 	// Header (bovenaan)
@@ -121,8 +121,8 @@ public class KlantBeheerSchermController extends AnchorPane{
 	private Klant geselecteerdeKlant;
 	
 	// Constructor
-	public KlantBeheerSchermController(AanmeldController aanmeldController) {
-		this.adc = aanmeldController;
+	public KlantBeheerSchermController() {
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -147,7 +147,7 @@ public class KlantBeheerSchermController extends AnchorPane{
     void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("HoofdMenuAdministrator");
-		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController(adc);
+		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		
@@ -162,7 +162,7 @@ public class KlantBeheerSchermController extends AnchorPane{
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("KlantBeheren");
-		KlantBeheerSchermController root1 = new KlantBeheerSchermController(adc);
+		KlantBeheerSchermController root1 = new KlantBeheerSchermController();
 		Scene scene = new Scene(root1);
 		stage.setScene(scene);
 		
@@ -177,7 +177,7 @@ public class KlantBeheerSchermController extends AnchorPane{
     void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("WerknemerBeheren");
-		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
+		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		
@@ -200,7 +200,7 @@ public class KlantBeheerSchermController extends AnchorPane{
 		if (result.get() == ButtonType.OK) {
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setTitle("Actemium");
-			InlogSchermController root = new InlogSchermController(adc);
+			InlogSchermController root = new InlogSchermController(new AanmeldController());
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			

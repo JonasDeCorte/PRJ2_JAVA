@@ -20,7 +20,7 @@ import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
 public class HoofdMenuSupportManagerController extends AnchorPane{
-	private AanmeldController adc;
+	
 	
 	// Header (bovenaan)
 	@FXML private Button btnUitloggen;
@@ -45,8 +45,7 @@ public class HoofdMenuSupportManagerController extends AnchorPane{
 	// Statistieken en grafieken (midden)
 	// TODO
 	
-	public HoofdMenuSupportManagerController(AanmeldController aanmeldController) {
-		this.adc = aanmeldController;
+	public HoofdMenuSupportManagerController() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HoofdMenuSupportManager.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -70,7 +69,7 @@ public class HoofdMenuSupportManagerController extends AnchorPane{
 		if (result.get() == ButtonType.OK) {
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setTitle("Actemium");
-			InlogSchermController root = new InlogSchermController(adc);
+			InlogSchermController root = new InlogSchermController(new AanmeldController());
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			

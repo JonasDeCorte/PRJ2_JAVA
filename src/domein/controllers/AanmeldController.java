@@ -14,7 +14,7 @@ import repository.WerknemerDaoJpa;
 
 public class AanmeldController {
 	final int MAXIMUM_POGINGEN = 5;
-	private Werknemer aangemeldeWerknemer;
+	private static Werknemer aangemeldeWerknemer;
 	private AanmeldPogingDao aanmeldPogingDao;
 	private WerknemerDao werknemerDao;
 
@@ -62,15 +62,15 @@ public class AanmeldController {
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(true, gebruikersnaam));
 		aanmeldPogingDao.commitTransaction();
-		this.setAangemeldeWerknemer(werknemer);
+		AanmeldController.setAangemeldeWerknemer(werknemer);
 	}
 
-	public Werknemer getAangemeldeWerknemer() {
-		return aangemeldeWerknemer;
+	public static Werknemer getAangemeldeWerknemer() {
+		return AanmeldController.aangemeldeWerknemer;
 	}
 
-	public void setAangemeldeWerknemer(Werknemer aangemeldeWerknemer) {
-		this.aangemeldeWerknemer = aangemeldeWerknemer;
+	public static void setAangemeldeWerknemer(Werknemer aangemeldeWerknemer) {
+		AanmeldController.aangemeldeWerknemer = aangemeldeWerknemer;
 	}
 	public void afmelden() {
 		this.aangemeldeWerknemer = null;

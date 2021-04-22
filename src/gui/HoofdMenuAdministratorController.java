@@ -21,7 +21,6 @@ import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
 public class HoofdMenuAdministratorController extends AnchorPane {
-	private AanmeldController adc;
 	
 	// Header (bovenaan)
 	@FXML private Button btnUitloggen;
@@ -46,8 +45,8 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 	// Statistieken en grafieken (midden)
 	// TODO
 	
-	public HoofdMenuAdministratorController(AanmeldController aanmeldController) {
-		this.adc = aanmeldController;
+	public HoofdMenuAdministratorController() {
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HoofdMenuAdministrator.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -64,7 +63,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
     void KlantBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("KlantBeheren");
-		KlantBeheerSchermController root1 = new KlantBeheerSchermController(adc);
+		KlantBeheerSchermController root1 = new KlantBeheerSchermController();
 		Scene scene = new Scene(root1);
 		stage.setScene(scene);
 		
@@ -79,7 +78,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
     void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
 		stage.setTitle("WerknemerBeheren");
-		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController(adc);
+		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		
@@ -101,7 +100,7 @@ public class HoofdMenuAdministratorController extends AnchorPane {
 		if (result.get() == ButtonType.OK) {
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setTitle("Actemium");
-			InlogSchermController root = new InlogSchermController(adc);
+			InlogSchermController root = new InlogSchermController(new AanmeldController());
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			
