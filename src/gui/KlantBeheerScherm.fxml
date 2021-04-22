@@ -188,7 +188,8 @@
                            </HBox.margin>
                         </TextField>
                      </children>
-                  </HBox>                
+                  </HBox>
+                  <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />                
                </children>
             </GridPane>
          </children>

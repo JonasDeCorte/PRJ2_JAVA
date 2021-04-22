@@ -13,6 +13,7 @@ import domein.Klant;
 import domein.controllers.AanmeldController;
 import domein.controllers.GebruikerController;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.WERKNEMERROL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -118,6 +119,8 @@ public class KlantBeheerSchermController extends AnchorPane{
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
 	private Klant geselecteerdeKlant;
+	
+	// Constructor
 	public KlantBeheerSchermController(AanmeldController aanmeldController) {
 		this.adc = aanmeldController;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
@@ -139,17 +142,7 @@ public class KlantBeheerSchermController extends AnchorPane{
         });
 	}
 	
-	
-	@FXML
-	void KlantWijzigen(ActionEvent event) {
-		   if(klantDetailsControleren()) {
-	    		updateKlantAttributen();
-	    		gebruikerController.wijzigKlant(geselecteerdeKlant);
-	    		klantTabelInvullen();
-	    		klantDetailsLeegmaken();
-	    	}
-	    }
-	
+	// Navigatie buttons (links)
 	@FXML
     void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
 		Stage stage = (Stage) this.getScene().getWindow();
@@ -195,11 +188,12 @@ public class KlantBeheerSchermController extends AnchorPane{
         stage.show();
     }
 	
+	// Uitlog button (rechts bovenaan)
 	@FXML
 	void uitloggen(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Uitloggen bevestigen");
-		alert.setHeaderText("Bent u zeker dat u wil uitloggen?");
+		alert.setTitle(Taal.geefTekst("uitloggenTitel"));
+		alert.setHeaderText(Taal.geefTekst("uitloggenHeader"));
 		
 		Optional<ButtonType> result = alert.showAndWait();
 		
@@ -221,6 +215,67 @@ public class KlantBeheerSchermController extends AnchorPane{
 		}	
 	}
 	
+	// Initializen van het scherm (Vertaling, invullen data tabel) 
+	private void initializeGUIComponenten() {		
+		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		lblTitel.setText(Taal.geefTekst("klantBeheer"));
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
+		
+		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
+		btnKlantBeheer.setText(Taal.geefTekst("klant"));
+		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
+		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));	
+		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
+		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
+	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
+	    	if(nieuweTaal != null) {
+	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
+	    		initializeGUIComponenten();
+	    	}
+	    });
+	    
+		lblFilters.setText(Taal.geefTekst("filters"));
+		chkActieveKlanten.setText(Taal.geefTekst("actieveKlanten"));
+		chkInactieveKlanten.setText(Taal.geefTekst("inactieveKlanten"));
+		chkGeblokkeerdeKlanten.setText(Taal.geefTekst("geblokkeerdeKlanten"));
+		txfFilterGebruikersnaam.setPromptText(Taal.geefTekst("gebruikersnaam"));
+		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
+		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
+		txfFilterBedrijf.setPromptText(Taal.geefTekst("bedrijfsnaam"));
+	    
+		tbcKlantsnr.setText(Taal.geefTekst("klantnr"));
+		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
+		tbcVoornaam.setText(Taal.geefTekst("voornaam"));
+		tbcNaam.setText(Taal.geefTekst("naam"));
+		tbcBedrijf.setText(Taal.geefTekst("bedrijfsnaam"));
+		tbcStatus.setText(Taal.geefTekst("status"));
+	    klantTabelInvullen();
+	    
+	    lblKlantgegevens.setText(Taal.geefTekst("klantgegevens"));
+	    lblKlantnr.setText(Taal.geefTekst("klantnummer"));
+	    lblGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
+	    lblWachtwoord.setText(Taal.geefTekst("wachtwoord"));
+	    lblVoornaam.setText(Taal.geefTekst("voornaam"));
+	    lblNaam.setText(Taal.geefTekst("naam"));
+	    lblEmail.setText(Taal.geefTekst("e-mail"));
+	    lblStatus.setText(Taal.geefTekst("status"));
+	    chkStatus.setText(Taal.geefTekst("actief"));
+	    lblBedrijfsgegevens.setText(Taal.geefTekst("bedrijfsgegevens")); 
+	    lblBedrijfsnaam.setText(Taal.geefTekst("bedrijfsnaam"));
+	    lblLand.setText(Taal.geefTekst("land"));
+	    lblGemeente.setText(Taal.geefTekst("gemeente"));
+	    lblPostcode.setText(Taal.geefTekst("postcode"));
+	    lblStraat.setText(Taal.geefTekst("straat"));
+	    lblHuisnr.setText(Taal.geefTekst("huisnr"));
+	    lblBusnr.setText(Taal.geefTekst("busnr"));
+	    lblTelefoonnummers.setText(Taal.geefTekst("telefoonnummers"));
+
+	    btnKlantToevoegen.setText(Taal.geefTekst("klantToevoegen"));
+	    btnKlantWijzigen.setText(Taal.geefTekst("klantWijzigen"));
+	}
+	
+	// Hoofd functionaliteiten (onderaan rechts)
 	@FXML
 	void voegKlantToe(ActionEvent event) {
 		if(klantDetailsControleren()) {	
@@ -239,6 +294,19 @@ public class KlantBeheerSchermController extends AnchorPane{
 		klantTabelInvullen();
 		}
 	}
+	
+	@FXML
+	void KlantWijzigen(ActionEvent event) {
+		if(klantDetailsControleren()) {
+			updateKlantAttributen();
+			gebruikerController.wijzigKlant(geselecteerdeKlant);
+			klantTabelInvullen();
+	    	klantDetailsLeegmaken();
+	    	btnKlantToevoegen.setDisable(false);
+	    }
+	}
+
+	// Hulp methodes
 	private void klantDetailsInvullen(Klant klant) {
 		klantDetailsLeegmaken();
 		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
@@ -260,42 +328,21 @@ public class KlantBeheerSchermController extends AnchorPane{
         .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
         btnKlantToevoegen.setDisable(true);
 	}
-private void updateKlantAttributen() {
-	geselecteerdeKlant.setKlantnummer(Integer.parseInt(txfKlantnr.getText()));
-	geselecteerdeKlant.setGebruikersnaam(txfGebruikersnaam.getText());
-	geselecteerdeKlant.setWachtwoord(pwfWachtwoord.getText());
-	geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
-	geselecteerdeKlant.setNaam(txfNaam.getText());
-	geselecteerdeKlant.setEmailadres(txfEmail.getText());
-	geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
-	if(chkStatus.isSelected()) {
-	geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
-	}else {
-		geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
-	}
-	geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
-}
-
-	private void initializeGUIComponenten() {		
-		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
-		lblTitel.setText(Taal.geefTekst("klantBeheer"));
-		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
-		
-		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
-		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
-		btnKlantBeheer.setText(Taal.geefTekst("klant"));
-		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
-		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));	
-		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
-		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
-	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
-	    	if(nieuweTaal != null) {
-	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
-	    		initializeGUIComponenten();
-	    	}
-	    });
-	    
-	    klantTabelInvullen();
+	
+	private void updateKlantAttributen() {
+		geselecteerdeKlant.setKlantnummer(Integer.parseInt(txfKlantnr.getText()));
+		geselecteerdeKlant.setGebruikersnaam(txfGebruikersnaam.getText());
+		geselecteerdeKlant.setWachtwoord(pwfWachtwoord.getText());
+		geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
+		geselecteerdeKlant.setNaam(txfNaam.getText());
+		geselecteerdeKlant.setEmailadres(txfEmail.getText());
+		geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
+		if(chkStatus.isSelected()) {
+			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
+		} else {
+			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
+		}
+		geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
 	}
 	
 	private void klantTabelInvullen() {
@@ -308,6 +355,7 @@ private void updateKlantAttributen() {
         tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGebruikerStatus().toString()));
         tblKlanten.setItems(gebruikerController.getAllKlanten());   
         klantTabelFilteren();
+        klantDetailsLeegmaken();
         tblKlanten.refresh();
 	}
 	
@@ -327,46 +375,51 @@ private void updateKlantAttributen() {
 		txfBusnr.clear();	
 		txaTelefoonnummers.clear();
 	}
+	@FXML
+    private void clearKlantgegevens(ActionEvent actionEvent) {
+		klantDetailsLeegmaken();
+		btnKlantToevoegen.setDisable(false);
+	}
 	
 	private boolean klantDetailsControleren() {
-		String opsommingFoutmelding = "Volgende fouten zijn opgetreden: \n";
+		String opsommingFoutmelding = Taal.geefTekst("opsommingFoutmelding");
 		String foutMelding = opsommingFoutmelding;
 		
 		if(txfKlantnr.getText().isBlank()) 
-			foutMelding += "- Het klantnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtKlantnummer");
 		if(txfGebruikersnaam.getText().length() < 4) 
-			foutMelding += "- De gebruikersnaam moet minstens 4 karakters lang zijn\n";
+			foutMelding += Taal.geefTekst("teKortGebruikersnaam");
 		if(txfVoornaam.getText().isBlank()) 
-			foutMelding += "- De voornaam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtVoornaam");
 		if(txfNaam.getText().isBlank())
-			foutMelding += "- De naam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtNaam");
 		if(pwfWachtwoord.getText().isBlank())
-			foutMelding += "- Het wachtwoord is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtWachtwoord");
 		if(txfEmail.getText().isBlank())
-			foutMelding += "- Het emailadres is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtEmail");
 		if(!txfEmail.getText().matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
-			foutMelding += "- Het emailadres is ongeldig\n";
+			foutMelding += Taal.geefTekst("ongeldigEmail");
 		if(txfBedrijfsnaam.getText().isBlank())
-			foutMelding += "- De bedrijfsnaam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtBedrijfsnaam");
 		if(txfLand.getText().isBlank())
-			foutMelding += "- Het land is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtLand");
 		if(txfGemeente.getText().isBlank())
-			foutMelding += "- De gemeente is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtGemeente");
 		if(txfPostcode.getText().isBlank())
-			foutMelding += "- De postcode is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtPostcode");
 		if(txfStraat.getText().isBlank())
-			foutMelding += "- De straat is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtStraat");
 		if(txfHuisnr.getText().isBlank())
-			foutMelding += "- Het huisnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtHuisnr");
 		if(txaTelefoonnummers.getText().isBlank()) 
-			foutMelding += "- Het telefoonnummer is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
 			Alert alert = new Alert (AlertType.INFORMATION);
-			alert.setTitle("Ongeldige invoergegevens");
-			alert.setHeaderText("Fout bij het aanmaken van een nieuwe klant");
+			alert.setTitle(Taal.geefTekst("foutmeldingTitel"));
+			alert.setHeaderText(Taal.geefTekst("foutmeldingHeaderKlant"));
 			alert.setContentText(foutMelding);
 			alert.showAndWait();
 			return false;
