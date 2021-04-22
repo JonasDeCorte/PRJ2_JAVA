@@ -32,23 +32,35 @@ public class TicketType implements Serializable {
 	}
 	
 	private void setTicketTypeId(int ticketTypeId) {
+		if(ticketTypeId > 0)
 		this.ticketTypeId = ticketTypeId;
+		else {
+			throw new IllegalArgumentException("ticketTypeId moet groter zijn dan 0.");
+		}
 	}
 	
 	public String getNaam() {
 		return naam;
 	}
 	
-	private void setNaam(String naam) {
-		this.naam = naam;
+	public void setNaam(String naam) {
+		if (naam != null && !naam.isBlank() && !naam.isEmpty()) {
+			this.naam = naam;
+		} else {
+			throw new IllegalArgumentException("naam mag niet leeg zijn.");
+		}
 	}
 	
 	public String getOmschrijving() {
 		return omschrijving;
 	}
 	
-	private void setOmschrijving(String omschrijving) {
-		this.omschrijving = omschrijving;
+	public void setOmschrijving(String omschrijving) {
+		if (omschrijving != null && !omschrijving.isBlank() && !omschrijving.isEmpty()) {
+			this.omschrijving = omschrijving;
+		} else {
+			throw new IllegalArgumentException("omschrijving mag niet leeg zijn.");
+		}
 	}
 
 	@Override

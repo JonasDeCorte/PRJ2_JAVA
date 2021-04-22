@@ -43,6 +43,11 @@ public class Bedrijf implements Serializable {
 	}
 	
 	private void setBedrijfsnaam(String bedrijfsnaam) {
+		if (bedrijfsnaam != null && !bedrijfsnaam.isBlank() && !bedrijfsnaam.isEmpty()) {
+			this.bedrijfsnaam = bedrijfsnaam;
+		} else {
+			throw new IllegalArgumentException("bedrijfsnaam mag niet leeg zijn.");
+		}
 		this.bedrijfsnaam = bedrijfsnaam;
 	}
 	
@@ -51,14 +56,17 @@ public class Bedrijf implements Serializable {
 	}
 	
 	public void setTelefoonnummers(List<String> telefoonnummers) {
+		if(telefoonnummers.size() > 0 ) {
 		this.telefoonnummers = telefoonnummers;
+	}else {
+		throw new IllegalArgumentException("telefoonnummers mag niet leeg zijn.");}
 	}
 
 	public List<Klant> getKlanten() {
 		return klanten;
 	}
 	
-	private void setKlanten(List<Klant> klanten) {
+	public void setKlanten(List<Klant> klanten) {
 		this.klanten = klanten;
 	}
 

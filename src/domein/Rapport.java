@@ -37,7 +37,11 @@ public class Rapport implements Serializable{
 	}
 
 	private void setRapportNummer(int rapportNummer) {
+		if(rapportNummer > 0)
 		this.rapportNummer = rapportNummer;
+		else {
+			throw new IllegalArgumentException("rapportNummer moet groter zijn dan 0.");
+		}
 	}
 
 	public String getRapportNaam() {
@@ -45,7 +49,11 @@ public class Rapport implements Serializable{
 	}
 
 	private void setRapportNaam(String rapportNaam) {
-		this.rapportNaam = rapportNaam;
+		if (rapportNaam != null && !rapportNaam.isBlank() && !rapportNaam.isEmpty()) {
+			this.rapportNaam = rapportNaam;
+		} else {
+			throw new IllegalArgumentException("rapportNaam mag niet leeg zijn.");
+		}
 	}
 
 	public String getBeschrijving() {
@@ -53,7 +61,11 @@ public class Rapport implements Serializable{
 	}
 
 	private void setBeschrijving(String beschrijving) {
-		this.beschrijving = beschrijving;
+		if (beschrijving != null && !beschrijving.isBlank() && !beschrijving.isEmpty()) {
+			this.beschrijving = beschrijving;
+		} else {
+			throw new IllegalArgumentException("beschrijving mag niet leeg zijn.");
+		}
 	}
 
 	public String getOplossing() {
@@ -61,7 +73,12 @@ public class Rapport implements Serializable{
 	}
 
 	private void setOplossing(String oplossing) {
-		this.oplossing = oplossing;
+		if (oplossing != null && !oplossing.isBlank() && !oplossing.isEmpty()) {
+			this.oplossing = oplossing;
+		} else {
+			throw new IllegalArgumentException("oplossing mag niet leeg zijn.");
+		}
+	
 	}
 
 	public Ticket getTicket() {
@@ -69,6 +86,10 @@ public class Rapport implements Serializable{
 	}
 
 	private void setTicket(Ticket ticket) {
+		if(ticket != null)
 		this.ticket = ticket;
+		else {
+			throw new IllegalArgumentException("ticket mag niet leeg zijn.");
+		}
 	}
 }
