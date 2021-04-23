@@ -41,25 +41,7 @@ import resourcebundle.Taal;
 public class WerknemerBeheerSchermController extends HBox{
 	private GebruikerController gebruikerController;
 	
-	// Header (bovenaan)
-	@FXML private Button btnUitloggen;
-	@FXML private Label lblTitel;
-	@FXML private Label lblBegroeting;
 	
-	// Navigatie (links)
-	@FXML private Button btnHoofdmenu;
-	@FXML private Label lblGebruikerBeheer;
-	@FXML private Button btnWerknemerBeheer;
-	@FXML private Button btnKlantBeheer;
-	@FXML private Label lblTicketBeheer;
-	@FXML private Button btnTicket;
-	@FXML private Button btnTicketType;
-	@FXML private Button btnRapport;
-	@FXML private Label lblContractBeheer;
-	@FXML private Button btnContract;
-	@FXML private Button btnContractType;
-	@FXML private Label lblTaalWijzigen;
-	@FXML private ComboBox<String> cboTaalWijzigen;
 	
 	// Filters (midden)
 	@FXML private Label lblFilters;
