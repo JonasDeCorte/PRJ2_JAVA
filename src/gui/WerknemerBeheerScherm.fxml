@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.AmbientLight?>
-<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -12,198 +10,129 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="688.0" prefWidth="962.0" type="AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="570.0" prefWidth="814.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox layoutY="-4.0" prefHeight="67.0" prefWidth="962.0" styleClass="navbar" stylesheets="@layout.css">
+      <Pane prefHeight="570.0" prefWidth="558.0">
          <children>
-            <ImageView fitHeight="31.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ActemiumLogo.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="15.0" />
-               </HBox.margin>
-            </ImageView>
-            <AmbientLight color="CHARTREUSE" lightOn="true" />
-            <Label id="title" fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="379.0" stylesheets="@layout.css" text="Werknemer beheer">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblBegroeting" prefHeight="67.0" prefWidth="172.0" text="Goeiemiddag Administrator" />
-            <Button id="buttonright" fx:id="btnUitloggen" alignment="CENTER" mnemonicParsing="false" onAction="#uitloggen" prefHeight="40.0" prefWidth="127.0" styleClass="buttonright" text="Uitloggen">
-               <HBox.margin>
-                  <Insets right="10.0" top="15.0" />
-               </HBox.margin>
-            </Button>
+            <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
+            <CheckBox fx:id="chkActieveWerknemers" layoutX="33.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" prefHeight="17.0" prefWidth="142.0" text="Actieve werknemers" />
+            <CheckBox fx:id="chkInactieveWerknemers" layoutX="179.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonInactieve" text="Inactieve werknemers" />
+            <CheckBox fx:id="chkGeblokkeerdeWerknemers" layoutX="318.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeblokkeerde" text="Geblokkeerde werknemers" />
+            <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
+            <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
+            <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
+            <TextField fx:id="txfFilterFunctie" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterFunctie" prefHeight="25.0" prefWidth="78.0" promptText="Functie" />
+            <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
+            <TableView fx:id="tblWerknemers" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="466.0" prefWidth="531.0">
+               <columns>
+                  <TableColumn fx:id="tbcPersoneelsnr" prefWidth="82.40005493164062" text="Personeelsnr" />
+                  <TableColumn fx:id="tbcGebruikersnaam" prefWidth="98.40008544921875" text="Gebruikersnaam" />
+                  <TableColumn fx:id="tbcVoornaam" prefWidth="68.7999267578125" text="Voornaam" />
+                  <TableColumn fx:id="tbcNaam" prefWidth="83.199951171875" text="Naam" />
+                  <TableColumn fx:id="tbcFunctie" prefWidth="114.4000244140625" text="Functie" />
+                  <TableColumn fx:id="tbcStatus" prefWidth="81.5999755859375" text="Status" />
+               </columns>
+            </TableView>
          </children>
-      </HBox>
-      <VBox layoutY="66.0" prefHeight="621.0" prefWidth="142.0" styleClass="sidebar" stylesheets="@layout.css" AnchorPane.leftAnchor="0.0">
+      </Pane>
+      <GridPane id="werknemerGegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="91.4000732421875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="34.599996948242186" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="36.400000000000006" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.800018310546875" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="46.999981689453136" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="31.000012207031233" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="108.79998779296872" minHeight="10.0" prefHeight="52.00000000000003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="79.99997558593748" minHeight="10.0" prefHeight="33.5999816894531" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.60001220703123" minHeight="10.0" prefHeight="27.20001220703125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="59.999981689453136" minHeight="10.0" prefHeight="17.600012207031227" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="66.40003662109376" minHeight="10.0" prefHeight="31.79997558593749" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="74.39999999999998" minHeight="10.0" prefHeight="29.5999755859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.79998779296869" minHeight="10.0" prefHeight="30.399987792968773" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="40.60001220703123" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="24.800024414062534" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="43.99997558593748" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Button id="buttonleft" fx:id="btnHoofdmenu" mnemonicParsing="false" onAction="#Hoofdmenu" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Dashboard">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Label fx:id="lblGebruikerBeheer" text="Gebruiker beheer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Button id="buttonleft" fx:id="btnKlantBeheer" mnemonicParsing="false" onAction="#KlantBeheren" prefHeight="26.0" prefWidth="118.0" styleClass="buttonleft" text="Klant">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button id="buttonleft" fx:id="btnWerknemerBeheer" mnemonicParsing="false" onAction="#WerknemerBeheren" prefHeight="26.0" prefWidth="117.0" styleClass="buttonleft" text="Werknemer">
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <PointLight color="CHARTREUSE" lightOn="true" />
-            <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <ComboBox fx:id="cboTaalWijzigen" prefHeight="26.0" prefWidth="116.0" promptText="Nederlands">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </ComboBox>
-         </children>
-      </VBox>
-      <HBox layoutX="142.0" layoutY="66.0" prefHeight="570.0" prefWidth="814.0">
-         <children>
-            <Pane prefHeight="570.0" prefWidth="558.0">
+            <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="2" />
+            <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="3" />
+            <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="4" />
+            <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="5" />
+            <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="6" />
+            <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="7" />
+            <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="11" />
+            <Label id="title" fx:id="lblAdresgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Adresgegevens" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Label fx:id="lblLand" text="Land" GridPane.rowIndex="13" />
+            <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="14" />
+            <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="15" />
+            <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="16" />
+            <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="8" />
+            <Pane prefHeight="35.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <children>
-                  <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-                  <CheckBox fx:id="chkActieveWerknemers" layoutX="33.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" prefHeight="17.0" prefWidth="142.0" text="Actieve werknemers" />
-                  <CheckBox fx:id="chkInactieveWerknemers" layoutX="179.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonInactieve" text="Inactieve werknemers" />
-                  <CheckBox fx:id="chkGeblokkeerdeWerknemers" layoutX="318.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeblokkeerde" text="Geblokkeerde werknemers" />
-                  <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="Gebruikersnaam" />
-                  <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
-                  <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
-                  <TextField fx:id="txfFilterFunctie" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterFunctie" prefHeight="25.0" prefWidth="78.0" promptText="Functie" />
-                  <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
-                  <TableView fx:id="tblWerknemers" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="524.0" prefWidth="531.0">
-                    <columns>
-                      <TableColumn fx:id="tbcPersoneelsnr" prefWidth="82.40005493164062" text="Personeelsnr" />
-                      <TableColumn fx:id="tbcGebruikersnaam" prefWidth="98.40008544921875" text="Gebruikersnaam" />
-                        <TableColumn fx:id="tbcVoornaam" prefWidth="68.7999267578125" text="Voornaam" />
-                        <TableColumn fx:id="tbcNaam" prefWidth="83.199951171875" text="Naam" />
-                        <TableColumn fx:id="tbcFunctie" prefWidth="114.4000244140625" text="Functie" />
-                        <TableColumn fx:id="tbcStatus" prefWidth="81.5999755859375" text="Status" />
-                    </columns>
-                  </TableView>
+                  <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="50.0" prefWidth="225.0" />
                </children>
             </Pane>
-            <GridPane id="werknemerGegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="91.4000732421875" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints />
-                <RowConstraints maxHeight="34.599996948242186" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="36.400000000000006" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.800018310546875" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="46.999981689453136" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="31.000012207031233" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="108.79998779296872" minHeight="10.0" prefHeight="63.80001220703127" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="79.99997558593748" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="61.60001220703123" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.999981689453136" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="66.40003662109376" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="74.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="60.79998779296869" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+            <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <HBox GridPane.rowIndex="17">
                <children>
-                  <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="2" />
-                  <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="3" />
-                  <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="4" />
-                  <Label fx:id="lblVoornaam" text="Voornaam" GridPane.rowIndex="5" />
-                  <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="6" />
-                  <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="7" />
-                  <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="11" />
-                  <Label id="title" fx:id="lblAdresgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Adresgegevens" GridPane.columnSpan="2" GridPane.rowIndex="12" />
-                  <Label fx:id="lblLand" text="Land" GridPane.rowIndex="13" />
-                  <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="14" />
-                  <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="15" />    
-                  <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="16" />
-                  <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="8" />
-                  <Pane prefHeight="35.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
-                     <children>
-                        <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="50.0" prefWidth="225.0" />
-                     </children>
-                  </Pane>
-                  <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                  <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="15" />      
-                  <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                  <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <HBox GridPane.rowIndex="17">
-                     <children>
-                        <Label fx:id="lblHuisnr" text="Huisnr" />
-                        <TextField fx:id="txfHuisnr" prefHeight="26.0" prefWidth="57.0">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox GridPane.columnIndex="1" GridPane.rowIndex="17">
-                     <children>
-                        <Label fx:id="lblBusnr" text="Busnr" />
-                        <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
-                  <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Clear" GridPane.rowIndex="1" />        
+                  <Label fx:id="lblHuisnr" text="Huisnr" />
+                  <TextField fx:id="txfHuisnr" prefHeight="26.0" prefWidth="57.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
-            </GridPane>
+            </HBox>
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="17">
+               <children>
+                  <Label fx:id="lblBusnr" text="Busnr" />
+                  <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
+            <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Clear" GridPane.rowIndex="1" />
+            <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.rowIndex="18" GridPane.valignment="TOP">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button id="buttonright" fx:id="btnWerknemerToevoegen" mnemonicParsing="false" onAction="#voegWerknemerToe" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer toevoegen" GridPane.columnIndex="1" GridPane.rowIndex="18" GridPane.valignment="TOP">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
-      </HBox>
-      <Button id="buttonright" fx:id="btnWerknemerWijzigen" layoutX="695.0" layoutY="649.0" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="26.0" prefWidth="127.0" stylesheets="@layout.css" text="Werknemer Wijzigen">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
-      <Button id="buttonright" fx:id="btnWerknemerToevoegen" layoutX="823.0" layoutY="649.0" mnemonicParsing="false" onAction="#voegWerknemerToe" prefHeight="26.0" prefWidth="138.0" stylesheets="@layout.css" text="Werknemer Toevoegen">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Button>
+      </GridPane>
    </children>
 </fx:root>

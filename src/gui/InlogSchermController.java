@@ -44,6 +44,7 @@ public class InlogSchermController extends AnchorPane{
     } catch (IOException ex) {
         throw new RuntimeException(ex);
     }	
+    
 	}
 	
 	@FXML
@@ -64,29 +65,10 @@ public class InlogSchermController extends AnchorPane{
        txtfGebruikersnaam.clear();
         pwfWachtwoord.clear();
         Stage stage = (Stage) this.getScene().getWindow();
-        Scene scene = null;
-        //Via rol word er geselecteerd welk scherm moet openen
-        //Aanmeldcontroller voorlopig meegegeven indien gebruiker moet opgehaald worden
-        switch(AanmeldController.getAangemeldeWerknemer().getRol()) {
-        case ADMINISTRATOR : 
-        	stage.setTitle("HoofdMenuAdministrator");
-        	HoofdMenuAdministratorController root1 = new HoofdMenuAdministratorController();
-    		scene = new Scene(root1);
-        	break;
         
-    	case SUPPORTMANAGER : 
-    		stage.setTitle("HoofdMenuSupportManager");
-    		HoofdMenuSupportManagerController root2 = new HoofdMenuSupportManagerController();
-    		scene = new Scene(root2);
-    		break;
-    	
-		case TECHNIEKER : 
-			stage.setTitle("HoofdTechnieker");
-			HoofdMenuTechniekerController root3 = new HoofdMenuTechniekerController();
-    		scene = new Scene(root3);
-			break;
-		}
-	   		
+        	stage.setTitle("HoofdMenuAdministrator");
+        	HoofdMenuController root1 = new HoofdMenuController();
+        	Scene scene = new Scene(root1);
     		stage.setScene(scene);
     		
     		stage.setOnShown((WindowEvent t) -> {

@@ -33,11 +33,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
-public class WerknemerBeheerSchermController extends AnchorPane{
+public class WerknemerBeheerSchermController extends HBox{
 	private GebruikerController gebruikerController;
 	
 	// Header (bovenaan)
@@ -141,82 +142,11 @@ public class WerknemerBeheerSchermController extends AnchorPane{
         });
 	}
 	
-	// Navigatie buttons (links)
-	@FXML
-    void Hoofdmenu(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle("HoofdMenuAdministrator");
-		HoofdMenuAdministratorController root = new HoofdMenuAdministratorController();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
 	
-	@FXML
-    void KlantBeheren(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle("KlantBeheren");
-		KlantBeheerSchermController root1 = new KlantBeheerSchermController();
-		Scene scene = new Scene(root1);
-		stage.setScene(scene);
-		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
-		
-	@FXML
-    void WerknemerBeheren(ActionEvent event) throws SQLException, IOException {
-		Stage stage = (Stage) this.getScene().getWindow();
-		stage.setTitle(Taal.geefTekst("werknemerbeheer"));
-		WerknemerBeheerSchermController root = new WerknemerBeheerSchermController();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		
-		stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
-    }
-	
-	// Uitlog button (rechts bovenaan)
-	@FXML
-	void uitloggen(ActionEvent event) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle(Taal.geefTekst("uitloggenTitel"));
-		alert.setHeaderText(Taal.geefTekst("uitloggenHeader"));
-		
-		Optional<ButtonType> result = alert.showAndWait();
-		
-		if (result.get() == ButtonType.OK) {
-			Stage stage = (Stage) this.getScene().getWindow();
-			stage.setTitle("Actemium");
-			InlogSchermController root = new InlogSchermController(new AanmeldController());
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			
-			stage.setOnShown((WindowEvent t) -> {
-	            stage.setMinWidth(stage.getWidth());
-	            stage.setMinHeight(stage.getHeight());
-	        });
-	        stage.show();
-		}
-		if (result.get() == ButtonType.CANCEL) {
-			alert.close();
-		}	
-	}
 		
     // Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
-		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		/*btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
 		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		
@@ -233,7 +163,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 	    		initializeGUIComponenten();
 	    	}
 	    });
-	    
+	    */
 		lblFilters.setText(Taal.geefTekst("filters"));
 		chkActieveWerknemers.setText(Taal.geefTekst("actieveWerknemers"));
 		chkInactieveWerknemers.setText(Taal.geefTekst("inactieveWerknemers"));
@@ -242,7 +172,7 @@ public class WerknemerBeheerSchermController extends AnchorPane{
 		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
 		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
 		txfFilterFunctie.setPromptText(Taal.geefTekst("functie"));
-
+		 
 		tbcPersoneelsnr.setText(Taal.geefTekst("personeelsnr"));
 		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
 		tbcVoornaam.setText(Taal.geefTekst("voornaam"));
