@@ -10,8 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Bedrijf.bestaatBedrijf", query = "SELECT COUNT(b) FROM Bedrijf b WHERE b.bedrijfsnaam = :bedrijfsnaam"),
+	@NamedQuery(name = "Bedrijf.geefBedrijf", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsnaam = :bedrijfsnaam")
+})
 public class Bedrijf implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,11 +44,23 @@ public class Bedrijf implements Serializable {
 		setAdres(adres);
 	}
 
+	public int getBedrijfId() {
+		return bedrijfId;
+	}
+
+	public void setBedrijfId(int bedrijfId) {
+		if(bedrijfId > 0)
+		this.bedrijfId = bedrijfId;
+		else {
+			throw new IllegalArgumentException("bedrijfId moet groter zijn dan 0.");
+		}
+	}
+
 	public String getBedrijfsnaam() {
 		return bedrijfsnaam;
 	}
 	
-	private void setBedrijfsnaam(String bedrijfsnaam) {
+	public void setBedrijfsnaam(String bedrijfsnaam) {
 		if (bedrijfsnaam != null && !bedrijfsnaam.isBlank() && !bedrijfsnaam.isEmpty()) {
 			this.bedrijfsnaam = bedrijfsnaam;
 		} else {
@@ -56,10 +74,7 @@ public class Bedrijf implements Serializable {
 	}
 	
 	public void setTelefoonnummers(List<String> telefoonnummers) {
-		if(telefoonnummers.size() > 0 ) {
 		this.telefoonnummers = telefoonnummers;
-	}else {
-		throw new IllegalArgumentException("telefoonnummers mag niet leeg zijn.");}
 	}
 
 	public List<Klant> getKlanten() {

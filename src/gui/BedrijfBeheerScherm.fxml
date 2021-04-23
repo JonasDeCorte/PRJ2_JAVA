@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -19,9 +18,9 @@
       <Pane prefHeight="550.0" prefWidth="590.0">
          <children>
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-            <TextField fx:id="txfFilterBedrijfsnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="Bedrijfsnaam" />
-            <TextField fx:id="txfFilterLand" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="land" />
-            <TextField fx:id="txfFilterGemeente" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Gemeente" />
+            <TextField fx:id="txfFilterBedrijfsnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterBedrijfsnaam" prefHeight="25.0" prefWidth="118.0" promptText="Bedrijfsnaam" />
+            <TextField fx:id="txfFilterLand" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterLand" prefHeight="25.0" prefWidth="92.0" promptText="land" />
+            <TextField fx:id="txfFilterGemeente" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterGemeente" prefHeight="25.0" prefWidth="78.0" promptText="Gemeente" />
             <Button id="buttonright" fx:id="btnFiltersLeegmaken" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TableView fx:id="tblBedrijven" layoutX="18.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="472.0" prefWidth="539.0">
                <columns>
@@ -67,10 +66,10 @@
                   <ListView fx:id="lstTelefoonnummers" layoutX="-1.0" layoutY="-2.0" prefHeight="72.0" prefWidth="229.0" />
                </children>
             </Pane>
-            <TextField fx:id="txfKlantnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txfBedrijfnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <HBox GridPane.rowIndex="7">
@@ -93,9 +92,9 @@
                   </TextField>
                </children>
             </HBox>
-            <Button id="buttonright" fx:id="btnBedrijfsgegevensLegen" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <Button id="buttonright" fx:id="btnBedrijfWijzigen" mnemonicParsing="false" onAction="#KlantWijzigen" prefHeight="26.0" prefWidth="114.0" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfWijzigen" GridPane.rowIndex="12" />
-            <Button id="buttonright" fx:id="btnBedrijfToevoegen" mnemonicParsing="false" onAction="#voegKlantToe" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfToevoegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
+            <Button id="buttonright" fx:id="btnBedrijfsgegevensLegen" mnemonicParsing="false" onAction="#clearBedrijfgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <Button id="buttonright" fx:id="btnBedrijfWijzigen" mnemonicParsing="false" onAction="#BedrijfWijzigen" prefHeight="26.0" prefWidth="114.0" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfWijzigen" GridPane.rowIndex="12" />
+            <Button id="buttonright" fx:id="btnBedrijfToevoegen" mnemonicParsing="false" onAction="#voegBedrijfToe" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfToevoegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
             <Label fx:id="lblKlanten" text="Klanten" GridPane.rowIndex="10" />
             <TableView fx:id="tblKlanten" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11">
               <columns>
