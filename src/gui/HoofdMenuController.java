@@ -40,10 +40,6 @@ public class HoofdMenuController extends GridPane {
 	@FXML private ComboBox<String> cboTaalWijzigen;
 	
 	private final StatistiekenSchermController statistiekenSchermController;
-	private  KlantBeheerSchermController klantBeheerSchermController;
-	private  WerknemerBeheerSchermController werknemerBeheerSchermController;
-	private  TicketBeheerSchermController ticketBeheerSchermController;
-	private ContractTypeBeheerSchermController contractTypeBeheerSchermController;
 	private Object controller = new Object();
 	public HoofdMenuController() {
 		statistiekenSchermController = new StatistiekenSchermController();
@@ -71,7 +67,9 @@ public class HoofdMenuController extends GridPane {
         	btnKlantenBeheer.setOnAction(this::klantenBeheer);
         	Button btnWerknemerBeheer = new Button("WerknemerBeheer");
         	btnWerknemerBeheer.setOnAction(this::werknemerBeheer);
-        	vboxNavigatie.getChildren().addAll(lblGebruikerBeheer,btnKlantenBeheer,btnWerknemerBeheer);
+        	Button btnBedrijfBeheer = new Button("BedrijfBeheer");
+        	btnBedrijfBeheer.setOnAction(this::bedrijfBeheer);
+        	vboxNavigatie.getChildren().addAll(lblGebruikerBeheer,btnKlantenBeheer,btnWerknemerBeheer,btnBedrijfBeheer);
         	break;
         
     	case SUPPORTMANAGER : 
@@ -91,19 +89,23 @@ public class HoofdMenuController extends GridPane {
 		}
 	}
 	public void klantenBeheer(ActionEvent event) {
-		klantBeheerSchermController = new KlantBeheerSchermController();
+		KlantBeheerSchermController klantBeheerSchermController = new KlantBeheerSchermController();
 		schermAanpassen(klantBeheerSchermController);
 	}
 	public void werknemerBeheer(ActionEvent event) {
-		werknemerBeheerSchermController = new WerknemerBeheerSchermController();
+		WerknemerBeheerSchermController werknemerBeheerSchermController = new WerknemerBeheerSchermController();
 		schermAanpassen(werknemerBeheerSchermController);
 	}
+	public void bedrijfBeheer(ActionEvent event) {
+		BedrijfBeheerSchermController bedrijfBeheerSchermController = new BedrijfBeheerSchermController();
+		schermAanpassen(bedrijfBeheerSchermController);
+	}
 	public void ticketBeheer(ActionEvent event) {
-		ticketBeheerSchermController = new TicketBeheerSchermController();
+		TicketBeheerSchermController ticketBeheerSchermController = new TicketBeheerSchermController();
 		schermAanpassen(ticketBeheerSchermController);
 	}
 	public void contractBeheer(ActionEvent event) {
-		contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
+		ContractTypeBeheerSchermController contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
 		schermAanpassen(contractTypeBeheerSchermController);
 	}
 	@FXML
