@@ -9,11 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import domein.enumerations.TICKETSTATUS;
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Ticket.getTicketsInBehandelingVanActiefContractType", query = "SELECT t FROM Ticket t WHERE t.ticketStatus = :status"),
+	})
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

@@ -18,7 +18,7 @@ import domein.enumerations.TICKETAANMAAKMETHODE;
 import domein.enumerations.TICKETAANMAAKTIJD;
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "ContractType.DoesContractTypeExist", query = "SELECT c FROM ContractType c where c.naam = :naam") })
+	@NamedQuery(name = "ContractType.bestaatContractType", query = "SELECT c FROM ContractType c where c.naam = :naam") })
 public class ContractType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

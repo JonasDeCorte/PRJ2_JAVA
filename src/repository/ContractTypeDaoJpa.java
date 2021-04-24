@@ -14,10 +14,10 @@ public class ContractTypeDaoJpa  extends GenericDaoJpa<ContractType> implements 
 		super(ContractType.class);
 	}
 	@Override
-	public boolean bestaatContractType(String name) {
+	public boolean bestaatContractType(String naam) {
 		// TODO Auto-generated method stub
 		try {
-			em.createNamedQuery("ContractType.bestaatContractType", ContractType.class).setParameter("naam", name)
+			em.createNamedQuery("ContractType.bestaatContractType", ContractType.class).setParameter("naam", naam)
 					.getSingleResult();
 			return true;
 		} catch (NoResultException e) {
