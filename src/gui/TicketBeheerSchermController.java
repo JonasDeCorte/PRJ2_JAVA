@@ -14,91 +14,108 @@ import javafx.scene.control.Label;
 
 import javafx.scene.control.TextArea;
 
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.CheckBox;
 
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
+import resourcebundle.Taal;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class TicketBeheerSchermController extends HBox{
+public class TicketBeheerSchermController {
 	@FXML
 	private Label lblFilters;
 	@FXML
-	private CheckBox chkActieveKlanten;
+	private CheckBox chkAangemaakteTickets;
 	@FXML
-	private CheckBox chkInactieveKlanten;
+	private CheckBox chkInActieveTickets;
 	@FXML
-	private CheckBox chkGeblokkeerdeKlanten;
+	private CheckBox chkAfgehandeldeTickets;
 	@FXML
-	private TextField txfFilterGebruikersnaam;
+	private TextField txfFilterTitel;
 	@FXML
-	private TextField txfFilterVoornaam;
+	private TextField txfFilterDatum;
 	@FXML
-	private TextField txfFilterNaam;
+	private TextField txfFilterContract;
 	@FXML
-	private TextField txfFilterBedrijf;
+	private TextField txfFilterStatus;
 	@FXML
 	private Button btnClearFilters;
 	@FXML
-	private TableView tblKlanten;
+	private TableView tblTickets;
 	@FXML
-	private TableColumn tbcKlantsnr;
+	private TableColumn tbcTicketNr;
 	@FXML
-	private TableColumn tbcGebruikersnaam;
+	private TableColumn tbcTitel;
 	@FXML
-	private TableColumn tbcVoornaam;
+	private TableColumn tbcDatumAangemaakt;
 	@FXML
-	private TableColumn tbcNaam;
+	private TableColumn tbcContract;
 	@FXML
-	private TableColumn tbcBedrijf;
+	private TableColumn tbcStatus;
 	@FXML
-	private CheckBox chkGeblokkeerdeKlanten1;
+	private CheckBox chkGeannuleerdeTickets;
 	@FXML
-	private Label lblKlantgegevens;
+	private Label lblTicketgegevens;
 	@FXML
-	private Label lblKlantnr;
+	private Label lblTicketNr;
 	@FXML
-	private Label lblGebruikersnaam;
+	private Label lblTitel;
 	@FXML
-	private Label lblWachtwoord;
+	private Label lblDatumAangemaakt;
 	@FXML
-	private Label lblVoornaam;
+	private Label lblOmschrijving;
 	@FXML
-	private Label lblNaam;
+	private Label lblOplossing;
 	@FXML
-	private Label lblEmail;
+	private Label lblContract;
+	@FXML
+	private Label lblTicketType;
+	@FXML
+	private Label lblRapport;
 	@FXML
 	private Label lblStatus;
 	@FXML
-	private Label lblBedrijfsnaam;
+	private Label lblOpmerkingen;
+	
+	
 	@FXML
-	private Label lblLand;
+	private TextArea txaOplossing;
 	@FXML
-	private Label lblTelefoonnummers;
+	private TextArea txaOmschrijving;
+	
+	
 	@FXML
-	private TextArea txaTelefoonnummers;
+	private TextField txfTicketNr;
 	@FXML
-	private TextField txfKlantnr;
+	private TextField txfTitel;
+	
+	
 	@FXML
-	private TextField txfGebruikersnaam;
+	private TextField txfRapport;
 	@FXML
-	private PasswordField pwfWachtwoord;
-	@FXML
-	private TextField txfBedrijfsnaam;
-	@FXML
-	private TextField txfLand;
+	private TextField txfStatus;
 	@FXML
 	private Button btnClearFilters1;
 	@FXML
-	private TextArea txaTelefoonnummers1;
+	private TextArea txaOpmerkingen;
 	@FXML
-	private Label lblWachtwoord1;
-
+	private ComboBox cbTicketType;
+	@FXML
+	private ComboBox cbContract;
+	@FXML
+	private Label lblDatumAfgehandeld;
+	@FXML
+	private TextField txfDatumAfgehandeld;
+	@FXML
+	private TextField txfDatumAangemaakt;
 	
+	
+	
+	
+
 	public TicketBeheerSchermController() {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketBeheerScherm.fxml"));
@@ -111,40 +128,94 @@ public class TicketBeheerSchermController extends HBox{
 	        throw new RuntimeException(ex);
 	    }
 	    
-	    
+	    initializeGUIComponenten();	
 	}
 	
-	// Event Listener on CheckBox[#chkActieveKlanten].onAction
+	private void initializeGUIComponenten() {
+		// TODO Auto-generated method stub
+		
+		lblFilters.setText(Taal.geefTekst("filters"));
+		chkAangemaakteTickets.setText(Taal.geefTekst("aangemaakteTickets"));
+		chkInActieveTickets.setText(Taal.geefTekst("actieveTickets"));
+		chkAfgehandeldeTickets.setText(Taal.geefTekst("afgehandeldeTickets"));
+		txfFilterTitel.setPromptText(Taal.geefTekst("titel"));
+		txfFilterDatum.setPromptText(Taal.geefTekst("datum"));
+		txfFilterContract.setPromptText(Taal.geefTekst("contract"));
+		txfFilterStatus.setPromptText(Taal.geefTekst("status"));
+		btnClearFilters.setText(Taal.geefTekst("leegmaken"));
+		tbcTicketNr.setText(Taal.geefTekst("ticketNr"));
+		tbcTitel.setText(Taal.geefTekst("titel"));
+		tbcDatumAangemaakt.setText(Taal.geefTekst("datumAangemaakt"));
+		tbcContract.setText(Taal.geefTekst("contract"));
+		tbcStatus.setText(Taal.geefTekst("status"));
+		chkGeannuleerdeTickets.setText(Taal.geefTekst("geannuleerdeTickets"));
+		lblTicketgegevens.setText(Taal.geefTekst("ticketGegevens"));            
+		lblTicketNr.setText(Taal.geefTekst("ticketNr"));
+		lblTitel.setText(Taal.geefTekst("titel"));
+		lblDatumAangemaakt.setText(Taal.geefTekst("datumAangemaakt"));
+		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));              
+		lblOplossing.setText(Taal.geefTekst("oplossing"));							
+		lblContract.setText(Taal.geefTekst("contract"));
+		lblTicketType.setText(Taal.geefTekst("ticketType"));
+		lblRapport.setText(Taal.geefTekst("rapport"));
+		lblStatus.setText(Taal.geefTekst("status"));
+		lblOpmerkingen.setText(Taal.geefTekst("opmerkingen"));
+		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
+		
+
+
+
+		
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// Event Listener on CheckBox[#chkAangemaakteTickets].onAction
+	@FXML
+	public void toonAangemaakte(ActionEvent event) {
+		// TODO Autogenerated
+	}
+	// Event Listener on CheckBox[#chkInActieveTickets].onAction
 	@FXML
 	public void toonActieve(ActionEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on CheckBox[#chkInactieveKlanten].onAction
-	@FXML
-	public void toonInactieve(ActionEvent event) {
-		// TODO Autogenerated
-	}
-	// Event Listener on CheckBox[#chkGeblokkeerdeKlanten].onAction
+	// Event Listener on CheckBox[#chkAfgehandeldeTickets].onAction
 	@FXML
 	public void toonAfgehandelde(ActionEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on TextField[#txfFilterGebruikersnaam].onKeyReleased
+	// Event Listener on TextField[#txfFilterTitel].onKeyReleased
 	@FXML
 	public void filterGebruiker(KeyEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on TextField[#txfFilterVoornaam].onKeyReleased
+	// Event Listener on TextField[#txfFilterDatum].onKeyReleased
 	@FXML
 	public void filterVoornaam(KeyEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on TextField[#txfFilterNaam].onKeyReleased
+	// Event Listener on TextField[#txfFilterContract].onKeyReleased
 	@FXML
 	public void filterNaam(KeyEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on TextField[#txfFilterBedrijf].onKeyReleased
+	// Event Listener on TextField[#txfFilterStatus].onKeyReleased
 	@FXML
 	public void filterBedrijf(KeyEvent event) {
 		// TODO Autogenerated
@@ -154,7 +225,7 @@ public class TicketBeheerSchermController extends HBox{
 	public void clear(ActionEvent event) {
 		// TODO Autogenerated
 	}
-	// Event Listener on CheckBox[#chkGeblokkeerdeKlanten1].onAction
+	// Event Listener on CheckBox[#chkGeannuleerdeTickets].onAction
 	@FXML
 	public void toonGeannuleerde(ActionEvent event) {
 		// TODO Autogenerated

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root maxWidth="900.0" prefHeight="637.0" prefWidth="900.0" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <children>
+      <AnchorPane prefHeight="688.0" prefWidth="1017.0">
+         <children>
+            <HBox layoutY="-10.0" prefHeight="647.0" prefWidth="925.0">
+               <children>
+                  <GridPane prefHeight="592.0" prefWidth="934.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="224.73334350585938" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.933349609375" minWidth="10.0" prefWidth="184.46665649414066" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.5333557128906" minWidth="10.0" prefWidth="184.39998779296877" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.86662597656243" minWidth="10.0" prefWidth="277.4000122070312" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.73333740234375" minWidth="10.0" prefWidth="49.933398437500045" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="50.799993896484374" minHeight="10.0" prefHeight="48.4" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="44.4" minHeight="10.0" prefHeight="44.4" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblNieuwWachtwoord" text="Nieuw wachtwoord" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblHerhaalWachtwoord" text="Herhaal wachtwoord" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblLand" text="Land" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="8">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblHuisnummer" text="Huisnummer" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblBusnummer" text="Busnummer" GridPane.rowIndex="10">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="txfHuisnummer" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="txfBusnummer" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="lblVoornaam" text="Voornaam" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblNaam" text="Naam" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblEmail" text="E-mail" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txfVoornaam" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txfNaam" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txfEmail" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextArea fx:id="txaTelefoonnummers" prefHeight="45.0" prefWidth="302.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2">
+                           <GridPane.margin>
+                              <Insets left="70.0" right="20.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <Label fx:id="lblTelefoonnummers" text="Telefoonnummers" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="70.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button fx:id="btnGegevensWijzigen" mnemonicParsing="false" onAction="#gegevensWijzigen" prefHeight="35.0" prefWidth="218.0" text="Gegevens wijzigen" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11">
+                           <GridPane.margin>
+                              <Insets bottom="30.0" left="120.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <PasswordField fx:id="pfNieuwWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <PasswordField fx:id="pfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <PasswordField fx:id="pfHerhaalWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lblPersoneelsnummer" text="Personeelsnummer" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="80.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="80.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblHierNummer" text="hierNummer" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblHierNaam" text="hierNaam" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</fx:root>

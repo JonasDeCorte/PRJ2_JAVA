@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -15,29 +14,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root prefHeight="570.0" prefWidth="874.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="570.0" prefWidth="874.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="570.0" prefWidth="589.0">
          <children>
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-            <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" text="Aangemaakte tickets" />
-            <CheckBox fx:id="chkInactieveKlanten" layoutX="183.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonInactieve" text="Actieve tickets" />
-            <CheckBox fx:id="chkGeblokkeerdeKlanten" layoutX="294.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAfgehandelde" text="Afgehandelde tickets" />
-            <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="title" />
-            <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Datum" />
-            <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Contract" />
-            <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterBedrijf" prefHeight="25.0" prefWidth="78.0" promptText="Status" />
+            <CheckBox fx:id="chkAangemaakteTickets" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAangemaakte" text="Aangemaakte tickets" />
+            <CheckBox fx:id="chkInActieveTickets" layoutX="183.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" text="Actieve tickets" />
+            <CheckBox fx:id="chkAfgehandeldeTickets" layoutX="294.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAfgehandelde" text="Afgehandelde tickets" />
+            <TextField fx:id="txfFilterTitel" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="title" />
+            <TextField fx:id="txfFilterDatum" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Datum" />
+            <TextField fx:id="txfFilterContract" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Contract" />
+            <TextField fx:id="txfFilterStatus" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterBedrijf" prefHeight="25.0" prefWidth="78.0" promptText="Status" />
             <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TableView fx:id="tblKlanten" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
+            <TableView fx:id="tblTickets" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
                <columns>
-                  <TableColumn fx:id="tbcKlantsnr" prefWidth="55.20001220703125" text="TicketNr" />
-                  <TableColumn fx:id="tbcGebruikersnaam" prefWidth="156.0" text="titel" />
-                  <TableColumn fx:id="tbcVoornaam" prefWidth="116.79998779296875" text="DatumAangemaakt" />
-                  <TableColumn fx:id="tbcNaam" prefWidth="98.4000244140625" text="Contract" />
-                  <TableColumn fx:id="tbcBedrijf" prefWidth="125.5999755859375" text="Status" />
+                  <TableColumn fx:id="tbcTicketNr" prefWidth="55.20001220703125" text="TicketNr" />
+                  <TableColumn fx:id="tbcTitel" prefWidth="156.0" text="titel" />
+                  <TableColumn fx:id="tbcDatumAangemaakt" prefWidth="116.79998779296875" text="DatumAangemaakt" />
+                  <TableColumn fx:id="tbcContract" prefWidth="98.4000244140625" text="Contract" />
+                  <TableColumn fx:id="tbcStatus" prefWidth="125.5999755859375" text="Status" />
                </columns>
             </TableView>
-            <CheckBox fx:id="chkGeblokkeerdeKlanten1" layoutX="439.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeannuleerde" text="Geannuleerde tickets" />
+            <CheckBox fx:id="chkGeannuleerdeTickets" layoutX="439.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeannuleerde" text="Geannuleerde tickets" />
          </children>
       </Pane>
       <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
@@ -63,34 +62,34 @@
             <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="71.99997558593753" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label id="title" fx:id="lblKlantgegevens" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="Ticketgegevens" GridPane.columnIndex="1" />
-            <Label fx:id="lblKlantnr" text="Ticketnummer" GridPane.rowIndex="1" />
-            <Label fx:id="lblGebruikersnaam" text="Titel" GridPane.rowIndex="2" />
-            <Label fx:id="lblWachtwoord" text="Datumaangemaakt" GridPane.rowIndex="3" />
-            <Label fx:id="lblVoornaam" text="Omschrijving" GridPane.rowIndex="5" />
-            <Label fx:id="lblNaam" text="Oplossing" GridPane.rowIndex="7" />
-            <Label fx:id="lblEmail" text="Contract" GridPane.rowIndex="9" />
-            <Label fx:id="lblStatus" text="TicketType" GridPane.rowIndex="10" />
-            <Label fx:id="lblBedrijfsnaam" text="Rapport" GridPane.rowIndex="11" />
-            <Label fx:id="lblLand" text="Status" GridPane.rowIndex="12" />
-            <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Opmerkingen" GridPane.rowIndex="13" />
+            <Label id="title" fx:id="lblTicketgegevens" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="Ticketgegevens" GridPane.columnIndex="1" />
+            <Label fx:id="lblTicketNr" text="Ticketnummer" GridPane.rowIndex="1" />
+            <Label fx:id="lblTitel" text="Titel" GridPane.rowIndex="2" />
+            <Label fx:id="lblDatumAangemaakt" text="Datumaangemaakt" GridPane.rowIndex="3" />
+            <Label fx:id="lblOmschrijving" text="Omschrijving" GridPane.rowIndex="5" />
+            <Label fx:id="lblOplossing" text="Oplossing" GridPane.rowIndex="7" />
+            <Label fx:id="lblContract" text="Contract" GridPane.rowIndex="9" />
+            <Label fx:id="lblTicketType" text="TicketType" GridPane.rowIndex="10" />
+            <Label fx:id="lblRapport" text="Rapport" GridPane.rowIndex="11" />
+            <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="12" />
+            <Label fx:id="lblOpmerkingen" prefHeight="18.0" prefWidth="242.0" text="Opmerkingen" GridPane.rowIndex="13" />
             <Pane GridPane.columnSpan="2" GridPane.rowIndex="14">
                <children>
-                  <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
+                  <TextArea fx:id="txaOpmerkingen" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
                </children>
             </Pane>
-            <TextField fx:id="txfKlantnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="txfTicketNr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txfTitel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txfRapport" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="txfStatus" GridPane.columnIndex="1" GridPane.rowIndex="12" />
             <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TextArea fx:id="txaTelefoonnummers1" prefHeight="55.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <ComboBox prefWidth="150.0" promptText="TicketTypeMedium" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextArea prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="150.0" promptText="contract1" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label fx:id="lblWachtwoord1" text="Datumafgehandeld" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextArea fx:id="txaOplossing" prefHeight="55.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+            <ComboBox fx:id="cbTicketType" prefWidth="150.0" promptText="TicketTypeMedium" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextArea fx:id="txaOmschrijving" prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cbContract" prefWidth="150.0" promptText="contract1" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="lblDatumAfgehandeld" text="Datumafgehandeld" GridPane.rowIndex="4" />
+            <TextField fx:id="txfDatumAfgehandeld" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txfDatumAangemaakt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
