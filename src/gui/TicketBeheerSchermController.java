@@ -19,12 +19,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
 
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class TicketBeheerSchermController {
+public class TicketBeheerSchermController  extends HBox{
 	@FXML
 	private Label lblFilters;
 	@FXML
