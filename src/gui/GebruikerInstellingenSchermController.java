@@ -32,7 +32,6 @@ import javafx.scene.control.PasswordField;
 public class GebruikerInstellingenSchermController extends AnchorPane {
 	
 	private final GebruikerController gebruikerController;
-	private final AanmeldController aanmeldController;
 
 	@FXML
 	private Label lblWachtwoord;
@@ -111,7 +110,7 @@ public class GebruikerInstellingenSchermController extends AnchorPane {
 	
 	public GebruikerInstellingenSchermController(){
 		gebruikerController = new GebruikerController();
-		aanmeldController = new AanmeldController();
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -123,7 +122,7 @@ public class GebruikerInstellingenSchermController extends AnchorPane {
 	    }
 	    initializeGUIComponenten();	
 	    
-	    Werknemer actieveWerknemer = aanmeldController.getAangemeldeWerknemer(); // !!!! dit moet weg en dus vervangen worden door de actieve werknemer
+	    Werknemer actieveWerknemer = AanmeldController.getAangemeldeWerknemer(); // !!!! dit moet weg en dus vervangen worden door de actieve werknemer
 	    
 	    alBeschikbareGegevensInvullen(actieveWerknemer);
 	}

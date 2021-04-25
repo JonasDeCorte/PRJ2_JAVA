@@ -41,10 +41,15 @@ public class KlantBeheerder {
 	}
 
 	public void voegKlantToe(Klant klant) {
+		if(!bestaatKlant(klant.getGebruikersnaam())) {
 		klantDao.startTransaction();
 		klantDao.insert(klant);
 		klantDao.commitTransaction();
-		//filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
+		}else {
+			throw new IllegalArgumentException("Klant bestaat al");
+		}
+		
+		filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
 
 	}
 
@@ -55,9 +60,14 @@ public class KlantBeheerder {
 	}
 
 	public void wijzigKlant(Klant klant) {
-		klantDao.startTransaction();
+		if(bestaatKlant(klant.getGebruikersnaam())) {
+			klantDao.startTransaction();
 		klantDao.update(klant);
 		klantDao.commitTransaction();
+		}else {
+			throw new IllegalArgumentException("klant bestaat niet.");
+		}
+		
 		filteredKlantLijst = new FilteredList<>(FXCollections.observableArrayList(klantDao.findAll()),filteredKlantLijst.getPredicate());
 
 	}

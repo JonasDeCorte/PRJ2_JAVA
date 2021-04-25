@@ -31,15 +31,27 @@ public class BedrijfBeheerder {
 		return FXCollections.unmodifiableObservableList(filteredBedrijfLijst);
 	}
 	public void voegBedrijfToe(Bedrijf bedrijf) {
-		bedrijfDao.startTransaction();
+		if(!bestaatBedrijf(bedrijf.getBedrijfsnaam())) {
+			bedrijfDao.startTransaction();
 		bedrijfDao.insert(bedrijf);
 		bedrijfDao.commitTransaction();
+		}
+		else {
+			throw new IllegalArgumentException("bedrijf bestaat al.");
+		}
+		filteredBedrijfLijst = new FilteredList<>(FXCollections.observableArrayList(bedrijfDao.findAll()),filteredBedrijfLijst.getPredicate());
 		
 	}
 	public void wijzigBedrijf(Bedrijf bedrijf) {
-		bedrijfDao.startTransaction();
+		if(bestaatBedrijf(bedrijf.getBedrijfsnaam())) {
+			bedrijfDao.startTransaction();
 		bedrijfDao.update(bedrijf);
 		bedrijfDao.commitTransaction();
+		}else {
+			throw new IllegalArgumentException("bedrijf bestaat niet.");
+		}
+		filteredBedrijfLijst = new FilteredList<>(FXCollections.observableArrayList(bedrijfDao.findAll()),filteredBedrijfLijst.getPredicate());
+		
 		
 	}
 	public void pasFilterAan(String bedrijfsnaam,String land, String Gemeente) {

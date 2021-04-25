@@ -37,16 +37,25 @@ public class WerknemerBeheerder {
 	}
 	
 	public void voegWerknemerToe(Werknemer werknemer) {
-		werknemerDao.startTransaction();
+		if(!bestaatWerknemer(werknemer.getGebruikersnaam())) {
+			werknemerDao.startTransaction();
 		werknemerDao.insert(werknemer);
 		werknemerDao.commitTransaction();
+		}else {
+			throw new IllegalArgumentException("Werknemer bestaat al.");
+		}
+		
 		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
 	}
 	
 	public void wijzigWerknemer(Werknemer werknemer) {
+		if(bestaatWerknemer(werknemer.getGebruikersnaam())) {
 		werknemerDao.startTransaction();
 		werknemerDao.update(werknemer);
 		werknemerDao.commitTransaction();
+		}else {
+			throw new IllegalArgumentException("werknemer bestaat niet.");
+			}
 		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
 	}
 	
