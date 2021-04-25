@@ -1,15 +1,20 @@
 package repository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import domein.*;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.TICKETAANMAAKMETHODE;
+import domein.enumerations.TICKETAANMAAKTIJD;
 import domein.enumerations.WERKNEMERROL;
 
 public class DataInitializer {
 	private WerknemerDaoJpa werknemerDao = new WerknemerDaoJpa();
 	private KlantDaoJpa klantDao = new KlantDaoJpa();
 	private BedrijfDaoJpa bedrijfDao = new BedrijfDaoJpa();
+	private ContractTypeDaoJpa contractTypeDao = new ContractTypeDaoJpa();
+	private TicketDaoJpa ticketDao = new TicketDaoJpa();
 	
 	public void initializeData() {
 		initializeWerknemers();
@@ -48,6 +53,7 @@ public class DataInitializer {
 	
 	private void initializeKlantenEnBedrijven() {
 		bedrijfDao.startTransaction();
+		
 		Bedrijf BEEGO = new Bedrijf("BEEGO", Arrays.asList("+32 567 85 44 23"), new Adres("België", "Gent", "9000", "Koestraat", 47, "8"));
 		Bedrijf Microsoft = new Bedrijf("Microsoft", Arrays.asList("+33 895 58 65 10"), new Adres("Frankrijk", "Parijs", "75008", "Rue Chambiges", 85, "3C"));
 		bedrijfDao.insert(BEEGO);
@@ -70,7 +76,22 @@ public class DataInitializer {
 	}
 	
 	private void initializeContractTypes() {
-		//TO DO
+		contractTypeDao.startTransaction();
+		
+		ContractType DefectInProductie = new ContractType(1, "Defecten in productie", 3, 1, 199.99, Arrays.asList(TICKETAANMAAKMETHODE.VIA_APPLICATIE), TICKETAANMAAKTIJD.ALTIJD_24_7);
+		DefectInProductie.setStatus(false);
+		contractTypeDao.insert(DefectInProductie);
+		
+		contractTypeDao.insert(new ContractType(2, "Defecten in magazijn", 5, 2, 149.99, Arrays.asList(TICKETAANMAAKMETHODE.VIA_APPLICATIE,
+				TICKETAANMAAKMETHODE.EMAIL, TICKETAANMAAKMETHODE.TELEFONISCH) , TICKETAANMAAKTIJD.ALTIJD_24_7));
+	
+		contractTypeDao.insert(new ContractType(3, "Defecten in molding", 5, 2, 149.99, Arrays.asList(
+				TICKETAANMAAKMETHODE.EMAIL, TICKETAANMAAKMETHODE.TELEFONISCH) , TICKETAANMAAKTIJD.WERKDAGEN_8_TOT_17));
+		
+		contractTypeDao.insert(new ContractType(4, "Defecten in assembly", 5, 2, 149.99, Arrays.asList(
+				TICKETAANMAAKMETHODE.VIA_APPLICATIE) , TICKETAANMAAKTIJD.ALTIJD_24_7));
+		
+		contractTypeDao.commitTransaction();	
 	}
 	
 	private void initializeContracten() {
@@ -82,6 +103,6 @@ public class DataInitializer {
 	}
 	
 	private void initializeTickets() {
-		// TO DO
+		//TO DO
 	}
 }

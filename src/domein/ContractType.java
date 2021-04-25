@@ -34,6 +34,7 @@ public class ContractType implements Serializable {
 	private List<Contract> contracten;
 	@ElementCollection
 	private List<TICKETAANMAAKMETHODE> ticketAanmaakMethode;
+	
 	private TICKETAANMAAKTIJD ticketAanmaakTijd;
 		
 	public ContractType() {
@@ -75,7 +76,7 @@ public class ContractType implements Serializable {
 		return status;
 	}
 	
-	private void setStatus(boolean status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 	
