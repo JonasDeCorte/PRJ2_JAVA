@@ -57,9 +57,9 @@ public class Ticket implements Serializable {
 		setBijlages(bijlages);
 		setContract(contract);
 		setTicketType(ticketType);
-		ticketStatus = ticketStatus.AANGEMAAKT;
+		setTicketStatus(ticketStatus.AANGEMAAKT);
 	}
-
+	
 	public int getTicketnummer() {
 		return ticketnummer;
 	}
@@ -160,7 +160,7 @@ public class Ticket implements Serializable {
 		return ticketStatus;
 	}
 
-	private void setTicketStatus(TICKETSTATUS ticketStatus) {
+	public void setTicketStatus(TICKETSTATUS ticketStatus) {
 		if(ticketStatus != null) {
 		this.ticketStatus = ticketStatus;
 	}else {
