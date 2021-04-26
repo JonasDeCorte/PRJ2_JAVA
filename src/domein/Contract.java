@@ -1,6 +1,7 @@
 package domein;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class Contract implements Serializable{
 	
 	private String titel;
 	private int doorlooptijd;
-	private LocalDateTime startdatum;
-	private LocalDateTime einddatum;
+	private LocalDate startdatum;
+	private LocalDate einddatum;
 	
 	private CONTRACTSTATUS contractstatus;
 	@ManyToOne
@@ -38,7 +39,7 @@ public class Contract implements Serializable{
 		contractstatus = CONTRACTSTATUS.IN_BEHANDELING;
 	}
 
-	public Contract(String titel, int doorlooptijd, LocalDateTime startdatum, LocalDateTime einddatum, 
+	public Contract(String titel, int doorlooptijd, LocalDate startdatum, LocalDate einddatum, 
 			ContractType contracttype, Klant klant) {
 		setTitel(titel);
 		setDoorlooptijd(doorlooptijd);
@@ -73,11 +74,11 @@ public class Contract implements Serializable{
 		this.doorlooptijd = doorlooptijd;
 	}
 
-	public LocalDateTime getStartdatum() {
+	public LocalDate getStartdatum() {
 		return startdatum;
 	}
 
-	private void setStartdatum(LocalDateTime startdatum) {
+	private void setStartdatum(LocalDate startdatum) {
 		if (startdatum != null) {
 			this.startdatum = startdatum;
 		} else {
@@ -85,11 +86,11 @@ public class Contract implements Serializable{
 		}
 	}
 
-	public LocalDateTime getEinddatum() {
+	public LocalDate getEinddatum() {
 		return einddatum;
 	}
 
-	private void setEinddatum(LocalDateTime einddatum) {
+	private void setEinddatum(LocalDate einddatum) {
 		if (einddatum != null) {
 			if (einddatum.isBefore(startdatum.plusYears(1))) {
 				throw new IllegalArgumentException("De looptijd moet minimum 1 jaar zijn en de eindDatum mag ook niet kleiner zijn dan de startdatum.");
@@ -104,7 +105,7 @@ public class Contract implements Serializable{
 		return contractstatus;
 	}
 
-	private void setContractstatus(CONTRACTSTATUS contractstatus) {
+	public void setContractstatus(CONTRACTSTATUS contractstatus) {
 		if (contractstatus != null) {
 			this.contractstatus = contractstatus;
 		} else {
