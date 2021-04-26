@@ -1,12 +1,5 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +13,14 @@ import domein.controllers.BedrijfsBeheerController;
 import domein.enumerations.GEBRUIKERSTATUS;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
@@ -33,7 +31,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 
 public class BedrijfBeheerSchermController extends HBox{
@@ -240,7 +238,9 @@ public BedrijfBeheerSchermController(){
         txfStraat.setText(bedrijf.getAdres().getStraat());
         txfHuisnr.setText(String.valueOf(bedrijf.getAdres().getHuisnummer()));
         txfBusnr.setText(bedrijf.getAdres().getBusnummer());  
-     // werkt nog niet   lstTelefoonnummers.setItems((ObservableList) bedrijf.getTelefoonnummers());
+        ObservableList<String> nrs = FXCollections.observableArrayList(bedrijf.getTelefoonnummers());
+        lstTelefoonnummers.setItems(nrs);
+    
         btnBedrijfToevoegen.setDisable(true);
 		
 	}
