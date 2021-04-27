@@ -10,19 +10,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import domein.controllers.AanmeldController;
-import domein.controllers.GebruikerController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -33,6 +28,7 @@ public class HoofdMenuController extends GridPane {
 	@FXML private Label lblTitel;
 	@FXML private Label lblBegroeting;
 	@FXML private Button btnUitloggen;
+	@FXML private HBox hboxHeader;
 	//Navigatie links
 	@FXML private VBox vboxNavigatie;
 	@FXML private Button btnHoofdmenu;
@@ -54,8 +50,9 @@ public class HoofdMenuController extends GridPane {
 	    }
 	    controller = statistiekenSchermController;
 	    this.add((Node) controller, 1, 1,3,3);
-	    initializeGUIComponenten();
 	    knoppenToevoegen();
+	    initializeGUIComponenten();
+
 	    
 	}
 
@@ -146,7 +143,7 @@ public class HoofdMenuController extends GridPane {
 	
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
-		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
+		lblTitel.setText(Taal.geefTekst("hoofdmenu"));
 		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		
 		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));

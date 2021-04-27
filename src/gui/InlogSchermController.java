@@ -66,7 +66,7 @@ public class InlogSchermController extends AnchorPane{
         pwfWachtwoord.clear();
         Stage stage = (Stage) this.getScene().getWindow();
         
-        	stage.setTitle("HoofdMenuAdministrator");
+        	stage.setTitle("Actemium");
         	HoofdMenuController root1 = new HoofdMenuController();
         	Scene scene = new Scene(root1);
     		stage.setScene(scene);
