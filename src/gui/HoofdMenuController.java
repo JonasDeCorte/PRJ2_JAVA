@@ -35,6 +35,17 @@ public class HoofdMenuController extends GridPane {
 	@FXML private Button btnHoofdmenu;
 	@FXML private Label lblTaalWijzigen;
 	@FXML private ComboBox<String> cboTaalWijzigen;
+	//Navigatie Buttons Admin
+	private Label lblGebruikerBeheer;
+	private Button btnWerknemerBeheer;
+	private Button btnKlantBeheer;
+	private Button btnBedrijfBeheer;
+	//Navigatie Buttons SupportManager
+	private Label lblContractBeheer;
+	private Button btnContractBeheer;
+	//Navigatie Buttons Technieker
+	private Label lblTicketBeheer;
+	private Button btnTicketBeheer;
 	
 	private final StatistiekenSchermController statistiekenSchermController;
 	private Object controller = new Object();
@@ -52,42 +63,44 @@ public class HoofdMenuController extends GridPane {
 	    controller = statistiekenSchermController;
 	    this.add((Node) controller, 1, 1,3,3);
 	    knoppenToevoegen();
-	    initializeGUIComponenten();
-
-	    
+	    initializeGUIComponenten();	    
 	}
 
 	public void knoppenToevoegen() {
 		switch(AanmeldController.getAangemeldeWerknemer().getRol()) {
 		case ADMINISTRATOR : 
-        	Label lblGebruikerBeheer = new Label(Taal.geefTekst("gebruikerBeheer"));
+			lblGebruikerBeheer = new Label(Taal.geefTekst("gebruikerBeheer"));
         	vboxNavigatie.setMargin(lblGebruikerBeheer, new Insets(10,0,0,10));
-        	Button btnKlantenBeheer = new Button(Taal.geefTekst("klantBeheer"));
-        	vboxNavigatie.setMargin(btnKlantenBeheer, new Insets(10,0,0,10));
-        	btnKlantenBeheer.setOnAction(this::klantenBeheer);
-        	btnKlantenBeheer.setId("buttonleft");
-        	btnKlantenBeheer.setPrefWidth(118);
-        	btnKlantenBeheer.setPrefHeight(26);
-        	Button btnWerknemerBeheer = new Button(Taal.geefTekst("werknemerbeheer"));
-        	vboxNavigatie.setMargin(btnWerknemerBeheer, new Insets(10,0,0,10));
-        	btnWerknemerBeheer.setOnAction(this::werknemerBeheer);
-        	btnWerknemerBeheer.setId("buttonleft");
-        	btnWerknemerBeheer.setPrefWidth(118);
-        	btnWerknemerBeheer.setPrefHeight(26);
-        	Button btnBedrijfBeheer = new Button(Taal.geefTekst("bedrijfbeheer"));
+        	
+        	btnKlantBeheer = new Button(Taal.geefTekst("klantBeheer"));
+        	vboxNavigatie.setMargin(btnKlantBeheer, new Insets(10,0,0,10));
+        	btnKlantBeheer.setOnAction(this::klantenBeheer);
+        	btnKlantBeheer.setId("buttonleft");
+        	btnKlantBeheer.setPrefWidth(118);
+        	btnKlantBeheer.setPrefHeight(26);
+        	
+        	btnBedrijfBeheer = new Button(Taal.geefTekst("bedrijfbeheer"));
         	vboxNavigatie.setMargin(btnBedrijfBeheer, new Insets(10,0,0,10));
         	btnBedrijfBeheer.setOnAction(this::bedrijfBeheer);
         	btnBedrijfBeheer.setId("buttonleft");
         	btnBedrijfBeheer.setPrefWidth(118);
         	btnBedrijfBeheer.setPrefHeight(26);
         	
-        	vboxNavigatie.getChildren().addAll(lblGebruikerBeheer,btnKlantenBeheer,btnWerknemerBeheer,btnBedrijfBeheer);
+        	btnWerknemerBeheer = new Button(Taal.geefTekst("werknemerbeheer"));
+        	vboxNavigatie.setMargin(btnWerknemerBeheer, new Insets(10,0,0,10));
+        	btnWerknemerBeheer.setOnAction(this::werknemerBeheer);
+        	btnWerknemerBeheer.setId("buttonleft");
+        	btnWerknemerBeheer.setPrefWidth(118);
+        	btnWerknemerBeheer.setPrefHeight(26);
+        	
+        	
+        	vboxNavigatie.getChildren().addAll(lblGebruikerBeheer,btnKlantBeheer, btnBedrijfBeheer, btnWerknemerBeheer);
         	break;
         
     	case SUPPORTMANAGER : 
-    		Label lblContractBeheer = new Label("contractBeheer");
+    		lblContractBeheer = new Label(Taal.geefTekst("contractBeheer"));
     		vboxNavigatie.setMargin(lblContractBeheer, new Insets(10,0,0,10));
-			Button btnContractBeheer= new Button("contractBeheer");
+			btnContractBeheer= new Button(Taal.geefTekst("contract"));
 			vboxNavigatie.setMargin(btnContractBeheer, new Insets(10,0,0,10));
 			btnContractBeheer.setOnAction(this::contractBeheer);
 			btnContractBeheer.setId("buttonleft");
@@ -95,9 +108,9 @@ public class HoofdMenuController extends GridPane {
         	break;
     	
 		case TECHNIEKER : 
-			Label lblTicketBeheer = new Label("ticketBeheer");
+			lblTicketBeheer = new Label(Taal.geefTekst("ticketBeheer"));
 			vboxNavigatie.setMargin(lblTicketBeheer, new Insets(10,0,0,10));
-    		Button btnTicketBeheer = new Button("ticketBeheer");
+    		btnTicketBeheer = new Button(Taal.geefTekst("ticket"));
     		vboxNavigatie.setMargin(btnTicketBeheer, new Insets(10,0,0,10));
     		btnTicketBeheer.setOnAction(this::ticketBeheer);
     		btnTicketBeheer.setId("buttonleft");
@@ -108,17 +121,17 @@ public class HoofdMenuController extends GridPane {
 	}
 	public void klantenBeheer(ActionEvent event) {
 		KlantBeheerSchermController klantBeheerSchermController = new KlantBeheerSchermController();
-		lblTitel.setText(Taal.geefTekst("klantBeheer"));
+		lblTitel.setText(Taal.geefTekst("klant"));
 		schermAanpassen(klantBeheerSchermController);
 	}
 	public void werknemerBeheer(ActionEvent event) {
 		WerknemerBeheerSchermController werknemerBeheerSchermController = new WerknemerBeheerSchermController();
-		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
+		lblTitel.setText(Taal.geefTekst("werknemer"));
 		schermAanpassen(werknemerBeheerSchermController);
 	}
 	public void bedrijfBeheer(ActionEvent event) {
 		BedrijfBeheerSchermController bedrijfBeheerSchermController = new BedrijfBeheerSchermController();
-		lblTitel.setText(Taal.geefTekst("bedrijfbeheer"));
+		lblTitel.setText(Taal.geefTekst("bedrijf"));
 		schermAanpassen(bedrijfBeheerSchermController);
 	}
 	public void ticketBeheer(ActionEvent event) {
@@ -173,6 +186,26 @@ public class HoofdMenuController extends GridPane {
 		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		
 		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
+		
+		switch(AanmeldController.getAangemeldeWerknemer().getRol()) {
+		case ADMINISTRATOR :
+		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
+		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
+		btnKlantBeheer.setText(Taal.geefTekst("klant"));
+		btnBedrijfBeheer.setText(Taal.geefTekst("bedrijf"));
+		break;
+		
+		case SUPPORTMANAGER :
+		lblContractBeheer.setText(Taal.geefTekst("contractBeheer"));
+		btnContractBeheer.setText(Taal.geefTekst("contractType"));
+		break;
+		
+		case TECHNIEKER :
+		lblTicketBeheer.setText(Taal.geefTekst("ticketBeheer"));
+		btnTicketBeheer.setText(Taal.geefTekst("ticket"));
+		break;
+		}
+		
 		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
 		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
@@ -182,5 +215,9 @@ public class HoofdMenuController extends GridPane {
 	    		initializeGUIComponenten();
 	    	}
 	    });
+	    
+	    
+	    
+	    
 	    }
 }
