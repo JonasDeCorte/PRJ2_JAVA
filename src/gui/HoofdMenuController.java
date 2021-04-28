@@ -79,7 +79,7 @@ public class HoofdMenuController extends GridPane {
         	btnKlantBeheer.setPrefWidth(118);
         	btnKlantBeheer.setPrefHeight(26);
         	
-        	btnBedrijfBeheer = new Button(Taal.geefTekst("bedrijfbeheer"));
+        	btnBedrijfBeheer = new Button(Taal.geefTekst("bedrijfsbeheer"));
         	vboxNavigatie.setMargin(btnBedrijfBeheer, new Insets(10,0,0,10));
         	btnBedrijfBeheer.setOnAction(this::bedrijfBeheer);
         	btnBedrijfBeheer.setId("buttonleft");

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="571.0" prefWidth="816.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="816.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="550.0" prefWidth="590.0">
          <children>
@@ -94,7 +94,7 @@
                </children>
             </HBox>
             <Button id="buttonright" fx:id="btnBedrijfsgegevensLegen" mnemonicParsing="false" onAction="#clearBedrijfgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <Button id="buttonright" fx:id="btnBedrijfWijzigen" mnemonicParsing="false" onAction="#BedrijfWijzigen" prefHeight="12.0" prefWidth="103.0" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfWijzigen" GridPane.rowIndex="12">
+            <Button id="buttonright" fx:id="btnBedrijfWijzigen" mnemonicParsing="false" onAction="#bedrijfWijzigen" prefHeight="12.0" prefWidth="103.0" styleClass="buttonright" stylesheets="@layout.css" text="BedrijfWijzigen" GridPane.rowIndex="12">
                <font>
                   <Font size="9.0" />
                </font></Button>
@@ -102,14 +102,6 @@
                <font>
                   <Font size="9.0" />
                </font></Button>
-            <Label fx:id="lblKlanten" text="Klanten" GridPane.rowIndex="10" />
-            <TableView fx:id="tblKlanten" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="11">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Voornaam" />
-                <TableColumn prefWidth="75.0" text="Naam" />
-                  <TableColumn prefWidth="75.0" text="e-mail" />
-              </columns>
-            </TableView>
          </children>
          <HBox.margin>
             <Insets />
