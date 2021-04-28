@@ -3,11 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="510.0" prefWidth="752.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="510.0" prefWidth="752.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="570.0" prefWidth="558.0">
          <children>
@@ -60,10 +60,6 @@
             <RowConstraints maxHeight="52.0000061035156" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="60.5999816894531" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="57.19998779296873" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="51.60001220703123" minHeight="10.0" prefHeight="30.39996337890625" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="55.39999999999998" minHeight="10.0" prefHeight="27.200036621093773" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="25.59998779296876" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="35.79998779296875" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="39.79998779296875" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
@@ -75,59 +71,24 @@
             <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="5" />
             <Label fx:id="lblEmail" text="E-mail" GridPane.rowIndex="6" />
             <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="7" />
-            <Label id="title" fx:id="lblBedrijfsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="233.0" text="Bedrijfsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <Label fx:id="lblBedrijfsnaam" text="Bedrijfsnaam" GridPane.rowIndex="9" />
-            <Label fx:id="lblLand" text="Land" GridPane.rowIndex="10" />
-            <Label fx:id="lblGemeente" text="Gemeente" GridPane.rowIndex="11" />
-            <Label fx:id="lblPostcode" text="Postcode" GridPane.rowIndex="12" />
-            <Label fx:id="lblStraat" text="Straat" GridPane.rowIndex="13" />
-            <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="15" />
-            <Pane GridPane.columnSpan="2" GridPane.rowIndex="16">
-               <children>
-                  <TextArea fx:id="txaTelefoonnummers" layoutX="6.0" layoutY="-4.0" prefHeight="43.0" prefWidth="204.0" />
-               </children>
-            </Pane>
             <TextField fx:id="txfKlantnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txfVoornaam" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField fx:id="txfGemeente" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="txfPostcode" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField fx:id="txfStraat" GridPane.columnIndex="1" GridPane.rowIndex="13" />
             <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <HBox GridPane.rowIndex="14">
-               <children>
-                  <Label fx:id="lblHuisnr" text="Huisnr" />
-                  <TextField fx:id="txfHuisnr" prefHeight="26.0" prefWidth="57.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox GridPane.columnIndex="1" GridPane.rowIndex="14">
-               <children>
-                  <Label fx:id="lblBusnr" text="Busnr" />
-                  <TextField fx:id="txfBusnr" prefHeight="26.0" prefWidth="65.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
             <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <Button id="buttonright" fx:id="btnKlantWijzigen" mnemonicParsing="false" onAction="#KlantWijzigen" prefHeight="20.0" prefWidth="93.0" styleClass="buttonright" stylesheets="@layout.css" text="KlantWijzigen" GridPane.rowIndex="17">
+            <Button id="buttonright" fx:id="btnKlantWijzigen" mnemonicParsing="false" onAction="#KlantWijzigen" prefHeight="20.0" prefWidth="93.0" styleClass="buttonright" stylesheets="@layout.css" text="KlantWijzigen" GridPane.rowIndex="13">
                <font>
                   <Font size="9.0" />
                </font></Button>
-            <Button id="buttonright" fx:id="btnKlantToevoegen" mnemonicParsing="false" onAction="#voegKlantToe" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="KlantToevoegen" GridPane.columnIndex="1" GridPane.rowIndex="17">
+            <Button id="buttonright" fx:id="btnKlantToevoegen" mnemonicParsing="false" onAction="#voegKlantToe" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="KlantToevoegen" GridPane.columnIndex="1" GridPane.rowIndex="13">
                <font>
                   <Font size="9.0" />
                </font></Button>
+            <Label fx:id="lblBedrijf" text="Bedrijf" GridPane.rowIndex="8" />
+            <ComboBox fx:id="cboKiesBedrijf" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <HBox.margin>
             <Insets left="1.0" />

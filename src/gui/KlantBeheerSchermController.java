@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import domein.Adres;
 import domein.Bedrijf;
 import domein.Klant;
 import domein.controllers.AanmeldController;
+import domein.controllers.BedrijfsBeheerController;
 import domein.controllers.GebruikerController;
 import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.WERKNEMERROL;
@@ -42,7 +44,7 @@ import resourcebundle.Taal;
 public class KlantBeheerSchermController extends HBox{
 	
 	private final GebruikerController gebruikerController;
-	
+	private BedrijfsBeheerController bedrijfsBeheerController;
 	// Header (bovenaan)
 	@FXML private Button btnUitloggen;
 	@FXML private Label lblTitel;
@@ -99,23 +101,8 @@ public class KlantBeheerSchermController extends HBox{
 	@FXML private TextField txfEmail;
 	@FXML private Label lblStatus;
 	@FXML private CheckBox chkStatus;
-	@FXML private Label lblBedrijfsgegevens;
-	@FXML private Label lblBedrijfsnaam;
-	@FXML private TextField txfBedrijfsnaam;
-	@FXML private Label lblLand;
-	@FXML private TextField txfLand;
-	@FXML private Label lblGemeente;
-	@FXML private TextField txfGemeente;
-	@FXML private Label lblPostcode;
-	@FXML private TextField txfPostcode;
-	@FXML private Label lblStraat;
-	@FXML private TextField txfStraat;
-	@FXML private Label lblTelefoonnummers;
-	@FXML private TextArea txaTelefoonnummers;
-	@FXML private Label lblHuisnr;
-	@FXML private TextField txfHuisnr;
-	@FXML private Label lblBusnr;
-	@FXML private TextField txfBusnr;
+	@FXML private Label lblBedrijf;
+	@FXML private ComboBox<Bedrijf> cboKiesBedrijf;
 		
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
@@ -124,6 +111,7 @@ public class KlantBeheerSchermController extends HBox{
 	// Constructor
 	public KlantBeheerSchermController(){
 		gebruikerController = new GebruikerController();
+		bedrijfsBeheerController = new BedrijfsBeheerController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -134,13 +122,7 @@ public class KlantBeheerSchermController extends HBox{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();	
-	    tblKlanten.getSelectionModel().selectedItemProperty().
-        addListener((observableValue, oudeKlant, NieuweKlant) -> {
-        	if(NieuweKlant != null) {
-        		geselecteerdeKlant = NieuweKlant;
-        		klantDetailsInvullen(NieuweKlant);
-        	}   	
-        });
+
 	}
 	
 	
@@ -164,6 +146,14 @@ public class KlantBeheerSchermController extends HBox{
 	    	}
 	    });*/
 	    
+	    tblKlanten.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudeKlant, NieuweKlant) -> {
+        	if(NieuweKlant != null) {
+        		geselecteerdeKlant = NieuweKlant;
+        		klantDetailsInvullen(NieuweKlant);
+        	}   	
+        });
+		
 		lblFilters.setText(Taal.geefTekst("filters"));
 		chkActieveKlanten.setText(Taal.geefTekst("actieveKlanten"));
 		chkInactieveKlanten.setText(Taal.geefTekst("inactieveKlanten"));
@@ -190,15 +180,13 @@ public class KlantBeheerSchermController extends HBox{
 	    lblEmail.setText(Taal.geefTekst("e-mail"));
 	    lblStatus.setText(Taal.geefTekst("status"));
 	    chkStatus.setText(Taal.geefTekst("actief"));
-	    lblBedrijfsgegevens.setText(Taal.geefTekst("bedrijfsgegevens")); 
-	    lblBedrijfsnaam.setText(Taal.geefTekst("bedrijfsnaam"));
-	    lblLand.setText(Taal.geefTekst("land"));
-	    lblGemeente.setText(Taal.geefTekst("gemeente"));
-	    lblPostcode.setText(Taal.geefTekst("postcode"));
-	    lblStraat.setText(Taal.geefTekst("straat"));
-	    lblHuisnr.setText(Taal.geefTekst("huisnr"));
-	    lblBusnr.setText(Taal.geefTekst("busnr"));
-	    lblTelefoonnummers.setText(Taal.geefTekst("telefoonnummers"));
+	    lblBedrijf.setText(Taal.geefTekst("bedrijf")); 
+	    
+	    List<Bedrijf> bedrijven = bedrijfsBeheerController.getAllBedrijven();
+	    cboKiesBedrijf.getItems().addAll(bedrijven);
+	    cboKiesBedrijf.setOnMouseClicked(e -> {
+	    	cboKiesBedrijf.getValue();
+	    });
 
 	    btnKlantToevoegen.setText(Taal.geefTekst("klantToevoegen"));
 	    btnKlantWijzigen.setText(Taal.geefTekst("klantWijzigen"));
@@ -208,11 +196,9 @@ public class KlantBeheerSchermController extends HBox{
 	@FXML
 	void voegKlantToe(ActionEvent event) {
 		if(klantDetailsControleren()) {	
-		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
-				txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-		Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(), Arrays.asList(txaTelefoonnummers.getText()), adres);
+		
 		Klant klant = new Klant(txfGebruikersnaam.getText(), pwfWachtwoord.getText(), txfVoornaam.getText(), 
-				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), bedrijf);
+				txfNaam.getText(), txfEmail.getText(), Integer.parseInt(txfKlantnr.getText()), cboKiesBedrijf.getValue());
 		
 		if(chkStatus == null) {
 			klant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);
@@ -243,18 +229,11 @@ public class KlantBeheerSchermController extends HBox{
         pwfWachtwoord.setText(klant.getWachtwoord());
         txfVoornaam.setText(klant.getVoornaam());
         txfNaam.setText(klant.getNaam());
-        txfEmail.setText(klant.getEmailadres());
-        txfBedrijfsnaam.setText(klant.getBedrijf().getBedrijfsnaam());       
+        txfEmail.setText(klant.getEmailadres());     
         if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
         	chkStatus.setSelected(true);
-        txfLand.setText(klant.getBedrijf().getAdres().getLand());
-        txfGemeente.setText(klant.getBedrijf().getAdres().getGemeente());
-        txfPostcode.setText(klant.getBedrijf().getAdres().getPostcode());
-        txfStraat.setText(klant.getBedrijf().getAdres().getStraat());
-        txfHuisnr.setText(String.valueOf(klant.getBedrijf().getAdres().getHuisnummer()));
-        txfBusnr.setText(klant.getBedrijf().getAdres().getBusnummer());  
-        klant.getBedrijf().getTelefoonnummers().stream()
-        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
+        cboKiesBedrijf.setValue(klant.getBedrijf());
+        //klant.getBedrijf().getTelefoonnummers().stream().forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
         btnKlantToevoegen.setDisable(true);
 	}
 	
@@ -265,13 +244,12 @@ public class KlantBeheerSchermController extends HBox{
 		geselecteerdeKlant.setVoornaam(txfVoornaam.getText());
 		geselecteerdeKlant.setNaam(txfNaam.getText());
 		geselecteerdeKlant.setEmailadres(txfEmail.getText());
-		geselecteerdeKlant.getBedrijf().setTelefoonnummers(Arrays.asList(txaTelefoonnummers.getText()));
 		if(chkStatus.isSelected()) {
 			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.ACTIEF);	
 		} else {
 			geselecteerdeKlant.setGebruikerStatus(GEBRUIKERSTATUS.NIET_ACTIEF);	
 		}
-		geselecteerdeKlant.getBedrijf().setAdres(new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), txfStraat.getText(),Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText()));
+		geselecteerdeKlant.setBedrijf(cboKiesBedrijf.getValue());
 	}
 	
 	private void klantTabelInvullen() {
@@ -294,14 +272,7 @@ public class KlantBeheerSchermController extends HBox{
 		txfVoornaam.clear();
 		txfNaam.clear();
 		txfEmail.clear();
-		txfBedrijfsnaam.clear();
-		txfLand.clear();
-		txfGemeente.clear();
-		txfPostcode.clear();
-		txfStraat.clear();
-		txfHuisnr.clear();
-		txfBusnr.clear();	
-		txaTelefoonnummers.clear();
+		cboKiesBedrijf.getSelectionModel().clearSelection();
 	}
 	@FXML
     private void clearKlantgegevens(ActionEvent actionEvent) {
@@ -327,20 +298,8 @@ public class KlantBeheerSchermController extends HBox{
 			foutMelding += Taal.geefTekst("verplichtEmail");
 		if(!txfEmail.getText().matches("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"))
 			foutMelding += Taal.geefTekst("ongeldigEmail");
-		if(txfBedrijfsnaam.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtBedrijfsnaam");
-		if(txfLand.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtLand");
-		if(txfGemeente.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtGemeente");
-		if(txfPostcode.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtPostcode");
-		if(txfStraat.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtStraat");
-		if(txfHuisnr.getText().isBlank())
-			foutMelding += Taal.geefTekst("verplichtHuisnr");
-		if(txaTelefoonnummers.getText().isBlank()) 
-			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
+		if(cboKiesBedrijf.getValue() == null) 
+			foutMelding += Taal.geefTekst("verplichtBedrijf");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;

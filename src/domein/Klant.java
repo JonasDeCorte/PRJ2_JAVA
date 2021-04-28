@@ -42,7 +42,8 @@ public class Klant extends Gebruiker implements Serializable{
 	public Bedrijf getBedrijf() {
 		return bedrijf;
 	}
-	private void setBedrijf(Bedrijf bedrijf) {
+	
+	public void setBedrijf(Bedrijf bedrijf) {
 		if(bedrijf != null) {
 			this.bedrijf = bedrijf;
 		}else {
