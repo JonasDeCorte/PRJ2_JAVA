@@ -2,6 +2,7 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -59,27 +60,47 @@ public class HoofdMenuController extends GridPane {
 	public void knoppenToevoegen() {
 		switch(AanmeldController.getAangemeldeWerknemer().getRol()) {
 		case ADMINISTRATOR : 
-        	Label lblGebruikerBeheer = new Label("GebruikerBeheer");
-        	Button btnKlantenBeheer = new Button("KlantenBeheer");
+        	Label lblGebruikerBeheer = new Label(Taal.geefTekst("gebruikerBeheer"));
+        	vboxNavigatie.setMargin(lblGebruikerBeheer, new Insets(10,0,0,10));
+        	Button btnKlantenBeheer = new Button(Taal.geefTekst("klantBeheer"));
+        	vboxNavigatie.setMargin(btnKlantenBeheer, new Insets(10,0,0,10));
         	btnKlantenBeheer.setOnAction(this::klantenBeheer);
-        	Button btnWerknemerBeheer = new Button("WerknemerBeheer");
+        	btnKlantenBeheer.setId("buttonleft");
+        	btnKlantenBeheer.setPrefWidth(118);
+        	btnKlantenBeheer.setPrefHeight(26);
+        	Button btnWerknemerBeheer = new Button(Taal.geefTekst("werknemerbeheer"));
+        	vboxNavigatie.setMargin(btnWerknemerBeheer, new Insets(10,0,0,10));
         	btnWerknemerBeheer.setOnAction(this::werknemerBeheer);
-        	Button btnBedrijfBeheer = new Button("BedrijfBeheer");
+        	btnWerknemerBeheer.setId("buttonleft");
+        	btnWerknemerBeheer.setPrefWidth(118);
+        	btnWerknemerBeheer.setPrefHeight(26);
+        	Button btnBedrijfBeheer = new Button(Taal.geefTekst("bedrijfbeheer"));
+        	vboxNavigatie.setMargin(btnBedrijfBeheer, new Insets(10,0,0,10));
         	btnBedrijfBeheer.setOnAction(this::bedrijfBeheer);
+        	btnBedrijfBeheer.setId("buttonleft");
+        	btnBedrijfBeheer.setPrefWidth(118);
+        	btnBedrijfBeheer.setPrefHeight(26);
+        	
         	vboxNavigatie.getChildren().addAll(lblGebruikerBeheer,btnKlantenBeheer,btnWerknemerBeheer,btnBedrijfBeheer);
         	break;
         
     	case SUPPORTMANAGER : 
     		Label lblContractBeheer = new Label("contractBeheer");
+    		vboxNavigatie.setMargin(lblContractBeheer, new Insets(10,0,0,10));
 			Button btnContractBeheer= new Button("contractBeheer");
+			vboxNavigatie.setMargin(btnContractBeheer, new Insets(10,0,0,10));
 			btnContractBeheer.setOnAction(this::contractBeheer);
+			btnContractBeheer.setId("buttonleft");
         	vboxNavigatie.getChildren().addAll(lblContractBeheer,btnContractBeheer);
         	break;
     	
 		case TECHNIEKER : 
 			Label lblTicketBeheer = new Label("ticketBeheer");
+			vboxNavigatie.setMargin(lblTicketBeheer, new Insets(10,0,0,10));
     		Button btnTicketBeheer = new Button("ticketBeheer");
+    		vboxNavigatie.setMargin(btnTicketBeheer, new Insets(10,0,0,10));
     		btnTicketBeheer.setOnAction(this::ticketBeheer);
+    		btnTicketBeheer.setId("buttonleft");
 			
         	vboxNavigatie.getChildren().addAll(lblTicketBeheer,btnTicketBeheer);
         	break;
@@ -87,22 +108,27 @@ public class HoofdMenuController extends GridPane {
 	}
 	public void klantenBeheer(ActionEvent event) {
 		KlantBeheerSchermController klantBeheerSchermController = new KlantBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("klantBeheer"));
 		schermAanpassen(klantBeheerSchermController);
 	}
 	public void werknemerBeheer(ActionEvent event) {
 		WerknemerBeheerSchermController werknemerBeheerSchermController = new WerknemerBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
 		schermAanpassen(werknemerBeheerSchermController);
 	}
 	public void bedrijfBeheer(ActionEvent event) {
 		BedrijfBeheerSchermController bedrijfBeheerSchermController = new BedrijfBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("bedrijfbeheer"));
 		schermAanpassen(bedrijfBeheerSchermController);
 	}
 	public void ticketBeheer(ActionEvent event) {
 		TicketBeheerSchermController ticketBeheerSchermController = new TicketBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("ticketBeheer"));
 		schermAanpassen(ticketBeheerSchermController);
 	}
 	public void contractBeheer(ActionEvent event) {
 		ContractTypeBeheerSchermController contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("contractBeheer"));
 		schermAanpassen(contractTypeBeheerSchermController);
 	}
 	@FXML

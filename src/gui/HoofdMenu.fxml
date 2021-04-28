@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.AmbientLight?>
-<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -61,7 +60,6 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <PointLight color="CHARTREUSE" lightOn="true" />
             <Label fx:id="lblTaalWijzigen" text="Taal wijzigen">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />

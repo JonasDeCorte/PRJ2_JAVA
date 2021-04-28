@@ -13,8 +13,8 @@ public class StartUp extends Application{
     public static void main(String... args) {
     	 Taal.instellenTaal(0);
     	 Application.launch(StartUp.class, args);
-    	 DataInitializer dataInit = new DataInitializer();
-    	 dataInit.initializeData();
+    	 /*DataInitializer dataInit = new DataInitializer();
+    	 dataInit.initializeData();*/
     }
 
 	@Override
@@ -23,6 +23,7 @@ public class StartUp extends Application{
 		Scene scene = new Scene(root);
 		stage.setTitle("Actemium");
 		stage.setScene(scene);
+		scene.getStylesheets().add("/gui/layout.css");
 		 
 		stage.setOnShown((WindowEvent t) -> {
             stage.setMinWidth(stage.getWidth());

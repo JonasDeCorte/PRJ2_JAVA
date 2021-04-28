@@ -29,7 +29,7 @@
             <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Voornaam" />
             <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
             <TextField fx:id="txfFilterFunctie" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterFunctie" prefHeight="25.0" prefWidth="78.0" promptText="Functie" />
-            <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Clear" />
+            <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TableView fx:id="tblWerknemers" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="466.0" prefWidth="531.0">
                <columns>
                   <TableColumn fx:id="tbcPersoneelsnr" prefWidth="82.40005493164062" text="Personeelsnr" />
@@ -42,7 +42,7 @@
             </TableView>
          </children>
       </Pane>
-      <GridPane id="werknemerGegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+      <GridPane id="werknemerGegevens" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="91.4000732421875" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
@@ -69,7 +69,7 @@
             <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="43.99997558593748" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="2" />
             <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="3" />
             <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="4" />
@@ -121,7 +121,7 @@
             </HBox>
             <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
             <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Clear" GridPane.rowIndex="1" />
+            <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" GridPane.rowIndex="1" />
             <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.rowIndex="18" GridPane.valignment="TOP">
                <font>
                   <Font size="10.0" />
