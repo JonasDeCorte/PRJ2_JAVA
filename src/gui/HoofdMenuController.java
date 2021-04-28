@@ -61,7 +61,7 @@ public class HoofdMenuController extends GridPane {
 	        throw new RuntimeException(ex);
 	    }
 	    controller = statistiekenSchermController;
-	    this.add((Node) controller, 1, 1,3,3);
+	    this.add((Node) controller, 1, 1,4,4);
 	    knoppenToevoegen();
 	    initializeGUIComponenten();	    
 	}
@@ -151,7 +151,7 @@ public class HoofdMenuController extends GridPane {
 	public void schermAanpassen(Object o) {
 		this.getChildren().remove(controller);
 		controller = o;
-		this.add((Node) controller,1, 1,3,3);
+		this.add((Node) controller,1, 1,4,4);
 	}
 	// Event Listener on Button[#btnUitloggen].onAction
 	@FXML
