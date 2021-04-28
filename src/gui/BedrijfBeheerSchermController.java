@@ -31,6 +31,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 
@@ -53,7 +54,7 @@ public class BedrijfBeheerSchermController extends HBox{
 	@FXML private Label lblPostcode;
 	@FXML private Label lblStraat;
 	@FXML private Label lblTelefoonnummers;
-	@FXML private ListView<String> lstTelefoonnummers;
+	@FXML private TextArea txaTelefoonnummers;
 	@FXML private TextField txfBedrijfnr;
 	@FXML private TextField txfBedrijfsnaam;
 	@FXML private TextField txfLand;
@@ -167,7 +168,8 @@ public class BedrijfBeheerSchermController extends HBox{
 		geselecteerdBedrijf.setBedrijfsnaam(txfBedrijfsnaam.getText());
 		Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(),txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
 		geselecteerdBedrijf.setAdres(adres);	
-		List<String> telefoonnummers = lstTelefoonnummers.getItems();
+		
+		List<String> telefoonnummers = Arrays.asList(txaTelefoonnummers.getText().split("\n"));
 		geselecteerdBedrijf.setTelefoonnummers(telefoonnummers);	
 	}
 	
@@ -188,6 +190,8 @@ public class BedrijfBeheerSchermController extends HBox{
 			foutMelding += Taal.geefTekst("verplichtStraat");
 		if(txfHuisnr.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtHuisnr");
+		if(txaTelefoonnummers.getText().isBlank())
+			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
@@ -205,7 +209,7 @@ public class BedrijfBeheerSchermController extends HBox{
 		if(bedrijfDetailsControleren()) {	
 			Adres adres = new Adres(txfLand.getText(), txfGemeente.getText(), txfPostcode.getText(), 
 					txfStraat.getText(), Integer.parseInt(txfHuisnr.getText()), txfBusnr.getText());
-			List<String> telefoonnummers = lstTelefoonnummers.getItems();
+			List<String> telefoonnummers = Arrays.asList(txaTelefoonnummers.getText().split("\n"));
 			Bedrijf bedrijf = new Bedrijf(txfBedrijfsnaam.getText(),telefoonnummers, adres);
 			bedrijfsBeheerController.voegBedrijfToe(bedrijf);
 			bedrijfTabelInvullen();
@@ -242,10 +246,7 @@ public class BedrijfBeheerSchermController extends HBox{
         txfStraat.clear();
         txfHuisnr.clear();
         txfBusnr.clear();
-        lstTelefoonnummers.getItems().clear(); // clear items 
-        lstTelefoonnummers.getSelectionModel().clearSelection(); // clear the selection 
-        List<String> selectedItemsCopy = new ArrayList<>(lstTelefoonnummers.getSelectionModel().getSelectedItems()); 
-        lstTelefoonnummers.getItems().removeAll(selectedItemsCopy); // removing all the selected items
+        txaTelefoonnummers.clear();
         btnBedrijfToevoegen.setDisable(false);	
 	}
 	
@@ -260,7 +261,8 @@ public class BedrijfBeheerSchermController extends HBox{
         txfHuisnr.setText(String.valueOf(bedrijf.getAdres().getHuisnummer()));
         txfBusnr.setText(bedrijf.getAdres().getBusnummer());  
         ObservableList<String> nrs = FXCollections.observableArrayList(bedrijf.getTelefoonnummers());
-        lstTelefoonnummers.setItems(nrs);
+        bedrijf.getTelefoonnummers().stream()
+        .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
     
         btnBedrijfToevoegen.setDisable(true);		
 	}
