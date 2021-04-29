@@ -115,13 +115,6 @@ public class WerknemerBeheerSchermController extends HBox{
 	    }
 	    initializeGUIComponenten();
 	    
-	    tblWerknemers.getSelectionModel().selectedItemProperty().
-        addListener((observableValue, oudeKlant, NieuweKlant) -> {
-        	if(NieuweKlant != null) {
-        		geselecteerdeWerknemer = NieuweKlant;
-        		werknemerDetailsInvullen(NieuweKlant);
-        	}   	
-        });
 	}
 	
 	
@@ -146,6 +139,14 @@ public class WerknemerBeheerSchermController extends HBox{
 	    	}
 	    });
 	    */
+	    tblWerknemers.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudeWerknemer, NieuweWerknemer) -> {
+        	if(NieuweWerknemer != null) {
+        		geselecteerdeWerknemer = NieuweWerknemer;
+        		werknemerDetailsInvullen(NieuweWerknemer);
+        	}   	
+        });
+	    
 		lblFilters.setText(Taal.geefTekst("filters"));
 		chkActieveWerknemers.setText(Taal.geefTekst("actieveWerknemers"));
 		chkInactieveWerknemers.setText(Taal.geefTekst("inactieveWerknemers"));
