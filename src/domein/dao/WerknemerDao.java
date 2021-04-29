@@ -1,5 +1,7 @@
 package domein.dao;
 
+import java.util.List;
+
 import domein.Werknemer;
 import domein.enumerations.GEBRUIKERSTATUS;
 
@@ -12,4 +14,6 @@ public interface WerknemerDao extends GenericDao<Werknemer>  {
 	void blokkeerWerknemer(String gebruikersnaam);
 	
 	boolean bestaatWerknemer(String gebruikersnaam);
+
+	List<Werknemer> geefTechniekers();
 }

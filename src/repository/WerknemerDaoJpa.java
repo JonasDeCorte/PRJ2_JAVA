@@ -1,10 +1,13 @@
 package repository;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 
 import domein.Werknemer;
 import domein.dao.WerknemerDao;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.WERKNEMERROL;
 
 public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements WerknemerDao {
 
@@ -38,5 +41,10 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 	public boolean bestaatWerknemer(String gebruikersnaam) {
 		return em.createNamedQuery("Werknemer.bestaatWerknemer", Long.class)
 				.setParameter("gebruikersnaam", gebruikersnaam).getSingleResult() == 1;
+	}
+	@Override
+	public List<Werknemer> geefTechniekers() {
+		return em.createNamedQuery("Werknemer.geefAlleTechniekers", Werknemer.class)
+				.setParameter("rol", WERKNEMERROL.TECHNIEKER).getResultList();
 	}
 }

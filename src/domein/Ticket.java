@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,12 @@ import javax.persistence.OneToOne;
 import domein.enumerations.TICKETSTATUS;
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Ticket.getTicketsInBehandelingVanActiefContractType", query = "SELECT t FROM Ticket t WHERE t.ticketStatus = :status"),
+	@NamedQuery(name = "Ticket.getTicketsInBehandelingVanActiefContractType", query = "SELECT t FROM Ticket t WHERE t.ticketStatus = :ticketStatus"),
+	@NamedQuery(name = "Ticket.geefTicketsVanActieveTechnieker", query = "SELECT t FROM Ticket t WHERE t.toegekendeTechnieker = :personeelsnummer"),
+	@NamedQuery(name = "Ticket.geefGewijzigdeTicketsVanActieveTechnieker", query = "SELECT t FROM Ticket t WHERE t.toegekendeTechnieker = :werknemer AND t.wijzigingAangebracht = true "),
+	@NamedQuery(name = "Ticket.geefAlleGewijzigdeTickets", query = "SELECT t FROM Ticket t WHERE t.wijzigingAangebracht = true "), 
 	})
+	
 public class Ticket implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -41,6 +46,9 @@ public class Ticket implements Serializable {
 	@OneToOne
 	private Rapport rapport;
 	private TICKETSTATUS ticketStatus;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Werknemer toegekendeTechnieker;
+	private boolean wijzigingAangebracht;
 	
 	public Ticket() {
 		datumAangemaakt = LocalDateTime.now();
@@ -174,6 +182,24 @@ public class Ticket implements Serializable {
 
 	private void setRapport(Rapport rapport) {
 		this.rapport = rapport;
+	}
+	
+
+	public Werknemer getToegekendeTechnieker() {
+		return toegekendeTechnieker;
+	}
+
+	public void setToegekendeTechnieker(Werknemer toegekendeTechnieker) {
+		this.toegekendeTechnieker = toegekendeTechnieker;
+		
+	}
+
+	public boolean isWijzigingAangebracht() {
+		return wijzigingAangebracht;
+	}
+
+	public void setWijzigingAangebracht(boolean wijzigingAangebracht) {
+		this.wijzigingAangebracht = wijzigingAangebracht;
 	}
 
 	@Override
