@@ -7,7 +7,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -20,30 +19,19 @@
    <children>
       <Pane prefHeight="570.0" prefWidth="589.0">
          <children>
+            <CheckBox fx:id="chkActief" layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonInactieve" text="Actief" />
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-            <CheckBox fx:id="chkActieveKlanten" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" text="Aangemaakte tickets" />
-            <CheckBox fx:id="chkInactieveKlanten" layoutX="183.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonInactieve" text="Actieve tickets" />
-            <CheckBox fx:id="chkGeblokkeerdeKlanten" layoutX="294.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAfgehandelde" text="Afgehandelde tickets" />
-            <TextField fx:id="txfFilterGebruikersnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="title" />
-            <TextField fx:id="txfFilterVoornaam" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Datum" />
-            <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Contract" />
-            <TextField fx:id="txfFilterBedrijf" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterBedrijf" prefHeight="25.0" prefWidth="78.0" promptText="Status" />
+            <TextField fx:id="txfFilterNaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="naam" />
             <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TableView fx:id="tblKlanten" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
+            <TableView fx:id="tblKlanten" layoutX="18.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
                <columns>
-                  <TableColumn fx:id="tbcKlantsnr" prefWidth="55.20001220703125" text="TicketNr" />
-                  <TableColumn fx:id="tbcGebruikersnaam" prefWidth="156.0" text="titel" />
-                  <TableColumn fx:id="tbcVoornaam" prefWidth="116.79998779296875" text="DatumAangemaakt" />
-                  <TableColumn fx:id="tbcNaam" prefWidth="98.4000244140625" text="Contract" />
-                  <TableColumn fx:id="tbcBedrijf" prefWidth="125.5999755859375" text="Status" />
+                  <TableColumn fx:id="tbcContractTypeNr" prefWidth="128.80002117156982" text="ContractTypeNr" />
+                  <TableColumn fx:id="tbcNaam" prefWidth="133.59999084472656" text="naam" />
+                  <TableColumn fx:id="tbcLopendeContracten" prefWidth="133.5999755859375" text="Lopende contracten" />
+                  <TableColumn fx:id="tbcStatus" prefWidth="154.4000244140625" text="Status" />
                </columns>
             </TableView>
-            <CheckBox fx:id="chkGeblokkeerdeKlanten1" layoutX="439.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonGeannuleerde" text="Geannuleerde tickets" />
-            <Label layoutX="-1.0" layoutY="1.0" prefHeight="451.0" prefWidth="776.0" text="ToDo Contracttype">
-               <font>
-                  <Font size="67.0" />
-               </font>
-            </Label>
+            <CheckBox fx:id="chkNietActief" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonGeannuleerde" text="Niet actief" />
          </children>
       </Pane>
       <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
@@ -64,39 +52,36 @@
             <RowConstraints maxHeight="39.60002746582032" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="37.20001831054688" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="39.60002746582032" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="52.0000061035156" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.600024414062545" minHeight="10.0" prefHeight="25.599951171874977" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="71.99997558593753" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label id="title" fx:id="lblKlantgegevens" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="Contractgegevens" GridPane.columnIndex="1" />
-            <Label fx:id="lblKlantnr" text="Ticketnummer" GridPane.rowIndex="1" />
-            <Label fx:id="lblGebruikersnaam" text="Titel" GridPane.rowIndex="2" />
-            <Label fx:id="lblWachtwoord" text="Datumaangemaakt" GridPane.rowIndex="3" />
-            <Label fx:id="lblVoornaam" text="Omschrijving" GridPane.rowIndex="5" />
-            <Label fx:id="lblNaam" text="Oplossing" GridPane.rowIndex="7" />
-            <Label fx:id="lblEmail" text="Contract" GridPane.rowIndex="9" />
-            <Label fx:id="lblStatus" text="TicketType" GridPane.rowIndex="10" />
-            <Label fx:id="lblBedrijfsnaam" text="Rapport" GridPane.rowIndex="11" />
-            <Label fx:id="lblLand" text="Status" GridPane.rowIndex="12" />
-            <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Opmerkingen" GridPane.rowIndex="13" />
-            <Pane GridPane.columnSpan="2" GridPane.rowIndex="14">
-               <children>
-                  <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="59.0" prefWidth="225.0" />
-               </children>
-            </Pane>
-            <TextField fx:id="txfKlantnr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txfGebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <PasswordField fx:id="pwfWachtwoord" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txfBedrijfsnaam" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="txfLand" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="5" />
+            <Label id="title" fx:id="lblKlantgegevens" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="ContractType details" GridPane.columnIndex="1" />
+            <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="1" />
+            <Label fx:id="lblMinAfhandeltijd" text="Min.afhandeltijd" GridPane.rowIndex="2" />
+            <Label fx:id="lblMaxAfhandeltijd" text="Max.afhandeltijd" GridPane.rowIndex="3" />
+            <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txfMinAfhandeltijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="txfMaxAfhandeltijd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TextArea fx:id="txaTelefoonnummers1" prefHeight="55.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <ComboBox prefWidth="150.0" promptText="TicketTypeMedium" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextArea prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="150.0" promptText="contract1" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label fx:id="lblWachtwoord1" text="Datumafgehandeld" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cboTijd" prefHeight="26.0" prefWidth="179.0" promptText="Tijdens werkdagen (8-17)" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+            <Label fx:id="lblPrijsContract" text="Prijs contract" GridPane.rowIndex="4" />
+            <TextField fx:id="txfPrijs" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="chkActief1" mnemonicParsing="false" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="lblManier" text="Manier waarop tickets aangemaakt worden" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <CheckBox fx:id="chkEmail" mnemonicParsing="false" text="E-mail" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+            <CheckBox fx:id="chkTelefoon" mnemonicParsing="false" text="Telefoon" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <CheckBox fx:id="chkApplicatie" mnemonicParsing="false" text="Applicatie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+            <Label text="Wanneer kunnen tickets aangemaakt worden" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+            <Button id="buttonright" mnemonicParsing="false" prefHeight="14.0" prefWidth="110.0" stylesheets="@layout.css" text="ContractTypeWijzigen" GridPane.rowIndex="11">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+            <Button id="buttonright" mnemonicParsing="false" text="ContractTypeToevegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
    </children>
