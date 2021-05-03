@@ -9,11 +9,17 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import domein.Bedrijf;
+import domein.Contract;
 import domein.Ticket;
+import domein.TicketType;
 import domein.controllers.AanmeldController;
+import domein.controllers.ContractController;
 import domein.controllers.TicketController;
+import domein.controllers.TicketTypeController;
 import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.TICKETSTATUS;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -111,9 +117,9 @@ public class TicketBeheerSchermController  extends HBox{
 	@FXML
 	private TextArea txaOpmerkingen;
 	@FXML
-	private ComboBox cbTicketType;
+	private ComboBox<TicketType> cbTicketType;
 	@FXML
-	private ComboBox cbContract;
+	private ComboBox<Contract> cbContract;
 	@FXML
 	private Label lblDatumAfgehandeld;
 	@FXML
@@ -121,13 +127,16 @@ public class TicketBeheerSchermController  extends HBox{
 	@FXML
 	private TextField txfDatumAangemaakt;
 	
-	
+	private Ticket geselecteerdeTicket;
 	private final TicketController ticketController;
-	
+	private final ContractController contractController;
+	private final TicketTypeController ticketTypeController;
 
 	public TicketBeheerSchermController() {
 		
 		this.ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
+		this.contractController = new ContractController();
+		this.ticketTypeController = new TicketTypeController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -182,28 +191,49 @@ public class TicketBeheerSchermController  extends HBox{
 		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
 		
 
-
-
+		tblTickets.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudeTicket, NieuweTicket) -> {
+        	if(NieuweTicket != null) {
+        		geselecteerdeTicket = NieuweTicket;
+        		TicketDetailsInvullen(NieuweTicket);
+        	}   	
+        });
 		
+		//List<TicketType> ticketTypes = ticketTypeController.ge
+		
+		/*List<Contract> contracten = contractController;
+	    cboKiesBedrijf.getItems().addAll(bedrijven);
+	    cboKiesBedrijf.setOnMouseClicked(e -> {
+	    	cboKiesBedrijf.getValue();
+	    });*/
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	private void TicketDetailsInvullen(Ticket ticket) {
+		TicketDetailsLeegmaken();
+		txfTicketNr.setText(Integer.toString(ticket.getTicketnummer()));
+        txfTitel.setText(ticket.getTitel());
+        txfDatumAangemaakt.setText(ticket.getDatumAangemaakt().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        if(ticket.getDatumAfgesloten() != null)
+        txfDatumAfgehandeld.setText(ticket.getDatumAfgesloten().format(DateTimeFormatter.ISO_LOCAL_DATE));
+        txaOmschrijving.setText(ticket.getOmschrijving());
+        if(ticket.getOplossing() != null)
+        txaOplossing.setText(ticket.getOplossing().toString());     
+        cbContract.setValue(ticket.getContract());
+        cbTicketType.setValue(ticket.getTicketType());
+		txaOpmerkingen.setText(ticket.getOpmerkingen());
+		txfStatus.setText(ticket.getTicketStatus().toString());
+	}
+	private void TicketDetailsLeegmaken() {
+		txfTicketNr.clear();
+        txfTitel.clear();
+        txfDatumAangemaakt.clear();
+        txfDatumAfgehandeld.clear();
+        txaOmschrijving.clear();
+        txaOplossing.clear();    
+		txaOpmerkingen.clear();
+		
+	}
 	// Event Listener on CheckBox[#chkAangemaakteTickets].onAction
 	@FXML
 	public void toonAangemaakte(ActionEvent event) {
@@ -251,7 +281,7 @@ public class TicketBeheerSchermController  extends HBox{
 	// Event Listener on Button[#btnClearFilters1].onAction
 	@FXML
 	public void clearTicketGegevens(ActionEvent event) {
-		
+		TicketDetailsLeegmaken();
 	}
 	
 	private void ticketTabelFilteren() {
