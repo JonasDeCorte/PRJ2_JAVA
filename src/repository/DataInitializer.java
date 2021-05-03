@@ -2,6 +2,8 @@ package repository;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import domein.*;
 import domein.enumerations.CONTRACTSTATUS;
@@ -23,15 +25,15 @@ public class DataInitializer {
 	public void initializeData() {
 		werknemerDao.startTransaction();
 		
-		Werknemer Administrator = new Werknemer("Administrator", "Administrator123", "Kees", "Schoens", "Kees.Schoens@Actemium.be", 1001,
+		Werknemer Administrator = new Werknemer("admin", "admin", "Kees", "Schoens", "Kees.Schoens@Actemium.be", 1001,
 				Arrays.asList("+32 456 25 67 85", "+32 458 95 62 36"), WERKNEMERROL.ADMINISTRATOR, new Adres("België", "Brussel","1000","Stationsstraat", 45, ""));
 		werknemerDao.insert(Administrator);
 		
-		Werknemer Technieker = new Werknemer("Technieker", "Technieker123", "Bert", "Weens", "Bert.Weens@Actemium.be", 1002,
+		Werknemer Technieker = new Werknemer("tech", "tech", "Bert", "Weens", "Bert.Weens@Actemium.be", 1002,
 				Arrays.asList("+32 558 67 42 33"), WERKNEMERROL.TECHNIEKER, new Adres("België", "Gent", "9000", "Moerkerksesteenweg", 7, "2"));
 		werknemerDao.insert(Technieker);
 		
-		Werknemer SupportManager = new Werknemer("SupportManager", "SupportManager123","Sophie", "Vermeersch", "Sophie.Vermeersch@Actemium.be", 1004,
+		Werknemer SupportManager = new Werknemer("supp", "supp","Sophie", "Vermeersch", "Sophie.Vermeersch@Actemium.be", 1004,
 				Arrays.asList("+32 895 32 44 85"), WERKNEMERROL.SUPPORTMANAGER, new Adres("België", "Brugge", "8000", "Brugsestraat", 48, "3"));
 		werknemerDao.insert(SupportManager);
 				
@@ -130,24 +132,31 @@ public class DataInitializer {
 		ticketDao.startTransaction();
 		
 		
+		List<Werknemer> AlleTechniekers = werknemerDao.geefTechniekers();
+		
 		Ticket Ticket1 =  new Ticket(1001, "Defecte productie rolband ", "Rolband kan niet meer rollen.", "Lokale technieker kan het niet vinden",null , Contract1, HogePrio);
 		Ticket1.setTicketStatus(TICKETSTATUS.AFGEHANDELD);
+		Ticket1.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket1);
 		
 		Ticket Ticket2 = new Ticket(1002, "Defect karton machine", "Kartonnen dozen worden niet gelijmd", "Lijm is aangevuld",null, Contract2, MediumPrio);	
 		Ticket2.setTicketStatus(TICKETSTATUS.AFGEHANDELD);
+		Ticket2.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket2);
 		
 		Ticket Ticket3 = new Ticket(1003, "Defect plooi mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplooid", "Opgelost door lokale technieker", null, Contract2, MediumPrio);	
 		Ticket3.setTicketStatus(TICKETSTATUS.GEANNULEERD);
+		Ticket3.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket3);
 		
 		Ticket Ticket4 = new Ticket(1004, "Defect plak mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplakt", "Plakband is aangevuld en correct geïnstalleerd", null, Contract3, MediumPrio);	
 		Ticket4.setTicketStatus(TICKETSTATUS.IN_BEHANDELING);
+		Ticket4.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket4);
 		
 		Ticket Ticket5 = new Ticket(1005, "Molding machine gx200 is defect", "We hebben geen idee, de machine start niet meer op", "Nieuwe mold sinds gisteren", null, Contract4, HogePrio);	
 		Ticket5.setTicketStatus(TICKETSTATUS.IN_BEHANDELING);
+		Ticket5.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket5);
 		
 		ticketDao.commitTransaction();

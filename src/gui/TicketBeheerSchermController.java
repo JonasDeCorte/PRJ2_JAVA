@@ -7,7 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
+import domein.Ticket;
+import domein.controllers.AanmeldController;
+import domein.controllers.TicketController;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -45,17 +51,17 @@ public class TicketBeheerSchermController  extends HBox{
 	@FXML
 	private Button btnClearFilters;
 	@FXML
-	private TableView tblTickets;
+	private TableView<Ticket> tblTickets;
 	@FXML
-	private TableColumn tbcTicketNr;
+	private TableColumn<Ticket,Integer> tbcTicketNr;
 	@FXML
-	private TableColumn tbcTitel;
+	private TableColumn<Ticket,String> tbcTitel;
 	@FXML
-	private TableColumn tbcDatumAangemaakt;
+	private TableColumn<Ticket,String> tbcDatumAangemaakt;
 	@FXML
-	private TableColumn tbcContract;
+	private TableColumn<Ticket,String> tbcContract;
 	@FXML
-	private TableColumn tbcStatus;
+	private TableColumn<Ticket,String> tbcStatus;
 	@FXML
 	private CheckBox chkGeannuleerdeTickets;
 	@FXML
@@ -114,11 +120,12 @@ public class TicketBeheerSchermController  extends HBox{
 	private TextField txfDatumAangemaakt;
 	
 	
-	
+	private final TicketController ticketController;
 	
 
 	public TicketBeheerSchermController() {
 		
+		this.ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -130,7 +137,17 @@ public class TicketBeheerSchermController  extends HBox{
 	    }
 	    
 	    initializeGUIComponenten();	
+	    TicketTabelInvullen();
 	}
+	private void TicketTabelInvullen() {
+	 	tbcTicketNr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getTicketnummer()).asObject());
+	    tbcTitel.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitel()));
+        tbcContract.setCellValueFactory(cellData -> new SimpleStringProperty( cellData.getValue().getContract().getTitel()));
+        tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTicketStatus().toString()));
+        tbcDatumAangemaakt.setCellValueFactory(cellData -> new SimpleStringProperty( cellData.getValue().getDatumAangemaakt().format(DateTimeFormatter.ISO_LOCAL_DATE)));
+        tblTickets.setItems(ticketController.getTicketsLijst());
+        tblTickets.refresh();
+}
 	
 	private void initializeGUIComponenten() {
 		// TODO Auto-generated method stub

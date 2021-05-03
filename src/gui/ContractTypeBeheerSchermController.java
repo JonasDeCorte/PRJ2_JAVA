@@ -8,6 +8,11 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import domein.ContractType;
+import domein.controllers.BedrijfsBeheerController;
+import domein.controllers.ContractTypeController;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -17,7 +22,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.PasswordField;
 
 import javafx.scene.control.CheckBox;
-
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.TableView;
@@ -28,78 +33,67 @@ public class ContractTypeBeheerSchermController extends HBox{
 	@FXML
 	private Label lblFilters;
 	@FXML
-	private CheckBox chkActieveKlanten;
+	private CheckBox chkActief;
 	@FXML
-	private CheckBox chkInactieveKlanten;
-	@FXML
-	private CheckBox chkGeblokkeerdeKlanten;
-	@FXML
-	private TextField txfFilterGebruikersnaam;
-	@FXML
-	private TextField txfFilterVoornaam;
+	private CheckBox chkInactief;
 	@FXML
 	private TextField txfFilterNaam;
 	@FXML
-	private TextField txfFilterBedrijf;
-	@FXML
 	private Button btnClearFilters;
 	@FXML
-	private TableView tblKlanten;
+	private TableView<ContractType> tblContractType;
 	@FXML
-	private TableColumn tbcKlantsnr;
+	private TableColumn<ContractType,Integer> tbcContractTypeNr;
 	@FXML
-	private TableColumn tbcGebruikersnaam;
+	private TableColumn<ContractType,String>tbcNaam;
 	@FXML
-	private TableColumn tbcVoornaam;
+	private TableColumn<ContractType,Integer> tbcLopendeContracten;
 	@FXML
-	private TableColumn tbcNaam;
+	private TableColumn<ContractType,String> tbcStatus;
 	@FXML
-	private TableColumn tbcBedrijf;
-	@FXML
-	private CheckBox chkGeblokkeerdeKlanten1;
-	@FXML
-	private Label lblKlantgegevens;
-	@FXML
-	private Label lblKlantnr;
-	@FXML
-	private Label lblGebruikersnaam;
-	@FXML
-	private Label lblWachtwoord;
-	@FXML
-	private Label lblVoornaam;
+	private Label lblContractTypeDetails;
 	@FXML
 	private Label lblNaam;
 	@FXML
-	private Label lblEmail;
+	private Label lblMinAfhandeltijd;
+	@FXML
+	private Label lblMaxAfhandeltijd;
+	@FXML
+	private Label lblPrijsContract;
 	@FXML
 	private Label lblStatus;
 	@FXML
-	private Label lblBedrijfsnaam;
+	private Label lblManier;
 	@FXML
-	private Label lblLand;
+	private Label lblWanneer;
 	@FXML
-	private Label lblTelefoonnummers;
+	private TextField txfNaam;
 	@FXML
-	private TextArea txaTelefoonnummers;
+	private TextField txfMinAfhandeltijd;
 	@FXML
-	private TextField txfKlantnr;
+	private TextField txfMaxAfhandeltijd;
 	@FXML
-	private TextField txfGebruikersnaam;
+	private TextField txfPrijs;
 	@FXML
-	private PasswordField pwfWachtwoord;
+	private CheckBox chkActief1;
 	@FXML
-	private TextField txfBedrijfsnaam;
+	private CheckBox chkEmail;
 	@FXML
-	private TextField txfLand;
+	private CheckBox chkTelefoon;
+	@FXML
+	private ComboBox<String> cboTijd;
 	@FXML
 	private Button btnClearFilters1;
 	@FXML
-	private TextArea txaTelefoonnummers1;
+	private Button btnContractTypeWijzigen;
 	@FXML
-	private Label lblWachtwoord1;
+	private Button btnContractTypeToevoegen;
+	
+	private final ContractTypeController contractTypeController;
 	
 public ContractTypeBeheerSchermController() {
 		
+		this.contractTypeController = new ContractTypeController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ContractTypeBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -111,6 +105,14 @@ public ContractTypeBeheerSchermController() {
 	    }
 	    
 	    
+	}
+	private void ContractTypeTabelInvullen() {
+		 	tbcContractTypeNr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getContractTypeId()).asObject());
+		    tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
+	        //tbcLopendeContracten.setCellValueFactory(cellData -> new SimpleIntegerProperty( cellData.getValue().getContracten()));
+	        //tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isStatus()));
+		    //tblContractType.setItems(contractTypeController.);
+	        tblContractType.refresh();
 	}
 
 	// Event Listener on CheckBox[#chkActieveKlanten].onAction
