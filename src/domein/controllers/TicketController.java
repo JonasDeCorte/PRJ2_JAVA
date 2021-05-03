@@ -25,8 +25,8 @@ public class TicketController {
 		ticketBeheerder.pasTicketAan(ticket);
 	}
 
-	public void pasFilterAan(int ticketnummer, String titel, Set<TICKETSTATUS> status,List<TicketType> Tickettype) {		
-		ticketBeheerder.pasFilterAan(ticketnummer, titel, status, Tickettype);
+	public void pasFilterAan( String titel,String datum,String contract, Set<TICKETSTATUS> status) {		
+		ticketBeheerder.pasFilterAan( titel,datum,contract, status);
 	}
 
 	public ObservableList<Ticket> getTicketsLijst() {

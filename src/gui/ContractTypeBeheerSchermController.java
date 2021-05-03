@@ -11,8 +11,10 @@ import java.io.IOException;
 import domein.ContractType;
 import domein.controllers.BedrijfsBeheerController;
 import domein.controllers.ContractTypeController;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -49,7 +51,7 @@ public class ContractTypeBeheerSchermController extends HBox{
 	@FXML
 	private TableColumn<ContractType,Integer> tbcLopendeContracten;
 	@FXML
-	private TableColumn<ContractType,String> tbcStatus;
+	private TableColumn<ContractType,Boolean> tbcStatus;
 	@FXML
 	private Label lblContractTypeDetails;
 	@FXML
@@ -103,15 +105,15 @@ public ContractTypeBeheerSchermController() {
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-	    
+	    ContractTypeTabelInvullen();
 	    
 	}
 	private void ContractTypeTabelInvullen() {
 		 	tbcContractTypeNr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getContractTypeId()).asObject());
 		    tbcNaam.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNaam()));
-	        //tbcLopendeContracten.setCellValueFactory(cellData -> new SimpleIntegerProperty( cellData.getValue().getContracten()));
-	        //tbcStatus.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isStatus()));
-		    //tblContractType.setItems(contractTypeController.);
+	        //tbcLopendeContracten.setCellValueFactory(cellData -> new SimpleIntegerProperty( cellData.getValue().geefAantalContracten()));
+	        tbcStatus.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isStatus()));
+		    tblContractType.setItems(contractTypeController.getAllContractTypes());
 	        tblContractType.refresh();
 	}
 

@@ -1,5 +1,6 @@
 package domein.beheerders;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -67,22 +68,21 @@ public class TicketBeheerder {
 		haalAlleTicketsOp();
 	}
 
-	public void pasFilterAan(int ticketnummer, String titel, Set<TICKETSTATUS> status, List<TicketType> Tickettype) {
+	public void pasFilterAan( String titel,String datum,String contract, Set<TICKETSTATUS> status) {
 		List<Predicate<Ticket>> filters = new ArrayList<>();
-
-		if (ticketnummer >= 0) {
-			filters.add(ticket -> Integer.toString(ticket.getTicketnummer()).startsWith(Integer.toString(ticketnummer)));
-		}
 
 		if (titel != null && !titel.isBlank()) {
 			filters.add(ticket -> ticket.getTitel().toLowerCase().contains(titel.toLowerCase()));
 		}
+		if (datum != null && !datum.isBlank()) {
+			filters.add(ticket -> ticket.getDatumAangemaakt().format(DateTimeFormatter.ISO_LOCAL_DATE).toLowerCase().contains(datum.toLowerCase()));
+		}
+		if (contract != null && !contract.isBlank()) {
+			filters.add(ticket -> ticket.getContract().getTitel().toLowerCase().contains(contract.toLowerCase()));
+		}
 
 		if (status != null && (status.size() > 0 || status.size() >= TICKETSTATUS.values().length)) {
 			filters.add(ticket -> status.contains(ticket.getTicketStatus()));
-		}
-		if (Tickettype != null && (Tickettype.size() > 0)) {
-			filters.add(ticket -> Tickettype.contains(ticket.getTicketType()));
 		}
 		Predicate<Ticket> filter = filters.stream().reduce(Predicate::and).orElse(x -> true);
 		filteredTicketLijst.setPredicate(filter);

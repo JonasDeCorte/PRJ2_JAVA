@@ -132,6 +132,9 @@ public class ContractType implements Serializable {
 			throw new IllegalArgumentException("ticket moet een aanmaaktijd hebben.");
 		this.ticketAanmaakTijd = ticketAanmaakTijd;
 	}
+	public int geefAantalContracten() {
+		return contracten.size();
+	}
 
 	@Override
 	public int hashCode() {

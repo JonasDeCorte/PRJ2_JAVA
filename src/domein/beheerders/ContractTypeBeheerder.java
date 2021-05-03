@@ -22,7 +22,7 @@ public class ContractTypeBeheerder {
 		this(new ContractTypeDaoJpa());
 	}
 
-	public ObservableList<ContractType> haalKlantenOp() {
+	public ObservableList<ContractType> haalContractTypesOp() {
 		if (filteredContractTypeLijst == null) {
 			filteredContractTypeLijst = 
 					new FilteredList<>(FXCollections.observableArrayList(contractTypeDao.findAll()));

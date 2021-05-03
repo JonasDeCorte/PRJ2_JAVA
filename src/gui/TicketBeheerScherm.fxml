@@ -22,10 +22,9 @@
             <CheckBox fx:id="chkAangemaakteTickets" layoutX="45.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAangemaakte" text="Aangemaakte tickets" />
             <CheckBox fx:id="chkInActieveTickets" layoutX="183.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" text="Actieve tickets" />
             <CheckBox fx:id="chkAfgehandeldeTickets" layoutX="294.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonAfgehandelde" text="Afgehandelde tickets" />
-            <TextField fx:id="txfFilterTitel" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="title" />
-            <TextField fx:id="txfFilterDatum" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterVoornaam" prefHeight="25.0" prefWidth="92.0" promptText="Datum" />
-            <TextField fx:id="txfFilterContract" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Contract" />
-            <TextField fx:id="txfFilterStatus" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterBedrijf" prefHeight="25.0" prefWidth="78.0" promptText="Status" />
+            <TextField fx:id="txfFilterTitel" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterTitel" prefHeight="25.0" prefWidth="118.0" promptText="title" />
+            <TextField fx:id="txfFilterDatum" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterDatum" prefHeight="25.0" prefWidth="92.0" promptText="Datum" />
+            <TextField fx:id="txfFilterContract" layoutX="290.0" layoutY="10.0" onKeyReleased="#filterContract" prefHeight="25.0" prefWidth="110.0" promptText="Contract" />
             <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TableView fx:id="tblTickets" layoutX="14.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
                <columns>
@@ -82,7 +81,7 @@
             <TextField fx:id="txfTitel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txfRapport" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <TextField fx:id="txfStatus" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearTicketGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TextArea fx:id="txaOplossing" prefHeight="55.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
             <ComboBox fx:id="cbTicketType" prefWidth="150.0" promptText="TicketTypeMedium" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <TextArea fx:id="txaOmschrijving" prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
