@@ -18,9 +18,9 @@
    <children>
       <Pane prefHeight="570.0" prefWidth="589.0">
          <children>
-            <CheckBox fx:id="chkActief" layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonInactieve" text="Actief" />
+            <CheckBox fx:id="chkActief" layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonActieve" text="Actief" />
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-            <TextField fx:id="txfFilterNaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterGebruiker" prefHeight="25.0" prefWidth="118.0" promptText="naam" />
+            <TextField fx:id="txfFilterNaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="118.0" promptText="naam" />
             <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TableView fx:id="tblContractType" layoutX="18.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="553.0">
                <columns>
@@ -30,7 +30,7 @@
                   <TableColumn fx:id="tbcStatus" prefWidth="154.4000244140625" text="Status" />
                </columns>
             </TableView>
-            <CheckBox fx:id="chkNietActief" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonGeannuleerde" text="Niet actief" />
+            <CheckBox fx:id="chkNietActief" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonInactieve" text="Niet actief" />
          </children>
       </Pane>
       <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
@@ -60,7 +60,7 @@
             <Label fx:id="lblMaxAfhandeltijd" text="Max.afhandeltijd" GridPane.rowIndex="3" />
             <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txfMinAfhandeltijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearContractTypeDetails" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <ComboBox fx:id="cboTijd" prefHeight="26.0" prefWidth="179.0" promptText="Tijdens werkdagen (8-17)" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
             <Label fx:id="lblPrijsContract" text="Prijs contract" GridPane.rowIndex="4" />
             <TextField fx:id="txfPrijs" GridPane.columnIndex="1" GridPane.rowIndex="4" />

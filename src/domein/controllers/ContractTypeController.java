@@ -26,4 +26,8 @@ public class ContractTypeController {
 	public void editContractType(ContractType contractType) {
 		contractTypeBeheerder.editContractType(contractType);
 	}
+	public void pasFilterAanContractType( String contractTypeNaam,Boolean statusActiefTrue, Boolean statusActiefFalse)
+	{
+		contractTypeBeheerder.pasFilterAan(contractTypeNaam,statusActiefTrue,statusActiefFalse );
+	}
 }
