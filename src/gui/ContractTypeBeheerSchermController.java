@@ -14,6 +14,7 @@ import java.util.List;
 
 import domein.ContractType;
 import domein.controllers.ContractTypeController;
+import domein.controllers.GebruikerController;
 import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.TICKETAANMAAKMETHODE;
 import domein.enumerations.TICKETAANMAAKTIJD;
@@ -67,6 +68,7 @@ public class ContractTypeBeheerSchermController extends HBox{
 	@FXML private Button btnContractTypeToevoegen;
 	
 	private final ContractTypeController contractTypeController;
+	private ContractType geselecteerdContractType;
 	
 	public ContractTypeBeheerSchermController() {	
 		this.contractTypeController = new ContractTypeController();
@@ -85,10 +87,10 @@ public class ContractTypeBeheerSchermController extends HBox{
 	
 	private void initializeGUIComponenten() {
 		tblContractType.getSelectionModel().selectedItemProperty().
-        addListener((observableValue, oudeContract, NieuweContract) -> {
-        	if(NieuweContract != null) {
-        		
-        		contractTypeDetailsInvullen(NieuweContract);
+        addListener((observableValue, oudContractType, nieuwContractType) -> {
+        	if(nieuwContractType != null) {
+        		geselecteerdContractType = nieuwContractType;
+        		contractTypeDetailsInvullen(nieuwContractType);
         	}   	
         });
 	    cboTijd.getItems().addAll(TICKETAANMAAKTIJD.values());
@@ -119,6 +121,48 @@ public class ContractTypeBeheerSchermController extends HBox{
 			contractTypeDetailsLeegmaken();
 			contractTypeTabelInvullen();
 		}
+	}
+	
+	@FXML
+	void wijzigContractType(ActionEvent event) {
+		if(geselecteerdContractType.geefAantalContracten() == 0) {
+		if(contractTypeDetailsControleren()) {
+			updateContractTypeAttributen();
+			contractTypeController.editContractType(geselecteerdContractType);
+			contractTypeTabelInvullen();
+			contractTypeDetailsLeegmaken();
+			} 
+		} else {
+			Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle("Kan contracttype niet wijzigen");
+			alert.setHeaderText("Fout bij het wijzigen van een contract type");
+			alert.setContentText("Er zijn al contracten die vallen onder dit contract type");
+			alert.showAndWait();
+		}
+	}
+	
+	private void updateContractTypeAttributen() {
+		geselecteerdContractType.setNaam(txfNaam.getText());
+		geselecteerdContractType.setPrijs(Double.parseDouble(txfPrijs.getText()));
+		geselecteerdContractType.setMaximaleAfhandelTijd(Integer.parseInt(txfMaxAfhandeltijd.getText()));
+		geselecteerdContractType.setMinimaleDoorloopTijd(Integer.parseInt(txfMinAfhandeltijd.getText()));
+		
+		if(chkActief1.isSelected()) {
+			geselecteerdContractType.setStatus(true);
+		} else {
+			geselecteerdContractType.setStatus(false);
+		}
+		
+		List<TICKETAANMAAKMETHODE> aanmaakMethodes = new ArrayList<>();
+		if(chkApplicatie.isSelected())
+			aanmaakMethodes.add(TICKETAANMAAKMETHODE.VIA_APPLICATIE);
+		if(chkTelefoon.isSelected())
+			aanmaakMethodes.add(TICKETAANMAAKMETHODE.TELEFONISCH);
+		if(chkEmail.isSelected())
+			aanmaakMethodes.add(TICKETAANMAAKMETHODE.EMAIL);
+		geselecteerdContractType.setTicketAanmaakMethode(aanmaakMethodes);
+		
+		geselecteerdContractType.setTicketAanmaakTijd(cboTijd.getValue());
 	}
 	
 	private void contractTypeDetailsInvullen(ContractType contractType){

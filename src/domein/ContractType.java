@@ -65,7 +65,7 @@ public class ContractType implements Serializable {
 		return naam;
 	}
 	
-	private void setNaam(String naam) {
+	public void setNaam(String naam) {
 		if (naam == null || naam.isBlank()) {
 			throw new IllegalArgumentException("contracttype mag niet leeg zijn.");
 		}
@@ -84,7 +84,7 @@ public class ContractType implements Serializable {
 		return maximaleAfhandelTijd;
 	}
 	
-	private void setMaximaleAfhandelTijd(int maximaleAfhandelTijd) {
+	public void setMaximaleAfhandelTijd(int maximaleAfhandelTijd) {
 		this.maximaleAfhandelTijd = maximaleAfhandelTijd;
 	}
 	
@@ -92,7 +92,7 @@ public class ContractType implements Serializable {
 		return minimaleDoorloopTijd;
 	}
 	
-	private void setMinimaleDoorloopTijd(int minimaleDoorloopTijd) {
+	public void setMinimaleDoorloopTijd(int minimaleDoorloopTijd) {
 		this.minimaleDoorloopTijd = minimaleDoorloopTijd;
 	}
 	
@@ -100,7 +100,7 @@ public class ContractType implements Serializable {
 		return prijs;
 	}
 	
-	private void setPrijs(double prijs) {
+	public void setPrijs(double prijs) {
 		this.prijs = prijs;
 	}
 	
@@ -116,7 +116,7 @@ public class ContractType implements Serializable {
 		return ticketAanmaakMethode;
 	}
 
-	private void setTicketAanmaakMethode(List<TICKETAANMAAKMETHODE> ticketAanmaakMethode) {
+	public void setTicketAanmaakMethode(List<TICKETAANMAAKMETHODE> ticketAanmaakMethode) {
 		if (ticketAanmaakMethode == null) {
 			throw new IllegalArgumentException("ticket moet een aanmaak methode hebben");
 		}			
@@ -127,7 +127,7 @@ public class ContractType implements Serializable {
 		return ticketAanmaakTijd;
 	}
 
-	private void setTicketAanmaakTijd(TICKETAANMAAKTIJD ticketAanmaakTijd) {
+	public void setTicketAanmaakTijd(TICKETAANMAAKTIJD ticketAanmaakTijd) {
 		if (ticketAanmaakTijd == null)
 			throw new IllegalArgumentException("ticket moet een aanmaaktijd hebben.");
 		this.ticketAanmaakTijd = ticketAanmaakTijd;
