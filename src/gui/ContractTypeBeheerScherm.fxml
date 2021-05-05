@@ -75,7 +75,7 @@
                </font>
             </Button>
             <Label fx:id="lblWanneer" text="Wanneer kunnen tickets aangemaakt worden" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <Button id="buttonright" fx:id="btnContractTypeToevoegen" mnemonicParsing="false" text="ContractTypeToevegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <Button id="buttonright" fx:id="btnContractTypeToevoegen" onAction="#voegContractTypeToe" mnemonicParsing="false" text="ContractTypeToevoegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
                <font>
                   <Font size="9.0" />
                </font>
