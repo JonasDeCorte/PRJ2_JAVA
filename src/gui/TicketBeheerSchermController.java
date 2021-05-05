@@ -7,16 +7,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import domein.Bedrijf;
+import domein.Bijlage;
 import domein.Contract;
 import domein.Klant;
+import domein.Rapport;
 import domein.Ticket;
 import domein.TicketType;
 import domein.controllers.AanmeldController;
@@ -135,13 +141,11 @@ public class TicketBeheerSchermController  extends HBox{
 	
 	private Ticket geselecteerdeTicket;
 	private final TicketController ticketController;
-	private final ContractController contractController;
 	private final TicketTypeController ticketTypeController;
 
 	public TicketBeheerSchermController() {
 		
 		this.ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
-		this.contractController = new ContractController();
 		this.ticketTypeController = new TicketTypeController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketBeheerScherm.fxml"));
 		loader.setRoot(this);
@@ -237,7 +241,9 @@ public class TicketBeheerSchermController  extends HBox{
         txfDatumAfgehandeld.setText(ticket.getDatumAfgesloten().format(DateTimeFormatter.ISO_LOCAL_DATE));
         txaOmschrijving.setText(ticket.getOmschrijving());
         if(ticket.getOplossing() != null)
-        txaOplossing.setText(ticket.getOplossing().toString());     
+        txaOplossing.setText(ticket.getOplossing().toString()); 
+        if(ticket.getRapport() != null)
+        txfRapport.setText(ticket.getRapport().getBeschrijving());
         cbContract.setValue(ticket.getContract());
         cbTicketType.setValue(ticket.getTicketType());
 		txaOpmerkingen.setText(ticket.getOpmerkingen());
@@ -251,14 +257,33 @@ public class TicketBeheerSchermController  extends HBox{
         txaOmschrijving.clear();
         txaOplossing.clear();    
 		txaOpmerkingen.clear();
+		txfRapport.clear();
 		btnTicketWijzigen.setDisable(true);
+	}
+	private void updateTicketAttributen() {
+		geselecteerdeTicket.setTicketnummer(Integer.parseInt(txfTicketNr.getText()));
+		geselecteerdeTicket.setTitel(txfTitel.getText());
+		geselecteerdeTicket.setDatumAangemaakt(LocalDate.parse(txfDatumAangemaakt.getText(),DateTimeFormatter.ISO_LOCAL_DATE));
+		if(!txfDatumAfgehandeld.getText().isEmpty())
+		geselecteerdeTicket.setDatumAfgesloten(LocalDate.parse(txfDatumAfgehandeld.getText(),DateTimeFormatter.ISO_LOCAL_DATE));
+		geselecteerdeTicket.setOmschrijving(txaOmschrijving.getText());
+		//geselecteerdeTicket.setOplossing(new Bijlage(".txt",txaOplossing.getText(),geselecteerdeTicket));
+		geselecteerdeTicket.setContract(cbContract.getValue());
+		geselecteerdeTicket.setTicketType(cbTicketType.getValue());
+		if(!txfRapport.getText().isEmpty())
+		geselecteerdeTicket.setRapport(new Rapport(geselecteerdeTicket.getTicketnummer(), geselecteerdeTicket.getTitel() + "Rapport", txfRapport.getText(), txaOplossing.getText(), geselecteerdeTicket));
+		geselecteerdeTicket.setTicketStatus(cbStatus.getValue());
+		geselecteerdeTicket.setOpmerkingen(txaOpmerkingen.getText());
+		btnTicketWijzigen.setDisable(true);
+		TicketDetailsLeegmaken();
 	}
 	@FXML
 	void ticketWijzigen(ActionEvent event) {
-	
+		updateTicketAttributen();
 		ticketController.pasTicketAan(geselecteerdeTicket);
 			TicketTabelInvullen();
 	    	TicketDetailsLeegmaken();
+	    	ticketTabelFilteren();
 	    	btnTicketWijzigen.setDisable(true);
 	    
 	}

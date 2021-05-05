@@ -1,6 +1,7 @@
 package domein;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class Ticket implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ticketnummer;
 	private String titel;
-	private LocalDateTime datumAangemaakt;
-	private LocalDateTime datumAfgesloten;
+	private LocalDate datumAangemaakt;
+	private LocalDate datumAfgesloten;
 	private String omschrijving;
 	private String opmerkingen;
 	/*@OneToOne(mappedBy = "ticket")*/
@@ -51,7 +52,7 @@ public class Ticket implements Serializable {
 	private boolean wijzigingAangebracht;
 	
 	public Ticket() {
-		datumAangemaakt = LocalDateTime.now();
+		datumAangemaakt = LocalDate.now();
 		ticketStatus = ticketStatus.AANGEMAAKT;
 	}
 
@@ -59,7 +60,7 @@ public class Ticket implements Serializable {
 			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType) {
 		setTicketnummer(ticketnummer);
 		setTitel(titel);
-		datumAangemaakt = LocalDateTime.now();
+		datumAangemaakt = LocalDate.now();
 		setOmschrijving(omschrijving);
 		setOpmerkingen(opmerkingen);
 		setBijlages(bijlages);
@@ -72,7 +73,7 @@ public class Ticket implements Serializable {
 		return ticketnummer;
 	}
 
-	private void setTicketnummer(int ticketnummer) {
+	public void setTicketnummer(int ticketnummer) {
 		this.ticketnummer = ticketnummer;
 	}
 
@@ -80,7 +81,7 @@ public class Ticket implements Serializable {
 		return titel;
 	}
 
-	private void setTitel(String titel) {
+	public void setTitel(String titel) {
 		if (titel != null && !titel.isBlank() && !titel.isEmpty()) {
 			this.titel = titel;
 		} else {
@@ -88,23 +89,27 @@ public class Ticket implements Serializable {
 		}
 	}
 
-	public LocalDateTime getDatumAangemaakt() {
+	public LocalDate getDatumAangemaakt() {
 		return datumAangemaakt;
 	}
 	
-	public LocalDateTime getDatumAfgesloten() {
+	public LocalDate getDatumAfgesloten() {
 		return datumAfgesloten;
 	}
 
-	private void setDatumAfgesloten(LocalDateTime datumAfgesloten) {
+	public void setDatumAfgesloten(LocalDate datumAfgesloten) {
 		this.datumAfgesloten = datumAfgesloten;
+	}
+
+	public void setDatumAangemaakt(LocalDate datumAangemaakt) {
+		this.datumAangemaakt = datumAangemaakt;
 	}
 
 	public String getOmschrijving() {
 		return omschrijving;
 	}
 
-	private void setOmschrijving(String omschrijving) {
+	public void setOmschrijving(String omschrijving) {
 		if (omschrijving != null && !omschrijving.isBlank() && !omschrijving.isEmpty()) {
 			this.omschrijving = omschrijving;
 		} else {
@@ -116,7 +121,7 @@ public class Ticket implements Serializable {
 		return opmerkingen;
 	}
 
-	private void setOpmerkingen(String opmerkingen) {
+	public void setOpmerkingen(String opmerkingen) {
 		if (opmerkingen != null && !opmerkingen.isBlank() && !opmerkingen.isEmpty()) {
 			this.opmerkingen = opmerkingen;
 		} else {
@@ -128,7 +133,7 @@ public class Ticket implements Serializable {
 		return oplossing;
 	}
 
-	private void setOplossing(Bijlage oplossing) {
+	public void setOplossing(Bijlage oplossing) {
 		this.oplossing = oplossing;
 	}
 
@@ -136,14 +141,14 @@ public class Ticket implements Serializable {
 		return bijlages;
 	}
 
-	private void setBijlages(List<Bijlage> bijlages) {
+	public void setBijlages(List<Bijlage> bijlages) {
 		this.bijlages = bijlages;
 	}
 	public Contract getContract() {
 		return contract;
 	}
 
-	private void setContract(Contract contract) {
+	public void setContract(Contract contract) {
 		if(contract != null) {
 			this.contract = contract;
 		}else {
@@ -156,7 +161,7 @@ public class Ticket implements Serializable {
 		return ticketType;
 	}
 
-	private void setTicketType(TicketType ticketType) {
+	public void setTicketType(TicketType ticketType) {
 		if (ticketType != null) {
 			this.ticketType = ticketType;
 		} else {
@@ -180,7 +185,7 @@ public class Ticket implements Serializable {
 		return rapport;
 	}
 
-	private void setRapport(Rapport rapport) {
+	public void setRapport(Rapport rapport) {
 		this.rapport = rapport;
 	}
 	
