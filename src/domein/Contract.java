@@ -139,6 +139,11 @@ public class Contract implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return titel ;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

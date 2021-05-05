@@ -8,12 +8,15 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import domein.Bedrijf;
 import domein.Contract;
+import domein.Klant;
 import domein.Ticket;
 import domein.TicketType;
 import domein.controllers.AanmeldController;
@@ -21,7 +24,9 @@ import domein.controllers.ContractController;
 import domein.controllers.TicketController;
 import domein.controllers.TicketTypeController;
 import domein.enumerations.GEBRUIKERSTATUS;
+import domein.enumerations.TICKETAANMAAKTIJD;
 import domein.enumerations.TICKETSTATUS;
+import domein.enumerations.WERKNEMERROL;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -100,7 +105,8 @@ public class TicketBeheerSchermController  extends HBox{
 	private TextArea txaOplossing;
 	@FXML
 	private TextArea txaOmschrijving;
-	
+	@FXML
+	private Button btnTicketWijzigen;
 	
 	@FXML
 	private TextField txfTicketNr;
@@ -111,8 +117,6 @@ public class TicketBeheerSchermController  extends HBox{
 	@FXML
 	private TextField txfRapport;
 	@FXML
-	private TextField txfStatus;
-	@FXML
 	private Button btnClearFilters1;
 	@FXML
 	private TextArea txaOpmerkingen;
@@ -120,6 +124,8 @@ public class TicketBeheerSchermController  extends HBox{
 	private ComboBox<TicketType> cbTicketType;
 	@FXML
 	private ComboBox<Contract> cbContract;
+	@FXML
+	private ComboBox<TICKETSTATUS> cbStatus;
 	@FXML
 	private Label lblDatumAfgehandeld;
 	@FXML
@@ -189,26 +195,39 @@ public class TicketBeheerSchermController  extends HBox{
 		lblStatus.setText(Taal.geefTekst("status"));
 		lblOpmerkingen.setText(Taal.geefTekst("opmerkingen"));
 		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
-		
+		btnTicketWijzigen.setDisable(true);
 
 		tblTickets.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeTicket, NieuweTicket) -> {
         	if(NieuweTicket != null) {
         		geselecteerdeTicket = NieuweTicket;
+        		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
         		TicketDetailsInvullen(NieuweTicket);
+        		btnTicketWijzigen.setDisable(false);
         	}   	
         });
 		
-		//List<TicketType> ticketTypes = ticketTypeController.ge
-		
-		/*List<Contract> contracten = contractController;
-	    cboKiesBedrijf.getItems().addAll(bedrijven);
-	    cboKiesBedrijf.setOnMouseClicked(e -> {
-	    	cboKiesBedrijf.getValue();
-	    });*/
+		List<TicketType> ticketType = ticketTypeController.haalTicketTypesOp();
+	    cbTicketType.getItems().addAll(ticketType);
+	    cbTicketType.setOnMouseClicked(e -> {
+	    	cbTicketType.getValue();
+	    });
+	    cbStatus.getItems().addAll(TICKETSTATUS.values());
+	    cbStatus.setOnMouseClicked(e -> {
+	    	cbStatus.getValue();
+	    });
+	    
 	
 	}
-
+	private void contractenWeergeven(Klant klant) {
+		List<Contract> contracten = klant.getContracten();
+		cbContract.getItems().clear();
+	    cbContract.getItems().addAll(contracten);
+	    cbContract.setOnMouseClicked(e -> {
+	    	cbContract.getValue();
+	    });
+	}
+	
 	private void TicketDetailsInvullen(Ticket ticket) {
 		TicketDetailsLeegmaken();
 		txfTicketNr.setText(Integer.toString(ticket.getTicketnummer()));
@@ -222,7 +241,7 @@ public class TicketBeheerSchermController  extends HBox{
         cbContract.setValue(ticket.getContract());
         cbTicketType.setValue(ticket.getTicketType());
 		txaOpmerkingen.setText(ticket.getOpmerkingen());
-		txfStatus.setText(ticket.getTicketStatus().toString());
+		cbStatus.setValue(ticket.getTicketStatus());
 	}
 	private void TicketDetailsLeegmaken() {
 		txfTicketNr.clear();
@@ -232,7 +251,16 @@ public class TicketBeheerSchermController  extends HBox{
         txaOmschrijving.clear();
         txaOplossing.clear();    
 		txaOpmerkingen.clear();
-		
+		btnTicketWijzigen.setDisable(true);
+	}
+	@FXML
+	void ticketWijzigen(ActionEvent event) {
+	
+		ticketController.pasTicketAan(geselecteerdeTicket);
+			TicketTabelInvullen();
+	    	TicketDetailsLeegmaken();
+	    	btnTicketWijzigen.setDisable(true);
+	    
 	}
 	// Event Listener on CheckBox[#chkAangemaakteTickets].onAction
 	@FXML

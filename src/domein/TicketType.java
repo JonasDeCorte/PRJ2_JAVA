@@ -62,7 +62,10 @@ public class TicketType implements Serializable {
 			throw new IllegalArgumentException("omschrijving mag niet leeg zijn.");
 		}
 	}
-
+	@Override
+	public String toString() {
+		return naam;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

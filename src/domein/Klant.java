@@ -43,6 +43,10 @@ public class Klant extends Gebruiker implements Serializable{
 		return bedrijf;
 	}
 	
+	public List<Contract> getContracten() {
+		return contracten;
+	}
+	
 	public void setBedrijf(Bedrijf bedrijf) {
 		if(bedrijf != null) {
 			this.bedrijf = bedrijf;
@@ -56,8 +60,9 @@ public class Klant extends Gebruiker implements Serializable{
 		this.klantnummer = klantnummer;
 	}else {
 		throw new IllegalArgumentException("Er moet een klantnummer worden opgegeven.");
+	      }
 	}
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
