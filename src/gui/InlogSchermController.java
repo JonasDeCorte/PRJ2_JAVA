@@ -62,7 +62,7 @@ public class InlogSchermController extends AnchorPane{
         
         adc.aanmelden(txtfGebruikersnaam.getText(), pwfWachtwoord.getText());
         
-       txtfGebruikersnaam.clear();
+        txtfGebruikersnaam.clear();
         pwfWachtwoord.clear();
         Stage stage = (Stage) this.getScene().getWindow();
         

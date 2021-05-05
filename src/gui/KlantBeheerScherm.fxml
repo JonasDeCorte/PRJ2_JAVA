@@ -88,7 +88,7 @@
                   <Font size="9.0" />
                </font></Button>
             <Label fx:id="lblBedrijf" text="Bedrijf" GridPane.rowIndex="8" />
-            <ComboBox fx:id="cboKiesBedrijf" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="cboKiesBedrijf" prefWidth="150.0" promptText="Bedrijf" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <HBox.margin>
             <Insets left="1.0" />

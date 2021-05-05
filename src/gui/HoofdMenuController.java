@@ -17,14 +17,14 @@ import domein.controllers.AanmeldController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import resourcebundle.Taal;
 
-public class HoofdMenuController extends GridPane {
+public class HoofdMenuController extends BorderPane {
 	//Header
 	@FXML private Label lblTitel;
 	@FXML private Label lblBegroeting;
@@ -49,19 +49,20 @@ public class HoofdMenuController extends GridPane {
 	
 	private final StatistiekenSchermController statistiekenSchermController;
 	private Object controller = new Object();
+	
 	public HoofdMenuController() {
 		statistiekenSchermController = new StatistiekenSchermController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HoofdMenu.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
-	    
-	    try {
-	        loader.load();
-	    } catch (IOException ex) {
-	        throw new RuntimeException(ex);
-	    }
+		try {
+			loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	    controller = statistiekenSchermController;
-	    this.add((Node) controller, 1, 1,4,4);
+	    this.setCenter((Node) controller);
 	    knoppenToevoegen();
 	    initializeGUIComponenten();	    
 	}
@@ -151,7 +152,7 @@ public class HoofdMenuController extends GridPane {
 	public void schermAanpassen(Object o) {
 		this.getChildren().remove(controller);
 		controller = o;
-		this.add((Node) controller,1, 1,4,4);
+		this.setCenter((Node) controller);
 	}
 	// Event Listener on Button[#btnUitloggen].onAction
 	@FXML
