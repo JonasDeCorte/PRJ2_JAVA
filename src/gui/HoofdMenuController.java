@@ -29,6 +29,7 @@ public class HoofdMenuController extends BorderPane {
 	@FXML private Label lblTitel;
 	@FXML private Label lblBegroeting;
 	@FXML private Button btnUitloggen;
+	@FXML private Button btnGebruikersInstellingen;
 	@FXML private HBox hboxHeader;
 	//Navigatie links
 	@FXML private VBox vboxNavigatie;
@@ -181,8 +182,34 @@ public class HoofdMenuController extends BorderPane {
 		}	
 	}
 	
+	// Event Listener on Button[#btnGebruikersInstellingen].onAction
+		@FXML
+		public void gebruikersInstellingen(ActionEvent event) {
+		
+			
+				Stage stage = (Stage) this.getScene().getWindow();
+				stage.setTitle("Actemium");
+				GebruikersInstellingenScherm root = new GebruikersInstellingenSchermController();
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				
+				stage.setOnShown((WindowEvent t) -> {
+		            stage.setMinWidth(stage.getWidth());
+		            stage.setMinHeight(stage.getHeight());
+		        });
+		        stage.show();
+			}
+	
+			
+		
+	
+	
+	
+	
+	
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
+		btnGebruikersInstellingen.setText(Taal.geefTekst("accountOverzicht"));
 		lblTitel.setText(Taal.geefTekst("hoofdmenu"));
 		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
 		

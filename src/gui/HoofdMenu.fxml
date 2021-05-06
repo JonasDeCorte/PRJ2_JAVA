@@ -41,7 +41,7 @@
                   <Insets left="15.0" top="15.0" />
                </HBox.margin>
             </ImageView>
-            <Label id="bold" fx:id="lblTitel" alignment="CENTER" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="474.0" text="Dashboard" textFill="WHITE">
+            <Label id="bold" fx:id="lblTitel" alignment="CENTER" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="354.0" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
@@ -54,9 +54,14 @@
                   <Insets top="22.0" />
                </HBox.margin>
             </Label>
+            <Button id="buttonright" fx:id="btnGebruikersInstellingen" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#gebruikersInstellingen" text="Account overzicht">
+               <HBox.margin>
+                  <Insets left="7.0" top="18.0" />
+               </HBox.margin>
+            </Button>
             <Button id="buttonright" fx:id="btnUitloggen" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#uitloggen" text="Uitloggen">
                <HBox.margin>
-                  <Insets left="15.0" top="18.0" />
+                  <Insets left="10.0" top="18.0" />
                </HBox.margin>
             </Button>
          </children>
