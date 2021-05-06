@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import resourcebundle.Taal;
 
@@ -29,7 +30,7 @@ import javafx.scene.control.TextArea;
 
 import javafx.scene.control.PasswordField;
 
-public class GebruikerInstellingenSchermController extends AnchorPane {
+public class GebruikerInstellingenSchermController extends GridPane {
 	
 	private final GebruikerController gebruikerController;
 
@@ -111,7 +112,7 @@ public class GebruikerInstellingenSchermController extends AnchorPane {
 	public GebruikerInstellingenSchermController(){
 		gebruikerController = new GebruikerController();
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("KlantBeheerScherm.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("GebruikerInstellingenScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
 	    

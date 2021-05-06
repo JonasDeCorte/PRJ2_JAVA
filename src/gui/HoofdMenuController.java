@@ -185,19 +185,10 @@ public class HoofdMenuController extends BorderPane {
 	// Event Listener on Button[#btnGebruikersInstellingen].onAction
 		@FXML
 		public void gebruikersInstellingen(ActionEvent event) {
+			GebruikerInstellingenSchermController root = new GebruikerInstellingenSchermController();
+			lblTitel.setText(Taal.geefTekst("ticketBeheer"));
+			schermAanpassen(root);
 		
-			
-				Stage stage = (Stage) this.getScene().getWindow();
-				stage.setTitle("Actemium");
-				GebruikersInstellingenScherm root = new GebruikersInstellingenSchermController();
-				Scene scene = new Scene(root);
-				stage.setScene(scene);
-				
-				stage.setOnShown((WindowEvent t) -> {
-		            stage.setMinWidth(stage.getWidth());
-		            stage.setMinHeight(stage.getHeight());
-		        });
-		        stage.show();
 			}
 	
 			
