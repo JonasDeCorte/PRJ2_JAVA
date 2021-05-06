@@ -2,9 +2,11 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -121,7 +123,7 @@ public class TicketBeheerSchermController  extends HBox{
 	
 	
 	@FXML
-	private TextField txfRapport;
+	private TextArea txaRapport;
 	@FXML
 	private Button btnClearFilters1;
 	@FXML
@@ -243,7 +245,7 @@ public class TicketBeheerSchermController  extends HBox{
         if(ticket.getOplossing() != null)
         txaOplossing.setText(ticket.getOplossing().toString()); 
         if(ticket.getRapport() != null)
-        txfRapport.setText(ticket.getRapport().getBeschrijving());
+        txaRapport.setText(ticket.getRapport().getBeschrijving());
         cbContract.setValue(ticket.getContract());
         cbTicketType.setValue(ticket.getTicketType());
 		txaOpmerkingen.setText(ticket.getOpmerkingen());
@@ -257,7 +259,7 @@ public class TicketBeheerSchermController  extends HBox{
         txaOmschrijving.clear();
         txaOplossing.clear();    
 		txaOpmerkingen.clear();
-		txfRapport.clear();
+		txaRapport.clear();
 		btnTicketWijzigen.setDisable(true);
 	}
 	private void updateTicketAttributen() {
@@ -270,8 +272,8 @@ public class TicketBeheerSchermController  extends HBox{
 		//geselecteerdeTicket.setOplossing(new Bijlage(".txt",txaOplossing.getText(),geselecteerdeTicket));
 		geselecteerdeTicket.setContract(cbContract.getValue());
 		geselecteerdeTicket.setTicketType(cbTicketType.getValue());
-		if(!txfRapport.getText().isEmpty())
-		geselecteerdeTicket.setRapport(new Rapport(geselecteerdeTicket.getTicketnummer(), geselecteerdeTicket.getTitel() + "Rapport", txfRapport.getText(), txaOplossing.getText(), geselecteerdeTicket));
+		if(!txaRapport.getText().isEmpty())
+		geselecteerdeTicket.setRapport(new Rapport(geselecteerdeTicket.getTicketnummer(), geselecteerdeTicket.getTitel() + "Rapport", txaRapport.getText(), txaOplossing.getText(), geselecteerdeTicket));
 		geselecteerdeTicket.setTicketStatus(cbStatus.getValue());
 		geselecteerdeTicket.setOpmerkingen(txaOpmerkingen.getText());
 		btnTicketWijzigen.setDisable(true);
@@ -279,13 +281,47 @@ public class TicketBeheerSchermController  extends HBox{
 	}
 	@FXML
 	void ticketWijzigen(ActionEvent event) {
-		updateTicketAttributen();
-		ticketController.pasTicketAan(geselecteerdeTicket);
+		
+		if(ticketDetailsControleren()) {
+			updateTicketAttributen();
+			ticketController.pasTicketAan(geselecteerdeTicket);
 			TicketTabelInvullen();
 	    	TicketDetailsLeegmaken();
 	    	ticketTabelFilteren();
 	    	btnTicketWijzigen.setDisable(true);
-	    
+	    }
+	}
+	private boolean ticketDetailsControleren() {
+		String opsommingFoutmelding = "Volgende fouten zijn opgetreden:\n";
+		String foutMelding = opsommingFoutmelding;
+		
+		if(txfTicketNr.getText().isBlank())
+			foutMelding += "- De ticketnummer is verplicht in te vullen\n";
+		if(txfTitel.getText().isBlank())
+			foutMelding += "- De titel is verplicht in te vullen\n";
+		if(txfDatumAangemaakt.getText().isBlank())
+			foutMelding += "- Datumaangemaakt is verplicht in te vullen\n";
+		if(!txfDatumAangemaakt.getText().matches("([0-9]{4})-([0-9]{2})-([0-9]{2})"))
+			foutMelding += "- Ongeldige invoer bij de datumaangemaakt (enkel gehele nummerieke waardes zijn toegestaan [yyyy,mm,dd])\n";
+		if(!txfDatumAfgehandeld.getText().isBlank() &&!txfDatumAfgehandeld.getText().matches("([0-9]{4})-([0-9]{2})-([0-9]{2})"))
+			foutMelding += "- Ongeldige invoer bij de datumafgehandeld (enkel gehele nummerieke waardes zijn toegestaan [yyyy,mm,dd])\n";
+		if(txaOmschrijving.getText().isBlank())
+			foutMelding += "- De omschrijving is verplicht in te vullen\n";
+		if(!txaRapport.getText().isBlank() && txaOplossing.getText().isBlank())
+			foutMelding += "- Voor een rapport te maken moet de oplossing beschreven zijn\n";
+		if(txaOpmerkingen.getText().isBlank())
+			foutMelding += "- De opmerkingen zijn verplicht in te vullen\n";
+		
+		if(foutMelding.equals(opsommingFoutmelding)) {
+			return true;
+		} else {
+			Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle("Ongeldige invoergegevens");
+			alert.setHeaderText("Fout bij het wijzigen van een ticket");
+			alert.setContentText(foutMelding);
+			alert.showAndWait();
+			return false;
+		}
 	}
 	// Event Listener on CheckBox[#chkAangemaakteTickets].onAction
 	@FXML
