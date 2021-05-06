@@ -11,7 +11,7 @@ import resourcebundle.Taal;
 
 public class StartUp extends Application{
     public static void main(String... args) {
-    	 Taal.instellenTaal(0);
+    	Taal.instellenTaal(0);
     	 Application.launch(StartUp.class, args);
     	 /*DataInitializer dataInit = new DataInitializer();
     	 dataInit.initializeData();*/
@@ -20,6 +20,7 @@ public class StartUp extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		InlogSchermController root = new InlogSchermController(new AanmeldController());
+		Taal.addObservers(root);
 		Scene scene = new Scene(root);
 		stage.setTitle("Actemium");
 		stage.setScene(scene);

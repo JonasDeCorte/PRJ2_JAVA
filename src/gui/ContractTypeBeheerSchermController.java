@@ -30,12 +30,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class ContractTypeBeheerSchermController extends HBox{
+public class ContractTypeBeheerSchermController extends HBox implements Observer{
 	@FXML private Label lblFilters;
 	@FXML private CheckBox chkActief;
 	@FXML private CheckBox chkNietActief;
@@ -270,5 +271,11 @@ public class ContractTypeBeheerSchermController extends HBox{
 		Boolean statusActiefTrue = chkActief.isSelected();
 		Boolean statusActiefFalse = chkNietActief.isSelected();
 		contractTypeController.pasFilterAanContractType(contractTypeNaam, statusActiefTrue, statusActiefFalse);
+	}
+
+	@Override
+	public void update() {
+		initializeGUIComponenten();
+		
 	}
 }

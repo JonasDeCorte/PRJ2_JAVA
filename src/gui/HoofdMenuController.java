@@ -22,9 +22,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 
-public class HoofdMenuController extends BorderPane {
+public class HoofdMenuController extends BorderPane implements Observer{
 	//Header
 	@FXML private Label lblTitel;
 	@FXML private Label lblBegroeting;
@@ -124,26 +125,31 @@ public class HoofdMenuController extends BorderPane {
 	public void klantenBeheer(ActionEvent event) {
 		KlantBeheerSchermController klantBeheerSchermController = new KlantBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("klant"));
+		Taal.addObservers(klantBeheerSchermController);
 		schermAanpassen(klantBeheerSchermController);
 	}
 	public void werknemerBeheer(ActionEvent event) {
 		WerknemerBeheerSchermController werknemerBeheerSchermController = new WerknemerBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("werknemer"));
+		Taal.addObservers(werknemerBeheerSchermController);
 		schermAanpassen(werknemerBeheerSchermController);
 	}
 	public void bedrijfBeheer(ActionEvent event) {
 		BedrijfBeheerSchermController bedrijfBeheerSchermController = new BedrijfBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("bedrijf"));
+		Taal.addObservers(bedrijfBeheerSchermController);
 		schermAanpassen(bedrijfBeheerSchermController);
 	}
 	public void ticketBeheer(ActionEvent event) {
 		TicketBeheerSchermController ticketBeheerSchermController = new TicketBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("ticketBeheer"));
+		Taal.addObservers(ticketBeheerSchermController);
 		schermAanpassen(ticketBeheerSchermController);
 	}
 	public void contractBeheer(ActionEvent event) {
 		ContractTypeBeheerSchermController contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("contractBeheer"));
+		Taal.addObservers(contractTypeBeheerSchermController);
 		schermAanpassen(contractTypeBeheerSchermController);
 	}
 	@FXML
@@ -185,9 +191,10 @@ public class HoofdMenuController extends BorderPane {
 	// Event Listener on Button[#btnGebruikersInstellingen].onAction
 		@FXML
 		public void gebruikersInstellingen(ActionEvent event) {
-			GebruikerInstellingenSchermController root = new GebruikerInstellingenSchermController();
+			GebruikerInstellingenSchermController gebruikerInstellingenSchermController = new GebruikerInstellingenSchermController();
 			lblTitel.setText(Taal.geefTekst("ticketBeheer"));
-			schermAanpassen(root);
+			Taal.addObservers(gebruikerInstellingenSchermController);
+			schermAanpassen(gebruikerInstellingenSchermController);
 		
 			}
 	
@@ -231,7 +238,6 @@ public class HoofdMenuController extends BorderPane {
 	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
 	    	if(nieuweTaal != null) {
 	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
-	    		initializeGUIComponenten();
 	    	}
 	    });
 	    
@@ -239,4 +245,10 @@ public class HoofdMenuController extends BorderPane {
 	    
 	    
 	    }
+
+	@Override
+	public void update() {
+		initializeGUIComponenten();
+		
+	}
 }

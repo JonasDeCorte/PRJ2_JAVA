@@ -39,9 +39,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 
-public class KlantBeheerSchermController extends HBox{
+public class KlantBeheerSchermController extends HBox implements Observer{
 	
 	private final GebruikerController gebruikerController;
 	private BedrijfsBeheerController bedrijfsBeheerController;
@@ -365,5 +366,12 @@ public class KlantBeheerSchermController extends HBox{
 	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
 	        
 	        gebruikerController.pasFilterAanKlant(gebruikersnaam, naam, voornaam, bedrijf,status);
+		}
+
+
+		@Override
+		public void update() {
+			initializeGUIComponenten();
+			
 		}	
 }

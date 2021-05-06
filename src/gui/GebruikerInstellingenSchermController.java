@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ import javafx.scene.control.TextArea;
 
 import javafx.scene.control.PasswordField;
 
-public class GebruikerInstellingenSchermController extends GridPane {
+public class GebruikerInstellingenSchermController extends GridPane implements Observer{
 	
 	private final GebruikerController gebruikerController;
 
@@ -246,6 +247,12 @@ public class GebruikerInstellingenSchermController extends GridPane {
 		pfWachtwoord.clear();
 		pfNieuwWachtwoord.clear();
 		pfHerhaalWachtwoord.clear();
+	}
+
+	@Override
+	public void update() {
+		initializeGUIComponenten();
+		
 	}
 	
 

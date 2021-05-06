@@ -49,12 +49,13 @@ import javafx.scene.control.CheckBox;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class TicketBeheerSchermController  extends HBox{
+public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private Label lblFilters;
 	@FXML
@@ -389,5 +390,10 @@ public class TicketBeheerSchermController  extends HBox{
         	status1.add(TICKETSTATUS.IN_BEHANDELING);
         
         ticketController.pasFilterAan(titel,datum,contract, status1);
+	}
+	@Override
+	public void update() {
+		initializeGUIComponenten();
+		
 	}	
 }

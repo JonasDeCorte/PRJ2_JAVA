@@ -18,9 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 
-public class InlogSchermController extends AnchorPane{
+public class InlogSchermController extends AnchorPane implements Observer{
 	private AanmeldController adc;
 	@FXML private AnchorPane loginPane;
 		
@@ -38,7 +39,6 @@ public class InlogSchermController extends AnchorPane{
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("InlogScherm.fxml"));
 	loader.setRoot(this);
     loader.setController(this);
-    
     try {
         loader.load();
     } catch (IOException ex) {
@@ -68,6 +68,7 @@ public class InlogSchermController extends AnchorPane{
         
         	stage.setTitle("Actemium");
         	HoofdMenuController root1 = new HoofdMenuController();
+        	Taal.addObservers(root1);
         	Scene scene = new Scene(root1);
     		stage.setScene(scene);
     		
@@ -79,11 +80,10 @@ public class InlogSchermController extends AnchorPane{
     }
 	
 	@FXML
-	public void initialize() {		
+	public void initialize() {	
 	    talenCombo.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
 	    	if(nieuweTaal != null) {
 	    		Taal.instellenTaal(talenCombo.getSelectionModel().getSelectedIndex());
-	    		initialize();
 	    	}
 	    });
 		lblWelkom.setText(Taal.geefTekst("welkom"));
@@ -94,4 +94,9 @@ public class InlogSchermController extends AnchorPane{
 		btnLogin.setText(Taal.geefTekst("inloggen"));	
 		txtActiontarget.setText("");
 		}
+
+	@Override
+	public void update() {
+		initialize();
+	}
 }

@@ -36,9 +36,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 
-public class WerknemerBeheerSchermController extends HBox{
+public class WerknemerBeheerSchermController extends HBox implements Observer{
 	private GebruikerController gebruikerController;
 	
 	
@@ -392,5 +393,13 @@ public class WerknemerBeheerSchermController extends HBox{
 	        	status.add(GEBRUIKERSTATUS.GEBLOKKEERD);
 	        
 	        gebruikerController.pasFilterAanWerknemer(gebruikersnaam, naam, voornaam, functie,status);
+		}
+
+
+
+		@Override
+		public void update() {
+			initializeGUIComponenten();
+			
 		}	
 }

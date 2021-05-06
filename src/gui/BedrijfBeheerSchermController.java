@@ -29,13 +29,14 @@ import javafx.scene.control.PasswordField;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import resourcebundle.Observer;
 import resourcebundle.Taal;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 
-public class BedrijfBeheerSchermController extends HBox{
+public class BedrijfBeheerSchermController extends HBox implements Observer{
 	@FXML private Label lblFilters;
 	@FXML private TextField txfFilterBedrijfsnaam;
 	@FXML private TextField txfFilterLand;
@@ -265,5 +266,11 @@ public class BedrijfBeheerSchermController extends HBox{
         .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
     
         btnBedrijfToevoegen.setDisable(true);		
+	}
+
+	@Override
+	public void update() {
+		initializeGUIComponenten();
+		
 	}
 }
