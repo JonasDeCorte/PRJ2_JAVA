@@ -87,6 +87,16 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	}
 	
 	private void initializeGUIComponenten() {
+		lblFilters.setText(Taal.geefTekst("filters"));
+		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
+		chkActief.setText(Taal.geefTekst("actief"));
+		chkNietActief.setText(Taal.geefTekst("nietActief"));
+		btnClearFilters.setText(Taal.geefTekst("leegmaken"));
+		
+		tbcContractTypeNr.setText(Taal.geefTekst("contractTypeNr"));
+		tbcNaam.setText(Taal.geefTekst("naam"));
+		tbcLopendeContracten.setText(Taal.geefTekst("lopendeContracten"));
+		tbcStatus.setText(Taal.geefTekst("status"));	
 		tblContractType.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudContractType, nieuwContractType) -> {
         	if(nieuwContractType != null) {
@@ -94,10 +104,27 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
         		contractTypeDetailsInvullen(nieuwContractType);
         	}   	
         });
+		
+		lblContractTypeDetails.setText(Taal.geefTekst("contractTypeDetails"));
+		lblNaam.setText(Taal.geefTekst("naam"));
+		lblMinAfhandeltijd.setText(Taal.geefTekst("minAfhandeltijd"));
+		lblMaxAfhandeltijd.setText(Taal.geefTekst("maxAfhandeltijd"));
+		lblPrijsContract.setText(Taal.geefTekst("prijs"));
+		lblStatus.setText(Taal.geefTekst("status"));
+		chkActief1.setText(Taal.geefTekst("actief"));
+		lblManier.setText(Taal.geefTekst("manierAanmakenTickets"));
+		chkApplicatie.setText(Taal.geefTekst("applicatie"));
+		chkTelefoon.setText(Taal.geefTekst("telefoon"));
+		chkEmail.setText(Taal.geefTekst("e-mail"));
+		lblWanneer.setText(Taal.geefTekst("wanneerAanmakenTickets"));
 	    cboTijd.getItems().addAll(TICKETAANMAAKTIJD.values());
 	    cboTijd.setOnMouseClicked(e -> {
 	    	cboTijd.getValue();
 	    });
+	    
+	    btnContractTypeToevoegen.setText(Taal.geefTekst("wijzigen"));
+	    btnContractTypeWijzigen.setText(Taal.geefTekst("toevoegen"));
+	    btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
 	}
 	
 	@FXML
@@ -126,21 +153,21 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	
 	@FXML
 	void wijzigContractType(ActionEvent event) {
-		if(geselecteerdContractType.geefAantalContracten() == 0) {
-		if(contractTypeDetailsControleren()) {
+
+		if(geselecteerdContractType != null && geselecteerdContractType.geefAantalContracten() != 0) {
+			Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle(Taal.geefTekst("foutmeldingTitleContractTypeWijzigen"));
+			alert.setHeaderText(Taal.geefTekst("foutmeldingHeaderContractTypeWijzigen"));
+			alert.setContentText("foutmeldingContextContractTypeWijzigen");
+			alert.showAndWait();
+		}
+		else if(contractTypeDetailsControleren()) {
 			updateContractTypeAttributen();
 			contractTypeController.editContractType(geselecteerdContractType);
 			contractTypeTabelInvullen();
 			contractTypeDetailsLeegmaken();
 			} 
-		} else {
-			Alert alert = new Alert (AlertType.INFORMATION);
-			alert.setTitle("Kan contracttype niet wijzigen");
-			alert.setHeaderText("Fout bij het wijzigen van een contract type");
-			alert.setContentText("Er zijn al contracten die vallen onder dit contract type");
-			alert.showAndWait();
 		}
-	}
 	
 	private void updateContractTypeAttributen() {
 		geselecteerdContractType.setNaam(txfNaam.getText());
@@ -200,32 +227,32 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	}
 	
 	private boolean contractTypeDetailsControleren() {
-		String opsommingFoutmelding = "Volgende fouten zijn opgetreden:\n";
+		String opsommingFoutmelding = Taal.geefTekst("opsommingFoutmelding");
 		String foutMelding = opsommingFoutmelding;
 		
 		if(txfNaam.getText().isBlank())
-			foutMelding += "- De naam is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtNaam");
 		if(txfMinAfhandeltijd.getText().isBlank())
-			foutMelding += "- De minimale afhandeltijd is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtMinAfhandeltijd");
 		if(!txfMinAfhandeltijd.getText().matches("[0-9]"))
-			foutMelding += "- Ongeldige invoer bij de minimale afhandeltijd (enkel gehele nummerieke waardes zijn toegestaan)\n";
+			foutMelding += Taal.geefTekst("ongeldigeInvoerMinAfhandeltijd");
 		if(txfMaxAfhandeltijd.getText().isBlank())
-			foutMelding += "- De maximale afhandeltijd is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtMaxAfhandeltijd");
 		if(!txfMaxAfhandeltijd.getText().matches("[0-9]"))
-			foutMelding += "- Ongeldige invoer bij de maximale afhandeltijd (enkel gehele nummerieke waardes zijn toegestaan)\n";
+			foutMelding += Taal.geefTekst("ongeldigeInvoerMaxAfhandeltijd");
 		if(txfPrijs.getText().isBlank())
-			foutMelding += "- De prijs is verplicht in te vullen\n";
+			foutMelding += Taal.geefTekst("verplichtPrijs");
 		if(!txfPrijs.getText().matches("[0-9, /.]+"))
-			foutMelding += "- Ongeldige invoer bij de prijs (enkel nummerieke waardes zijn toegestaan)\n";
+			foutMelding += Taal.geefTekst("ongeldigeInvoerPrijs");
 		if(!chkApplicatie.isSelected() & !chkTelefoon.isSelected() & !chkEmail.isSelected()) 
-			foutMelding += "- Er moet verplicht één manier gekozen zijn om tickets aan te maken\n";
+			foutMelding += Taal.geefTekst("verplichtTicketManier");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
 			Alert alert = new Alert (AlertType.INFORMATION);
-			alert.setTitle("Ongeldige invoergegevens");
-			alert.setHeaderText("Fout bij het aanmaken/wijzigen van een contract type");
+			alert.setTitle(Taal.geefTekst("foutmeldingTitel"));
+			alert.setHeaderText(Taal.geefTekst("foutmeldingHeaderContractType"));
 			alert.setContentText(foutMelding);
 			alert.showAndWait();
 			return false;
@@ -275,7 +302,6 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 
 	@Override
 	public void update() {
-		initializeGUIComponenten();
-		
+		initializeGUIComponenten();	
 	}
 }
