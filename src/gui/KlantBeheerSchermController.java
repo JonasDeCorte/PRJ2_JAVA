@@ -104,6 +104,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	@FXML private CheckBox chkStatus;
 	@FXML private Label lblBedrijf;
 	@FXML private ComboBox<Bedrijf> cboKiesBedrijf;
+	@FXML private Button btnClearKlantgegevens;
 		
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
@@ -129,24 +130,6 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	
 	// Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
-		/*btnUitloggen.setText(Taal.geefTekst("uitloggen"));
-		lblTitel.setText(Taal.geefTekst("klantBeheer"));
-		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
-		
-		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
-		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
-		btnKlantBeheer.setText(Taal.geefTekst("klant"));
-		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
-		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));	
-		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
-		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
-	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
-	    	if(nieuweTaal != null) {
-	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
-	    		initializeGUIComponenten();
-	    	}
-	    });*/
-	    
 	    tblKlanten.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeKlant, NieuweKlant) -> {
         	if(NieuweKlant != null) {
@@ -162,13 +145,14 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 		txfFilterGebruikersnaam.setPromptText(Taal.geefTekst("gebruikersnaam"));
 		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
 		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
-		txfFilterBedrijf.setPromptText(Taal.geefTekst("bedrijfsnaam"));
+		txfFilterBedrijf.setPromptText(Taal.geefTekst("bedrijf"));
+		btnClearFilters.setText(Taal.geefTekst("leegmaken"));
 	    
 		tbcKlantsnr.setText(Taal.geefTekst("klantnr"));
 		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
 		tbcVoornaam.setText(Taal.geefTekst("voornaam"));
 		tbcNaam.setText(Taal.geefTekst("naam"));
-		tbcBedrijf.setText(Taal.geefTekst("bedrijfsnaam"));
+		tbcBedrijf.setText(Taal.geefTekst("bedrijf"));
 		tbcStatus.setText(Taal.geefTekst("status"));
 	    klantTabelInvullen();
 	    
@@ -182,6 +166,8 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	    lblStatus.setText(Taal.geefTekst("status"));
 	    chkStatus.setText(Taal.geefTekst("actief"));
 	    lblBedrijf.setText(Taal.geefTekst("bedrijf")); 
+	    cboKiesBedrijf.setPromptText(Taal.geefTekst("bedrijf"));
+	    btnClearKlantgegevens.setText(Taal.geefTekst("leegmaken"));
 	    
 	    List<Bedrijf> bedrijven = bedrijfsBeheerController.getAllBedrijven();
 	    cboKiesBedrijf.getItems().addAll(bedrijven);

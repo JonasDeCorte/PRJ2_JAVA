@@ -78,7 +78,7 @@
             <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txfEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <CheckBox fx:id="chkStatus" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" selected="true" text="Actief" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <Button id="buttonright" fx:id="btnClearKlantgegevens" mnemonicParsing="false" onAction="#clearKlantgegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <Button id="buttonright" fx:id="btnKlantWijzigen" mnemonicParsing="false" onAction="#KlantWijzigen" prefHeight="20.0" prefWidth="93.0" styleClass="buttonright" stylesheets="@layout.css" text="KlantWijzigen" GridPane.rowIndex="13">
                <font>
                   <Font size="9.0" />

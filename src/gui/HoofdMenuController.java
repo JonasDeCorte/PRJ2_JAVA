@@ -11,9 +11,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import domein.controllers.AanmeldController;
+import domein.enumerations.WERKNEMERROL;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -197,40 +201,37 @@ public class HoofdMenuController extends BorderPane implements Observer{
 			schermAanpassen(gebruikerInstellingenSchermController);
 		
 			}
-	
-			
 		
-	
-	
-	
-	
-	
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		btnGebruikersInstellingen.setText(Taal.geefTekst("accountOverzicht"));
-		lblTitel.setText(Taal.geefTekst("hoofdmenu"));
-		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
-		
+		lblTitel.setText(Taal.geefTekst("hoofdmenu"));	
 		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
 		
+		String rol = "gebruiker";	
 		switch(AanmeldController.getAangemeldeWerknemer().getRol()) {
 		case ADMINISTRATOR :
 		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
 		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
 		btnKlantBeheer.setText(Taal.geefTekst("klant"));
 		btnBedrijfBeheer.setText(Taal.geefTekst("bedrijf"));
+		rol = "administrator";
 		break;
 		
 		case SUPPORTMANAGER :
 		lblContractBeheer.setText(Taal.geefTekst("contractBeheer"));
 		btnContractBeheer.setText(Taal.geefTekst("contractType"));
+		rol = "supportManager";
 		break;
 		
 		case TECHNIEKER :
 		lblTicketBeheer.setText(Taal.geefTekst("ticketBeheer"));
 		btnTicketBeheer.setText(Taal.geefTekst("ticket"));
+		rol = "technieker";
 		break;
 		}
+				
+		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst(rol) + " " + AanmeldController.getAangemeldeWerknemer().getVoornaam());
 		
 		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
 		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
@@ -239,12 +240,8 @@ public class HoofdMenuController extends BorderPane implements Observer{
 	    	if(nieuweTaal != null) {
 	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
 	    	}
-	    });
-	    
-	    
-	    
-	    
-	    }
+	    });	    
+	}
 
 	@Override
 	public void update() {

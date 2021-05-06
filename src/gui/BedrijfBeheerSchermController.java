@@ -107,7 +107,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 	    tbcGemeente.setText(Taal.geefTekst("gemeente"));
 	    btnFiltersLeegmaken.setText(Taal.geefTekst("leegmaken"));
 	    
-	    lblBedrijfsNr.setText(Taal.geefTekst("bedrijfsnr"));
+	    lblBedrijfsNr.setText(Taal.geefTekst("bedrijfsnummer"));
 		lblBedrijfsgegevens.setText(Taal.geefTekst("bedrijfsgegevens"));
 		lblBedrijfsnaam.setText(Taal.geefTekst("bedrijfsnaam"));
 	    lblTelefoonnummers.setText(Taal.geefTekst("telefoonnummers"));

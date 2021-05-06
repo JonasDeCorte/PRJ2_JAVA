@@ -121,7 +121,7 @@
             </HBox>
             <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
             <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Button id="buttonright" fx:id="btnClearFilters1" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" GridPane.rowIndex="1" />
+            <Button id="buttonright" fx:id="btnClearPersonneelsGegevens" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" GridPane.rowIndex="1" />
             <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.rowIndex="18" GridPane.valignment="TOP">
                <font>
                   <Font size="9.0" />

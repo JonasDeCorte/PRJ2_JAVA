@@ -97,6 +97,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	@FXML private TextField txfHuisnr;
 	@FXML private Label lblBusnr;
 	@FXML private TextField txfBusnr;
+	@FXML private Button btnClearPersonneelsGegevens;
 		
 	@FXML private Button btnWerknemerWijzigen;
 	@FXML private Button btnWerknemerToevoegen;
@@ -122,24 +123,6 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 		
     // Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
-		/*btnUitloggen.setText(Taal.geefTekst("uitloggen"));
-		lblTitel.setText(Taal.geefTekst("werknemerbeheer"));
-		lblBegroeting.setText(Taal.geefTekst("begroeting") + " " + Taal.geefTekst("administrator"));
-		
-		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
-		lblGebruikerBeheer.setText(Taal.geefTekst("gebruikerBeheer"));
-		btnKlantBeheer.setText(Taal.geefTekst("klant"));
-		btnWerknemerBeheer.setText(Taal.geefTekst("werknemer"));
-		lblTaalWijzigen.setText(Taal.geefTekst("taalWijzigen"));
-		cboTaalWijzigen.setPromptText(Taal.geefTekst("taalKeuze"));
-		cboTaalWijzigen.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
-	    cboTaalWijzigen.getSelectionModel().selectedIndexProperty().addListener((observableValie, oudeTaal, nieuweTaal) -> {
-	    	if(nieuweTaal != null) {
-	    		Taal.instellenTaal(cboTaalWijzigen.getSelectionModel().getSelectedIndex());
-	    		initializeGUIComponenten();
-	    	}
-	    });
-	    */
 	    tblWerknemers.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeWerknemer, NieuweWerknemer) -> {
         	if(NieuweWerknemer != null) {
@@ -156,6 +139,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 		txfFilterVoornaam.setPromptText(Taal.geefTekst("voornaam"));
 		txfFilterNaam.setPromptText(Taal.geefTekst("naam"));
 		txfFilterFunctie.setPromptText(Taal.geefTekst("functie"));
+		btnClearFilters.setText(Taal.geefTekst("leegmaken"));
 		 
 		tbcPersoneelsnr.setText(Taal.geefTekst("personeelsnr"));
 		tbcGebruikersnaam.setText(Taal.geefTekst("gebruikersnaam"));
@@ -175,6 +159,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	    lblStatus.setText(Taal.geefTekst("status"));
 	    chkStatus.setText(Taal.geefTekst("actief"));
 	    lblFunctie.setText(Taal.geefTekst("functie"));
+	    cboFunctie.getItems().clear();
 	    cboFunctie.getItems().addAll(WERKNEMERROL.values());
 	    cboFunctie.setOnMouseClicked(e -> {
 	    	cboFunctie.getValue();
@@ -188,6 +173,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	    lblStraat.setText(Taal.geefTekst("straat"));
 	    lblHuisnr.setText(Taal.geefTekst("huisnr"));
 	    lblBusnr.setText(Taal.geefTekst("busnr"));
+	    btnClearPersonneelsGegevens.setText(Taal.geefTekst("leegmaken"));
 
 	    btnWerknemerToevoegen.setText(Taal.geefTekst("werknemerToevoegen"));
 	    btnWerknemerWijzigen.setText(Taal.geefTekst("werknemerWijzigen"));
