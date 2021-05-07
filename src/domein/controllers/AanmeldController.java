@@ -11,6 +11,7 @@ import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.WERKNEMERROL;
 import repository.AanmeldPogingDaoJpa;
 import repository.WerknemerDaoJpa;
+import resourcebundle.Taal;
 
 public class AanmeldController {
 	final int MAXIMUM_POGINGEN = 5;
@@ -27,19 +28,19 @@ public class AanmeldController {
 		this(new WerknemerDaoJpa(), new AanmeldPogingDaoJpa());
 	}
 
-	public void aanmelden(String gebruikersnaam, String wachtwoord) {
+	public String aanmelden(String gebruikersnaam, String wachtwoord) {
 		Werknemer werknemer;
 		GEBRUIKERSTATUS gebruikerStatus;
 		try {// gebruikerstatus ophalen + controle
 			gebruikerStatus = werknemerDao.geefGebruikerStatus(gebruikersnaam);
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Gebruikersnaam bestaat niet.");
+			return Taal.geefTekst("foutieveInloggegevens");
 		}
 		if (gebruikerStatus == GEBRUIKERSTATUS.NIET_ACTIEF) {
-			throw new IllegalArgumentException("Aanmelden niet mogelijk, uw account is niet actief.");
+			return Taal.geefTekst("inactiefAccount");
 		}
 		if (gebruikerStatus == GEBRUIKERSTATUS.GEBLOKKEERD) {
-			throw new IllegalArgumentException("Aanmelden niet mogelijk, uw account is geblokkeerd.");
+			return Taal.geefTekst("geblokkeerdAccount");
 		}
 		try { // werknemer ophalen en retourneren indien foutief
 			werknemer = werknemerDao.geefWerknemer(gebruikersnaam, wachtwoord);
@@ -54,15 +55,15 @@ public class AanmeldController {
 				werknemerDao.startTransaction();
 				werknemerDao.blokkeerWerknemer(gebruikersnaam);
 				werknemerDao.commitTransaction();
-				throw new IllegalArgumentException(
-						"Je account is geblokkeerd, je hebt te vaak het foute wachtwoord opgegeven.");
+				return Taal.geefTekst("geblokkeerdAccount");
 			}
-			throw new IllegalArgumentException("Foutief wachtwoord of gebruikersnaam test");
+			return Taal.geefTekst("foutieveInloggegevens");
 		}
 		aanmeldPogingDao.startTransaction();
 		aanmeldPogingDao.insert(new AanmeldPoging(true, gebruikersnaam));
 		aanmeldPogingDao.commitTransaction();
 		AanmeldController.setAangemeldeWerknemer(werknemer);
+		return Taal.geefTekst("succesvolAangemeld");
 	}
 
 	public static Werknemer getAangemeldeWerknemer() {

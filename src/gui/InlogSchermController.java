@@ -29,7 +29,7 @@ public class InlogSchermController extends AnchorPane implements Observer{
 	@FXML private TextField txtfGebruikersnaam;
 	@FXML private Label lblWachtwoord;
 	@FXML private PasswordField pwfWachtwoord;
-	@FXML private Text txtActiontarget;
+	@FXML private Label lblFoutmelding;
 	@FXML private Label lblWelkom;	
 	@FXML private Button btnLogin;
 	@FXML private ComboBox<String> talenCombo; 
@@ -50,20 +50,15 @@ public class InlogSchermController extends AnchorPane implements Observer{
 	@FXML
     void login(ActionEvent event) throws SQLException, IOException {
     	if (txtfGebruikersnaam.getText().isEmpty()) {
-    		txtActiontarget.setFill(Color.FIREBRICK);
-            txtActiontarget.setText(Taal.geefTekst("geenGebruikersnaamFout"));
-            return;
+            lblFoutmelding.setText(Taal.geefTekst("geenGebruikersnaamFout"));
+        } else if (pwfWachtwoord.getText().isEmpty()) {
+        	lblFoutmelding.setText(Taal.geefTekst("geenWachtwoordFout"));
+        } else {      
+            lblFoutmelding.setText(adc.aanmelden(txtfGebruikersnaam.getText(), pwfWachtwoord.getText()));  
+            txtfGebruikersnaam.clear();
+            pwfWachtwoord.clear();
         }
-        if (pwfWachtwoord.getText().isEmpty()) {
-        	txtActiontarget.setFill(Color.FIREBRICK);
-        	txtActiontarget.setText(Taal.geefTekst("geenWachtwoordFout"));
-            return;
-        }
-        
-        adc.aanmelden(txtfGebruikersnaam.getText(), pwfWachtwoord.getText());
-        
-        txtfGebruikersnaam.clear();
-        pwfWachtwoord.clear();
+     
         Stage stage = (Stage) this.getScene().getWindow();
         
         	stage.setTitle("Actemium");
@@ -92,7 +87,7 @@ public class InlogSchermController extends AnchorPane implements Observer{
 		talenCombo.setPromptText(Taal.geefTekst("taalKeuze"));
 		talenCombo.getItems().setAll(Taal.geefTekst("taakKeuzeNL"), Taal.geefTekst("taalKeuzeEN"), Taal.geefTekst("taalKeuzeFR"));
 		btnLogin.setText(Taal.geefTekst("inloggen"));	
-		txtActiontarget.setText("");
+		lblFoutmelding.setText("");
 		}
 
 	@Override

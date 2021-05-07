@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <fx:root fx:id="loginPane" prefHeight="300" prefWidth="350" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -32,7 +31,7 @@
             <TextField fx:id="txtfGebruikersnaam" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <PasswordField fx:id="pwfWachtwoord" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox fx:id="talenCombo" prefHeight="26.0" prefWidth="132.0" promptText="Kies Taal" stylesheets="@layout.css" GridPane.rowIndex="3" />
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" stylesheets="@layout.css" text="Inloggen"  GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" stylesheets="@layout.css" text="Inloggen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Label fx:id="lblWelkom" text="Welkom">
                <font>
                   <Font name="Tahoma" size="20.0" />
@@ -50,7 +49,6 @@
             <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
          </padding>
       </GridPane>
-      <Text layoutX="29.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="179.73670196533203" />
-      <Text fx:id="txtActiontarget" layoutX="30.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="210.13671112060547" />
+      <Label fx:id="lblFoutmelding" layoutX="22.0" layoutY="242.0" prefHeight="34.0" prefWidth="320.0" textFill="RED" />
    </children>
 </fx:root>
