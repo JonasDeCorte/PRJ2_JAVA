@@ -16,7 +16,8 @@ import javax.persistence.OneToMany;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Bedrijf.bestaatBedrijf", query = "SELECT COUNT(b) FROM Bedrijf b WHERE b.bedrijfsnaam = :bedrijfsnaam"),
-	@NamedQuery(name = "Bedrijf.geefBedrijf", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsnaam = :bedrijfsnaam")
+	@NamedQuery(name = "Bedrijf.geefBedrijf", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsnaam = :bedrijfsnaam"),
+	@NamedQuery(name = "Bedrijf.bestaatBedrijfsnummer", query = "SELECT COUNT(b) FROM Bedrijf b WHERE b.bedrijfId = :bedrijfsnummer")
 })
 public class Bedrijf implements Serializable {
 	private static final long serialVersionUID = 1L;

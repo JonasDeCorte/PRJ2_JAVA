@@ -15,5 +15,11 @@ public class KlantDaoJpa extends GenericDaoJpa<Klant> implements KlantDao {
 		return em.createNamedQuery("Klant.bestaatKlant", Long.class).setParameter("gebruikersnaam", gebruikersnaam)
 				.getSingleResult() == 1;
 	}
+	
+	@Override
+	public boolean bestaatKlantnummer(int klantnummer) {
+		return em.createNamedQuery("Klant.bestaatKlantnummer", Long.class).setParameter("klantnummer", klantnummer)
+				.getSingleResult() == 1;
+	}
 
 }

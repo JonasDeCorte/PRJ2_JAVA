@@ -23,6 +23,11 @@ public class BedrijfBeheerder {
 	public boolean bestaatBedrijf(String bedrijfsnaam) {
 		return bedrijfDao.bestaatBedrijf(bedrijfsnaam);
 	}
+	
+	public boolean bestaatBedrijfsnummer(int bedrijfsnummer) {
+		return bedrijfDao.bestaatBedrijfsnummer(bedrijfsnummer);
+	}
+	
 	public ObservableList<Bedrijf> haalBedrijvenOp() {
 		if (filteredBedrijfLijst == null) {
 			filteredBedrijfLijst = 

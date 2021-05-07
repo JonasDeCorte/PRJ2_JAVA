@@ -17,6 +17,10 @@ public class BedrijfsBeheerController {
 	public boolean bestaatBedrijf(String bedrijfsnaam) {
 		return bedrijfbeheerder.bestaatBedrijf(bedrijfsnaam);
 	}
+	
+	public boolean bestaatBedrijfsnummer(int bedrijfsnummer) {
+		return bedrijfbeheerder.bestaatBedrijfsnummer(bedrijfsnummer);
+	}
 
 	public void voegBedrijfToe(Bedrijf bedrijf) {
 		bedrijfbeheerder.voegBedrijfToe(bedrijf);

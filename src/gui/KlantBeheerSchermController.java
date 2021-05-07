@@ -109,6 +109,8 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	@FXML private Button btnKlantWijzigen;
 	@FXML private Button btnKlantToevoegen;
 	private Klant geselecteerdeKlant;
+	private String origineleGebruikersnaam;
+	private String origineelKlantnummer;
 	
 	// Constructor
 	public KlantBeheerSchermController(){
@@ -124,10 +126,8 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	        throw new RuntimeException(ex);
 	    }
 	    initializeGUIComponenten();	
-
 	}
-	
-	
+		
 	// Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
 	    tblKlanten.getSelectionModel().selectedItemProperty().
@@ -169,7 +169,9 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	    cboKiesBedrijf.setPromptText(Taal.geefTekst("bedrijf"));
 	    btnClearKlantgegevens.setText(Taal.geefTekst("leegmaken"));
 	    
+	    
 	    List<Bedrijf> bedrijven = bedrijfsBeheerController.getAllBedrijven();
+	    cboKiesBedrijf.getItems().clear();
 	    cboKiesBedrijf.getItems().addAll(bedrijven);
 	    cboKiesBedrijf.setOnMouseClicked(e -> {
 	    	cboKiesBedrijf.getValue();
@@ -199,9 +201,9 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	
 	@FXML
 	void KlantWijzigen(ActionEvent event) {
+		updateKlantAttributen();
 		if(klantDetailsControleren()) {
-			updateKlantAttributen();
-			gebruikerController.wijzigKlant(geselecteerdeKlant);
+			gebruikerController.wijzigKlant(geselecteerdeKlant, origineleGebruikersnaam);
 			klantTabelInvullen();
 	    	klantDetailsLeegmaken();
 	    	btnKlantToevoegen.setDisable(false);
@@ -212,7 +214,9 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	private void klantDetailsInvullen(Klant klant) {
 		klantDetailsLeegmaken();
 		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
+		origineelKlantnummer = txfKlantnr.getText();
         txfGebruikersnaam.setText(klant.getGebruikersnaam());
+        origineleGebruikersnaam = txfGebruikersnaam.getText();
         pwfWachtwoord.setText(klant.getWachtwoord());
         txfVoornaam.setText(klant.getVoornaam());
         txfNaam.setText(klant.getNaam());
@@ -260,7 +264,10 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 		txfNaam.clear();
 		txfEmail.clear();
 		cboKiesBedrijf.getSelectionModel().clearSelection();
+		origineelKlantnummer = null;
+		origineleGebruikersnaam = null;
 	}
+	
 	@FXML
     private void clearKlantgegevens(ActionEvent actionEvent) {
 		klantDetailsLeegmaken();
@@ -287,6 +294,10 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("ongeldigEmail");
 		if(cboKiesBedrijf.getValue() == null) 
 			foutMelding += Taal.geefTekst("verplichtBedrijf");
+		if(gebruikerController.bestaatKlant(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
+			foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
+		if(gebruikerController.bestaatKlantnummer(Integer.parseInt(txfKlantnr.getText())) && !txfKlantnr.getText().equals(origineelKlantnummer))
+			foutMelding += Taal.geefTekst("klantnummerAlGebruikt");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
