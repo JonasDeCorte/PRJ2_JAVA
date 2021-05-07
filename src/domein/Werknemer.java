@@ -19,7 +19,8 @@ import domein.enumerations.WERKNEMERROL;
 	@NamedQuery(name = "Werknemer.updateStatusGeblokkeerdeGebruiker", query = "UPDATE Werknemer SET gebruikerStatus = :gebruikerStatus WHERE gebruikersnaam = :gebruikersnaam"),
 	@NamedQuery(name = "Werknemer.geefWerknemer", query = "SELECT w FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam AND w.wachtwoord = :wachtwoord"),
 	@NamedQuery(name = "Werknemer.geefGebruikerStatus", query = "SELECT w.gebruikerStatus FROM Werknemer w WHERE w.gebruikersnaam = :gebruikersnaam"),
-	@NamedQuery(name = "Werknemer.geefAlleTechniekers", query = "SELECT w FROM Werknemer w WHERE w.rol = :rol")
+	@NamedQuery(name = "Werknemer.geefAlleTechniekers", query = "SELECT w FROM Werknemer w WHERE w.rol = :rol"),
+	@NamedQuery(name = "Werknemer.bestaatWerknemerPersoneelsnummer", query = "SELECT COUNT(w) FROM Werknemer w WHERE w.personeelsnummer = :personeelsnummer")
 })
 
 public class Werknemer extends Gebruiker implements Serializable{

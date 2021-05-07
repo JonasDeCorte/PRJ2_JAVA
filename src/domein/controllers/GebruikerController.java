@@ -46,13 +46,21 @@ public class GebruikerController {
 		return klantBeheerder.haalKlantenOp();
 	}
 	
+	public boolean bestaatWerknemer(String gebruikersNaam) {
+		return werknemerBeheerder.bestaatWerknemer(gebruikersNaam);
+	}
+	
+	public boolean bestaatPersoneelsnummer(int personeelsnummer) {
+		return werknemerBeheerder.bestaatPersoneelsnummer(personeelsnummer);
+	}
+	
 	public ObservableList<Werknemer> getAllWerknemer() {
 		return werknemerBeheerder.haalWerknemersOp();
 	}
 	public void voegWerknemerToe (Werknemer werknemer) {
 		werknemerBeheerder.voegWerknemerToe(werknemer);
 	}
-	public void wijzigWerknemer(Werknemer werknemer) {
-		werknemerBeheerder.wijzigWerknemer(werknemer);
+	public void wijzigWerknemer(Werknemer werknemer, String origineleGebruikersnaam) {
+		werknemerBeheerder.wijzigWerknemer(werknemer, origineleGebruikersnaam);
 	}
 }

@@ -47,4 +47,10 @@ public class WerknemerDaoJpa extends GenericDaoJpa<Werknemer> implements Werknem
 		return em.createNamedQuery("Werknemer.geefAlleTechniekers", Werknemer.class)
 				.setParameter("rol", WERKNEMERROL.TECHNIEKER).getResultList();
 	}
+
+	@Override
+	public boolean bestaatPersoneelsnummer(int personeelsnummer) {
+		return em.createNamedQuery("Werknemer.bestaatWerknemerPersoneelsnummer", Long.class)
+				.setParameter("personeelsnummer", personeelsnummer).getSingleResult() == 1;
+	}
 }

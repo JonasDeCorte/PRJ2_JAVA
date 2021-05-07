@@ -32,6 +32,10 @@ public class WerknemerBeheerder {
 	public boolean bestaatWerknemer(String gebruikersnaam) {
 		return werknemerDao.bestaatWerknemer(gebruikersnaam);
 	}
+	
+	public boolean bestaatPersoneelsnummer(int personeelsnummer) {
+		return werknemerDao.bestaatPersoneelsnummer(personeelsnummer);
+	}
 	public Werknemer haalWerknemerOp(int personeelsnummer) {
 		throw new IllegalArgumentException();
 	}
@@ -48,8 +52,8 @@ public class WerknemerBeheerder {
 		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
 	}
 	
-	public void wijzigWerknemer(Werknemer werknemer) {
-		if(bestaatWerknemer(werknemer.getGebruikersnaam())) {
+	public void wijzigWerknemer(Werknemer werknemer, String origineleGebruikersnaam) {
+		if(bestaatWerknemer(origineleGebruikersnaam)) {
 		werknemerDao.startTransaction();
 		werknemerDao.update(werknemer);
 		werknemerDao.commitTransaction();

@@ -159,7 +159,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 	public void bedrijfWijzigen(ActionEvent event) {
 		updateBedrijfAttributen();
 		if(bedrijfDetailsControleren()) {
-			bedrijfsBeheerController.wijzigBedrijf(geselecteerdBedrijf);
+			bedrijfsBeheerController.wijzigBedrijf(geselecteerdBedrijf, origineleBedrijfsnaam);
 			bedrijfTabelInvullen();
 	    	bedrijfDetailsLeegmaken();
 	    	btnBedrijfToevoegen.setDisable(false);
@@ -197,8 +197,6 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
 		if(bedrijfsBeheerController.bestaatBedrijf(txfBedrijfsnaam.getText()) && !txfBedrijfsnaam.getText().equals(origineleBedrijfsnaam))
 			foutMelding += Taal.geefTekst("bedrijfsnaamAlGebruikt");
-		if(bedrijfsBeheerController.bestaatBedrijfsnummer(Integer.parseInt(txfBedrijfnr.getText())) && !txfBedrijfnr.getText().equals(origineelBedrijfsnr))
-			foutMelding += Taal.geefTekst("bedrijfsnummerAlGebruikt");
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
@@ -257,11 +255,13 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
         btnBedrijfToevoegen.setDisable(false);
         origineelBedrijfsnr = null;
         origineleBedrijfsnaam = null;
+        txfBedrijfnr.setEditable(true);
 	}
 	
 	private void bedrijfDetailsInvullen(Bedrijf bedrijf) {
 		bedrijfDetailsLeegmaken();
 		txfBedrijfnr.setText(Integer.toString(bedrijf.getBedrijfId()));
+		txfBedrijfnr.setEditable(false);
 		origineelBedrijfsnr = txfBedrijfnr.getText();
         txfBedrijfsnaam.setText(bedrijf.getBedrijfsnaam());
         origineleBedrijfsnaam = txfBedrijfsnaam.getText();

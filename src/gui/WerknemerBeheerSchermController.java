@@ -42,8 +42,6 @@ import resourcebundle.Taal;
 public class WerknemerBeheerSchermController extends HBox implements Observer{
 	private GebruikerController gebruikerController;
 	
-	
-	
 	// Filters (midden)
 	@FXML private Label lblFilters;
 	@FXML private CheckBox chkActieveWerknemers;
@@ -102,6 +100,8 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	@FXML private Button btnWerknemerWijzigen;
 	@FXML private Button btnWerknemerToevoegen;
 	private Werknemer geselecteerdeWerknemer;
+	private String origineelPersonneelsnr;
+	private String origineleGebruikersnaam;
 	
 	// Constructor
 	public WerknemerBeheerSchermController() {
@@ -115,12 +115,9 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
-	    initializeGUIComponenten();
-	    
+	    initializeGUIComponenten();	    
 	}
-	
-	
-		
+			
     // Initializen van het scherm (Vertaling, invullen data tabel) 
 	private void initializeGUIComponenten() {		
 	    tblWerknemers.getSelectionModel().selectedItemProperty().
@@ -198,9 +195,9 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	
     @FXML    
     void WijzigWerknemer(ActionEvent event) {
+		updateWerknemerAttributen();
     	if(werknemerDetailsControleren()) {
-    		updateWerknemerAttributen();
-    		gebruikerController.wijzigWerknemer(geselecteerdeWerknemer);
+    		gebruikerController.wijzigWerknemer(geselecteerdeWerknemer, origineleGebruikersnaam);
     		werknemerTabelInvullen();
     		werknemerDetailsLeegmaken();
     	}
@@ -236,12 +233,16 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 		txfHuisnr.clear();
 		txfBusnr.clear();
 		cboFunctie.getSelectionModel().select(1);
+		origineelPersonneelsnr = null;
+		origineleGebruikersnaam = null;
 	}
 	
 	private void werknemerDetailsInvullen(Werknemer werknemer) {
 		werknemerDetailsLeegmaken();
 		txfPersoneelsnr.setText(Integer.toString(werknemer.getPersoneelsnummer()));
+		origineelPersonneelsnr = txfPersoneelsnr.getText();
         txfGebruikersnaam.setText(werknemer.getGebruikersnaam());
+        origineleGebruikersnaam = txfGebruikersnaam.getText();
         pwfWachtwoord.setText(werknemer.getWachtwoord());
         txfVoornaam.setText(werknemer.getVoornaam());
         txfNaam.setText(werknemer.getNaam());
@@ -290,6 +291,10 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtStraat");
 		if(txfHuisnr.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtHuisnr");
+		if(gebruikerController.bestaatWerknemer(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
+			foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
+		if(gebruikerController.bestaatPersoneelsnummer(Integer.parseInt(txfPersoneelsnr.getText())) && !txfPersoneelsnr.getText().equals(origineelPersonneelsnr))
+			foutMelding += Taal.geefTekst("personeelsnummerAlGebruikt");
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;

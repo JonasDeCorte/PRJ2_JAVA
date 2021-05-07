@@ -24,10 +24,6 @@ public class BedrijfBeheerder {
 		return bedrijfDao.bestaatBedrijf(bedrijfsnaam);
 	}
 	
-	public boolean bestaatBedrijfsnummer(int bedrijfsnummer) {
-		return bedrijfDao.bestaatBedrijfsnummer(bedrijfsnummer);
-	}
-	
 	public ObservableList<Bedrijf> haalBedrijvenOp() {
 		if (filteredBedrijfLijst == null) {
 			filteredBedrijfLijst = 
@@ -47,8 +43,8 @@ public class BedrijfBeheerder {
 		filteredBedrijfLijst = new FilteredList<>(FXCollections.observableArrayList(bedrijfDao.findAll()),filteredBedrijfLijst.getPredicate());
 		
 	}
-	public void wijzigBedrijf(Bedrijf bedrijf) {
-		if(bestaatBedrijf(bedrijf.getBedrijfsnaam())) {
+	public void wijzigBedrijf(Bedrijf bedrijf, String origineleBedrijfsnaam) {
+		if(bestaatBedrijf(origineleBedrijfsnaam)) {
 			bedrijfDao.startTransaction();
 		bedrijfDao.update(bedrijf);
 		bedrijfDao.commitTransaction();

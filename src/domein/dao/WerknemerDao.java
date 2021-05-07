@@ -15,5 +15,7 @@ public interface WerknemerDao extends GenericDao<Werknemer>  {
 	
 	boolean bestaatWerknemer(String gebruikersnaam);
 
+	boolean bestaatPersoneelsnummer(int personeelsnummer);
+	
 	List<Werknemer> geefTechniekers();
 }

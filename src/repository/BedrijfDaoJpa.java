@@ -19,9 +19,4 @@ public class BedrijfDaoJpa extends GenericDaoJpa<Bedrijf> implements BedrijfDao 
 		// TODO Auto-generated method stub
 		return em.createNamedQuery("Bedrijf.bestaatBedrijf", long.class).setParameter("bedrijfsnaam", bedrijfsNaam).getSingleResult()== 1;
 	}
-	
-	@Override
-	public boolean bestaatBedrijfsnummer(int bedrijfsnummer) {
-		return em.createNamedQuery("Bedrijf.bestaatBedrijfsnummer", long.class).setParameter("bedrijfsnummer", bedrijfsnummer).getSingleResult() == 1;
-	}
 }

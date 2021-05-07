@@ -17,17 +17,13 @@ public class BedrijfsBeheerController {
 	public boolean bestaatBedrijf(String bedrijfsnaam) {
 		return bedrijfbeheerder.bestaatBedrijf(bedrijfsnaam);
 	}
-	
-	public boolean bestaatBedrijfsnummer(int bedrijfsnummer) {
-		return bedrijfbeheerder.bestaatBedrijfsnummer(bedrijfsnummer);
-	}
 
 	public void voegBedrijfToe(Bedrijf bedrijf) {
 		bedrijfbeheerder.voegBedrijfToe(bedrijf);
 	}
 
-	public void wijzigBedrijf(Bedrijf bedrijf) {
-		bedrijfbeheerder.wijzigBedrijf(bedrijf);
+	public void wijzigBedrijf(Bedrijf bedrijf, String origineleBedrijfsnaam) {
+		bedrijfbeheerder.wijzigBedrijf(bedrijf, origineleBedrijfsnaam);
 	}
 
 	public void pasFilterAanBedrijf( String bedrijfsnaam,String land, String Gemeente)
