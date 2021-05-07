@@ -238,6 +238,7 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	private void TicketDetailsInvullen(Ticket ticket) {
 		TicketDetailsLeegmaken();
 		txfTicketNr.setText(Integer.toString(ticket.getTicketnummer()));
+		txfTicketNr.setEditable(false);
         txfTitel.setText(ticket.getTitel());
         txfDatumAangemaakt.setText(ticket.getDatumAangemaakt().format(DateTimeFormatter.ISO_LOCAL_DATE));
         if(ticket.getDatumAfgesloten() != null)
@@ -262,6 +263,7 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		txaOpmerkingen.clear();
 		txaRapport.clear();
 		btnTicketWijzigen.setDisable(true);
+		txfTicketNr.setEditable(true);
 	}
 	private void updateTicketAttributen() {
 		geselecteerdeTicket.setTicketnummer(Integer.parseInt(txfTicketNr.getText()));
