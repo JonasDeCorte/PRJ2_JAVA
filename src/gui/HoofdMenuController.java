@@ -3,6 +3,7 @@ package gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -205,6 +206,7 @@ public class HoofdMenuController extends BorderPane implements Observer{
 	private void initializeGUIComponenten() {		
 		btnUitloggen.setText(Taal.geefTekst("uitloggen"));
 		btnGebruikersInstellingen.setText(Taal.geefTekst("accountOverzicht"));
+		btnGebruikersInstellingen.setAlignment(Pos.CENTER);
 		lblTitel.setText(Taal.geefTekst("hoofdmenu"));	
 		btnHoofdmenu.setText(Taal.geefTekst("hoofdmenu"));
 		

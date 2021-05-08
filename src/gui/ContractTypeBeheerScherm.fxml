@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="570.0" prefWidth="874.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="570.0" prefWidth="589.0">
+      <Pane minHeight="570.0" minWidth="589.0" prefHeight="570.0" prefWidth="900.0">
          <children>
             <CheckBox fx:id="chkActief" layoutX="181.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonActieve" text="Actief" />
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
@@ -33,7 +34,7 @@
             <CheckBox fx:id="chkNietActief" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#toonInactieve" text="Niet actief" />
          </children>
       </Pane>
-      <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+      <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="256.0" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="91.4000732421875" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
@@ -54,7 +55,10 @@
          </rowConstraints>
          <children>
             <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="5" />
-            <Label id="title" fx:id="lblContractTypeDetails" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="ContractType details" GridPane.columnIndex="1" />
+            <Label id="title" fx:id="lblContractTypeDetails" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="ContractType details" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="1" />
             <Label fx:id="lblMinAfhandeltijd" text="Min.afhandeltijd" GridPane.rowIndex="2" />
             <Label fx:id="lblMaxAfhandeltijd" text="Max.afhandeltijd" GridPane.rowIndex="3" />
@@ -69,13 +73,13 @@
             <CheckBox fx:id="chkEmail" mnemonicParsing="false" text="E-mail" GridPane.columnSpan="2" GridPane.rowIndex="7" />
             <CheckBox fx:id="chkTelefoon" mnemonicParsing="false" text="Telefoon" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <CheckBox fx:id="chkApplicatie" mnemonicParsing="false" text="Applicatie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
-            <Button id="buttonright" fx:id="btnContractTypeWijzigen" mnemonicParsing="false" onAction="#wijzigContractType" prefHeight="14.0" prefWidth="110.0" stylesheets="@layout.css" text="ContractTypeWijzigen" GridPane.rowIndex="11">
+            <Button id="buttonright" fx:id="btnContractTypeWijzigen" mnemonicParsing="false" onAction="#wijzigContractType" prefHeight="14.0" prefWidth="110.0" stylesheets="@layout.css" text="ContractTypeWijzigen" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
             <Label fx:id="lblWanneer" text="Wanneer kunnen tickets aangemaakt worden" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <Button id="buttonright" fx:id="btnContractTypeToevoegen" mnemonicParsing="false" onAction="#voegContractTypeToe" prefHeight="14.0" prefWidth="110.0" text="ContractTypeToevoegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11">
+            <Button id="buttonright" fx:id="btnContractTypeToevoegen" mnemonicParsing="false" onAction="#voegContractTypeToe" prefHeight="14.0" prefWidth="110.0" text="ContractTypeToevoegen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                <font>
                   <Font size="9.0" />
                </font>
@@ -84,4 +88,7 @@
          </children>
       </GridPane>
    </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
 </fx:root>

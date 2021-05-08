@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="910.0" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="750" prefWidth="1000" type="BorderPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -41,7 +41,7 @@
                   <Insets left="15.0" top="15.0" />
                </HBox.margin>
             </ImageView>
-            <Label id="bold" fx:id="lblTitel" alignment="CENTER" maxHeight="40.0" maxWidth="1.7976931348623157E308" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="354.0" text="Dashboard" textFill="WHITE">
+            <Label id="bold" fx:id="lblTitel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="650.0" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
@@ -49,19 +49,19 @@
                   <Insets top="10.0" />
                </HBox.margin>
             </Label>
-            <Label id="bold" fx:id="lblBegroeting" maxHeight="18.0" minHeight="18.0" prefHeight="18.0" prefWidth="158.0" text="Goeiemiddag Administrator" textFill="WHITE">
+            <Label id="bold" fx:id="lblBegroeting" alignment="CENTER_RIGHT" minHeight="0.0" minWidth="0.0" prefHeight="18.0" prefWidth="500.0" text="Goeiemiddag Administrator" textFill="WHITE">
                <HBox.margin>
                   <Insets top="22.0" />
                </HBox.margin>
             </Label>
-            <Button id="buttonright" fx:id="btnGebruikersInstellingen" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#gebruikersInstellingen" text="Account overzicht">
+            <Button id="buttonright" fx:id="btnGebruikersInstellingen" alignment="CENTER" minWidth="120.0" mnemonicParsing="false" onAction="#gebruikersInstellingen" prefHeight="20.0" prefWidth="100.0" text="Mijn Account">
                <HBox.margin>
                   <Insets left="7.0" top="18.0" />
                </HBox.margin>
             </Button>
-            <Button id="buttonright" fx:id="btnUitloggen" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#uitloggen" text="Uitloggen">
+            <Button id="buttonright" fx:id="btnUitloggen" alignment="CENTER" minWidth="120.0" mnemonicParsing="false" onAction="#uitloggen" prefHeight="20.0" prefWidth="75.0" text="Uitloggen">
                <HBox.margin>
-                  <Insets left="10.0" top="18.0" />
+                  <Insets left="10.0" right="10.0" top="18.0" />
                </HBox.margin>
             </Button>
          </children>

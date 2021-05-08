@@ -14,10 +14,7 @@
 .navbar{
 	-fx-background-color: #9ba5d3;
 }
-.klantgegevens{
-	-fx-border-color: #000000;
-	-fx-padding:5px;
-}
+
 #bold{
 	-fx-font-weight:bold;
 }
