@@ -16,7 +16,7 @@
 
 <fx:root fx:id="loginPane" prefHeight="750" prefWidth="1000" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane alignment="CENTER" hgap="10.0" stylesheets="@layout.css" vgap="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="12.600000000000023" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <GridPane alignment="CENTER" hgap="10.0" layoutX="51.0" layoutY="189.0" prefHeight="372.0" prefWidth="370.0" stylesheets="@layout.css" vgap="10.0" AnchorPane.bottomAnchor="189.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="189.0">
         <columnConstraints>
           <ColumnConstraints hgrow="ALWAYS" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
           <ColumnConstraints hgrow="ALWAYS" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
@@ -39,16 +39,16 @@
             </Label>
             <Label fx:id="lblWachtwoord" text="Wachtwoord:" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
             <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam:" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-            <ImageView fitHeight="19.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-               <image>
-                  <Image url="@../images/ActemiumLogo.png" />
-               </image>
-            </ImageView>
          </children>
          <padding>
             <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
          </padding>
       </GridPane>
-      <Label fx:id="lblFoutmelding" layoutX="22.0" layoutY="242.0" prefHeight="34.0" prefWidth="320.0" textFill="RED" />
+      <Label fx:id="lblFoutmelding" layoutX="22.0" layoutY="242.0" prefHeight="34.0" prefWidth="170.0" textFill="RED" />
+      <ImageView fitHeight="109.0" fitWidth="484.0" layoutX="453.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ActemiumLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </fx:root>
