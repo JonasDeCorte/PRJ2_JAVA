@@ -87,6 +87,11 @@ public class Werknemer extends Gebruiker implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return getVoornaam();
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

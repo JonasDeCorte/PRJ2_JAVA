@@ -23,12 +23,15 @@ import java.util.stream.Collectors;
 import domein.Bedrijf;
 import domein.Bijlage;
 import domein.Contract;
+import domein.Gebruiker;
 import domein.Klant;
 import domein.Rapport;
 import domein.Ticket;
 import domein.TicketType;
+import domein.Werknemer;
 import domein.controllers.AanmeldController;
 import domein.controllers.ContractController;
+import domein.controllers.GebruikerController;
 import domein.controllers.TicketController;
 import domein.controllers.TicketTypeController;
 import domein.enumerations.GEBRUIKERSTATUS;
@@ -48,6 +51,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.CheckBox;
 
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import resourcebundle.Observer;
 import resourcebundle.Taal;
@@ -99,6 +103,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private Label lblOplossing;
 	@FXML
+	private Label lblTechnieker;
+	@FXML
 	private Label lblContract;
 	@FXML
 	private Label lblTicketType;
@@ -109,13 +115,19 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private Label lblOpmerkingen;
 	
+	@FXML
+	private GridPane grdTicketGegevens;
 	
 	@FXML
 	private TextArea txaOplossing;
 	@FXML
 	private TextArea txaOmschrijving;
 	@FXML
+	private ComboBox<Gebruiker> cboTechnieker;
+	@FXML
 	private Button btnTicketWijzigen;
+	@FXML
+	private Button btnTicketToevoegen;
 	
 	@FXML
 	private TextField txfTicketNr;
@@ -145,11 +157,13 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	private Ticket geselecteerdeTicket;
 	private final TicketController ticketController;
 	private final TicketTypeController ticketTypeController;
+	private final GebruikerController gebruikerController;
 
 	public TicketBeheerSchermController() {
 		
 		this.ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
 		this.ticketTypeController = new TicketTypeController();
+		this.gebruikerController = new GebruikerController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -195,7 +209,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		lblTitel.setText(Taal.geefTekst("titel"));
 		lblDatumAangemaakt.setText(Taal.geefTekst("datumAangemaakt"));
 		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));              
-		lblOplossing.setText(Taal.geefTekst("oplossing"));							
+		lblOplossing.setText(Taal.geefTekst("oplossing"));	
+		lblTechnieker.setText(Taal.geefTekst("technieker"));
 		lblContract.setText(Taal.geefTekst("contract"));
 		lblTicketType.setText(Taal.geefTekst("ticketType"));
 		lblRapport.setText(Taal.geefTekst("rapport"));
@@ -203,6 +218,17 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		lblOpmerkingen.setText(Taal.geefTekst("opmerkingen"));
 		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
 		btnTicketWijzigen.setDisable(true);
+		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
+			btnTicketToevoegen.setDisable(true);
+			cboTechnieker.setDisable(true);
+		}
+		else {
+			List<Gebruiker> techniekers = gebruikerController.getAllWerknemer().stream().filter(w->w.getRol().equals(WERKNEMERROL.TECHNIEKER)).distinct().collect(Collectors.toList());
+			cboTechnieker.getItems().addAll(techniekers);
+			cboTechnieker.setOnMouseClicked(e -> {
+				cboTechnieker.getValue();
+		    });
+		}
 
 		tblTickets.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeTicket, NieuweTicket) -> {
@@ -210,11 +236,11 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         		geselecteerdeTicket = NieuweTicket;
         		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
         		TicketDetailsInvullen(NieuweTicket);
-        		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
-        			btnTicketWijzigen.setDisable(true);
-        		}
+        		btnTicketWijzigen.setDisable(false);
+        		btnTicketToevoegen.setDisable(true);
         	}   	
         });
+		
 		
 		List<TicketType> ticketType = ticketTypeController.haalTicketTypesOp();
 	    cbTicketType.getItems().addAll(ticketType);
@@ -265,6 +291,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		txaOpmerkingen.clear();
 		txaRapport.clear();
 		btnTicketWijzigen.setDisable(true);
+		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.SUPPORTMANAGER))
+		btnTicketToevoegen.setDisable(false);
 		txfTicketNr.setEditable(true);
 	}
 	private void updateTicketAttributen() {
