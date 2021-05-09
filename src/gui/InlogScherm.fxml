@@ -31,7 +31,7 @@
             <TextField fx:id="txtfGebruikersnaam" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <PasswordField fx:id="pwfWachtwoord" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox fx:id="talenCombo" prefHeight="26.0" prefWidth="132.0" promptText="Kies Taal" stylesheets="@layout.css" GridPane.rowIndex="3" />
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" stylesheets="@layout.css" text="Inloggen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button id="buttonright" fx:id="btnLogin" mnemonicParsing="false" onAction="#login" stylesheets="@layout.css" text="Inloggen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Label fx:id="lblWelkom" text="Welkom">
                <font>
                   <Font name="Tahoma" size="20.0" />
@@ -45,7 +45,7 @@
          </padding>
       </GridPane>
       <Label fx:id="lblFoutmelding" layoutX="22.0" layoutY="242.0" prefHeight="34.0" prefWidth="170.0" textFill="RED" />
-      <ImageView fitHeight="109.0" fitWidth="484.0" layoutX="453.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="109.0" fitWidth="484.0" layoutX="469.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ActemiumLogo.png" />
          </image>

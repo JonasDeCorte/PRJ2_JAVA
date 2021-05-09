@@ -280,8 +280,16 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 		
 		if(txfKlantnr.getText().isBlank()) 
 			foutMelding += Taal.geefTekst("verplichtKlantnummer");
+		
+		if(!txfKlantnr.getText().isBlank() && gebruikerController.bestaatKlantnummer(Integer.parseInt(txfKlantnr.getText())) && !txfKlantnr.getText().equals(origineelKlantnummer))
+			foutMelding += Taal.geefTekst("klantnummerAlGebruikt");
+
 		if(txfGebruikersnaam.getText().length() < 4) 
 			foutMelding += Taal.geefTekst("teKortGebruikersnaam");
+			
+		if(!txfGebruikersnaam.getText().isBlank() && gebruikerController.bestaatKlant(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
+				foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
+
 		if(txfVoornaam.getText().isBlank()) 
 			foutMelding += Taal.geefTekst("verplichtVoornaam");
 		if(txfNaam.getText().isBlank())
@@ -294,11 +302,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("ongeldigEmail");
 		if(cboKiesBedrijf.getValue() == null) 
 			foutMelding += Taal.geefTekst("verplichtBedrijf");
-		if(gebruikerController.bestaatKlant(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
-			foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
-		if(gebruikerController.bestaatKlantnummer(Integer.parseInt(txfKlantnr.getText())) && !txfKlantnr.getText().equals(origineelKlantnummer))
-			foutMelding += Taal.geefTekst("klantnummerAlGebruikt");
-		
+	
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {

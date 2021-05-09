@@ -183,6 +183,8 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtBedrijfsnummer");
 		if(txfBedrijfsnaam.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtBedrijfsnaam");
+		if(!txfBedrijfsnaam.getText().isBlank() && bedrijfsBeheerController.bestaatBedrijf(txfBedrijfsnaam.getText()) && !txfBedrijfsnaam.getText().equals(origineleBedrijfsnaam))
+			foutMelding += Taal.geefTekst("bedrijfsnaamAlGebruikt");
 		if(txfLand.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtLand");
 		if(txfGemeente.getText().isBlank())
@@ -195,8 +197,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtHuisnr");
 		if(txaTelefoonnummers.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
-		if(bedrijfsBeheerController.bestaatBedrijf(txfBedrijfsnaam.getText()) && !txfBedrijfsnaam.getText().equals(origineleBedrijfsnaam))
-			foutMelding += Taal.geefTekst("bedrijfsnaamAlGebruikt");
+
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {

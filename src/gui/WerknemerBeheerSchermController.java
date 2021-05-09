@@ -267,8 +267,12 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 		
 		if(txfPersoneelsnr.getText().isBlank()) 
 			foutMelding += Taal.geefTekst("verplichtPersoneelsnummer");
+		if(!txfPersoneelsnr.getText().isBlank() && gebruikerController.bestaatPersoneelsnummer(Integer.parseInt(txfPersoneelsnr.getText())) && !txfPersoneelsnr.getText().equals(origineelPersonneelsnr))
+			foutMelding += Taal.geefTekst("personeelsnummerAlGebruikt");
 		if(txfGebruikersnaam.getText().length() < 4) 
 			foutMelding += Taal.geefTekst("teKortGebruikersnaam");
+		if(txfGebruikersnaam.getText().length() >= 4 && gebruikerController.bestaatWerknemer(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
+			foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
 		if(txfVoornaam.getText().isBlank()) 
 			foutMelding += Taal.geefTekst("verplichtVoornaam");
 		if(txfNaam.getText().isBlank())
@@ -291,10 +295,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtStraat");
 		if(txfHuisnr.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtHuisnr");
-		if(gebruikerController.bestaatWerknemer(txfGebruikersnaam.getText()) && !txfGebruikersnaam.getText().equals(origineleGebruikersnaam))
-			foutMelding += Taal.geefTekst("gebruikersnaamAlGebruikt");
-		if(gebruikerController.bestaatPersoneelsnummer(Integer.parseInt(txfPersoneelsnr.getText())) && !txfPersoneelsnr.getText().equals(origineelPersonneelsnr))
-			foutMelding += Taal.geefTekst("personeelsnummerAlGebruikt");
+
 		
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
