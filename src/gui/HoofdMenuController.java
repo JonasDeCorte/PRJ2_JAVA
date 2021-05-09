@@ -112,7 +112,15 @@ public class HoofdMenuController extends BorderPane implements Observer{
 			vboxNavigatie.setMargin(btnContractBeheer, new Insets(10,0,0,10));
 			btnContractBeheer.setOnAction(this::contractBeheer);
 			btnContractBeheer.setId("buttonleft");
-        	vboxNavigatie.getChildren().addAll(lblContractBeheer,btnContractBeheer);
+			
+			lblTicketBeheer = new Label(Taal.geefTekst("ticketBeheer"));
+			vboxNavigatie.setMargin(lblTicketBeheer, new Insets(10,0,0,10));
+    		btnTicketBeheer = new Button(Taal.geefTekst("ticket"));
+    		vboxNavigatie.setMargin(btnTicketBeheer, new Insets(10,0,0,10));
+    		btnTicketBeheer.setOnAction(this::ticketBeheer);
+    		btnTicketBeheer.setId("buttonleft");
+			
+        	vboxNavigatie.getChildren().addAll(lblContractBeheer,btnContractBeheer,lblTicketBeheer,btnTicketBeheer);
         	break;
     	
 		case TECHNIEKER : 
@@ -176,6 +184,7 @@ public class HoofdMenuController extends BorderPane implements Observer{
 		Optional<ButtonType> result = alert.showAndWait();
 		
 		if (result.get() == ButtonType.OK) {
+			Taal.removeObservers(this);
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setTitle("Actemium");
 			InlogSchermController root = new InlogSchermController(new AanmeldController());

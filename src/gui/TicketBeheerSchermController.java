@@ -210,7 +210,9 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         		geselecteerdeTicket = NieuweTicket;
         		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
         		TicketDetailsInvullen(NieuweTicket);
-        		btnTicketWijzigen.setDisable(false);
+        		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
+        			btnTicketWijzigen.setDisable(true);
+        		}
         	}   	
         });
 		
