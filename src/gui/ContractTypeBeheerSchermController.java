@@ -117,6 +117,7 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 		chkTelefoon.setText(Taal.geefTekst("telefoon"));
 		chkEmail.setText(Taal.geefTekst("e-mail"));
 		lblWanneer.setText(Taal.geefTekst("wanneerAanmakenTickets"));
+		cboTijd.getItems().clear();
 	    cboTijd.getItems().addAll(TICKETAANMAAKTIJD.values());
 	    cboTijd.setOnMouseClicked(e -> {
 	    	cboTijd.getValue();
