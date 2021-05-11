@@ -65,6 +65,10 @@ public class Klant extends Gebruiker implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "Klant: " +   getVoornaam() + " " +  getNaam() ;
+	}
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

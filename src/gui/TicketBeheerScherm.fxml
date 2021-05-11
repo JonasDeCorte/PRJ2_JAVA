@@ -55,6 +55,7 @@
             <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="37.20000610351563" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="46.79999389648438" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="44.80000000000001" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="44.80000000000001" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="28.80000000000001" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="47.80000000000001" minHeight="10.0" prefHeight="47.80000000000001" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="43.79999389648435" minHeight="10.0" prefHeight="30.199993896484386" vgrow="SOMETIMES" />
@@ -75,12 +76,12 @@
             <Label fx:id="lblDatumAangemaakt" text="Datumaangemaakt" GridPane.rowIndex="3" />
             <Label fx:id="lblOmschrijving" text="Omschrijving" GridPane.rowIndex="5" />
             <Label fx:id="lblOplossing" text="Oplossing" GridPane.rowIndex="7" />
-            <Label fx:id="lblContract" text="Contract" GridPane.rowIndex="10" />
-            <Label fx:id="lblTicketType" text="TicketType" GridPane.rowIndex="11" />
-            <Label fx:id="lblRapport" prefHeight="18.0" prefWidth="130.0" text="Rapport beschrijving" GridPane.columnSpan="2" GridPane.rowIndex="12" />
-            <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="14" />
-            <Label fx:id="lblOpmerkingen" prefHeight="18.0" prefWidth="242.0" text="Opmerkingen" GridPane.rowIndex="15" />
-            <Pane GridPane.columnSpan="2" GridPane.rowIndex="16">
+            <Label fx:id="lblContract" text="Contract" GridPane.rowIndex="11" />
+            <Label fx:id="lblTicketType" text="TicketType" GridPane.rowIndex="12" />
+            <Label fx:id="lblRapport" prefHeight="18.0" prefWidth="130.0" text="Rapport beschrijving" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+            <Label fx:id="lblStatus" text="Status" GridPane.rowIndex="15" />
+            <Label fx:id="lblOpmerkingen" prefHeight="18.0" prefWidth="242.0" text="Opmerkingen" GridPane.rowIndex="16" />
+            <Pane GridPane.columnSpan="2" GridPane.rowIndex="17">
                <children>
                   <TextArea fx:id="txaOpmerkingen" layoutX="1.0" prefHeight="60.0" prefWidth="256.0" />
                </children>
@@ -89,18 +90,20 @@
             <TextField fx:id="txfTitel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#clearTicketGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TextArea fx:id="txaOplossing" prefHeight="58.0" prefWidth="256.0" GridPane.columnSpan="2" GridPane.rowIndex="8" />
-            <ComboBox fx:id="cbTicketType" prefWidth="150.0" promptText="TicketType" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <ComboBox fx:id="cbTicketType" prefWidth="150.0" promptText="TicketType" GridPane.columnIndex="1" GridPane.rowIndex="12" />
             <TextArea fx:id="txaOmschrijving" prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <ComboBox fx:id="cbContract" prefWidth="150.0" promptText="Contract" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <ComboBox fx:id="cbContract" prefWidth="150.0" promptText="Contract" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <Label fx:id="lblDatumAfgehandeld" text="Datumafgehandeld" GridPane.rowIndex="4" />
             <TextField fx:id="txfDatumAfgehandeld" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txfDatumAangemaakt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button id="buttonright" fx:id="btnTicketWijzigen" mnemonicParsing="false" onAction="#ticketWijzigen" styleClass="buttonright" stylesheets="@layout.css" text="Ticket wijzigen" GridPane.columnIndex="1" GridPane.rowIndex="17" GridPane.valignment="TOP" />
-            <ComboBox fx:id="cbStatus" prefWidth="150.0" promptText="Status" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-            <TextArea fx:id="txaRapport" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="13" />
-            <Button id="buttonright" fx:id="btnTicketToevoegen" mnemonicParsing="false" stylesheets="@layout.css" text="Ticket toevoegen" GridPane.rowIndex="17" GridPane.valignment="TOP" />
-            <Label fx:id="lblTechnieker" text="Technieker" GridPane.rowIndex="9" />
-            <ComboBox fx:id="cboTechnieker" prefWidth="150.0" promptText="Technieker" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Button id="buttonright" fx:id="btnTicketWijzigen" mnemonicParsing="false" onAction="#ticketWijzigen" styleClass="buttonright" stylesheets="@layout.css" text="Ticket wijzigen" GridPane.columnIndex="1" GridPane.rowIndex="18" GridPane.valignment="TOP" />
+            <ComboBox fx:id="cbStatus" prefWidth="150.0" promptText="Status" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+            <TextArea fx:id="txaRapport" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+            <Button id="buttonright" fx:id="btnTicketToevoegen" mnemonicParsing="false" onAction="#voegTicketToe" stylesheets="@layout.css" text="Ticket toevoegen" GridPane.rowIndex="18" GridPane.valignment="TOP" />
+            <Label fx:id="lblTechnieker" text="Technieker" GridPane.rowIndex="10" />
+            <ComboBox fx:id="cboTechnieker" prefWidth="150.0" promptText="Technieker" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="lblKlant" text="Klant" GridPane.rowIndex="9" />
+            <ComboBox fx:id="cbKlanten" onAction="#klantGeselecteerd" prefWidth="150.0" promptText="Klant" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </children>

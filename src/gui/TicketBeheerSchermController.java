@@ -142,6 +142,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private TextArea txaOpmerkingen;
 	@FXML
+	private ComboBox<Klant> cbKlanten;
+	@FXML
 	private ComboBox<TicketType> cbTicketType;
 	@FXML
 	private ComboBox<Contract> cbContract;
@@ -188,8 +190,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 }
 	
 	private void initializeGUIComponenten() {
-		// TODO Auto-generated method stub
-		
 		lblFilters.setText(Taal.geefTekst("filters"));
 		chkAangemaakteTickets.setText(Taal.geefTekst("aangemaakteTickets"));
 		chkInActieveTickets.setText(Taal.geefTekst("actieveTickets"));
@@ -221,6 +221,7 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
 			btnTicketToevoegen.setDisable(true);
 			cboTechnieker.setDisable(true);
+			cbKlanten.setDisable(true);
 		}
 		else {
 			List<Werknemer> techniekers = gebruikerController.getAllWerknemer().stream().filter(w->w.getRol().equals(WERKNEMERROL.TECHNIEKER)).distinct().collect(Collectors.toList());
@@ -229,13 +230,18 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 			cboTechnieker.setOnMouseClicked(e -> {
 				cboTechnieker.getValue();
 		    });
+			cbKlanten.getItems().clear();
+			cbKlanten.getItems().addAll(gebruikerController.getAllKlanten());
+			cbKlanten.setOnMouseClicked(e -> {
+				cbKlanten.getValue();
+		    });
 		}
 		tblTickets.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudeTicket, NieuweTicket) -> {
         	if(NieuweTicket != null) {
         		geselecteerdeTicket = NieuweTicket;
-        		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
         		TicketDetailsInvullen(NieuweTicket);
+        		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
         		btnTicketWijzigen.setDisable(false);
         		btnTicketToevoegen.setDisable(true);
         	}   	
@@ -256,13 +262,25 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	    
 	
 	}
+	@FXML
+	void klantGeselecteerd(ActionEvent event) {
+		contractenWeergeven(cbKlanten.getValue());
+	}
+	/*@FXML
+	void toonContracten(ActionEvent event) {
+		contractenWeergeven(cbKlanten.getValue());
+	}*/
+	
+	
 	private void contractenWeergeven(Klant klant) {
+		if(klant != null) {
 		List<Contract> contracten = klant.getContracten();
 		cbContract.getItems().clear();
 	    cbContract.getItems().addAll(contracten);
 	    cbContract.setOnMouseClicked(e -> {
 	    	cbContract.getValue();
 	    });
+		}
 	}
 	
 	private void TicketDetailsInvullen(Ticket ticket) {
@@ -294,6 +312,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		txaOpmerkingen.clear();
 		txaRapport.clear();
 		btnTicketWijzigen.setDisable(true);
+		cbContract.setValue(null);
+		cbContract.getItems().clear();
 		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.SUPPORTMANAGER))
 		btnTicketToevoegen.setDisable(false);
 		txfTicketNr.setEditable(true);
@@ -306,9 +326,10 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		geselecteerdeTicket.setDatumAfgesloten(LocalDate.parse(txfDatumAfgehandeld.getText(),DateTimeFormatter.ISO_LOCAL_DATE));
 		geselecteerdeTicket.setOmschrijving(txaOmschrijving.getText());
 		//geselecteerdeTicket.setOplossing(new Bijlage(".txt",txaOplossing.getText(),geselecteerdeTicket));
-		geselecteerdeTicket.setToegekendeTechnieker(cboTechnieker.getValue());
 		geselecteerdeTicket.setContract(cbContract.getValue());
 		geselecteerdeTicket.setTicketType(cbTicketType.getValue());
+		if(!cboTechnieker.isDisabled())
+			geselecteerdeTicket.setToegekendeTechnieker(cboTechnieker.getValue());
 		if(!txaRapport.getText().isEmpty())
 		geselecteerdeTicket.setRapport(new Rapport(geselecteerdeTicket.getTicketnummer(), geselecteerdeTicket.getTitel() + "Rapport", txaRapport.getText(), txaOplossing.getText(), geselecteerdeTicket));
 		else
@@ -317,6 +338,19 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		geselecteerdeTicket.setOpmerkingen(txaOpmerkingen.getText());
 		btnTicketWijzigen.setDisable(true);
 		TicketDetailsLeegmaken();
+	}
+	@FXML
+	void voegTicketToe(ActionEvent event) {
+		if(ticketDetailsControleren()) {	
+		
+		Ticket ticket = new Ticket(Integer.parseInt(txfTicketNr.getText()), txfTitel.getText(), txaOmschrijving.getText(), 
+		txaOpmerkingen.getText(), null, cbContract.getValue(), cbTicketType.getValue());
+		ticket.setToegekendeTechnieker(cboTechnieker.getValue());
+		
+		ticketController.voegTicketToe(ticket);	
+		TicketDetailsLeegmaken();;
+		TicketTabelInvullen();
+		}
 	}
 	@FXML
 	void ticketWijzigen(ActionEvent event) {
@@ -344,6 +378,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 			foutMelding += "- Ongeldige invoer bij de datumaangemaakt (enkel gehele nummerieke waardes zijn toegestaan [yyyy,mm,dd])\n";
 		if(!txfDatumAfgehandeld.getText().isBlank() &&!txfDatumAfgehandeld.getText().matches("([0-9]{4})-([0-9]{2})-([0-9]{2})"))
 			foutMelding += "- Ongeldige invoer bij de datumafgehandeld (enkel gehele nummerieke waardes zijn toegestaan [yyyy,mm,dd])\n";
+		if(cbContract.getValue() == null)
+			foutMelding += "- Er moet een contract geselecteerd zijn\n";
 		if(txaOmschrijving.getText().isBlank())
 			foutMelding += "- De omschrijving is verplicht in te vullen\n";
 		if(!txaRapport.getText().isBlank() && txaOplossing.getText().isBlank())

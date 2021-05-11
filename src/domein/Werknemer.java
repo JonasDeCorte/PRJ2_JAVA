@@ -88,7 +88,7 @@ public class Werknemer extends Gebruiker implements Serializable{
 
 	@Override
 	public String toString() {
-		return getVoornaam();
+		return getVoornaam() + " " + getNaam();
 	}
 
 	@Override
