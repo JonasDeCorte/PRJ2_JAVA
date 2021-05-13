@@ -134,27 +134,27 @@ public class DataInitializer {
 		
 		List<Werknemer> AlleTechniekers = werknemerDao.geefTechniekers();
 		
-		Ticket Ticket1 =  new Ticket(1001, "Defecte productie rolband ", "Rolband kan niet meer rollen.", "Lokale technieker kan het niet vinden",null , Contract1, HogePrio);
+		Ticket Ticket1 =  new Ticket(1001, "Defecte productie rolband ", "Rolband kan niet meer rollen.", "Lokale technieker kan het niet vinden" , Contract1, HogePrio);
 		Ticket1.setTicketStatus(TICKETSTATUS.AFGEHANDELD);
 		Ticket1.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket1);
 		
-		Ticket Ticket2 = new Ticket(1002, "Defect karton machine", "Kartonnen dozen worden niet gelijmd", "Lijm is aangevuld",null, Contract2, MediumPrio);	
+		Ticket Ticket2 = new Ticket(1002, "Defect karton machine", "Kartonnen dozen worden niet gelijmd", "Lijm is aangevuld", Contract2, MediumPrio);	
 		Ticket2.setTicketStatus(TICKETSTATUS.AFGEHANDELD);
 		Ticket2.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket2);
 		
-		Ticket Ticket3 = new Ticket(1003, "Defect plooi mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplooid", "Opgelost door lokale technieker", null, Contract2, MediumPrio);	
+		Ticket Ticket3 = new Ticket(1003, "Defect plooi mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplooid", "Opgelost door lokale technieker", Contract2, MediumPrio);	
 		Ticket3.setTicketStatus(TICKETSTATUS.GEANNULEERD);
 		Ticket3.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket3);
 		
-		Ticket Ticket4 = new Ticket(1004, "Defect plak mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplakt", "Plakband is aangevuld en correct geïnstalleerd", null, Contract3, MediumPrio);	
+		Ticket Ticket4 = new Ticket(1004, "Defect plak mechanisme karton machine", "Kartonnen dozen van medium size worden niet geplakt", "Plakband is aangevuld en correct geïnstalleerd", Contract3, MediumPrio);	
 		Ticket4.setTicketStatus(TICKETSTATUS.IN_BEHANDELING);
 		Ticket4.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket4);
 		
-		Ticket Ticket5 = new Ticket(1005, "Molding machine gx200 is defect", "We hebben geen idee, de machine start niet meer op", "Nieuwe mold sinds gisteren", null, Contract4, HogePrio);	
+		Ticket Ticket5 = new Ticket(1005, "Molding machine gx200 is defect", "We hebben geen idee, de machine start niet meer op", "Nieuwe mold sinds gisteren", Contract4, HogePrio);	
 		Ticket5.setTicketStatus(TICKETSTATUS.IN_BEHANDELING);
 		Ticket5.setToegekendeTechnieker(AlleTechniekers.get(0));
 		ticketDao.insert(Ticket5);

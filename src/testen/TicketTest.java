@@ -21,21 +21,21 @@ public class TicketTest {
 		@CsvSource({", , ," , " '','' , '' "})
 		void new_Ticket_VerkeerdeTitel_Opmerking_Omschrijving_ThrowsException(String titel, String omschrijving, String opmerking) {
 			Assertions.assertThrows(IllegalArgumentException.class, ()-> 
-			new Ticket(1, titel, omschrijving, opmerking, new ArrayList<Bijlage>(), new Contract(),new TicketType()));
+			new Ticket(1, titel, omschrijving, opmerking, new Contract(),new TicketType()));
 	 }
 	 @Test
 		void new_TicketAanmakenMetLeegContract_ThrowsException() {
 		 Assertions.assertThrows(IllegalArgumentException.class, ()-> 
-			new Ticket(1, "test", "test", "test", new ArrayList<Bijlage>(), null,new TicketType()));
+			new Ticket(1, "test", "test", "test", null,new TicketType()));
 }
 	 @Test
 		void new_TicketAanmakenMetLeegTicketType_ThrowsException() {
 		 Assertions.assertThrows(IllegalArgumentException.class, ()-> 
-			new Ticket(1, "test", "test", "test", new ArrayList<Bijlage>(), new Contract(),null));
+			new Ticket(1, "test", "test", "test", new Contract(),null));
 }
 		@Test
 		void new_TicketAanmakenMetTicketStatusAangemaakt_Succes() {
-			Ticket ticket = new Ticket(1, "test", "test", "test", new ArrayList<Bijlage>(), new Contract(),new TicketType());
+			Ticket ticket = new Ticket(1, "test", "test", "test", new Contract(),new TicketType());
 			assertEquals(TICKETSTATUS.AANGEMAAKT, ticket.getTicketStatus());
 			assertNotNull(ticket);
 			
