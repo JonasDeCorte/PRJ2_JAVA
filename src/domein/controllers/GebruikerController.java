@@ -1,6 +1,5 @@
 package domein.controllers;
 
-import java.util.List;
 import java.util.Set;
 
 import domein.Klant;
@@ -22,13 +21,16 @@ public class GebruikerController {
 	public boolean bestaatKlant(String gebruikersNaam) {
 		return klantBeheerder.bestaatKlant(gebruikersNaam);
 	}
+	public boolean bestaatKlantnummer(int klantnummer) {
+		return klantBeheerder.bestaatKlantnummer(klantnummer);
+	}
 
 	public void voegKlantToe(Klant klant) {
 		klantBeheerder.voegKlantToe(klant);
 	}
 
-	public void wijzigKlant(Klant klant) {
-		klantBeheerder.wijzigKlant(klant);
+	public void wijzigKlant(Klant klant, String origineleGebruikersnaam) {
+		klantBeheerder.wijzigKlant(klant, origineleGebruikersnaam);
 	}
 
 	public void pasFilterAanKlant( String gebruikersnaam, String naam,String voornaam, String bedrijfsnaam,Set<GEBRUIKERSTATUS> status)
@@ -44,13 +46,21 @@ public class GebruikerController {
 		return klantBeheerder.haalKlantenOp();
 	}
 	
+	public boolean bestaatWerknemer(String gebruikersNaam) {
+		return werknemerBeheerder.bestaatWerknemer(gebruikersNaam);
+	}
+	
+	public boolean bestaatPersoneelsnummer(int personeelsnummer) {
+		return werknemerBeheerder.bestaatPersoneelsnummer(personeelsnummer);
+	}
+	
 	public ObservableList<Werknemer> getAllWerknemer() {
 		return werknemerBeheerder.haalWerknemersOp();
 	}
 	public void voegWerknemerToe (Werknemer werknemer) {
 		werknemerBeheerder.voegWerknemerToe(werknemer);
 	}
-	public void wijzigWerknemer(Werknemer werknemer) {
-		werknemerBeheerder.wijzigWerknemer(werknemer);
+	public void wijzigWerknemer(Werknemer werknemer, String origineleGebruikersnaam) {
+		werknemerBeheerder.wijzigWerknemer(werknemer, origineleGebruikersnaam);
 	}
 }

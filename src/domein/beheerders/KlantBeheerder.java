@@ -43,6 +43,11 @@ public class KlantBeheerder {
 	public boolean bestaatKlant(String gebruikersnaam) {
 		return klantDao.bestaatKlant(gebruikersnaam);
 	}
+	
+	public boolean bestaatKlantnummer(int klantnummer) {
+		return klantDao.bestaatKlantnummer(klantnummer);
+	}
+	
 	public ObservableList<Klant> haalKlantenOp() {
 		if (filteredKlantLijst == null) {
 			filteredKlantLijst = 
@@ -77,8 +82,8 @@ public class KlantBeheerder {
 		klantDao.commitTransaction();
 	}
 
-	public void wijzigKlant(Klant klant) {
-		if(bestaatKlant(klant.getGebruikersnaam())) {
+	public void wijzigKlant(Klant klant, String origineleGebruikersnaam) {
+		if(bestaatKlant(origineleGebruikersnaam)) {
 			klantDao.startTransaction();
 		klantDao.update(klant);
 		klantDao.commitTransaction();

@@ -14,16 +14,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="571.0" prefWidth="816.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="550.0" prefWidth="590.0">
+      <Pane minHeight="571.0" minWidth="580.0" prefHeight="571.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
             <TextField fx:id="txfFilterBedrijfsnaam" layoutX="45.0" layoutY="10.0" onKeyReleased="#filterBedrijfsnaam" prefHeight="25.0" prefWidth="118.0" promptText="Bedrijfsnaam" />
             <TextField fx:id="txfFilterLand" layoutX="176.0" layoutY="10.0" onKeyReleased="#filterLand" prefHeight="25.0" prefWidth="92.0" promptText="land" />
             <TextField fx:id="txfFilterGemeente" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterGemeente" prefHeight="25.0" prefWidth="78.0" promptText="Gemeente" />
             <Button id="buttonright" fx:id="btnFiltersLeegmaken" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TableView fx:id="tblBedrijven" layoutX="18.0" layoutY="50.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="472.0" prefWidth="539.0">
+            <TableView fx:id="tblBedrijven" layoutX="15.0" layoutY="81.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="472.0" prefWidth="539.0">
                <columns>
                   <TableColumn fx:id="tbcBedrijfsNr" prefWidth="76.79999160766602" text="BedrijfsNr" />
                   <TableColumn fx:id="tbcBedrijfsnaam" prefWidth="177.6000213623047" text="Bedrijfsnaam" />
@@ -33,7 +33,7 @@
             </TableView>
          </children>
       </Pane>
-      <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="571.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+      <GridPane id="klantgegevens" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="571.0" minWidth="277.0" prefHeight="571.0" prefWidth="277.0" styleClass="klantgegevens" stylesheets="@layout.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="102.7999267578125" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="125.2000732421875" />
@@ -53,7 +53,10 @@
             <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="71.99997558593753" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label id="title" fx:id="lblBedrijfsgegevens" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="238.0" text="Bedrijfsgegevens" GridPane.columnSpan="2" />
+            <Label id="title" fx:id="lblBedrijfsgegevens" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="238.0" text="Bedrijfsgegevens" GridPane.columnSpan="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label fx:id="lblBedrijfsNr" prefHeight="18.0" prefWidth="95.0" text="BedrijfsNr" GridPane.rowIndex="1" />
             <Label fx:id="lblBedrijfsnaam" prefHeight="18.0" prefWidth="98.0" text="Bedrijfsnaam" GridPane.rowIndex="2" />
             <Label fx:id="lblLand" prefHeight="18.0" prefWidth="92.0" text="Land" GridPane.rowIndex="3" />
@@ -91,4 +94,7 @@
          </HBox.margin>
       </GridPane>
    </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
 </fx:root>

@@ -16,7 +16,8 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQueries({ @NamedQuery(name = "Klant.findAll", query = "SELECT k FROM Klant k"),
 	@NamedQuery(name = "Klant.geefKlant", query = "SELECT k FROM Klant k WHERE k.gebruikersnaam = :gebruikersnaam"),
-	@NamedQuery(name = "Klant.bestaatKlant", query = "SELECT COUNT(k) FROM Klant k WHERE k.gebruikersnaam = :gebruikersnaam") })
+	@NamedQuery(name = "Klant.bestaatKlant", query = "SELECT COUNT(k) FROM Klant k WHERE k.gebruikersnaam = :gebruikersnaam"),
+	@NamedQuery(name = "Klant.bestaatKlantnummer", query = "SELECT COUNT(k) FROM Klant k WHERE k.klantnummer = :klantnummer")})
 public class Klant extends Gebruiker implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -63,6 +64,10 @@ public class Klant extends Gebruiker implements Serializable{
 	      }
 	}
 
+	@Override
+	public String toString() {
+		return "Klant: " +   getVoornaam() + " " +  getNaam() ;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

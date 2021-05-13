@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="510.0" prefWidth="752.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="570.0" prefWidth="558.0">
+      <Pane minHeight="570.0" minWidth="558.0" prefHeight="571.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
             <CheckBox fx:id="chkActieveWerknemers" layoutX="33.0" layoutY="54.0" mnemonicParsing="false" onAction="#toonActieve" prefHeight="17.0" prefWidth="142.0" text="Actieve werknemers" />
@@ -30,7 +30,7 @@
             <TextField fx:id="txfFilterNaam" layoutX="276.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="78.0" promptText="Naam" />
             <TextField fx:id="txfFilterFunctie" layoutX="361.0" layoutY="10.0" onKeyReleased="#filterFunctie" prefHeight="25.0" prefWidth="78.0" promptText="Functie" />
             <Button id="buttonright" fx:id="btnClearFilters" layoutX="443.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TableView fx:id="tblWerknemers" layoutX="6.0" layoutY="78.0" prefHeight="393.0" prefWidth="515.0">
+            <TableView fx:id="tblWerknemers" layoutX="6.0" layoutY="78.0" prefHeight="393.0" prefWidth="525.0">
                <columns>
                   <TableColumn fx:id="tbcPersoneelsnr" prefWidth="82.40005493164062" text="Personeelsnr" />
                   <TableColumn fx:id="tbcGebruikersnaam" prefWidth="98.40008544921875" text="Gebruikersnaam" />
@@ -42,7 +42,7 @@
             </TableView>
          </children>
       </Pane>
-      <GridPane id="werknemerGegevens" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+      <GridPane id="werknemerGegevens" minHeight="570.0" minWidth="290.0" prefHeight="570.0" prefWidth="290.0" styleClass="klantgegevens" stylesheets="@layout.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="102.00006103515625" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="109.99993896484375" />
@@ -69,7 +69,10 @@
             <RowConstraints maxHeight="58.39998779296877" minHeight="10.0" prefHeight="43.99997558593748" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label id="title" fx:id="lblPersoneelsgegevens" alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Personeelsgegevens" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label fx:id="lblPersoneelsnr" text="Personeelsnr" GridPane.rowIndex="2" />
             <Label fx:id="lblGebruikersnaam" text="Gebruikersnaam" GridPane.rowIndex="3" />
             <Label fx:id="lblWachtwoord" text="Wachtwoord" GridPane.rowIndex="4" />
@@ -85,7 +88,7 @@
             <Label fx:id="lblTelefoonnummers" prefHeight="18.0" prefWidth="242.0" text="Telefoonnummers" GridPane.rowIndex="8" />
             <Pane prefHeight="35.0" prefWidth="242.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
                <children>
-                  <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="50.0" prefWidth="195.0" />
+                  <TextArea fx:id="txaTelefoonnummers" layoutX="9.0" prefHeight="50.0" prefWidth="234.0" />
                </children>
             </Pane>
             <TextField fx:id="txfPersoneelsnr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -122,12 +125,12 @@
             <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
             <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Button id="buttonright" fx:id="btnClearPersonneelsGegevens" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" GridPane.rowIndex="1" />
-            <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.rowIndex="18" GridPane.valignment="TOP">
+            <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button id="buttonright" fx:id="btnWerknemerToevoegen" mnemonicParsing="false" onAction="#voegWerknemerToe" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer toevoegen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="18" GridPane.valignment="TOP">
+            <Button id="buttonright" fx:id="btnWerknemerToevoegen" mnemonicParsing="false" onAction="#voegWerknemerToe" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer toevoegen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
                <font>
                   <Font size="9.0" />
                </font>
@@ -135,4 +138,7 @@
          </children>
       </GridPane>
    </children>
+   <opaqueInsets>
+      <Insets right="10.0" />
+   </opaqueInsets>
 </fx:root>

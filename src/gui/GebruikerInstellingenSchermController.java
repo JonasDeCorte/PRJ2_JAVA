@@ -174,7 +174,7 @@ public class GebruikerInstellingenSchermController extends GridPane implements O
 	void gegevensWijzigen(ActionEvent event) {
 		if(gegevensControleren()) {
 			updateGegevens();
-			gebruikerController.wijzigWerknemer(actieveWerknemer);
+			gebruikerController.wijzigWerknemer(actieveWerknemer, lblGebruikersnaam.getText());
 			//werknemerTabelInvullen();
 			werknemerWachtwoordVeldenLeegmaken();
 	    }

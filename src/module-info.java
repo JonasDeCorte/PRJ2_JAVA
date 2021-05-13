@@ -12,4 +12,5 @@ open module projecten2 {
 	requires mockito.junit.jupiter;
 	requires org.mockito;
 	requires org.junit.jupiter.params;
+	requires java.desktop;
 }

@@ -43,6 +43,10 @@ public class WerknemerBeheerder {
 	public boolean bestaatWerknemer(String gebruikersnaam) {
 		return werknemerDao.bestaatWerknemer(gebruikersnaam);
 	}
+	
+	public boolean bestaatPersoneelsnummer(int personeelsnummer) {
+		return werknemerDao.bestaatPersoneelsnummer(personeelsnummer);
+	}
 	public Werknemer haalWerknemerOp(int personeelsnummer) {
 		throw new IllegalArgumentException();
 	}
@@ -60,8 +64,8 @@ public class WerknemerBeheerder {
 		sortedWerknemerList = new SortedList<>(filteredWerknemerLijst, sortOrder);
 	}
 	
-	public void wijzigWerknemer(Werknemer werknemer) {
-		if(bestaatWerknemer(werknemer.getGebruikersnaam())) {
+	public void wijzigWerknemer(Werknemer werknemer, String origineleGebruikersnaam) {
+		if(bestaatWerknemer(origineleGebruikersnaam)) {
 		werknemerDao.startTransaction();
 		werknemerDao.update(werknemer);
 		werknemerDao.commitTransaction();

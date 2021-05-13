@@ -22,8 +22,8 @@ public class BedrijfsBeheerController {
 		bedrijfbeheerder.voegBedrijfToe(bedrijf);
 	}
 
-	public void wijzigBedrijf(Bedrijf bedrijf) {
-		bedrijfbeheerder.wijzigBedrijf(bedrijf);
+	public void wijzigBedrijf(Bedrijf bedrijf, String origineleBedrijfsnaam) {
+		bedrijfbeheerder.wijzigBedrijf(bedrijf, origineleBedrijfsnaam);
 	}
 
 	public void pasFilterAanBedrijf( String bedrijfsnaam,String land, String Gemeente)

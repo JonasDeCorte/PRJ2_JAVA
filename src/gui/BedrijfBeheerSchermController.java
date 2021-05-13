@@ -72,6 +72,8 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 
 	private Bedrijf geselecteerdBedrijf;
 	private final BedrijfsBeheerController bedrijfsBeheerController;
+	private String origineelBedrijfsnr;
+	private String origineleBedrijfsnaam;
 	
 	public BedrijfBeheerSchermController(){	
 		this.bedrijfsBeheerController = new BedrijfsBeheerController();
@@ -155,9 +157,9 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 
 	@FXML
 	public void bedrijfWijzigen(ActionEvent event) {
+		updateBedrijfAttributen();
 		if(bedrijfDetailsControleren()) {
-			updateBedrijfAttributen();
-			bedrijfsBeheerController.wijzigBedrijf(geselecteerdBedrijf);
+			bedrijfsBeheerController.wijzigBedrijf(geselecteerdBedrijf, origineleBedrijfsnaam);
 			bedrijfTabelInvullen();
 	    	bedrijfDetailsLeegmaken();
 	    	btnBedrijfToevoegen.setDisable(false);
@@ -181,6 +183,8 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtBedrijfsnummer");
 		if(txfBedrijfsnaam.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtBedrijfsnaam");
+		if(!txfBedrijfsnaam.getText().isBlank() && bedrijfsBeheerController.bestaatBedrijf(txfBedrijfsnaam.getText()) && !txfBedrijfsnaam.getText().equals(origineleBedrijfsnaam))
+			foutMelding += Taal.geefTekst("bedrijfsnaamAlGebruikt");
 		if(txfLand.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtLand");
 		if(txfGemeente.getText().isBlank())
@@ -193,6 +197,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 			foutMelding += Taal.geefTekst("verplichtHuisnr");
 		if(txaTelefoonnummers.getText().isBlank())
 			foutMelding += Taal.geefTekst("verplichtTelefoonnummers");
+
 		if(foutMelding.equals(opsommingFoutmelding)) {
 			return true;
 		} else {
@@ -248,13 +253,19 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
         txfHuisnr.clear();
         txfBusnr.clear();
         txaTelefoonnummers.clear();
-        btnBedrijfToevoegen.setDisable(false);	
+        btnBedrijfToevoegen.setDisable(false);
+        origineelBedrijfsnr = null;
+        origineleBedrijfsnaam = null;
+        txfBedrijfnr.setEditable(true);
 	}
 	
 	private void bedrijfDetailsInvullen(Bedrijf bedrijf) {
 		bedrijfDetailsLeegmaken();
 		txfBedrijfnr.setText(Integer.toString(bedrijf.getBedrijfId()));
+		txfBedrijfnr.setEditable(false);
+		origineelBedrijfsnr = txfBedrijfnr.getText();
         txfBedrijfsnaam.setText(bedrijf.getBedrijfsnaam());
+        origineleBedrijfsnaam = txfBedrijfsnaam.getText();
         txfLand.setText(bedrijf.getAdres().getLand());
         txfGemeente.setText(bedrijf.getAdres().getGemeente());     
         txfPostcode.setText(bedrijf.getAdres().getPostcode());
