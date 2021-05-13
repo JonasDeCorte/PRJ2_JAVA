@@ -58,9 +58,14 @@ public class TicketBeheerder {
 
 	public void pasTicketAan(Ticket ticket) {
 		if(ticketDao.exists(ticket.getTicketnummer())) {
-		ticketDao.startTransaction();
-		ticketDao.update(ticket);
-		ticketDao.commitTransaction();
+			if(!ticket.getTicketStatus().equals(TICKETSTATUS.AFGEHANDELD) || !ticket.getTicketStatus().equals(TICKETSTATUS.GEANNULEERD) ) {
+				ticketDao.startTransaction();
+				ticketDao.update(ticket);
+				ticketDao.commitTransaction();
+			} else {
+				throw new IllegalArgumentException("Ticket kan niet gewijzigd worden. Ticketstatus: " + ticket.getTicketStatus());
+			}
+		
 		}
 		else {
 			throw new IllegalArgumentException("kies het correct ticket.");
