@@ -1,6 +1,7 @@
 package domein.beheerders;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -13,6 +14,7 @@ import domein.enumerations.WERKNEMERROL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import repository.AanmeldPogingDaoJpa;
 import repository.WerknemerDaoJpa;
 
@@ -20,7 +22,16 @@ public class WerknemerBeheerder {
 	private WerknemerDao werknemerDao;
 	private AanmeldPogingDao aanmeldPogingDao;
 	private FilteredList<Werknemer> filteredWerknemerLijst;
-	
+	private SortedList<Werknemer>sortedWerknemerList;
+	private final Comparator<Werknemer> byLastName = (p1, p2) ->
+	p1.getNaam().compareToIgnoreCase(p2.getNaam());
+	private final Comparator<Werknemer> byEmail = (p1, p2) ->
+	p1.getEmailadres().compareToIgnoreCase(p2.getEmailadres());
+	private final Comparator<Werknemer> byFirstName = (p1, p2) ->
+	p1.getVoornaam().compareToIgnoreCase(p2.getVoornaam());
+	private final Comparator<Werknemer> sortOrder =
+			byFirstName.thenComparing(byLastName).
+			thenComparing(byEmail);
 	public WerknemerBeheerder() {
 		this(new WerknemerDaoJpa(), new AanmeldPogingDaoJpa());
 	}
@@ -46,6 +57,7 @@ public class WerknemerBeheerder {
 		}
 		
 		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
+		sortedWerknemerList = new SortedList<>(filteredWerknemerLijst, sortOrder);
 	}
 	
 	public void wijzigWerknemer(Werknemer werknemer) {
@@ -57,6 +69,7 @@ public class WerknemerBeheerder {
 			throw new IllegalArgumentException("werknemer bestaat niet.");
 			}
 		filteredWerknemerLijst = new FilteredList<>(FXCollections.observableArrayList(werknemerDao.findAll()),filteredWerknemerLijst.getPredicate());
+		sortedWerknemerList = new SortedList<>(filteredWerknemerLijst, sortOrder);
 	}
 	
 	public void verwijderWerknemer(Werknemer werknemer) {
@@ -72,7 +85,8 @@ public class WerknemerBeheerder {
 							,werknemer -> 
 					werknemer.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF);				
 		}
-		return FXCollections.unmodifiableObservableList(filteredWerknemerLijst);
+		sortedWerknemerList = new SortedList<>(filteredWerknemerLijst, sortOrder);
+		return sortedWerknemerList;
 	}
 	public void pasFilterAan(String gebruikersnaam, String naam, String voornaam, String werknemerFunctie, Set<GEBRUIKERSTATUS> status) 
 		{
