@@ -221,8 +221,8 @@ public class KlantBeheerSchermController extends HBox implements Observer{
         txfVoornaam.setText(klant.getVoornaam());
         txfNaam.setText(klant.getNaam());
         txfEmail.setText(klant.getEmailadres());     
-        if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF)
-        	chkStatus.setSelected(true);
+        if(klant.getGebruikerStatus() == GEBRUIKERSTATUS.ACTIEF) {chkStatus.setSelected(true);} else {chkStatus.setSelected(false);}
+        	
         cboKiesBedrijf.setValue(klant.getBedrijf());
         //klant.getBedrijf().getTelefoonnummers().stream().forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
         btnKlantToevoegen.setDisable(true);
