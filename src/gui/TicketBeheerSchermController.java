@@ -21,7 +21,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import domein.Bedrijf;
-import domein.Bijlage;
 import domein.Contract;
 import domein.Gebruiker;
 import domein.Klant;
@@ -292,8 +291,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         if(ticket.getDatumAfgesloten() != null)
         txfDatumAfgehandeld.setText(ticket.getDatumAfgesloten().format(DateTimeFormatter.ISO_LOCAL_DATE));
         txaOmschrijving.setText(ticket.getOmschrijving());
-        if(ticket.getOplossing() != null)
-        txaOplossing.setText(ticket.getOplossing().toString()); 
         if(ticket.getRapport() != null)
         txaRapport.setText(ticket.getRapport().getBeschrijving());
         cboTechnieker.setValue(ticket.getToegekendeTechnieker());
@@ -344,7 +341,7 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		if(ticketDetailsControleren()) {	
 		
 		Ticket ticket = new Ticket(Integer.parseInt(txfTicketNr.getText()), txfTitel.getText(), txaOmschrijving.getText(), 
-		txaOpmerkingen.getText(), null, cbContract.getValue(), cbTicketType.getValue());
+		txaOpmerkingen.getText(), cbContract.getValue(), cbTicketType.getValue());
 		ticket.setToegekendeTechnieker(cboTechnieker.getValue());
 		
 		ticketController.voegTicketToe(ticket);	

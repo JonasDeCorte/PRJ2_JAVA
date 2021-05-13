@@ -36,10 +36,6 @@ public class Ticket implements Serializable {
 	private LocalDate datumAfgesloten;
 	private String omschrijving;
 	private String opmerkingen;
-	/*@OneToOne(mappedBy = "ticket")*/
-	private Bijlage oplossing;
-	/*@OneToMany(mappedBy = "ticket")*/
-	private List<Bijlage> bijlages;	
 	@ManyToOne
 	private Contract contract;
 	@ManyToOne
@@ -57,13 +53,12 @@ public class Ticket implements Serializable {
 	}
 
 	public Ticket(int ticketnummer, String titel, String omschrijving,
-			String opmerkingen, List<Bijlage> bijlages, Contract contract, TicketType ticketType) {
+			String opmerkingen, Contract contract, TicketType ticketType) {
 		setTicketnummer(ticketnummer);
 		setTitel(titel);
 		datumAangemaakt = LocalDate.now();
 		setOmschrijving(omschrijving);
 		setOpmerkingen(opmerkingen);
-		setBijlages(bijlages);
 		setContract(contract);
 		setTicketType(ticketType);
 		setTicketStatus(ticketStatus.AANGEMAAKT);
@@ -129,21 +124,6 @@ public class Ticket implements Serializable {
 		}
 	}
 
-	public Bijlage getOplossing() {
-		return oplossing;
-	}
-
-	public void setOplossing(Bijlage oplossing) {
-		this.oplossing = oplossing;
-	}
-
-	public List<Bijlage> getBijlages() {
-		return bijlages;
-	}
-
-	public void setBijlages(List<Bijlage> bijlages) {
-		this.bijlages = bijlages;
-	}
 	public Contract getContract() {
 		return contract;
 	}
