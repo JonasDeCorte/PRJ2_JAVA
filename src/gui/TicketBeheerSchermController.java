@@ -100,15 +100,11 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private Label lblOmschrijving;
 	@FXML
-	private Label lblOplossing;
-	@FXML
 	private Label lblTechnieker;
 	@FXML
 	private Label lblContract;
 	@FXML
 	private Label lblTicketType;
-	@FXML
-	private Label lblRapport;
 	@FXML
 	private Label lblStatus;
 	@FXML
@@ -116,9 +112,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	
 	@FXML
 	private GridPane grdTicketGegevens;
-	
-	@FXML
-	private TextArea txaOplossing;
 	@FXML
 	private TextArea txaOmschrijving;
 	@FXML
@@ -133,9 +126,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	private TextField txfTitel;
 	
-	
-	@FXML
-	private TextArea txaRapport;
 	@FXML
 	private Button btnClearFilters1;
 	@FXML
@@ -207,12 +197,10 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		lblTicketNr.setText(Taal.geefTekst("ticketNr"));
 		lblTitel.setText(Taal.geefTekst("titel"));
 		lblDatumAangemaakt.setText(Taal.geefTekst("datumAangemaakt"));
-		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));              
-		lblOplossing.setText(Taal.geefTekst("oplossing"));	
+		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));              	
 		lblTechnieker.setText(Taal.geefTekst("technieker"));
 		lblContract.setText(Taal.geefTekst("contract"));
 		lblTicketType.setText(Taal.geefTekst("ticketType"));
-		lblRapport.setText(Taal.geefTekst("rapport"));
 		lblStatus.setText(Taal.geefTekst("status"));
 		lblOpmerkingen.setText(Taal.geefTekst("opmerkingen"));
 		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
@@ -239,8 +227,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         addListener((observableValue, oudeTicket, NieuweTicket) -> {
         	if(NieuweTicket != null) {
         		geselecteerdeTicket = NieuweTicket;
-        		TicketDetailsInvullen(NieuweTicket);
         		contractenWeergeven(geselecteerdeTicket.getContract().getKlant());
+        		TicketDetailsInvullen(NieuweTicket);
         		btnTicketWijzigen.setDisable(false);
         		btnTicketToevoegen.setDisable(true);
         	}   	
@@ -291,8 +279,7 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         if(ticket.getDatumAfgesloten() != null)
         txfDatumAfgehandeld.setText(ticket.getDatumAfgesloten().format(DateTimeFormatter.ISO_LOCAL_DATE));
         txaOmschrijving.setText(ticket.getOmschrijving());
-        if(ticket.getRapport() != null)
-        txaRapport.setText(ticket.getRapport().getBeschrijving());
+        cbKlanten.setValue(ticket.getContract().getKlant());
         cboTechnieker.setValue(ticket.getToegekendeTechnieker());
         cbContract.setValue(ticket.getContract());
         cbTicketType.setValue(ticket.getTicketType());
@@ -304,11 +291,11 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         txfTitel.clear();
         txfDatumAangemaakt.clear();
         txfDatumAfgehandeld.clear();
-        txaOmschrijving.clear();
-        txaOplossing.clear();    
+        txaOmschrijving.clear();  
 		txaOpmerkingen.clear();
-		txaRapport.clear();
 		btnTicketWijzigen.setDisable(true);
+		cbKlanten.setValue(null);
+		cboTechnieker.setValue(null);
 		cbContract.setValue(null);
 		cbContract.getItems().clear();
 		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.SUPPORTMANAGER))
@@ -327,10 +314,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		geselecteerdeTicket.setTicketType(cbTicketType.getValue());
 		if(!cboTechnieker.isDisabled())
 			geselecteerdeTicket.setToegekendeTechnieker(cboTechnieker.getValue());
-		if(!txaRapport.getText().isEmpty())
-		geselecteerdeTicket.setRapport(new Rapport(geselecteerdeTicket.getTicketnummer(), geselecteerdeTicket.getTitel() + "Rapport", txaRapport.getText(), txaOplossing.getText(), geselecteerdeTicket));
-		else
-		geselecteerdeTicket.setRapport(null);
 		geselecteerdeTicket.setTicketStatus(cbStatus.getValue());
 		geselecteerdeTicket.setOpmerkingen(txaOpmerkingen.getText());
 		btnTicketWijzigen.setDisable(true);
@@ -379,8 +362,6 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 			foutMelding += "- Er moet een contract geselecteerd zijn\n";
 		if(txaOmschrijving.getText().isBlank())
 			foutMelding += "- De omschrijving is verplicht in te vullen\n";
-		if(!txaRapport.getText().isBlank() && txaOplossing.getText().isBlank())
-			foutMelding += "- Voor een rapport te maken moet de oplossing beschreven zijn\n";
 		if(txaOpmerkingen.getText().isBlank())
 			foutMelding += "- De opmerkingen zijn verplicht in te vullen\n";
 		

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane minHeight="570.0" minWidth="589.0" prefHeight="570.0" prefWidth="900.0">
+         <children>
+            <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
+            <TextField fx:id="txfFilterTitel" layoutX="65.0" layoutY="10.0" prefHeight="25.0" prefWidth="132.0" promptText="naam" />
+            <Button id="buttonright" fx:id="btnClearFilters" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <TableView fx:id="tblTickets" layoutX="14.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="493.0" prefWidth="553.0">
+               <columns>
+                  <TableColumn fx:id="tbcTicketNr" prefWidth="74.40002632141113" text="RapportNr" />
+                  <TableColumn fx:id="tbcTitel" prefWidth="130.39998626708984" text="Naam" />
+                  <TableColumn fx:id="tbcDatumAangemaakt" prefWidth="124.0" text="Beschrijving" />
+                  <TableColumn fx:id="tbcContract" prefWidth="119.20001220703125" text="Oplossing" />
+                  <TableColumn fx:id="tbcStatus" prefWidth="105.60000610351562" text="Ticket" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txfFilterTitel1" layoutX="239.0" layoutY="10.0" prefHeight="25.0" prefWidth="132.0" promptText="ticket" />
+         </children>
+      </Pane>
+      <GridPane id="klantgegevens" fx:id="grdTicketGegevens" minHeight="570.0" minWidth="256.0" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.40007324218752" minWidth="10.0" prefWidth="91.4000732421875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="123.39992675781248" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="49.4" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.39999999999999" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="37.20000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.999990844726554" minHeight="10.0" prefHeight="37.20000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="61.39999999999998" minHeight="10.0" prefHeight="44.80000000000001" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.600024414062545" minHeight="7.600000000000023" prefHeight="18.79997558593749" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.59997558593744" minHeight="10.0" prefHeight="62.99999999999994" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="71.99997558593753" minHeight="10.0" prefHeight="38.200000000000045" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label id="title" fx:id="lblTicketgegevens" alignment="BOTTOM_LEFT" prefHeight="18.0" prefWidth="238.0" text="Ticketgegevens" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lblRapportNr" text="RapportNr" GridPane.rowIndex="1" />
+            <Label fx:id="lblNaam" text="Naam" GridPane.rowIndex="2" />
+            <Label fx:id="lblBeschrijving" text="Beschrijving" GridPane.rowIndex="3" />
+            <Label fx:id="lblOplossing" prefHeight="18.0" prefWidth="242.0" text="Oplossing" GridPane.rowIndex="6" />
+            <Pane GridPane.columnSpan="2" GridPane.rowIndex="7">
+               <children>
+                  <TextArea fx:id="txaOplossing" layoutX="1.0" prefHeight="60.0" prefWidth="256.0" />
+               </children>
+            </Pane>
+            <TextField fx:id="txfRapportNr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <TextArea fx:id="txaBeschrijving" prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <Button id="buttonright" fx:id="btnRapportWijzigen" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Rapport wijzigen" GridPane.rowIndex="8" GridPane.valignment="TOP" />
+            <Label fx:id="lblTicket" text="Ticket" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cbTicket" prefWidth="150.0" promptText="Ticket" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
+</fx:root>

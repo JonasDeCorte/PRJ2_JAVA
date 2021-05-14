@@ -53,6 +53,7 @@ public class HoofdMenuController extends BorderPane implements Observer{
 	//Navigatie Buttons Technieker
 	private Label lblTicketBeheer;
 	private Button btnTicketBeheer;
+	private Button btnRapportBeheer;
 	
 	private final StatistiekenSchermController statistiekenSchermController;
 	private Object controller = new Object();
@@ -119,8 +120,13 @@ public class HoofdMenuController extends BorderPane implements Observer{
     		vboxNavigatie.setMargin(btnTicketBeheer, new Insets(10,0,0,10));
     		btnTicketBeheer.setOnAction(this::ticketBeheer);
     		btnTicketBeheer.setId("buttonleft");
+    		
+    		btnRapportBeheer = new Button(Taal.geefTekst("rapport"));
+    		vboxNavigatie.setMargin(btnRapportBeheer, new Insets(10,0,0,10));
+    		btnRapportBeheer.setOnAction(this::rapportBeheer);
+    		btnRapportBeheer.setId("buttonleft");
 			
-        	vboxNavigatie.getChildren().addAll(lblContractBeheer,btnContractBeheer,lblTicketBeheer,btnTicketBeheer);
+        	vboxNavigatie.getChildren().addAll(lblContractBeheer,btnContractBeheer,lblTicketBeheer,btnTicketBeheer,btnRapportBeheer);
         	break;
     	
 		case TECHNIEKER : 
@@ -158,6 +164,12 @@ public class HoofdMenuController extends BorderPane implements Observer{
 		lblTitel.setText(Taal.geefTekst("ticketBeheer"));
 		Taal.addObservers(ticketBeheerSchermController);
 		schermAanpassen(ticketBeheerSchermController);
+	}
+	public void rapportBeheer(ActionEvent event) {
+		RapportBeheerSchermController rapportBeheerSchermController = new RapportBeheerSchermController();
+		lblTitel.setText(Taal.geefTekst("rapportBeheer"));
+		Taal.addObservers(rapportBeheerSchermController);
+		schermAanpassen(rapportBeheerSchermController);
 	}
 	public void contractBeheer(ActionEvent event) {
 		ContractTypeBeheerSchermController contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
