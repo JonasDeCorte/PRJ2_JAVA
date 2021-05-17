@@ -8,8 +8,8 @@ import javafx.collections.ObservableList;
 public class RapportController {
 	private RapportBeheerder rapportBeheerder;
 
-	public RapportController(Ticket geselecteerdeTicket) {
-		this.rapportBeheerder = new RapportBeheerder(geselecteerdeTicket);
+	public RapportController(/*Ticket geselecteerdeTicket*/) {
+		this.rapportBeheerder = new RapportBeheerder(/*geselecteerdeTicket*/);
 	}
 
 	public void voegRapportToe(Rapport rapport) {
@@ -19,8 +19,8 @@ public class RapportController {
 	public void pasRapportAan(Rapport rapport) {
 		rapportBeheerder.pasRapportAan(rapport);
 	}
-	public void pasFilterAan( String rapportnaam,String beschrijving,String oplossing, String ticket) {		
-		rapportBeheerder.pasFilterAan( rapportnaam,beschrijving,oplossing, ticket);
+	public void pasFilterAan( String rapportnaam, String ticket) {		
+		rapportBeheerder.pasFilterAan( rapportnaam, ticket);
 	}
 
 	public ObservableList<Rapport> getRapportsLijst() {

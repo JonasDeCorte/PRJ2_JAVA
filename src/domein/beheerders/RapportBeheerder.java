@@ -15,14 +15,14 @@ import repository.RapportDaoJpa;
 public class RapportBeheerder {
 	private RapportDao rapportDao;
 	private FilteredList<Rapport> filteredRapportLijst;
-	private Ticket geselecteerdeTicket;
+	//private Ticket geselecteerdeTicket;
 	
 	private RapportBeheerder(RapportDao rapportDao) {
 		this.rapportDao = rapportDao;
 	}
-	public  RapportBeheerder(Ticket ticket) {
+	public  RapportBeheerder(/*Ticket ticket*/) {
 		this(new RapportDaoJpa());
-	this.geselecteerdeTicket = ticket;
+	//this.geselecteerdeTicket = ticket;
 	}
 	public void voegRapportToe(Rapport rapport) {	
 		if(rapportDao.exists(rapport.getRapportNummer()))
@@ -48,17 +48,11 @@ public class RapportBeheerder {
 		haalAlleRapportenOp();
 	}
 
-	public void pasFilterAan( String rapportnaam,String beschrijving,String oplossing, String ticket) {
+	public void pasFilterAan( String rapportnaam, String ticket) {
 		List<Predicate<Rapport>> filters = new ArrayList<>();
 
 		if (rapportnaam != null && !rapportnaam.isBlank()) {
 			filters.add(rapport -> rapport.getRapportNaam().toLowerCase().contains(rapportnaam.toLowerCase()));
-		}
-		if (oplossing != null && !oplossing.isBlank()) {
-			filters.add(rapport -> rapport.getOplossing().toLowerCase().contains(oplossing.toLowerCase()));
-		}
-		if (beschrijving != null && !beschrijving.isBlank()) {
-			filters.add(rapport -> rapport.getBeschrijving().toLowerCase().contains(beschrijving.toLowerCase()));
 		}
 		if (ticket != null && !ticket.isBlank()) {
 			filters.add(rapport -> rapport.getTicket().getTitel().toLowerCase().contains(ticket.toLowerCase()));
@@ -81,13 +75,13 @@ public class RapportBeheerder {
 		} else {
 			filter =  (Predicate<Rapport>) filteredRapportLijst.getPredicate();
 		}
-		if(geselecteerdeTicket != null) {
+		/*if(geselecteerdeTicket != null) {
 			filteredRapportLijst = new FilteredList<>(
 					FXCollections.observableArrayList(rapportDao.geefRapportenVanGeselecteerdTicket(geselecteerdeTicket)), filter);
-		}
-		else {
+		}*/
+		//else {
 			filteredRapportLijst = new FilteredList<>(FXCollections.observableArrayList(rapportDao.findAll()), filter);
-		}
+		//}
 	
 	}
 }

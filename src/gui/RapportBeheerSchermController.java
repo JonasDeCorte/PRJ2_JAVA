@@ -7,8 +7,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.List;
 
+import domein.Bedrijf;
+import domein.Rapport;
+import domein.Ticket;
+import domein.controllers.AanmeldController;
 import domein.controllers.BedrijfsBeheerController;
+import domein.controllers.RapportController;
+import domein.controllers.TicketController;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
@@ -30,23 +39,23 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 	@FXML
 	private Label lblFilters;
 	@FXML
-	private TextField txfFilterTitel;
+	private TextField txfFilterNaam;
 	@FXML
 	private Button btnClearFilters;
 	@FXML
-	private TableView tblTickets;
+	private TableView<Rapport> tblRapporten;
 	@FXML
-	private TableColumn tbcTicketNr;
+	private TableColumn<Rapport,Integer> tbcRapportNr;
 	@FXML
-	private TableColumn tbcTitel;
+	private TableColumn<Rapport,String> tbcNaam;
 	@FXML
-	private TableColumn tbcDatumAangemaakt;
+	private TableColumn<Rapport,String> tbcBeschrijving;
 	@FXML
-	private TableColumn tbcContract;
+	private TableColumn<Rapport,String> tbcOplossing;
 	@FXML
-	private TableColumn tbcStatus;
+	private TableColumn<Rapport,String> tbcTicket;
 	@FXML
-	private TextField txfFilterTitel1;
+	private TextField txfFilterTicket;
 	@FXML
 	private GridPane grdTicketGegevens;
 	@FXML
@@ -74,13 +83,15 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 	@FXML
 	private Label lblTicket;
 	@FXML
-	private ComboBox cbTicket;
+	private ComboBox<Ticket> cbTicket;
 
-	//private final RapportBeheerSchermController rapportBeheerController;
+	private final RapportController rapportController;
+	private final TicketController ticketController;
+	private Rapport geselecteerdeRapport;
 	
 	public RapportBeheerSchermController() {
-		// TODO Auto-generated constructor stub	
-		//this.rapportBeheerController = new RapportBeheerSchermController();
+		this.rapportController = new RapportController();
+		this.ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("RapportBeheerScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -91,12 +102,95 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 	        throw new RuntimeException(ex);
 	    }
 	    
-	   
+	    initializeGUIComponenten();
+	    rapportTabelInvullen();
+	}
+
+	private void initializeGUIComponenten() {
+		tblRapporten.getSelectionModel().selectedItemProperty().
+        addListener((observableValue, oudRapport, NieuwRapport) -> {
+        	if(NieuwRapport != null) {
+        		geselecteerdeRapport = NieuwRapport;
+        		RapportDetailsInvullen(NieuwRapport);
+        	}   	
+        });  
+		List<Ticket> tickets = ticketController.getTicketsLijst();
+	    cbTicket.getItems().clear();
+	    cbTicket.getItems().addAll(tickets);
+	    cbTicket.setOnMouseClicked(e -> {
+	    	cbTicket.getValue();
+	    });
+		
+	}
+	private void RapportDetailsInvullen(Rapport rapport) {
+		txfRapportNr.setText(Integer.toString(rapport.getRapportNummer()));
+		txfNaam.setText(rapport.getRapportNaam());
+		txaBeschrijving.setText(rapport.getBeschrijving());
+		cbTicket.setValue(rapport.getTicket());
+		txaOplossing.setText(rapport.getOplossing());
+		
+	}
+
+	private void rapportTabelInvullen() {
+		 tbcRapportNr.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().getRapportNummer()).asObject());
+		 tbcNaam.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getRapportNaam()));
+		 tbcBeschrijving.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getBeschrijving()));
+		 tbcOplossing.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getOplossing()));
+		 tbcTicket.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().getTicket().getTitel()));
+		 tblRapporten.setItems(rapportController.getRapportsLijst());
+		 tblRapporten.refresh();
+	}
+	@FXML
+	private void rapportWijzigen(ActionEvent event) {
+		updateRapportAtributen();
+		rapportController.pasRapportAan(geselecteerdeRapport);
+		rapportTabelInvullen();
+		ticketgegevensLeegmaken();
+	}
+	private void updateRapportAtributen() {
+		geselecteerdeRapport.setRapportNummer(Integer.parseInt(txfRapportNr.getText()));
+		geselecteerdeRapport.setRapportNaam(txfNaam.getText());
+		geselecteerdeRapport.setBeschrijving(txaBeschrijving.getText());
+		geselecteerdeRapport.setTicket(cbTicket.getValue());
+		geselecteerdeRapport.setOplossing(txaOplossing.getText());
+	}
+	private void ticketgegevensLeegmaken() {
+		txfNaam.clear();
+		txfRapportNr.clear();
+		txaBeschrijving.clear();
+		txaOplossing.clear();
+		cbTicket.setValue(null);
+	}
+
+	@FXML
+	public void filterNaam(KeyEvent event) {
+		rapportTabelFilteren();
+	}
+	@FXML
+	public void filterTicket(KeyEvent event) {
+		rapportTabelFilteren();
+	}
+	@FXML
+	public void clear(ActionEvent event) {
+		txfFilterNaam.clear();
+		txfFilterTicket.clear();
+		rapportTabelFilteren();
+	}
+	@FXML
+	public void ticketgegevensLeegmaken(ActionEvent event) {
+		ticketgegevensLeegmaken();
+	}
+
+	private void rapportTabelFilteren() {
+		String naam,ticket;
+		naam = txfFilterNaam.getText();
+		ticket = txfFilterTicket.getText();
+		rapportController.pasFilterAan(naam, ticket);
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		initializeGUIComponenten();
 		
 	}
 	

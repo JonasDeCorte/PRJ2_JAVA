@@ -20,18 +20,18 @@
       <Pane minHeight="570.0" minWidth="589.0" prefHeight="570.0" prefWidth="900.0">
          <children>
             <Label fx:id="lblFilters" layoutX="13.0" layoutY="14.0" text="Filters" />
-            <TextField fx:id="txfFilterTitel" layoutX="65.0" layoutY="10.0" prefHeight="25.0" prefWidth="132.0" promptText="naam" />
-            <Button id="buttonright" fx:id="btnClearFilters" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
-            <TableView fx:id="tblTickets" layoutX="14.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="493.0" prefWidth="553.0">
+            <TextField fx:id="txfFilterNaam" layoutX="65.0" layoutY="10.0" onKeyReleased="#filterNaam" prefHeight="25.0" prefWidth="132.0" promptText="naam" />
+            <TableView fx:id="tblRapporten" layoutX="14.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="493.0" prefWidth="553.0">
                <columns>
-                  <TableColumn fx:id="tbcTicketNr" prefWidth="74.40002632141113" text="RapportNr" />
-                  <TableColumn fx:id="tbcTitel" prefWidth="130.39998626708984" text="Naam" />
-                  <TableColumn fx:id="tbcDatumAangemaakt" prefWidth="124.0" text="Beschrijving" />
-                  <TableColumn fx:id="tbcContract" prefWidth="119.20001220703125" text="Oplossing" />
-                  <TableColumn fx:id="tbcStatus" prefWidth="105.60000610351562" text="Ticket" />
+                  <TableColumn fx:id="tbcRapportNr" prefWidth="74.40002632141113" text="RapportNr" />
+                  <TableColumn fx:id="tbcNaam" prefWidth="130.39998626708984" text="Naam" />
+                  <TableColumn fx:id="tbcBeschrijving" prefWidth="124.0" text="Beschrijving" />
+                  <TableColumn fx:id="tbcOplossing" prefWidth="119.20001220703125" text="Oplossing" />
+                  <TableColumn fx:id="tbcTicket" prefWidth="105.60000610351562" text="Ticket" />
                </columns>
             </TableView>
-            <TextField fx:id="txfFilterTitel1" layoutX="239.0" layoutY="10.0" prefHeight="25.0" prefWidth="132.0" promptText="ticket" />
+            <TextField fx:id="txfFilterTicket" layoutX="239.0" layoutY="10.0" onKeyReleased="#filterTicket" prefHeight="25.0" prefWidth="132.0" promptText="ticket" />
+            <Button id="buttonright" fx:id="btnClearFilters" layoutX="430.0" layoutY="23.0" mnemonicParsing="false" onAction="#clear" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
          </children>
       </Pane>
       <GridPane id="klantgegevens" fx:id="grdTicketGegevens" minHeight="570.0" minWidth="256.0" prefHeight="570.0" prefWidth="256.0" styleClass="klantgegevens" stylesheets="@layout.css">
@@ -66,9 +66,9 @@
             </Pane>
             <TextField fx:id="txfRapportNr" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txfNaam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
+            <Button id="buttonright" fx:id="btnClearFilters1" mnemonicParsing="false" onAction="#ticketgegevensLeegmaken" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" />
             <TextArea fx:id="txaBeschrijving" prefHeight="44.0" prefWidth="172.0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-            <Button id="buttonright" fx:id="btnRapportWijzigen" mnemonicParsing="false" styleClass="buttonright" stylesheets="@layout.css" text="Rapport wijzigen" GridPane.rowIndex="8" GridPane.valignment="TOP" />
+            <Button id="buttonright" fx:id="btnRapportWijzigen" mnemonicParsing="false" onAction="#rapportWijzigen" styleClass="buttonright" stylesheets="@layout.css" text="Rapport wijzigen" GridPane.rowIndex="8" GridPane.valignment="TOP" />
             <Label fx:id="lblTicket" text="Ticket" GridPane.rowIndex="5" />
             <ComboBox fx:id="cbTicket" prefWidth="150.0" promptText="Ticket" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>

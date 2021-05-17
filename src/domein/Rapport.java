@@ -41,7 +41,7 @@ public class Rapport implements Serializable{
 		return rapportNummer;
 	}
 
-	private void setRapportNummer(int rapportNummer) {
+	public void setRapportNummer(int rapportNummer) {
 		if(rapportNummer > 0)
 		this.rapportNummer = rapportNummer;
 		else {
@@ -53,7 +53,7 @@ public class Rapport implements Serializable{
 		return rapportNaam;
 	}
 
-	private void setRapportNaam(String rapportNaam) {
+	public void setRapportNaam(String rapportNaam) {
 		if (rapportNaam != null && !rapportNaam.isBlank() && !rapportNaam.isEmpty()) {
 			this.rapportNaam = rapportNaam;
 		} else {
@@ -65,7 +65,7 @@ public class Rapport implements Serializable{
 		return beschrijving;
 	}
 
-	private void setBeschrijving(String beschrijving) {
+	public void setBeschrijving(String beschrijving) {
 		if (beschrijving != null && !beschrijving.isBlank() && !beschrijving.isEmpty()) {
 			this.beschrijving = beschrijving;
 		} else {
@@ -77,7 +77,7 @@ public class Rapport implements Serializable{
 		return oplossing;
 	}
 
-	private void setOplossing(String oplossing) {
+	public void setOplossing(String oplossing) {
 		if (oplossing != null && !oplossing.isBlank() && !oplossing.isEmpty()) {
 			this.oplossing = oplossing;
 		} else {
@@ -90,7 +90,7 @@ public class Rapport implements Serializable{
 		return ticket;
 	}
 
-	private void setTicket(Ticket ticket) {
+	public void setTicket(Ticket ticket) {
 		if(ticket != null)
 		this.ticket = ticket;
 		else {
