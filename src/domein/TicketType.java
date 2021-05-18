@@ -66,6 +66,7 @@ public class TicketType implements Serializable {
 	public String toString() {
 		return naam;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

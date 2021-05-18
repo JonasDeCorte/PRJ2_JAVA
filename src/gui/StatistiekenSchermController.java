@@ -7,15 +7,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import domein.Klant;
+import domein.TicketType;
 import domein.controllers.AanmeldController;
 import domein.controllers.ContractController;
 import domein.controllers.GebruikerController;
 import domein.controllers.TicketController;
+import domein.controllers.TicketTypeController;
 import domein.enumerations.CONTRACTSTATUS;
 import domein.enumerations.GEBRUIKERSTATUS;
 import domein.enumerations.TICKETSTATUS;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import resourcebundle.Observer;
@@ -30,14 +37,18 @@ public class StatistiekenSchermController extends GridPane implements Observer{
 	private Label lblTickets;
 	@FXML
 	private Label lblContracten;
+	@FXML
+	private BarChart<String, Integer> chrTickets;
 	
 	private final GebruikerController gebruikerController;
 	private final TicketController ticketController;
 	private final ContractController contractController;
+	private final TicketTypeController ticketTypeController;
 public StatistiekenSchermController() {
 	gebruikerController = new GebruikerController();
 	ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
 	contractController = new ContractController();
+	ticketTypeController = new TicketTypeController();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("StatistiekenScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -79,6 +90,24 @@ public StatistiekenSchermController() {
 		int lopendeContracten = contractController.getAllContracten().stream().filter(c->c.getContractstatus().equals(CONTRACTSTATUS.LOPEND)).collect(Collectors.toList()).size();
 		int AfgeslotenContracten = contractController.getAllContracten().stream().filter(c->c.getContractstatus().equals(CONTRACTSTATUS.BEËINDIGD)).collect(Collectors.toList()).size();
 		lblContracten.setText(String.format("Totaal Aantal Contracten: %d%n In Behandeling: %d%n Lopend: %d%n Afgesloten: %d%n ", totaleContracten,InBehandelingContracten,lopendeContracten,AfgeslotenContracten));
+		
+		CategoryAxis xAxis    = new CategoryAxis();
+		xAxis.setLabel("TicketType");
+		
+		NumberAxis yAxis = new NumberAxis();
+		yAxis.setLabel("Aantal tickets");
+		
+		XYChart.Series dataSeries1 = new XYChart.Series();
+		dataSeries1.setName("Openstaande tickets");
+		for(TicketType t : ticketTypeController.haalTicketTypesOp()) {
+			int aantalTickets = ticketController.getTicketsLijst()
+					.stream().filter(ticket->ticket.getTicketType().equals(t))
+					.filter(ticket->ticket.getTicketStatus() ==TICKETSTATUS.AANGEMAAKT || ticket.getTicketStatus() == TICKETSTATUS.IN_BEHANDELING)
+					.collect(Collectors.toList()).size();
+			
+			dataSeries1.getData().add(new XYChart.Data(t.toString(), aantalTickets));
+		}
+		chrTickets.getData().add(dataSeries1);
 	}
 
 	@Override
