@@ -12,13 +12,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 
 import domein.controllers.AanmeldController;
-import domein.enumerations.WERKNEMERROL;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -194,6 +190,7 @@ public class HoofdMenuController extends BorderPane implements Observer{
 		Optional<ButtonType> result = alert.showAndWait();
 		
 		if (result.get() == ButtonType.OK) {
+			AanmeldController.setAangemeldeWerknemer(null);
 			Taal.removeObservers(this);
 			Stage stage = (Stage) this.getScene().getWindow();
 			stage.setTitle("Actemium");
@@ -242,6 +239,9 @@ public class HoofdMenuController extends BorderPane implements Observer{
 		case SUPPORTMANAGER :
 		lblContractBeheer.setText(Taal.geefTekst("contractBeheer"));
 		btnContractBeheer.setText(Taal.geefTekst("contractType"));
+		lblTicketBeheer.setText(Taal.geefTekst("ticketBeheer"));
+		btnTicketBeheer.setText(Taal.geefTekst("ticket"));
+		btnRapportBeheer.setText(Taal.geefTekst("rapport"));
 		rol = "supportManager";
 		break;
 		

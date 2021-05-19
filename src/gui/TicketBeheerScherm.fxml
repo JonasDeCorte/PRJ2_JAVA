@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane minHeight="570.0" minWidth="589.0" prefHeight="570.0" prefWidth="900.0">
          <children>
@@ -89,9 +89,9 @@
             <Label fx:id="lblDatumAfgehandeld" text="Datumafgehandeld" GridPane.rowIndex="4" />
             <TextField fx:id="txfDatumAfgehandeld" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txfDatumAangemaakt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button id="buttonright" fx:id="btnTicketWijzigen" mnemonicParsing="false" onAction="#ticketWijzigen" styleClass="buttonright" stylesheets="@layout.css" text="Ticket wijzigen" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.valignment="TOP" />
+            <Button id="buttonright" fx:id="btnTicketWijzigen" mnemonicParsing="false" onAction="#ticketWijzigen" styleClass="buttonright" stylesheets="@layout.css" text="Ticket wijzigen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="TOP" />
             <ComboBox fx:id="cbStatus" prefWidth="150.0" promptText="Status" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <Button id="buttonright" fx:id="btnTicketToevoegen" mnemonicParsing="false" onAction="#voegTicketToe" stylesheets="@layout.css" text="Ticket toevoegen" GridPane.rowIndex="14" GridPane.valignment="TOP" />
+            <Button id="buttonright" fx:id="btnTicketToevoegen" mnemonicParsing="false" onAction="#voegTicketToe" stylesheets="@layout.css" text="Ticket toevoegen" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="TOP" />
             <Label fx:id="lblTechnieker" text="Technieker" GridPane.rowIndex="8" />
             <ComboBox fx:id="cboTechnieker" prefWidth="150.0" promptText="Technieker" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label fx:id="lblKlant" text="Klant" GridPane.rowIndex="7" />

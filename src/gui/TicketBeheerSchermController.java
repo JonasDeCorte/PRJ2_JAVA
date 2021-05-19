@@ -2,148 +2,93 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import domein.Bedrijf;
 import domein.Contract;
-import domein.Gebruiker;
 import domein.Klant;
-import domein.Rapport;
 import domein.Ticket;
 import domein.TicketType;
 import domein.Werknemer;
 import domein.controllers.AanmeldController;
-import domein.controllers.ContractController;
 import domein.controllers.GebruikerController;
 import domein.controllers.TicketController;
 import domein.controllers.TicketTypeController;
-import domein.enumerations.GEBRUIKERSTATUS;
-import domein.enumerations.TICKETAANMAAKTIJD;
 import domein.enumerations.TICKETSTATUS;
 import domein.enumerations.WERKNEMERROL;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
-
 import javafx.scene.control.Label;
-
 import javafx.scene.control.TextArea;
-
 import javafx.scene.control.ComboBox;
-
 import javafx.scene.control.CheckBox;
-
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import resourcebundle.Observer;
-import resourcebundle.Taal;
 import javafx.scene.control.TableView;
-
 import javafx.scene.control.TableColumn;
 
+import resourcebundle.Observer;
+import resourcebundle.Taal;
+
 public class TicketBeheerSchermController  extends HBox implements Observer{
-	@FXML
-	private Label lblFilters;
-	@FXML
-	private CheckBox chkAangemaakteTickets;
-	@FXML
-	private CheckBox chkInActieveTickets;
-	@FXML
-	private CheckBox chkAfgehandeldeTickets;
-	@FXML
-	private TextField txfFilterTitel;
-	@FXML
-	private TextField txfFilterDatum;
-	@FXML
-	private TextField txfFilterContract;
-	@FXML
-	private Button btnClearFilters;
-	@FXML
-	private TableView<Ticket> tblTickets;
-	@FXML
-	private TableColumn<Ticket,Integer> tbcTicketNr;
-	@FXML
-	private TableColumn<Ticket,String> tbcTitel;
-	@FXML
-	private TableColumn<Ticket,String> tbcDatumAangemaakt;
-	@FXML
-	private TableColumn<Ticket,String> tbcContract;
-	@FXML
-	private TableColumn<Ticket,String> tbcStatus;
-	@FXML
-	private CheckBox chkGeannuleerdeTickets;
-	@FXML
-	private Label lblTicketgegevens;
-	@FXML
-	private Label lblTicketNr;
-	@FXML
-	private Label lblTitel;
-	@FXML
-	private Label lblDatumAangemaakt;
-	@FXML
-	private Label lblOmschrijving;
-	@FXML
-	private Label lblTechnieker;
-	@FXML
-	private Label lblContract;
-	@FXML
-	private Label lblTicketType;
-	@FXML
-	private Label lblStatus;
-	@FXML
-	private Label lblOpmerkingen;
+	@FXML private Label lblFilters;
+	@FXML private CheckBox chkAangemaakteTickets;
+	@FXML private CheckBox chkInActieveTickets;
+	@FXML private CheckBox chkAfgehandeldeTickets;
+	@FXML private TextField txfFilterTitel;
+	@FXML private TextField txfFilterDatum;
+	@FXML private TextField txfFilterContract;
+	@FXML private Button btnClearFilters;
+	@FXML private TableView<Ticket> tblTickets;
+	@FXML private TableColumn<Ticket,Integer> tbcTicketNr;
+	@FXML private TableColumn<Ticket,String> tbcTitel;
+	@FXML private TableColumn<Ticket,String> tbcDatumAangemaakt;
+	@FXML private TableColumn<Ticket,String> tbcContract;
+	@FXML private TableColumn<Ticket,String> tbcStatus;
+	@FXML private CheckBox chkGeannuleerdeTickets;
+	@FXML private Label lblTicketgegevens;
+	@FXML private Label lblTicketNr;
+	@FXML private Label lblTitel;
+	@FXML private Label lblDatumAangemaakt;
+	@FXML private Label lblOmschrijving;
+	@FXML private Label lblKlant;
+	@FXML private Label lblTechnieker;
+	@FXML private Label lblContract;
+	@FXML private Label lblTicketType;
+	@FXML private Label lblStatus;
+	@FXML private Label lblOpmerkingen;
 	
-	@FXML
-	private GridPane grdTicketGegevens;
-	@FXML
-	private TextArea txaOmschrijving;
-	@FXML
-	private ComboBox<Werknemer> cboTechnieker;
-	@FXML
-	private Button btnTicketWijzigen;
-	@FXML
-	private Button btnTicketToevoegen;
+	@FXML private GridPane grdTicketGegevens;
+	@FXML private TextArea txaOmschrijving;
+	@FXML private ComboBox<Werknemer> cboTechnieker;
+	@FXML private Button btnTicketWijzigen;
+	@FXML private Button btnTicketToevoegen;
 	
-	@FXML
-	private TextField txfTicketNr;
-	@FXML
-	private TextField txfTitel;
+	@FXML private TextField txfTicketNr;
+	@FXML private TextField txfTitel;
 	
-	@FXML
-	private Button btnClearFilters1;
-	@FXML
-	private TextArea txaOpmerkingen;
-	@FXML
-	private ComboBox<Klant> cbKlanten;
-	@FXML
-	private ComboBox<TicketType> cbTicketType;
-	@FXML
-	private ComboBox<Contract> cbContract;
-	@FXML
-	private ComboBox<TICKETSTATUS> cbStatus;
-	@FXML
-	private Label lblDatumAfgehandeld;
-	@FXML
-	private TextField txfDatumAfgehandeld;
-	@FXML
-	private TextField txfDatumAangemaakt;
+	@FXML private Button btnClearFilters1;
+	@FXML private TextArea txaOpmerkingen;
+	@FXML private ComboBox<Klant> cbKlanten;
+	@FXML private ComboBox<TicketType> cbTicketType;
+	@FXML private ComboBox<Contract> cbContract;
+	@FXML private ComboBox<TICKETSTATUS> cbStatus;
+	@FXML private Label lblDatumAfgehandeld;
+	@FXML private TextField txfDatumAfgehandeld;
+	@FXML private TextField txfDatumAangemaakt;
 	
 	private Ticket geselecteerdeTicket;
 	private final TicketController ticketController;
@@ -197,13 +142,22 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		lblTicketNr.setText(Taal.geefTekst("ticketNr"));
 		lblTitel.setText(Taal.geefTekst("titel"));
 		lblDatumAangemaakt.setText(Taal.geefTekst("datumAangemaakt"));
-		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));              	
+		lblDatumAfgehandeld.setText(Taal.geefTekst("datumAfgehandeld"));
+		lblOmschrijving.setText(Taal.geefTekst("omschrijving"));   
+		lblKlant.setText(Taal.geefTekst("klant"));
+		cbKlanten.setPromptText(Taal.geefTekst("klant"));
 		lblTechnieker.setText(Taal.geefTekst("technieker"));
+		cboTechnieker.setPromptText(Taal.geefTekst("technieker"));
 		lblContract.setText(Taal.geefTekst("contract"));
+		cbContract.setPromptText(Taal.geefTekst("contract"));
 		lblTicketType.setText(Taal.geefTekst("ticketType"));
+		cbTicketType.setPromptText(Taal.geefTekst("ticketType"));
 		lblStatus.setText(Taal.geefTekst("status"));
+		cbStatus.setPromptText(Taal.geefTekst("status"));
 		lblOpmerkingen.setText(Taal.geefTekst("opmerkingen"));
 		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
+		btnTicketToevoegen.setText(Taal.geefTekst("ticketToevoegen"));
+		btnTicketWijzigen.setText(Taal.geefTekst("ticketWijzigen"));
 		btnTicketWijzigen.setDisable(true);
 		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
 			btnTicketToevoegen.setDisable(true);
