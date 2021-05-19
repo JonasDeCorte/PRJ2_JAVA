@@ -48,11 +48,15 @@ public class StatistiekenSchermController extends GridPane implements Observer{
 	private final TicketController ticketController;
 	private final ContractController contractController;
 	private final TicketTypeController ticketTypeController;
+	
+	private final XYChart.Series dataSeries1;
 public StatistiekenSchermController() {
 	gebruikerController = new GebruikerController();
 	ticketController = new TicketController(AanmeldController.getAangemeldeWerknemer());
 	contractController = new ContractController();
 	ticketTypeController = new TicketTypeController();
+	dataSeries1 = new XYChart.Series();
+	
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("StatistiekenScherm.fxml"));
 		loader.setRoot(this);
 	    loader.setController(this);
@@ -62,11 +66,14 @@ public StatistiekenSchermController() {
 	    } catch (IOException ex) {
 	        throw new RuntimeException(ex);
 	    }
+	    chrTickets.getData().add(dataSeries1);
 	    initializeData();
+	    grafiekInitializeren();
 	}
 
 	private void initializeData() {
 		lblOpenstaandeTickets.setText(Taal.geefTekst("openstaandeTicketsPerType"));
+		dataSeries1.setName(Taal.geefTekst("openstaandeTickets"));
 		
 		int actieveKlanten = gebruikerController.getAllKlanten().size();
 		Set<GEBRUIKERSTATUS> status = new HashSet<>();
@@ -103,31 +110,24 @@ public StatistiekenSchermController() {
 		int AfgeslotenContracten = contractController.getAllContracten().stream().filter(c->c.getContractstatus().equals(CONTRACTSTATUS.BEËINDIGD)).collect(Collectors.toList()).size();
 		lblContracten.setText(String.format("%s: %d%n %s: %d%n %s: %d%n %s: %d%n ",
 				Taal.geefTekst("totaalContracten"),totaleContracten,Taal.geefTekst("inBehandeling"),InBehandelingContracten,Taal.geefTekst("lopend"),lopendeContracten,Taal.geefTekst("afgesloten"),AfgeslotenContracten));
-		
-		/*CategoryAxis xAxis    = new CategoryAxis();
-		xAxis.setLabel("TicketType");
-		
-		NumberAxis yAxis = new NumberAxis();
-		yAxis.setLabel("Aantal tickets");*/
-		
-		XYChart.Series dataSeries1 = new XYChart.Series();
+		}
+	private void grafiekInitializeren() {
 		dataSeries1.getData().clear();
-		dataSeries1.setName(Taal.geefTekst("openstaandeTickets"));
+		
 		for(TicketType t : ticketTypeController.haalTicketTypesOp()) {
 			int aantalTickets = ticketController.getTicketsLijst()
 					.stream().filter(ticket->ticket.getTicketType().equals(t))
 					.filter(ticket->ticket.getTicketStatus() ==TICKETSTATUS.AANGEMAAKT || ticket.getTicketStatus() == TICKETSTATUS.IN_BEHANDELING)
 					.collect(Collectors.toList()).size();
 			
-			dataSeries1.getData().add(new XYChart.Data(t.toString(), aantalTickets));
+			dataSeries1.getData().add(new XYChart.Data<String, Integer>(t.toString(), aantalTickets));
 		}
-		chrTickets.getData().add(dataSeries1);
+		
+		
 	}
 
 	@Override
 	public void update() {
-		chrTickets.getData().clear();
 		initializeData();
-		
 	}
 }
