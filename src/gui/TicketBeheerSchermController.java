@@ -207,10 +207,10 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 		btnTicketWijzigen.setDisable(true);
 		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.TECHNIEKER)) {
 			btnTicketToevoegen.setDisable(true);
-			cboTechnieker.setDisable(true);
 			cbKlanten.setDisable(true);
 		}
 		else {
+			
 			List<Werknemer> techniekers = gebruikerController.getAllWerknemer().stream().filter(w->w.getRol().equals(WERKNEMERROL.TECHNIEKER)).distinct().collect(Collectors.toList());
 			cboTechnieker.getItems().clear();
 			cboTechnieker.getItems().addAll(techniekers);
@@ -231,6 +231,8 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
         		TicketDetailsInvullen(NieuweTicket);
         		btnTicketWijzigen.setDisable(false);
         		btnTicketToevoegen.setDisable(true);
+        		if(AanmeldController.getAangemeldeWerknemer().getRol().equals(WERKNEMERROL.SUPPORTMANAGER))
+        		ticketWijzigenSupportManager();
         	}   	
         });
 		
@@ -248,6 +250,18 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	    });
 	    
 	
+	}
+	private void ticketWijzigenSupportManager() {
+		txfTicketNr.setDisable(true);
+		txfTitel.setDisable(true);
+		txfDatumAangemaakt.setDisable(true);
+		txfDatumAfgehandeld.setDisable(true);
+		txaOmschrijving.setDisable(true);
+		cbKlanten.setDisable(true);
+		cbContract.setDisable(true);
+		cbTicketType.setDisable(true);
+		cbStatus.setDisable(true);
+		txaOpmerkingen.setDisable(true);
 	}
 	@FXML
 	void klantGeselecteerd(ActionEvent event) {
@@ -424,6 +438,16 @@ public class TicketBeheerSchermController  extends HBox implements Observer{
 	@FXML
 	public void clearTicketGegevens(ActionEvent event) {
 		TicketDetailsLeegmaken();
+		txfTicketNr.setDisable(false);
+		txfTitel.setDisable(false);
+		txfDatumAangemaakt.setDisable(false);
+		txfDatumAfgehandeld.setDisable(false);
+		txaOmschrijving.setDisable(false);
+		cbKlanten.setDisable(false);
+		cbContract.setDisable(false);
+		cbTicketType.setDisable(false);
+		cbStatus.setDisable(false);
+		txaOpmerkingen.setDisable(false);
 	}
 	
 	private void ticketTabelFilteren() {
