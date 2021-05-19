@@ -28,7 +28,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class TestAanmeldController {
+public class AanmeldControllerTest {
 	@Mock
 	private AanmeldPogingDao aanmeldpogingDao;
 	
