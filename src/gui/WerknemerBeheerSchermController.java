@@ -173,6 +173,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	    btnClearPersonneelsGegevens.setText(Taal.geefTekst("leegmaken"));
 
 	    btnWerknemerToevoegen.setText(Taal.geefTekst("werknemerToevoegen"));
+	    btnWerknemerWijzigen.setDisable(true);
 	    btnWerknemerWijzigen.setText(Taal.geefTekst("werknemerWijzigen"));
 
 	}
@@ -238,6 +239,8 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	}
 	
 	private void werknemerDetailsInvullen(Werknemer werknemer) {
+		btnWerknemerWijzigen.setDisable(false);
+		btnWerknemerToevoegen.setDisable(true);
 		werknemerDetailsLeegmaken();
 		txfPersoneelsnr.setText(Integer.toString(werknemer.getPersoneelsnummer()));
 		origineelPersonneelsnr = txfPersoneelsnr.getText();
@@ -328,6 +331,7 @@ public class WerknemerBeheerSchermController extends HBox implements Observer{
 	
 	@FXML
     private void clearPersoneelsGegevens(ActionEvent actionEvent) {
+		btnWerknemerWijzigen.setDisable(true);
 		werknemerDetailsLeegmaken();
 		btnWerknemerToevoegen.setDisable(false);
 	}

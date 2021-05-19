@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="571.0" prefWidth="861.0" type="HBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane minHeight="570.0" minWidth="558.0" prefHeight="571.0" prefWidth="900.0">
          <children>
@@ -125,14 +125,14 @@
             <Label fx:id="lblFunctie" text="Functie" GridPane.rowIndex="10" />
             <ComboBox fx:id="cboFunctie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Button id="buttonright" fx:id="btnClearPersonneelsGegevens" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#clearPersoneelsGegevens" styleClass="buttonright" stylesheets="@layout.css" text="Leegmaken" GridPane.rowIndex="1" />
-            <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="20.0" prefWidth="102.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
+            <Button id="buttonright" fx:id="btnWerknemerWijzigen" mnemonicParsing="false" onAction="#WijzigWerknemer" prefHeight="34.0" prefWidth="115.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer wijzigen" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
                <font>
-                  <Font size="9.0" />
+                  <Font size="10.0" />
                </font>
             </Button>
-            <Button id="buttonright" fx:id="btnWerknemerToevoegen" mnemonicParsing="false" onAction="#voegWerknemerToe" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer toevoegen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
+            <Button id="buttonright" fx:id="btnWerknemerToevoegen" mnemonicParsing="false" onAction="#voegWerknemerToe" prefHeight="34.0" prefWidth="127.0" styleClass="buttonright" stylesheets="@layout.css" text="Werknemer toevoegen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="18" GridPane.valignment="CENTER">
                <font>
-                  <Font size="9.0" />
+                  <Font size="10.0" />
                </font>
             </Button>
          </children>

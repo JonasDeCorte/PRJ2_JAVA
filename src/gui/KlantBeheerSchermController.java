@@ -179,6 +179,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 
 	    btnKlantToevoegen.setText(Taal.geefTekst("klantToevoegen"));
 	    btnKlantWijzigen.setText(Taal.geefTekst("klantWijzigen"));
+	    btnKlantWijzigen.setDisable(true);
 	}
 	
 	// Hoofd functionaliteiten (onderaan rechts)
@@ -212,6 +213,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 
 	// Hulp methodes
 	private void klantDetailsInvullen(Klant klant) {
+		
 		klantDetailsLeegmaken();
 		txfKlantnr.setText(Integer.toString(klant.getKlantnummer()));
 		origineelKlantnummer = txfKlantnr.getText();
@@ -226,6 +228,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
         cboKiesBedrijf.setValue(klant.getBedrijf());
         //klant.getBedrijf().getTelefoonnummers().stream().forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
         btnKlantToevoegen.setDisable(true);
+        btnKlantWijzigen.setDisable(false);
 	}
 	
 	private void updateKlantAttributen() {
@@ -257,6 +260,7 @@ public class KlantBeheerSchermController extends HBox implements Observer{
 	}
 	
 	private void klantDetailsLeegmaken() {
+		btnKlantWijzigen.setDisable(true);
 		txfKlantnr.clear();
 		txfGebruikersnaam.clear();
 		pwfWachtwoord.clear();

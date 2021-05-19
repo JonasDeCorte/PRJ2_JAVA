@@ -123,8 +123,8 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	    	cboTijd.getValue();
 	    });
 	    
-	    btnContractTypeToevoegen.setText(Taal.geefTekst("wijzigen"));
-	    btnContractTypeWijzigen.setText(Taal.geefTekst("toevoegen"));
+	    btnContractTypeToevoegen.setText(Taal.geefTekst("toevoegen"));
+	    btnContractTypeWijzigen.setText(Taal.geefTekst("wijzigen"));
 	    btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
 	}
 	
@@ -155,7 +155,7 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	@FXML
 	void wijzigContractType(ActionEvent event) {
 
-		if(geselecteerdContractType != null && geselecteerdContractType.geefAantalContracten() != 0) {
+		if(geselecteerdContractType == null && geselecteerdContractType.geefAantalContracten() == 0) {
 			Alert alert = new Alert (AlertType.INFORMATION);
 			alert.setTitle(Taal.geefTekst("foutmeldingTitleContractTypeWijzigen"));
 			alert.setHeaderText(Taal.geefTekst("foutmeldingHeaderContractTypeWijzigen"));

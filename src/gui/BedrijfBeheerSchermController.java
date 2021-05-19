@@ -123,6 +123,8 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
 	    btnBedrijfsgegevensLegen.setText(Taal.geefTekst("leegmaken"));
 	    btnBedrijfToevoegen.setText(Taal.geefTekst("bedrijfToevoegen"));
 	    btnBedrijfWijzigen.setText(Taal.geefTekst("bedrijfWijzigen"));
+	    
+	    btnBedrijfWijzigen.setDisable(true);
 	}
 	
 
@@ -257,6 +259,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
         origineelBedrijfsnr = null;
         origineleBedrijfsnaam = null;
         txfBedrijfnr.setEditable(true);
+        btnBedrijfWijzigen.setDisable(true);
 	}
 	
 	private void bedrijfDetailsInvullen(Bedrijf bedrijf) {
@@ -275,7 +278,7 @@ public class BedrijfBeheerSchermController extends HBox implements Observer{
         ObservableList<String> nrs = FXCollections.observableArrayList(bedrijf.getTelefoonnummers());
         bedrijf.getTelefoonnummers().stream()
         .forEach(t-> txaTelefoonnummers.setText(txaTelefoonnummers.getText() + t +"\n" ));
-    
+        btnBedrijfWijzigen.setDisable(false);
         btnBedrijfToevoegen.setDisable(true);		
 	}
 
