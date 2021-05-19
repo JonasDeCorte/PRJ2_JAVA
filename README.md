@@ -5,10 +5,6 @@
 ## Prerequisites
 ### Installation
 
-[JARS (Testen, JPA, SqlConnector).zip](https://github.com/HoGentProjectenII/2021-java-g-18/files/6221737/JARS.Testen.JPA.SqlConnector.zip)
-
-[JARS (JavaFx).zip](https://github.com/HoGentProjectenII/2021-java-g-18/files/6221759/JARS.JavaFx.zip)
-
 [Java SE installed](https://www.oracle.com/java/technologies/javase-downloads.html)
 
 [Enkel indien GEEN JRE aanwezig op laptop: JRE 10 downloaden](https://www.oracle.com/java/technologies/java-archive-javase10-downloads.html)
@@ -27,6 +23,10 @@ correct configuration  [JAVAFX](https://gluonhq.com/products/javafx/) refer to [
 ````
 git clone this repository
 ````
+Configure the jars like this. Refer to chamillo for the jars. 
+![image](https://user-images.githubusercontent.com/47521716/118833104-7bca8180-b8c1-11eb-86d0-54033cf761e3.png)
+
+[extra jar](https://chamilo.hogent.be/index.php?go=CourseViewer&application=Chamilo%5CApplication%5CWeblcms&course=41537&tool=Document&publication_category=260779&browser=List&tool_action=Viewer&publication=1809840)
 
 ## setting up the database
 - Login to Microsoft SQL Server Management Studio 
