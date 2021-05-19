@@ -70,6 +70,7 @@ public class HoofdMenuController extends BorderPane implements Observer{
 		}
 
 	    controller = statistiekenSchermController;
+	    Taal.addObservers((Observer) controller);
 	    this.setCenter((Node) controller);
 	    knoppenToevoegen();
 	    initializeGUIComponenten();	    
@@ -144,46 +145,43 @@ public class HoofdMenuController extends BorderPane implements Observer{
 	public void klantenBeheer(ActionEvent event) {
 		KlantBeheerSchermController klantBeheerSchermController = new KlantBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("klant"));
-		Taal.addObservers(klantBeheerSchermController);
 		schermAanpassen(klantBeheerSchermController);
 	}
 	public void werknemerBeheer(ActionEvent event) {
 		WerknemerBeheerSchermController werknemerBeheerSchermController = new WerknemerBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("werknemer"));
-		Taal.addObservers(werknemerBeheerSchermController);
 		schermAanpassen(werknemerBeheerSchermController);
 	}
 	public void bedrijfBeheer(ActionEvent event) {
 		BedrijfBeheerSchermController bedrijfBeheerSchermController = new BedrijfBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("bedrijf"));
-		Taal.addObservers(bedrijfBeheerSchermController);
 		schermAanpassen(bedrijfBeheerSchermController);
 	}
 	public void ticketBeheer(ActionEvent event) {
 		TicketBeheerSchermController ticketBeheerSchermController = new TicketBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("ticketBeheer"));
-		Taal.addObservers(ticketBeheerSchermController);
 		schermAanpassen(ticketBeheerSchermController);
 	}
 	public void rapportBeheer(ActionEvent event) {
 		RapportBeheerSchermController rapportBeheerSchermController = new RapportBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("rapportBeheer"));
-		Taal.addObservers(rapportBeheerSchermController);
 		schermAanpassen(rapportBeheerSchermController);
 	}
 	public void contractBeheer(ActionEvent event) {
 		ContractTypeBeheerSchermController contractTypeBeheerSchermController = new ContractTypeBeheerSchermController();
 		lblTitel.setText(Taal.geefTekst("contractBeheer"));
-		Taal.addObservers(contractTypeBeheerSchermController);
 		schermAanpassen(contractTypeBeheerSchermController);
 	}
 	@FXML
 	public void hoofdmenu(ActionEvent event) {
+		Taal.addObservers(statistiekenSchermController);
 		schermAanpassen(statistiekenSchermController);
 	}
 	public void schermAanpassen(Object o) {
 		this.getChildren().remove(controller);
+		Taal.removeObservers((Observer) controller);
 		controller = o;
+		Taal.addObservers((Observer) controller);
 		this.setCenter((Node) controller);
 	}
 	// Event Listener on Button[#btnUitloggen].onAction
