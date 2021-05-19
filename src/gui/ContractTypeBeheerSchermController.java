@@ -126,6 +126,7 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 	    btnContractTypeToevoegen.setText(Taal.geefTekst("toevoegen"));
 	    btnContractTypeWijzigen.setText(Taal.geefTekst("wijzigen"));
 	    btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
+	    btnContractTypeWijzigen.setDisable(true);
 	}
 	
 	@FXML
@@ -205,6 +206,8 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 		chkTelefoon.setSelected(contractType.getTicketAanmaakMethode().contains(TICKETAANMAAKMETHODE.TELEFONISCH));
 		chkApplicatie.setSelected(contractType.getTicketAanmaakMethode().contains(TICKETAANMAAKMETHODE.VIA_APPLICATIE));
 		cboTijd.setValue(contractType.getTicketAanmaakTijd());
+		btnContractTypeWijzigen.setDisable(false);
+		btnContractTypeToevoegen.setDisable(true);
 	}
 	
 	private void contractTypeTabelInvullen() {
@@ -225,6 +228,8 @@ public class ContractTypeBeheerSchermController extends HBox implements Observer
 		chkEmail.setSelected(false);
 		chkTelefoon.setSelected(false);
 		chkApplicatie.setSelected(false);
+		btnContractTypeWijzigen.setDisable(true);
+		btnContractTypeToevoegen.setDisable(false);
 	}
 	
 	private boolean contractTypeDetailsControleren() {

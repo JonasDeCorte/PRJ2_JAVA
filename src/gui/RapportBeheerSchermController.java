@@ -126,6 +126,7 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 		cbTicket.setPromptText(Taal.geefTekst("ticket"));
 		lblOplossing.setText(Taal.geefTekst("oplossing"));
 		btnRapportWijzigen.setText(Taal.geefTekst("rapportWijzigen"));
+		btnRapportWijzigen.setDisable(true);
 		
 		tblRapporten.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudRapport, NieuwRapport) -> {
@@ -143,6 +144,7 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 		
 	}
 	private void RapportDetailsInvullen(Rapport rapport) {
+		btnRapportWijzigen.setDisable(false);
 		txfRapportNr.setText(Integer.toString(rapport.getRapportNummer()));
 		txfNaam.setText(rapport.getRapportNaam());
 		txaBeschrijving.setText(rapport.getBeschrijving());
@@ -165,7 +167,7 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 		updateRapportAtributen();
 		rapportController.pasRapportAan(geselecteerdeRapport);
 		rapportTabelInvullen();
-		ticketgegevensLeegmaken();
+		rapportgegevensLeegmaken();
 	}
 	private void updateRapportAtributen() {
 		geselecteerdeRapport.setRapportNummer(Integer.parseInt(txfRapportNr.getText()));
@@ -174,12 +176,13 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 		geselecteerdeRapport.setTicket(cbTicket.getValue());
 		geselecteerdeRapport.setOplossing(txaOplossing.getText());
 	}
-	private void ticketgegevensLeegmaken() {
+	private void rapportgegevensLeegmaken() {
 		txfNaam.clear();
 		txfRapportNr.clear();
 		txaBeschrijving.clear();
 		txaOplossing.clear();
 		cbTicket.setValue(null);
+		btnRapportWijzigen.setDisable(true);
 	}
 
 	@FXML
@@ -197,8 +200,8 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 		rapportTabelFilteren();
 	}
 	@FXML
-	public void ticketgegevensLeegmaken(ActionEvent event) {
-		ticketgegevensLeegmaken();
+	public void rapportgegevensLeegmaken(ActionEvent event) {
+		rapportgegevensLeegmaken();
 	}
 
 	private void rapportTabelFilteren() {
