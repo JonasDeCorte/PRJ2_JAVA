@@ -33,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import resourcebundle.Observer;
+import resourcebundle.Taal;
 import javafx.scene.control.TableColumn;
 
 public class RapportBeheerSchermController extends HBox implements Observer {
@@ -107,6 +108,25 @@ public class RapportBeheerSchermController extends HBox implements Observer {
 	}
 
 	private void initializeGUIComponenten() {
+		lblFilters.setText(Taal.geefTekst("filters"));
+		txfFilterNaam.setText(Taal.geefTekst("naam"));
+		txfFilterTicket.setText(Taal.geefTekst("ticket"));
+		btnClearFilters.setText(Taal.geefTekst("leegmaken"));
+		tbcRapportNr.setText(Taal.geefTekst("rapportNummer"));
+		tbcNaam.setText(Taal.geefTekst("naam"));
+		tbcBeschrijving.setText(Taal.geefTekst("beschrijving"));
+		tbcOplossing.setText(Taal.geefTekst("oplossing"));
+		tbcTicket.setText(Taal.geefTekst("ticket"));
+		btnClearFilters1.setText(Taal.geefTekst("leegmaken"));
+		lblTicketgegevens.setText(Taal.geefTekst("ticketGegevens"));
+		lblRapportNr.setText(Taal.geefTekst("rapportNummer"));
+		lblNaam.setText(Taal.geefTekst("naam"));
+		lblBeschrijving.setText(Taal.geefTekst("beschrijving"));
+		lblTicket.setText(Taal.geefTekst("ticket"));
+		cbTicket.setPromptText(Taal.geefTekst("ticket"));
+		lblOplossing.setText(Taal.geefTekst("oplossing"));
+		btnRapportWijzigen.setText(Taal.geefTekst("rapportWijzigen"));
+		
 		tblRapporten.getSelectionModel().selectedItemProperty().
         addListener((observableValue, oudRapport, NieuwRapport) -> {
         	if(NieuwRapport != null) {

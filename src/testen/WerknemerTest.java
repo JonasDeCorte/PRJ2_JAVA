@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import domein.Adres;
 import domein.Bedrijf;
@@ -31,7 +34,7 @@ public class WerknemerTest {
 				//foutief werknemerrol
 				Arguments.of("Simon", "wachtwoord", "simon", "bekaert", "simon.bekaert2000@hotmail.com",
 						1, Arrays.asList("+32472485464"), null ,
-						new Adres("BE", "Zedelgem", "8210", "Guido Gezellelaan", 54, "10")),
+						new Adres("BE", "Zedelgem", "8210", "Guido Gezellelaan", 54, "10")));
 
 			
 	}
